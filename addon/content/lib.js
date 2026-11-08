@@ -1312,7 +1312,11 @@ var ZIALib = (function () {
 	const PAGE_PART = "p{1,2}\\.?\\s*\\d+(?:\\s*[-–]\\s*(?:p{1,2}\\.?\\s*)?\\d+)?";
 	// Frase de base: as palavras exatas do PDF em que a IA se baseou, dentro da citação e escondidas de
 	// quem lê, [D1:p5 «the model explained 47% of the variance»]. O addon confirma-as no PDF (marca ≈)
-	const ANCHOR = `\\s*(?:«[^«»\\]\\[|\\n]{3,300}»|\u201c[^\u201c\u201d\\]\\[|\\n]{3,300}\u201d|"[^"\\]\\[|\\n]{3,300}")`;
+	// Tolerante com os deslizes mais comuns dos modelos: vírgula ou dois pontos antes das aspas
+	// ([D1:p5, «…»]) e aspas sem fecho no fim da citação ([D1:p5 «…]). Sem isto, quem lê via o texto
+	// técnico da citação, sem ligação nem verificação.
+	const ANCHOR = `\\s*[,:]?\\s*(?:«[^«»\\]\\[|\\n]{3,300}»|\u201c[^\u201c\u201d\\]\\[|\\n]{3,300}\u201d|"[^"\\]\\[|\\n]{3,300}"`
+		+ `|«[^«»\\]\\[|\\n;]{3,300}(?=\\])|\u201c[^\u201c\u201d\\]\\[|\\n;]{3,300}(?=\\])|"[^"\\]\\[|\\n;]{3,300}(?=\\]))`;
 	const ONE_CITE = `D\\d+(?:\\s*:\\s*${PAGE_PART})?(?:${ANCHOR})?`;
 	const ANY_CITE = `(?:${ONE_CITE}|${PAGE_PART}(?:${ANCHOR})?)`;
 	const CITE_INNER = `${ONE_CITE}(?:\\s*[,;]\\s*${ANY_CITE})*`;
@@ -1320,18 +1324,21 @@ var ZIALib = (function () {
 	const DOC_PART_RE = /^D(\d+)(?:\s*:\s*p{1,2}\.?\s*(\d+)(?:\s*[-–]\s*(?:p{1,2}\.?\s*)?(\d+))?)?$/;
 	const PAGE_ONLY_RE = /^p{1,2}\.?\s*(\d+)(?:\s*[-–]\s*(?:p{1,2}\.?\s*)?(\d+))?$/;
 
-	const ANCHOR_RE = /\s*(?:«([^«»\]\[|\n]{3,300})»|\u201c([^\u201c\u201d\]\[|\n]{3,300})\u201d|"([^"\]\[|\n]{3,300})")/g;
+	const ANCHOR_RE = /\s*[,:]?\s*(?:«([^«»\]\[|\n]{3,300})»|\u201c([^\u201c\u201d\]\[|\n]{3,300})\u201d|"([^"\]\[|\n]{3,300})"|«([^«»\]\[|\n;]{3,300})$|\u201c([^\u201c\u201d\]\[|\n;]{3,300})$|"([^"\]\[|\n;]{3,300})$)/g;
 
 	function parseCiteGroup(inner) {
 		const out = [];
 		let lastDoc = null;
 		// As frases de base podem ter vírgulas: saem antes de separar as citações
 		const anchors = [];
-		const plain = String(inner).replace(ANCHOR_RE, (x, a, b, c) => "\u0001" + (anchors.push((a || b || c).trim()) - 1) + "\u0002");
+		const plain = String(inner).replace(ANCHOR_RE, (x, ...g) => "\u0001" + (anchors.push(g.slice(0, 6).find(Boolean).trim()) - 1) + "\u0002");
 		for (const raw of plain.split(/\s*[,;]\s*/)) {
 			let anchor = null;
 			const part = raw.replace(/\u0001(\d+)\u0002/, (x, i) => { anchor = anchors[+i]; return ""; }).trim();
 			const add = c => out.push(anchor ? Object.assign(c, { anchor }) : c);
+			const last = out[out.length - 1];
+			// Só a frase de base, separada da página por uma vírgula: fica com a citação anterior
+			if (!part && anchor && last && !last.anchor) { last.anchor = anchor; continue; }
 			let m = DOC_PART_RE.exec(part);
 			if (m) {
 				lastDoc = "D" + m[1];
@@ -1340,6 +1347,13 @@ var ZIALib = (function () {
 			}
 			m = PAGE_ONLY_RE.exec(part);
 			if (m && lastDoc) {
+				// [D1, p. 5] é uma só citação (D1 na página 5), não o artigo inteiro mais a página 5
+				if (last && last.doc === lastDoc && last.page == null && !(last.anchor && anchor)) {
+					last.page = parseInt(m[1], 10);
+					last.pageEnd = m[2] ? parseInt(m[2], 10) : null;
+					if (anchor) last.anchor = anchor;
+					continue;
+				}
 				add({ doc: lastDoc, page: parseInt(m[1], 10), pageEnd: m[2] ? parseInt(m[2], 10) : null });
 			}
 		}

@@ -201,6 +201,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   formato, 84 de 84 frases de base encontradas no PDF, 1 citacao sem marca em 95. Custo: as respostas em bruto
   ficam 25% a 66% mais longas (mais tempo e mais tokens de saida). `run_ai_real.js` mostra "bases N/M" e
   "sem marca". Falta o GPT-5.5 pelo IAEdu e artigos reais longos.
+  Deslizes de formato aceites (`ANCHOR`, `ANCHOR_RE`, `parseCiteGroup`): virgula ou dois pontos antes das aspas
+  ([D1:p5, «…»]), aspas sem fecho no fim da citacao ([D1:p5 «…]) e [D1, p. 5] como uma so citacao. Antes, a
+  citacao nao era reconhecida e quem lia via o texto tecnico "[D1:p5 «…" sem ligacao nem verificacao. Ficam de
+  fora (raros): aspas sem fecho seguidas de outra fonte e duas frases de base na mesma citacao. A mudanca nao
+  alterou nada nas 28 respostas reais guardadas nem na medicao com erros plantados.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"
@@ -644,7 +649,7 @@ cd tests/harness
 npm install
 ```
 
-- `node --test tests/lib.test.js` — testes unitarios puros (51), incluindo
+- `node --test tests/lib.test.js` — testes unitarios puros (52), incluindo
   a paridade PT-PT/ingles
 - `node tests/harness/run_anthropic.js` — motor Claude API contra um
   servidor SSE simulado no formato oficial da Anthropic, e cofre de chaves

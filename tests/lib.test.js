@@ -754,6 +754,25 @@ test("ficha guardada como nota: as ligações às páginas voltam a ser [Dn:pN]"
 	assert.equal(L.noteCitesToMarkers("<p>sem ligações</p>", "D1", "K"), "<p>sem ligações</p>");
 });
 
+test("frase de base com deslizes de formato: a citação continua reconhecida e verificada", () => {
+	const cites = t => L.parseInline(t).filter(n => n.t === "cite").map(n => n.cites.map(c => `${c.doc}:${c.page}${c.anchor ? " «" + c.anchor + "»" : ""}`));
+	assert.deepEqual(cites("X [D1:p5, «o modelo explicou 47% da variância»]."), [["D1:5 «o modelo explicou 47% da variância»"]], "vírgula antes das aspas");
+	assert.deepEqual(cites("X [D1:p5: «o modelo explicou 47% da variância»]."), [["D1:5 «o modelo explicou 47% da variância»"]], "dois pontos antes das aspas");
+	assert.deepEqual(cites("X [D1:p5 «o modelo explicou 47% da variância]."), [["D1:5 «o modelo explicou 47% da variância»"]], "aspas sem fecho");
+	assert.deepEqual(cites("X [D1, p. 5 «o modelo explicou»]."), [["D1:5 «o modelo explicou»"]], "[D1, p. 5] é uma só citação");
+	assert.deepEqual(cites("X [D1, p5, p7]."), [["D1:5", "D1:7"]]);
+	assert.deepEqual(cites("X [D1:p5 «idade média 22,4 anos; 61% mulheres»; D2:p3 «outra fonte aqui»]."), [["D1:5 «idade média 22,4 anos; 61% mulheres»", "D2:3 «outra fonte aqui»"]]);
+	// Quem lê nunca vê o texto técnico da citação
+	assert.ok(!/«|\[D1/.test(L.citesToText("Dizem X [D1:p5, «o modelo explicou 47% da variância»].", { D1: { ref: "Silva, 2021" } })));
+	const docs = { D1: { pages: ["Introdução.", "", "", "", "Na regressão, o modelo explicou 47% da variância da intenção de uso."] } };
+	for (const t of ["A IA diz isto [D1:p5, «o modelo explicou 47% da variância»].", "A IA diz isto [D1:p5 «o modelo explicou 47% da variância]."]) {
+		const v = L.verifyAnswer(t, docs);
+		assert.equal(v.anchors, 1, t);
+		assert.equal(v.anchorsOK, 1, t);
+		assert.equal(v.items[0].parts[0].status, "based", t);
+	}
+});
+
 test("CSV: o Excel nunca recebe fórmulas vindas da resposta", () => {
 	const csv = L.tablesToCSV("| A | B |\n|---|---|\n| =HYPERLINK(\"http://x\";\"y\") | -0,21 |\n| +351 | @SUM(1) |\n| -12% | - texto |", {});
 	const rows = csv.replace(/^\uFEFF/, "").trim().split("\r\n");
