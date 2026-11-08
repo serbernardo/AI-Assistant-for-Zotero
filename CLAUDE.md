@@ -209,6 +209,20 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   PDF, pela chave do anexo). Antes a IA via "p. 147" e escrevia [D3:p147]: ligacao errada, aviso falso
   e o desvio somado duas vezes. Em `_ask` as fichas tambem leem o texto do PDF (so para a verificacao
   e o `pageOffset`, nao vai no pedido). Se falhar, a ficha segue.
+- **Citacoes do Zotero nas notas (1.0.22, ideia tirada do Anara, reversivel):** pref `notes.zoteroCitations`
+  (ligada por omissao, caixa "Citacoes do Zotero nas notas guardadas" em Respostas). `noteCiter(docsMap)` em
+  `zoteroia.js` grava cada citacao no formato das notas feitas a partir das anotacoes (codigo do Zotero,
+  `EditorInstanceUtilities.serializeAnnotations`): `<span class="citation" data-citation="...">` com `uris` do
+  registo e `locator` = pagina impressa, texto de `Zotero.EditorInstanceUtilities.formatCitation` (dados do registo
+  escapados), e a nota dentro de `<div data-citation-items="[{uris, itemData}]" data-schema-version="9">`. No Word,
+  "Add Note" do plugin do Zotero (`_processNote` em `integration.js`) torna-as citacoes vivas (estilo e
+  bibliografia). `properties.zoteroiaPages` guarda a pagina do ficheiro (o Zotero tira `properties` ao inserir no
+  Word) e `noteCitesToMarkers(html, id, key, { itemURI, pageOffset })` volta a por [Dn:pN] nas fichas
+  (`zoteroCitesToMarkers`, sem `zoteroiaPages` usa a pagina impressa menos o desvio). Sem registo, sem as funcoes do
+  Zotero ou desligado: ligacoes `zotero://open-pdf` como antes (`ctx.zoteroCite` devolve null). Para reverter:
+  desligar a pref (as notas ja guardadas continuam a funcionar no Zotero), ou retirar `noteCiter` e `ctx.zoteroCite`.
+  Clicar na citacao dentro do Zotero abre o PDF pela etiqueta da pagina (`viewPDF({ pageLabel })`). Por testar no
+  Zotero e no Word reais.
 - **Historico enviado a IA:** as acoes nao levam historico (sao pedidos
   completos). As perguntas livres ficam no separador a vista e levam as ultimas 3 trocas desse
   separador, ate 24 mil caracteres (`selectHistory`): assim da para perguntar "e quanto a amostra?".
@@ -619,7 +633,7 @@ cd tests/harness
 npm install
 ```
 
-- `node --test tests/lib.test.js` — testes unitarios puros (49), incluindo
+- `node --test tests/lib.test.js` — testes unitarios puros (50), incluindo
   a paridade PT-PT/ingles
 - `node tests/harness/run_anthropic.js` — motor Claude API contra um
   servidor SSE simulado no formato oficial da Anthropic, e cofre de chaves
@@ -671,7 +685,7 @@ contra servidores e programas simulados).
 python build.py
 ```
 
-Gera `dist/assistente-ia-1.0.21.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
+Gera `dist/assistente-ia-1.0.22.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
 **Ferramentas -> Plugins -> Install Plugin From File...**
 
 ## Licenca e documentacao publica

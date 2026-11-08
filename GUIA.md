@@ -27,6 +27,7 @@ Nas definições do plugin (botão de definições no topo do painel) escolhe um
 - **Limites:** não há um limite fixo de artigos. Até 12, a comparação é um só pedido e cada motor tem um limite de texto por pedido, por isso PDFs muito longos podem ter páginas cortadas (a resposta diz quais). A partir de 13, faz-se cerca de um pedido por cada 10 artigos, mais um da síntese (50 artigos são cerca de 6 pedidos). A partir de 100 artigos a app pede confirmação. O que limita, na prática, é a tua conta: as gratuitas têm quotas por minuto e por dia. Quando o limite por minuto é atingido, a app espera e continua sozinha, e se parar, "Continuar de onde parou" faz só o que falta.
 - **Clique direito** em artigos selecionados: Assistente IA → Abrir na janela, Perguntar a estes artigos, Mapa de temas ou comparar.
 - **Notas e citações:** cada resposta pode guardar-se como nota do Zotero e as citações seguem o estilo APA ou o estilo de citação do teu Zotero.
+- **Notas no Word:** as notas guardadas levam citações do Zotero. No Word, o botão **Add Note** do Zotero insere a nota com citações verdadeiras, no estilo do documento e na bibliografia. Desliga-se nas definições (Respostas).
 
 ## Verificação e privacidade
 

@@ -239,6 +239,37 @@ const errBody = (type, message) => JSON.stringify({ type: "error", error: { type
 		assert.equal(note2.parentID, false, "com vários artigos: nota independente");
 		assert.equal(note2.libraryID, 1);
 		console.log("OK notas: guardar como nota filha e como nota independente");
+
+		// Citações do Zotero (como nas notas feitas a partir das anotações), para o "Add Note" do Word
+		const Z = env3.Zotero;
+		Z.URI = { getItemURI: it => "http://zotero.org/users/local/abc/items/" + it.key };
+		Z.Utilities.Item = { itemToCSLJSON: it => ({ type: "article-journal", title: it.getField("title"), author: [{ family: "Mote<b>" }], issued: { "date-parts": [[2022]] } }) };
+		Z.EditorInstanceUtilities = { formatCitation: c => "(" + c.citationItems.map(x => `<span class="citation-item">${x.itemData.author[0].family}, 2022, p. ${x.locator}</span>`).join("; ") + ")" };
+		d.pageOffset = 144;
+		const note3 = await env3.core.saveNote({ markdown: "Resumo [D1:p2] e [D1:p3-4].", heading: "Resumo · Mote 2022", docs: [d], docsMap: { D1: d }, engine: "gemini", collectionIDs: [] });
+		const h3 = note3.getNote();
+		assert.ok(h3.startsWith('<div data-citation-items="') && h3.includes('data-schema-version="9"'), "contentor do Zotero");
+		const cits = [...h3.matchAll(/<span class="citation" data-citation="([^"]*)">/g)].map(m => JSON.parse(decodeURIComponent(m[1])));
+		assert.equal(cits.length, 2);
+		assert.deepEqual(cits[0].citationItems, [{ uris: ["http://zotero.org/users/local/abc/items/PMOTE"], locator: "146" }], "página impressa no locator");
+		assert.equal(cits[1].citationItems[0].locator, "147-148");
+		assert.deepEqual(cits[1].properties.zoteroiaPages, ["3-4"]);
+		assert.ok(!/open-pdf/.test(h3), "sem ligações");
+		assert.ok(h3.includes("Mote&lt;b&gt;") && !h3.includes("Mote<b>"), "dados do registo escapados");
+		const stored = JSON.parse(decodeURIComponent(/data-citation-items="([^"]*)"/.exec(h3)[1]));
+		assert.equal(stored.length, 1);
+		assert.equal(stored[0].itemData.title, "Artigo");
+		assert.equal(env3.core.noteToText(note3, d).includes("Resumo [D1:p2] e [D1:p3-4]."), true, "a ficha volta a [Dn:pN]");
+		// Desligado: como antes
+		env3.core.setPref("notes.zoteroCitations", false);
+		const note4 = await env3.core.saveNote({ markdown: "Resumo [D1:p2].", heading: "Resumo", docs: [d], docsMap: { D1: d }, engine: "gemini", collectionIDs: [] });
+		assert.ok(/open-pdf/.test(note4.getNote()) && !/data-citation/.test(note4.getNote()), "desligado: ligações");
+		env3.core.setPref("notes.zoteroCitations", true);
+		// PDF sem registo: ligação
+		const solo = Object.assign({}, d, { parentID: null });
+		const note5 = await env3.core.saveNote({ markdown: "Resumo [D1:p2].", heading: "Resumo", docs: [solo], docsMap: { D1: solo }, engine: "gemini", collectionIDs: [] });
+		assert.ok(/open-pdf/.test(note5.getNote()) && !/data-citation/.test(note5.getNote()), "sem registo: ligações");
+		console.log("OK notas: citações do Zotero para o Word (ligadas, desligadas e sem registo)");
 	}
 	console.log("\nTodos os testes do Claude API e do cofre de chaves passaram.");
 })().catch(e => { console.error("FALHOU:", e); process.exit(1); });

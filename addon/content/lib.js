@@ -1734,15 +1734,43 @@ var ZIALib = (function () {
 	 * N = página no ficheiro) com o número impresso no texto. Volta a pô-las como [Dn:pN], para a
 	 * IA reutilizar a página certa e o addon não somar o desvio das páginas duas vezes.
 	 */
-	function noteCitesToMarkers(html, docId, attachmentKey) {
+	function noteCitesToMarkers(html, docId, attachmentKey, opts) {
 		if (!html || !docId || !attachmentKey) return String(html || "");
 		const key = String(attachmentKey).replace(/[^A-Za-z0-9]/g, "");
 		const re = new RegExp(`<a\\b[^>]*\\bhref="zotero://open-pdf/[^"]*/items/${key}(?:\\?page=(\\d+))?"[^>]*>[\\s\\S]*?</a>`, "g");
-		const marker = `\\[${docId}(?::p\\d+)?\\]`;
-		return String(html)
+		const marker = `\\[${docId}(?::p\\d+(?:-\\d+)?)?\\]`;
+		return zoteroCitesToMarkers(String(html), docId, opts)
 			.replace(re, (x, page) => `[${docId}${page ? ":p" + page : ""}]`)
 			// "([D3:p5]; [D3:p7])" fica "[D3:p5] [D3:p7]"
 			.replace(new RegExp(`\\(\\s*(${marker}(?:\\s*[;,]\\s*${marker})*)\\s*\\)`, "g"), (x, inner) => inner.replace(/\s*[;,]\s*/g, " "));
+	}
+
+	/**
+	 * Citações do Zotero numa nota (<span class="citation" data-citation="...">) deste artigo
+	 * (opts.itemURI) voltam a ser [Dn:pN]. A página do ficheiro vem de properties.zoteroiaPages (gravada
+	 * pelo addon). Sem ela, a página impressa (locator) menos o desvio (opts.pageOffset).
+	 */
+	function zoteroCitesToMarkers(html, docId, opts) {
+		const uri = opts && opts.itemURI;
+		if (!uri || html.indexOf("data-citation=") < 0) return html;
+		const off = typeof opts.pageOffset === "number" ? opts.pageOffset : 0;
+		const re = /<span\b[^>]*\bclass="citation"[^>]*\bdata-citation="([^"]*)"[^>]*>(?:[^<]|<span\b[^>]*>[^<]*<\/span>)*<\/span>/g;
+		return html.replace(re, (x, enc) => {
+			let c;
+			try { c = JSON.parse(decodeURIComponent(enc)); }
+			catch (e) { return x; }
+			const items = (c && Array.isArray(c.citationItems)) ? c.citationItems : [];
+			const pages = c && c.properties && Array.isArray(c.properties.zoteroiaPages) ? c.properties.zoteroiaPages : null;
+			const marks = [];
+			items.forEach((it, k) => {
+				if (!it || !Array.isArray(it.uris) || !it.uris.includes(uri)) return;
+				let p = pages && pages[k] != null ? String(pages[k]) : "";
+				if (!pages && it.locator) p = String(it.locator).replace(/\d+/g, n => (+n - off >= 1 ? String(+n - off) : n));
+				p = p.replace(/\s*[-–]\s*/, "-");
+				marks.push(`[${docId}${/^\d+(-\d+)?$/.test(p) ? ":p" + p : ""}]`);
+			});
+			return marks.length ? marks.join(" ") : x;
+		});
 	}
 
 	/**
@@ -2205,6 +2233,12 @@ var ZIALib = (function () {
 				case "br": return "<br/>";
 				case "link": return `<a href="${escapeHTML(n.href)}">${inlinesToHTML(n.c, ctx)}</a>`;
 				case "cite":
+					if (ctx && ctx.zoteroCite) {
+						// Citação do Zotero (pref notes.zoteroCitations): no Word, "Add Note" torna-a viva
+						let z = null;
+						try { z = ctx.zoteroCite(n.cites); } catch (e) { /* ligações, como antes */ }
+						if (z) return z;
+					}
 					if (citeFormatter) {
 						// Estilo do Zotero: cada citação formatada e com a sua ligação ao PDF
 						const parts = n.cites.map(c => {

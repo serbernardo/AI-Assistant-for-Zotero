@@ -754,6 +754,21 @@ test("ficha guardada como nota: as ligações às páginas voltam a ser [Dn:pN]"
 	assert.equal(L.noteCitesToMarkers("<p>sem ligações</p>", "D1", "K"), "<p>sem ligações</p>");
 });
 
+test("ficha com citações do Zotero: voltam a ser [Dn:pN] com a página do ficheiro", () => {
+	const URI = "http://zotero.org/users/local/abc/items/PSILVA";
+	const span = (items, props) => `<span class="citation" data-citation="${encodeURIComponent(JSON.stringify({ citationItems: items, properties: props || {} }))}">(<span class="citation-item">Silva et al., 2021, p. 147</span>)</span>`;
+	const html = `<div data-citation-items="x" data-schema-version="9"><p>Amostra ${span([{ uris: [URI], locator: "147" }], { zoteroiaPages: ["3"] })} e `
+		+ `${span([{ uris: [URI], locator: "148-149" }])}, outro ${span([{ uris: ["http://zotero.org/users/local/abc/items/OUTRO"], locator: "2" }])}</p></div>`;
+	const out = L.noteCitesToMarkers(html, "D3", "ABCD1234", { itemURI: URI, pageOffset: 144 });
+	assert.match(out, /Amostra \[D3:p3\] e \[D3:p4-5\], outro <span class="citation"/, "página gravada pelo addon, ou a impressa menos o desvio, e só as deste artigo");
+	assert.equal(L.noteCitesToMarkers(html, "D3", "ABCD1234"), html, "sem o URI do registo fica como está");
+	// Na resposta guardada: com zoteroCite, a citação é a do Zotero; sem ela, a ligação de sempre
+	const ctx = { docsMap: { D1: { ref: "Silva, 2021" } }, citeHref: () => "zotero://open-pdf/library/items/K?page=2" };
+	assert.match(L.markdownToHTML("Dizem X [D1:p2].", ctx), /<a href="zotero:\/\/open-pdf/);
+	assert.match(L.markdownToHTML("Dizem X [D1:p2].", Object.assign({ zoteroCite: c => `<span class="citation">${c[0].page}</span>` }, ctx)), /Dizem X <span class="citation">2<\/span>\./);
+	assert.match(L.markdownToHTML("Dizem X [D1:p2].", Object.assign({ zoteroCite: () => null }, ctx)), /open-pdf/, "sem registo: ligação");
+});
+
 test("verificação rigorosa: defeitos dos PDFs reais aceites, qualquer palavra mudada assinalada", () => {
 	// Texto como sai de PDFs reais: espaços partidos dentro das palavras, traços espaçados,
 	// hífen de fim de linha, referências no meio da frase e cabeçalho entre duas páginas
