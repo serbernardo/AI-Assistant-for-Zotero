@@ -13,7 +13,12 @@ permissions:
   contents: write
 
 jobs:
+  # Só publica se os testes automáticos passarem (tests.yml)
+  testes:
+    uses: ./.github/workflows/tests.yml
+
   release:
+    needs: testes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

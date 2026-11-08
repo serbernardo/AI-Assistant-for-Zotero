@@ -754,6 +754,14 @@ test("ficha guardada como nota: as ligações às páginas voltam a ser [Dn:pN]"
 	assert.equal(L.noteCitesToMarkers("<p>sem ligações</p>", "D1", "K"), "<p>sem ligações</p>");
 });
 
+test("CSV: o Excel nunca recebe fórmulas vindas da resposta", () => {
+	const csv = L.tablesToCSV("| A | B |\n|---|---|\n| =HYPERLINK(\"http://x\";\"y\") | -0,21 |\n| +351 | @SUM(1) |\n| -12% | - texto |", {});
+	const rows = csv.replace(/^\uFEFF/, "").trim().split("\r\n");
+	assert.equal(rows[1], '"\'=HYPERLINK(""http://x"";""y"")";-0,21');
+	assert.equal(rows[2], "'+351;'@SUM(1)");
+	assert.equal(rows[3], "-12%;'- texto");
+});
+
 test("ficha com citações do Zotero: voltam a ser [Dn:pN] com a página do ficheiro", () => {
 	const URI = "http://zotero.org/users/local/abc/items/PSILVA";
 	const span = (items, props) => `<span class="citation" data-citation="${encodeURIComponent(JSON.stringify({ citationItems: items, properties: props || {} }))}">(<span class="citation-item">Silva et al., 2021, p. 147</span>)</span>`;

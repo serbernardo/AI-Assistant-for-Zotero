@@ -31,7 +31,7 @@ Nas definições do plugin (botão de definições no topo do painel) escolhe um
 
 ## Verificação e privacidade
 
-- O assistente só usa o texto dos teus PDFs e **verifica cada resposta** contra eles: transcrições (texto entre aspas), páginas, números e contas. Cada citação verificada tem uma marca (✓ está no PDF, ↪ noutra página, ✗ não bate certo). Ao clicar, a frase do PDF aparece logo por baixo, a amarelo, ou o que o PDF diz de facto quando não bate certo. As paráfrases da IA não são verificadas: confere-as no PDF.
+- O assistente só usa o texto dos teus PDFs e **verifica cada resposta** contra eles: transcrições (texto entre aspas), páginas, números e contas. Cada citação verificada tem uma marca (✓ transcrição igual ao PDF, ≈ paráfrase com a frase de base encontrada nessa página, ↪ noutra página, ✗ não bate certo) e uma linha por baixo da resposta faz o resumo. Ao clicar, a frase do PDF aparece logo por baixo, a amarelo, ou o que o PDF diz de facto quando não bate certo. Numa paráfrase (≈) o assistente confirma que a frase de base está no PDF, mas não que a paráfrase diz o mesmo: isso confere-lo tu.
 - Para responder, o texto dos PDFs escolhidos é enviado ao serviço de IA que escolheste. Não há nenhum servidor deste projeto pelo meio e as conversas ficam só no teu computador.
 
 ## Licença

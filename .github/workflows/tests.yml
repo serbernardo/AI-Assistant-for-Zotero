@@ -1,0 +1,43 @@
+# Corre os testes automáticos (sem IA real, sem chaves) em cada envio para um ramo de trabalho
+# e antes de cada publicação (a release.yml chama este ficheiro e só publica se tudo passar).
+name: Testes
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Dependências dos testes
+        working-directory: tests/harness
+        run: npm ci
+      - name: Navegador para os testes de interface
+        working-directory: tests/harness
+        run: npx playwright install --with-deps chromium
+      - name: Testes unitários
+        run: node --test tests/lib.test.js
+      - name: Motor Claude API e cofre de chaves
+        run: node tests/harness/run_anthropic.js
+      - name: Motores ChatGPT (API e Codex)
+        run: node tests/harness/run_openai.js
+      - name: Motor IAEdu
+        run: node tests/harness/run_iaedu.js
+      - name: Motor Gemini
+        run: node tests/harness/run_gemini.js
+      - name: Definições
+        run: node tests/harness/run_prefs.js
+      - name: Painel e janela
+        run: node tests/harness/run_ui.js

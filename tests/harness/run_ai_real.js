@@ -235,7 +235,11 @@ async function main() {
 		for (const b of v.badCites || []) problems.push(`página inexistente ${b.doc}:p${b.page}`);
 		for (const e of v.badCalcs || []) problems.push(`conta errada: ${e}`);
 		if ((v.unknownNumbers || []).length) problems.push("números que não estão nos documentos: " + v.unknownNumbers.join(" "));
-		return { id, cites: cites.length, quotes: `${v.quotesOK || 0}/${v.quotes || 0}`, calcs: v.calcs || 0, problems };
+		// Frases de base (≈): a IA segue o formato [D1:p5 «palavras do PDF»]? E as palavras estão lá?
+		for (const it of v.items || []) for (const p of it.parts || []) {
+			if (p && !["based", "moved"].includes(p.status)) problems.push(`frase de base ${p.status}: «${p.anchor}»`);
+		}
+		return { id, cites: cites.length, quotes: `${v.quotesOK || 0}/${v.quotes || 0}`, bases: `${v.anchorsOK || 0}/${v.anchors || 0}`, unmarked: v.unmarked || 0, calcs: v.calcs || 0, problems };
 	};
 
 	// 1. Todas as ações
@@ -326,7 +330,7 @@ async function main() {
 	for (const r of results) {
 		const ok = !r.problems.length;
 		if (!ok) fails++;
-		const line = `${ok ? "OK " : "FALHOU"} ${r.id.padEnd(24)} ${String(r.cites).padStart(3)} citações  excertos ${String(r.quotes || "").padEnd(5)} ${String(r.secs || "?").padStart(3)} s  ${(r.model || "").padEnd(24)} ${ok ? "" : r.problems.join("; ")}`
+		const line = `${ok ? "OK " : "FALHOU"} ${r.id.padEnd(24)} ${String(r.cites).padStart(3)} citações  excertos ${String(r.quotes || "").padEnd(5)} bases ${String(r.bases || "").padEnd(5)} sem marca ${String(r.unmarked == null ? "" : r.unmarked).padEnd(3)} ${String(r.secs || "?").padStart(3)} s  ${(r.model || "").padEnd(24)} ${ok ? "" : r.problems.join("; ")}`
 			+ (r.notices && r.notices.length ? `\n       avisos: ${r.notices.join(" | ")}` : "");
 		lines.push(line);
 		console.log(line);

@@ -2455,7 +2455,11 @@ var ZIALib = (function () {
 	}
 
 	function csvCell(s, sep) {
-		const v = String(s == null ? "" : s);
+		let v = String(s == null ? "" : s);
+		// Uma célula que começa por = + - @ é lida pelo Excel como fórmula. O texto vem da IA, e um PDF
+		// pode tentar levá-la a escrever uma fórmula perigosa (=HYPERLINK, =WEBSERVICE): passa a texto.
+		// Os números negativos ("-0,21", "-12%") ficam como estão.
+		if (/^[=+\-@\t\r]/.test(v) && !/^-\d+(?:[.,]\d+)?%?$/.test(v)) v = "'" + v;
 		if (v.includes(sep) || v.includes("\"") || v.includes("\n")) {
 			return "\"" + v.replace(/"/g, "\"\"") + "\"";
 		}

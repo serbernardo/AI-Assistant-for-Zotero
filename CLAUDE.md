@@ -197,7 +197,10 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   parafrases com base no PDF · 1 sem verificacao · 2 a rever ›" e ⓘ com a legenda das marcas
   (`check.legend.*`). Citacao sem marca numa resposta verificada: tooltip `cite.unchecked`. A frase de
   base dentro da citacao nunca e lida como transcricao (o pedaco entre aspas e citacao nao pode ter "]").
-  Por testar com a IA real (GPT-5.5 pelo IAEdu): se os modelos seguem o formato e quantas bases sao exatas.
+  IA real (revisao do projeto, Claude Sonnet 5.5 com os PDFs de teste, `out/ia_real_claude_bases/`): segue o
+  formato, 84 de 84 frases de base encontradas no PDF, 1 citacao sem marca em 95. Custo: as respostas em bruto
+  ficam 25% a 66% mais longas (mais tempo e mais tokens de saida). `run_ai_real.js` mostra "bases N/M" e
+  "sem marca". Falta o GPT-5.5 pelo IAEdu e artigos reais longos.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"
@@ -603,6 +606,14 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   Sonnet 5.5, Opus 5.5 e Haiku 5.5 (o Haiku 4.5 saiu: e 10 vezes mais caro). O Haiku nao tem reserva
   no servidor (`fallbacks`), so o Opus 5, Sonnet 5.5 e Fable. Claude Code
   com o nome curto `sonnet`, que aponta sempre para o mais recente.
+- **Testes antes de publicar (revisao do projeto):** `.github/workflows/tests.yml` corre os testes sem IA real
+  (lib, motores simulados, definicoes e interface com o Chromium do Playwright) em cada envio para um ramo de
+  trabalho, e a `release.yml` chama-o (`needs: testes`): uma versao com um teste a falhar nao chega aos
+  utilizadores. Versoes de teste enviadas a mao: nunca com o numero da proxima versao publicada (a 1.0.22 de
+  teste e a 1.0.22 publicada seriam ficheiros diferentes com o mesmo numero e o Zotero nao atualiza entre
+  elas). Regra: a versao publicada e sempre maior do que qualquer versao de teste ja enviada.
+- **CSV sem formulas** (`csvCell`): uma celula que comeca por = + - @ ganha um apostrofo antes (o Excel le-a
+  como texto). Os numeros negativos ficam. Um PDF podia levar a IA a escrever =HYPERLINK ou =WEBSERVICE.
 - **Atualizacoes:** `update_url` do manifest aponta para
   `releases/latest/download/updates.json` do GitHub. `build.py` gera o
   `updates.json` com o sha256 do `.xpi`. A acao
@@ -633,7 +644,7 @@ cd tests/harness
 npm install
 ```
 
-- `node --test tests/lib.test.js` — testes unitarios puros (50), incluindo
+- `node --test tests/lib.test.js` — testes unitarios puros (51), incluindo
   a paridade PT-PT/ingles
 - `node tests/harness/run_anthropic.js` — motor Claude API contra um
   servidor SSE simulado no formato oficial da Anthropic, e cofre de chaves
