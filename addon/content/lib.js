@@ -162,10 +162,11 @@ var ZIALib = (function () {
 	].join("\n");
 
 	// Grupos de ações (separadores na interface)
+	// "escrever" (Extrair) juntou-se a "compreender" (a pedido): com as 6 acoes do Simples fora do
+	// Avancado, o separador Compreender ficava com duas acoes
 	const ACTION_GROUPS = [
 		{ id: "compreender" },
 		{ id: "avaliar" },
-		{ id: "escrever" },
 		{ id: "investigar" },
 		{ id: "comparar" },
 		{ id: "meus" },
@@ -311,7 +312,7 @@ var ZIALib = (function () {
 				+ "Se uma afirmação for ambígua, marca-a como [Pouco claro] em vez de a interpretar.",
 		},
 		ficha: {
-			group: "escrever",
+			group: "compreender",
 			minDocs: 1,
 			perDoc: true,
 			prompt: "Preenche uma ficha de extração para cada documento, com esta tabela Markdown "
@@ -321,7 +322,7 @@ var ZIALib = (function () {
 				+ "com o formato: ## Ficha IA · Autor Ano",
 		},
 		excertos: {
-			group: "escrever",
+			group: "compreender",
 			minDocs: 1,
 			prompt: "Seleciona 8 a 12 excertos literais e curtos (no máximo 40 palavras cada) que valham a pena citar num "
 				+ "trabalho académico: definições, resultados centrais, afirmações fortes e limitações. Para cada excerto, "
@@ -330,7 +331,7 @@ var ZIALib = (function () {
 				+ "Se não conseguires garantir a transcrição literal de um excerto, não o incluas.",
 		},
 		etiquetas: {
-			group: "escrever",
+			group: "compreender",
 			minDocs: 1,
 			perDoc: true,
 			prompt: "Extrai as palavras-chave do documento. Primeiro, se o documento tiver uma lista de palavras-chave "

@@ -22,7 +22,7 @@ Acoes (em `lib.js`, `ACTIONS`, agrupadas em separadores `ACTION_GROUPS`). Nomes 
 - Avaliar/Appraise: Relevancia para o meu tema (`relevancia`, precisa do tema na caixa, `needsCriteria`
   e `needsMsg`), Avaliacao critica (grelha CONSORT/STROBE/PRISMA/COREQ/CASP/JBI, "Apreciacao global"
   marcada como opiniao da IA, sem GRADE), Metodos e dados, Afirmacoes e evidencia (`conclusoes`).
-- Extrair/Extract (grupo `escrever`): Ficha de leitura/Reading sheet (14 campos, um so tipo nos dois
+- Extrair (no separador "Ler e extrair", grupo `compreender`): Ficha de leitura/Reading sheet (14 campos, um so tipo nos dois
   modos), Excertos citaveis, Palavras-chave/Keywords (`etiquetas`, adiciona etiquetas do Zotero).
 - Investigacao futura/Future research (grupo `investigar`): Lacunas, Referencias-chave (`referencias`,
   `keepRefs`: a lista de referencias do PDF nao e cortada), Perguntas de investigacao.
@@ -331,6 +331,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   botao "Pedir: X" (`_hintsFor`). Linha "ou"
   (`.zia-or`) antes da caixa, que e so para perguntas ("Ou pergunta algo sobre o artigo…").
   Sugestoes em pastilhas, sem texto de ajuda repetido.
+- **Ler e extrair, um so separador (a pedido):** o grupo `escrever` (Extrair) juntou-se ao `compreender`,
+  que com as 6 acoes do Simples fora ficava com duas acoes. Nomes: "Ler e extrair" / "Read and extract",
+  separador curto "Ler" / "Read". O id do grupo continua `compreender` (a lista das fichas em `_renderActions`
+  segue-o) e um `ui.group` guardado que ja nao existe volta ao primeiro separador. Separadores do painel:
+  Ler, Avaliar, Investigar, Pers.
 - **Avancado sem as acoes do Simples (a pedido):** `_renderActions` tira do painel Avancado (`_isAdv()`) as
   6 acoes de `L.SIMPLE_ACTIONS`, que ja estao no Simples. Compreender fica com Ideias principais e Esquema
   (mais Explicar os meus destaques quando o PDF tem destaques) e Avaliar com 3. A janela nao muda (so mostra

@@ -348,7 +348,7 @@ test("textos: troca de língua e resolução automática", () => {
 	try {
 		I.setLang("en");
 		assert.equal(L.ACTIONS.resumo.label, "Summary");
-		assert.equal(L.ACTION_GROUPS[0].label, "Understand");
+		assert.equal(L.ACTION_GROUPS[0].label, "Read and extract");
 		assert.equal(L.shortAuthor([]), "No author");
 		assert.equal(L.yearFrom(""), "n.d.");
 		assert.equal(L.fichaPrefix(), "AI Sheet");

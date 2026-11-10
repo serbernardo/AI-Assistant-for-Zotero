@@ -36,7 +36,9 @@ var ZIAChatView = class {
 		this.L = core.lib;
 		this.state = this._emptyState();
 		this.engine = core.defaultEngine();
-		this.group = core.pref("ui.group") || "compreender";
+		// Um separador guardado que ja nao existe (ex.: "escrever", que se juntou ao "compreender")
+		const saved = core.pref("ui.group");
+		this.group = core.lib.ACTION_GROUPS.some(g => g.id === saved) ? saved : "compreender";
 		this.simple = this.mode === "section" && (core.pref("ui.mode") || "simple") !== "advanced";
 		this.collectionIDs = [];
 		this.busy = false;
@@ -623,7 +625,7 @@ var ZIAChatView = class {
 			const fl = this._fichasListEl();
 			if (fl) box.appendChild(fl);
 		}
-		if (this.group === "escrever") {
+		if (this.group === "compreender") {
 			if (this._fichaInfoOpen) box.appendChild(this._fichaInfoEl());
 			const fl = this._fichasListEl();
 			if (fl) box.appendChild(fl);
@@ -3814,7 +3816,7 @@ var ZIAChatView = class {
 		if (!quiet) {
 			this._setStatus(this.T(note.parentID ? "chat.noteSavedChild" : "chat.noteSavedStandalone"));
 		}
-		if (this.group === "escrever") this._renderActions();
+		if (this.group === "compreender") this._renderActions();
 		return note;
 	}
 

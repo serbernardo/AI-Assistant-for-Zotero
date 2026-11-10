@@ -129,6 +129,10 @@ async function main() {
 			assert.equal(await page.locator(`button[data-action="${id}"]`).count(), 0, `${id} só no Simples`);
 		}
 		assert.equal(await page.locator('button[data-action="esquema"]').count(), 1, "as outras ações ficam no Avançado");
+		// Ler e extrair: os dois separadores juntaram-se (a pedido)
+		assert.deepEqual(await page.$$eval(".zia-action", bs => bs.map(b => b.dataset.action)),
+			["pontos", "esquema", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
+		assert.deepEqual(await page.$$eval(".zia-tab", bs => bs.map(b => b.textContent)), ["Ler", "Avaliar", "Investigar", "Pers."]);
 		await page.screenshot({ path: path.join(OUT, "ui_painel_vazio.png") });
 		// as perguntas de exemplo estão em Pers.
 		await tab(page, "meus");
@@ -276,7 +280,7 @@ async function main() {
 	{
 		const page = await open("?mode=section&ui=en", { width: 420, height: 800 });
 		assert.equal(await page.textContent('button[data-action="pontos"]'), "Main ideas");
-		assert.equal(await page.textContent('.zia-tab[data-group="compreender"]'), "Understand");
+		assert.equal(await page.textContent('.zia-tab[data-group="compreender"]'), "Read");
 		assert.equal(await page.textContent(".zia-send"), "Send ➤");
 		await tab(page, "meus");
 		assert.match(await page.locator(".zia-suggestion").first().textContent(), /research question/);
@@ -638,7 +642,7 @@ async function main() {
 	// ---------- Etiquetas ----------
 	{
 		const page = await open("?mode=section", { width: 420, height: 800 });
-		await tab(page, "escrever");
+		await tab(page, "compreender");
 		await page.evaluate(() => { window.MOCK.answer = "- **bibliotecas universitárias**: contexto do estudo [D1:p1]\n- **chatbots**: tema central [D1:p2]\n\nETIQUETAS: bibliotecas universitárias | chatbots | inquérito"; });
 		await act(page, "etiquetas");
 		await page.waitForSelector(".zia-tag >> nth=2", { timeout: 30000 });
@@ -1139,7 +1143,7 @@ async function main() {
 			ZoteroIA.saveNote = async a => { if (/^Ficha IA/.test(a.heading)) window.fichaSaved = true; return o(a); };
 			window.MOCK.answer = "| Campo | Conteúdo |\n|---|---|\n| Método | Inquérito [D1:p3] |";
 		});
-		await tab(page, "escrever");
+		await tab(page, "compreender");
 		await page.click(".zia-info-btn");
 		await page.waitForSelector(".zia-info-panel");
 		assert.equal(await page.locator(".zia-info-fields li").count(), 14, "a explicação lista os campos da ficha");
@@ -1338,7 +1342,7 @@ async function main() {
 		assert.ok(r.x.length <= 1 && r.y.length <= 1, "nenhuma conversa fica com dois artigos misturados");
 		console.log("OK painel: passar depressa de artigo em artigo não mistura artigos na mesma conversa");
 		// No painel (um artigo) não há "Usar fichas", que só serve com vários artigos
-		for (const g of ["avaliar", "escrever", "investigar"]) {
+		for (const g of ["avaliar", "investigar"]) {
 			await tab(page, g);
 			assert.equal(await page.locator(".zia-fichas-toggle").count(), 0, `sem Usar fichas no separador ${g} do painel`);
 		}
