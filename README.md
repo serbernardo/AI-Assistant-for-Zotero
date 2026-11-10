@@ -83,7 +83,6 @@ Open it from the "Several articles" bar at the top of the panel, from the right-
 
 - Citations follow APA in each language and can use **your Zotero citation style** (authors and year come from Zotero, never from the AI).
 - **Save as note** on any answer. Comparisons are saved as standalone notes in the collection.
-- Saved notes carry **real Zotero citations**: in Word, LibreOffice or Google Docs, Zotero's **Add Note** button inserts the note with live citations, in the document's style and in the bibliography. This can be turned off in the settings (Answers).
 - **Copy** keeps formatted citations.
 
 ## Privacy

@@ -306,15 +306,7 @@ var ZoteroIA = {
 	/** Texto de uma nota. Com o artigo (doc), as ligações às páginas voltam a ser [Dn:pN]. */
 	noteToText(note, doc) {
 		let html = note.getNote() || "";
-		if (doc) {
-			let itemURI = null;
-			try {
-				const parent = doc.parentID && Zotero.URI && Zotero.Items.get(doc.parentID);
-				if (parent) itemURI = Zotero.URI.getItemURI(parent);
-			}
-			catch (e) { /* só as ligações */ }
-			html = this.lib.noteCitesToMarkers(html, doc.id, doc.attachmentKey, { itemURI, pageOffset: doc.pageOffset });
-		}
+		if (doc) html = this.lib.noteCitesToMarkers(html, doc.id, doc.attachmentKey);
 		try {
 			return Zotero.Utilities.unescapeHTML(html.replace(/<\/(p|h\d|li|tr|div)>/gi, "\n$&").replace(/<\/t[dh]>/gi, " | $&"));
 		}
@@ -2090,84 +2082,19 @@ var ZoteroIA = {
 	},
 
 	/**
-	 * Citações do Zotero nas notas (pref notes.zoteroCitations, ligada por omissão), no mesmo formato
-	 * das notas feitas a partir das anotações: no Word, o botão "Add Note" do Zotero torna-as citações
-	 * vivas (estilo do documento e bibliografia). Só para artigos com registo. Sem registo, ou sem as
-	 * funções do Zotero, a citação fica como ligação à página do PDF, como antes.
-	 * Devolve { cite(cites) -> HTML ou null, wrap(html) } ou null (desligado).
-	 */
-	noteCiter(docsMap) {
-		if (this.pref("notes.zoteroCitations") === false) return null;
-		const L = this.lib;
-		let U, getURI, toCSL;
-		try {
-			U = Zotero.EditorInstanceUtilities;
-			getURI = Zotero.URI && Zotero.URI.getItemURI && (it => Zotero.URI.getItemURI(it));
-			toCSL = Zotero.Utilities.Item && Zotero.Utilities.Item.itemToCSLJSON && (it => Zotero.Utilities.Item.itemToCSLJSON(it));
-		}
-		catch (e) { return null; }
-		if (!U || !U.formatCitation || !getURI || !toCSL) return null;
-		const stored = new Map();
-		const source = id => {
-			const d = docsMap && docsMap[id];
-			const parent = d && d.parentID ? Zotero.Items.get(d.parentID) : null;
-			if (!parent || !parent.isRegularItem || !parent.isRegularItem()) return null;
-			const uri = getURI(parent);
-			if (!stored.has(uri)) stored.set(uri, { uris: [uri], itemData: toCSL(parent) });
-			return { d, uri };
-		};
-		// Texto que o Zotero mostra na nota: sem marcas HTML vindas dos dados do registo
-		const safe = data => {
-			const x = JSON.parse(JSON.stringify(data || {}));
-			for (const a of x.author || []) for (const k of ["family", "given", "literal"]) if (a[k]) a[k] = L.escapeHTML(a[k]);
-			if (x.title) x.title = L.escapeHTML(x.title);
-			return x;
-		};
-		const cite = cites => {
-			const items = [], pages = [];
-			for (const c of cites) {
-				const s = source(c.doc);
-				if (!s) return null;
-				const it = { uris: [s.uri] };
-				let filePages = "";
-				if (c.page != null) {
-					const range = c.pageEnd && c.pageEnd !== c.page;
-					const a = L.pageLabel(s.d, c.page), b = range ? L.pageLabel(s.d, c.pageEnd) : null;
-					it.locator = b && b !== a ? `${a}-${b}` : String(a);
-					filePages = range ? `${c.page}-${c.pageEnd}` : String(c.page);
-				}
-				items.push(it);
-				pages.push(filePages);
-			}
-			if (!items.length) return null;
-			// properties fica na nota (o addon lê as páginas do ficheiro) e o Zotero tira-a ao inserir no Word
-			const citation = { citationItems: items, properties: { zoteroiaPages: pages } };
-			const shown = JSON.parse(JSON.stringify(citation));
-			shown.citationItems.forEach(it => { it.itemData = safe(stored.get(it.uris[0]).itemData); });
-			return `<span class="citation" data-citation="${encodeURIComponent(JSON.stringify(citation))}">${U.formatCitation(shown)}</span>`;
-		};
-		const wrap = html => stored.size
-			? `<div data-citation-items="${encodeURIComponent(JSON.stringify([...stored.values()]))}" data-schema-version="9">${html}</div>`
-			: html;
-		return { cite, wrap };
-	},
-
-	/**
 	 * Guarda uma resposta como nota.
 	 * Com um só documento com item-pai: nota filha. Caso contrário: nota independente
 	 * na mesma biblioteca (e na coleção indicada), relacionada com os artigos.
 	 */
 	async saveNote({ markdown, heading, docs, docsMap, engine, collectionIDs }) {
 		const L = this.lib;
-		const zc = this.noteCiter(docsMap);
-		const ctx = { docsMap, citeHref: c => this.citeHref(docsMap[c.doc], c.page), zoteroCite: zc && zc.cite };
+		const ctx = { docsMap, citeHref: c => this.citeHref(docsMap[c.doc], c.page) };
 		const body = L.markdownToHTML(markdown, ctx);
 		const refs = docs.map(d => `<li>${L.escapeHTML(d.fullRef || d.ref)}</li>`).join("");
 		const date = new Date().toLocaleDateString(L.I18N.getLang() === "en" ? "en-GB" : "pt-PT");
-		let html = `<h1>${L.escapeHTML(heading)}</h1>\n${body}\n<hr/>\n`
+		const html = `<h1>${L.escapeHTML(heading)}</h1>\n${body}\n<hr/>\n`
 			+ (docs.length > 1 ? `<p><strong>${L.escapeHTML(this.t("note.documents"))}</strong></p><ul>${refs}</ul>` : "")
 			+ `<p><em>${L.escapeHTML(this.t("note.footer", { engine: this.engineLabel(engine), date }))}</em></p>`;
-		if (zc) html = zc.wrap(html);
 		const note = new Zotero.Item("note");
 		const single = docs.length === 1 ? docs[0] : null;
 		const parent = single && single.parentID ? Zotero.Items.get(single.parentID) : null;

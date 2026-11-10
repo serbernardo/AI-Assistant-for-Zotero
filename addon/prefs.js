@@ -5,7 +5,6 @@ pref("extensions.zoteroia.engine", "");
 pref("extensions.zoteroia.ui.lang", "auto");
 pref("extensions.zoteroia.context.annotations", false);
 pref("extensions.zoteroia.fichas.autoSave", true);
-pref("extensions.zoteroia.notes.zoteroCitations", true);
 pref("extensions.zoteroia.custom.prompts", "");
 // Guardar as conversas de cada artigo neste computador (pasta de dados do Zotero)
 pref("extensions.zoteroia.history.save", true);
