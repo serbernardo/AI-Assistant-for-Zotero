@@ -592,7 +592,10 @@ var ZIAChatView = class {
 		this.actionButtons = {};
 		if (this.simple) return this._renderSimpleActions();
 		if (this.mode === "window") return this._renderWindowActions();
-		const list = this._actionsOfGroup(this.group).filter(a => !a.needsHighlights || this._hasHighlights());
+		// O Avançado mostra só o que o Simples não tem (a pedido): sem as 6 ações repetidas
+		const list = this._actionsOfGroup(this.group)
+			.filter(a => !a.needsHighlights || this._hasHighlights())
+			.filter(a => !this._isAdv() || !this.L.SIMPLE_ACTIONS.includes(a.id));
 		const custom = this.group === "meus";
 		if (custom && !list.length && !this._customForm) {
 			box.appendChild(this._el("div", "zia-meus-empty", this.T("chat.meus.empty")));
@@ -1724,7 +1727,7 @@ var ZIAChatView = class {
 		box.appendChild(this._el("div", "zia-simple-ask", this.T("simple.ask")));
 		const grid = this._el("div", "zia-simple-grid");
 		// Ficha de leitura e Explicar os meus destaques ficam só no Avançado
-		for (const id of ["resumo", "simples", "conceitos", "mapa", "estudo", "relevancia"]) {
+		for (const id of this.L.SIMPLE_ACTIONS) {
 			const a = this._action(id);
 			if (!a || (a.needsHighlights && !this._hasHighlights())) continue;
 			const b = this._button("", "zia-simple-btn", () => this._runSimple(id));

@@ -101,8 +101,8 @@ async function main() {
 	const URL = buildPage();
 	const browser = await chromium.launch(launchOptions());
 	const errors = [];
-	const open = async () => {
-		const page = await browser.newPage({ viewport: { width: 820, height: 1400 } });
+	const open = async (width = 820) => {
+		const page = await browser.newPage({ viewport: { width, height: 1400 } });
 		page.on("pageerror", e => errors.push(e.message));
 		page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
 		await page.goto(URL + "?key=1");
@@ -301,6 +301,24 @@ async function main() {
 		await pg.close();
 	}
 	console.log("OK versão nova: aviso no topo das definições com Atualizar agora, e só a frase quando falta reiniciar");
+
+	// Painel estreito: nenhum campo sai do ecrã (o Endpoint do IAEdu tinha 320px fixos e era o primeiro a sair)
+	for (const w of [420, 520, 700]) {
+		const pg = await open(w);
+		for (const engine of ["iaedu", "gemini", "anthropic", "openai", "claude", "codex"]) {
+			await pg.click(`.zia-etab[data-engine="${engine}"]`);
+			const fora = await pg.evaluate(() => {
+				const limite = document.querySelector(".zia-hero").getBoundingClientRect();
+				return [...document.querySelectorAll("#zoteroia-prefs-root input, #zoteroia-prefs-root select")]
+					.filter(el => el.offsetParent)
+					.filter(el => el.getBoundingClientRect().right > limite.right - 14)
+					.map(el => el.id || el.type);
+			});
+			assert.deepEqual(fora, [], `campos dentro do painel (${engine}, ${w}px)`);
+		}
+		await pg.close();
+	}
+	console.log("OK painel estreito: nenhum campo das definições sai do ecrã (420, 520 e 700 px)");
 	console.log("OK instruções dos motores: custo, passos com ligações e comandos, texto selecionável, Copiar só nos comandos");
 
 	// 1c. IAEdu: só a chave chega (agente por omissão), os campos de outro agente são opcionais e validados

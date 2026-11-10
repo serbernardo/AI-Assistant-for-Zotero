@@ -331,6 +331,13 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   botao "Pedir: X" (`_hintsFor`). Linha "ou"
   (`.zia-or`) antes da caixa, que e so para perguntas ("Ou pergunta algo sobre o artigo…").
   Sugestoes em pastilhas, sem texto de ajuda repetido.
+- **Avancado sem as acoes do Simples (a pedido):** `_renderActions` tira do painel Avancado (`_isAdv()`) as
+  6 acoes de `L.SIMPLE_ACTIONS`, que ja estao no Simples. Compreender fica com Ideias principais e Esquema
+  (mais Explicar os meus destaques quando o PDF tem destaques) e Avaliar com 3. A janela nao muda (so mostra
+  Comparar). Consequencia: o campo do tema da Relevancia (`_renderHints`, `.zia-hints`) ja nao abre no
+  Avancado, porque a Relevancia so existe no Simples (la o tema escreve-se na caixa de texto). Para voltar
+  atras: tirar o filtro em `_renderActions`. Testes: `run_ui.js` confirma que as 6 nao aparecem no Avancado
+  e usa `actSimple()` para as pedir.
 - **Repetir com:** so aparecem os motores "Prontos" (`<motor>.lastTest` = ok, `_otherReadyEngines`).
 - **Listas na janela:** a janela e uma janela XUL propria onde os select nativos nao abrem. `_select`
   devolve um select normal no painel e uma lista feita com botoes na janela (`.zia-dd`, com
@@ -425,8 +432,8 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
 - **Modo Simples / Avancado** (pref `ui.mode`, "simple" por omissao, so no painel lateral: a janela
   e sempre avancada). Interruptor no topo do painel (`.zia-modeswitch`) e lista nas definicoes
   (Respostas, `initUIMode`). Simples (`this.simple`, `_renderSimpleActions`, `_runSimple`): 6 botoes
-  grandes com descricao (resumo, simples, conceitos, mapa, estudo, relevancia) que enviam logo (Ficha de
-  leitura e Explicar os meus destaques so no Avancado);
+  grandes com descricao (`SIMPLE_ACTIONS` em `lib.js`: resumo, simples, conceitos, mapa, estudo, relevancia)
+  que enviam logo (Ficha de leitura e Explicar os meus destaques so no Avancado);
   uma acao ja pedida mostra a resposta sem novo pedido (menos a relevancia, que usa o tema escrito na
   caixa e pode repetir-se). Sem "Excertos citaveis" no simples (estudantes devem parafrasear). Sem separadores, lista de motores (usa o das
   definicoes), "Repetir com" nem motor/modelo por baixo da resposta. A verificacao e a mesma do
@@ -603,6 +610,12 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   utilizadores. Versoes de teste enviadas a mao: nunca com o numero da proxima versao publicada (a 1.0.22 de
   teste e a 1.0.22 publicada seriam ficheiros diferentes com o mesmo numero e o Zotero nao atualiza entre
   elas). Regra: a versao publicada e sempre maior do que qualquer versao de teste ja enviada.
+- **Campos das definicoes em painel estreito:** `#zoteroia-prefs-root :is(select, input, textarea)` tem
+  `max-width: 100%` e `box-sizing: border-box` (antes so as listas tinham essa protecao) e os campos usam
+  `min-width: min(280px, 100%)`. Saiu o resto da versao antiga `#zia-iaedu-endpoint { min-width: 320px }`,
+  que dava ao Endpoint do IAEdu mais largura do que aos outros dois campos e fazia dele o primeiro a sair
+  do painel. Teste `run_prefs.js`: a 420, 520 e 700 px nenhum campo passa a borda do painel. NOTA: isto
+  nao reproduz o relato de nao se conseguir escrever no campo, que continua por confirmar.
 - **CSV sem formulas** (`csvCell`): uma celula que comeca por = + - @ ganha um apostrofo antes (o Excel le-a
   como texto). Os numeros negativos ficam. Um PDF podia levar a IA a escrever =HYPERLINK ou =WEBSERVICE.
 - **Atualizacoes:** `update_url` do manifest aponta para

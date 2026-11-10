@@ -1360,6 +1360,10 @@ var ZIALib = (function () {
 		return out;
 	}
 
+	// As 6 ações do modo Simples. O Avançado mostra só as outras (a pedido): quem precisa destas
+	// troca para o Simples no interruptor do topo do painel.
+	const SIMPLE_ACTIONS = ["resumo", "simples", "conceitos", "mapa", "estudo", "relevancia"];
+
 	/** Citação curta. raw: true mostra o número tal como a IA o escreveu (avisos de verificação). */
 	function citeLabel(c, docsMap, opts) {
 		const d = docsMap && docsMap[c.doc];
@@ -3106,7 +3110,7 @@ var ZIALib = (function () {
 		rawTables, docIdOf, mergeTables, tableToMarkdown, rowsAsFichas, sortMergedRows, parseThemeList, themesToCSV,
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
-		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE,
+		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,

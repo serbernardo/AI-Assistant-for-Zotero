@@ -55,6 +55,12 @@ async function main() {
 		if (!(await page.locator(".zia-mode-section:not(.zia-simple)").count())) await page.click(".zia-send");
 	};
 
+	// As 6 ações do Simples já não estão no Avançado: troca de modo e carrega no botão grande
+	const actSimple = async (page, id) => {
+		if (await page.locator(".zia-mode-section:not(.zia-simple)").count()) await page.click('.zia-mode-btn[data-uimode="simple"]');
+		await page.click(`.zia-simple-btn[data-action="${id}"]`);
+	};
+
 	// ---------- Janela: comparar 2 PDFs ----------
 	for (const dark of [false, true]) {
 		const page = await open("?mode=window" + (dark ? "&dark=1" : ""), { width: 820, height: 900 });
@@ -117,7 +123,12 @@ async function main() {
 		assert.equal(await page.locator('.zia-tab[data-group="meus"]').count(), 1, "separador Os meus sempre visível");
 		assert.equal(await page.locator(".zia-suggestion").count(), 0, "sem perguntas por baixo da caixa");
 		assert.equal(await page.locator(".zia-footer").count(), 0, "sem rodapé (nem Nova conversa)");
-		assert.equal(await page.locator('button[data-action="resumo"] .zia-ic svg').count(), 1, "ação com ícone");
+		assert.equal(await page.locator('button[data-action="pontos"] .zia-ic svg').count(), 1, "ação com ícone");
+		// O Avançado não repete as ações do Simples (a pedido)
+		for (const id of ["resumo", "simples", "conceitos", "mapa", "estudo", "relevancia"]) {
+			assert.equal(await page.locator(`button[data-action="${id}"]`).count(), 0, `${id} só no Simples`);
+		}
+		assert.equal(await page.locator('button[data-action="esquema"]').count(), 1, "as outras ações ficam no Avançado");
 		await page.screenshot({ path: path.join(OUT, "ui_painel_vazio.png") });
 		// as perguntas de exemplo estão em Pers.
 		await tab(page, "meus");
@@ -264,14 +275,14 @@ async function main() {
 	// ---------- Interface em inglês ----------
 	{
 		const page = await open("?mode=section&ui=en", { width: 420, height: 800 });
-		assert.equal(await page.textContent('button[data-action="resumo"]'), "Summarise", "botão com verbo");
+		assert.equal(await page.textContent('button[data-action="pontos"]'), "Main ideas");
 		assert.equal(await page.textContent('.zia-tab[data-group="compreender"]'), "Understand");
 		assert.equal(await page.textContent(".zia-send"), "Send ➤");
 		await tab(page, "meus");
 		assert.match(await page.locator(".zia-suggestion").first().textContent(), /research question/);
 		await tab(page, "compreender");
 		await page.evaluate(() => { window.MOCK.answer = "The main finding is X [D1:p3]."; });
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector("text=Save as note");
 		assert.match(await page.evaluate(() => window.lastSystem), /inglês/, "respostas em inglês por omissão");
 		await page.screenshot({ path: path.join(OUT, "ui_painel_ingles.png") });
@@ -283,13 +294,13 @@ async function main() {
 	{
 		const page = await open("?mode=section", { width: 420, height: 800 });
 		await page.evaluate(() => { window.MOCK.answer = "O resultado principal é X [D1:p3]."; });
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector("text=Guardar como nota");
-		assert.equal(await page.locator(".zia-action-tag").first().textContent(), "Resumo");
+		assert.equal(await page.locator(".zia-action-tag").first().textContent(), "Ideias principais");
 		await page.evaluate(() => { window.view.core.setPref("ui.lang", "en"); window.view._onPrefsChanged("ui.lang"); });
-		assert.equal(await page.locator(".zia-action-tag").first().textContent(), "Summary", "o título da resposta passa para inglês");
+		assert.equal(await page.locator(".zia-action-tag").first().textContent(), "Main ideas", "o título da resposta passa para inglês");
 		await page.evaluate(() => { window.view.core.setPref("ui.lang", "pt-PT"); window.view._onPrefsChanged("ui.lang"); });
-		assert.equal(await page.locator(".zia-action-tag").first().textContent(), "Resumo");
+		assert.equal(await page.locator(".zia-action-tag").first().textContent(), "Ideias principais");
 		console.log("OK mudar de língua muda o nome das respostas já feitas (Resumo / Summary)");
 		await page.close();
 	}
@@ -447,33 +458,22 @@ async function main() {
 		const p = await page.evaluate(() => window.lastPrompt);
 		assert.match(p, /fontes citadas/);
 		assert.doesNotMatch(p, /Lista de referências bibliográficas omitida/, "as referências vão no pedido");
-		// relevância no avançado: a caixa diz o que escrever, sem tema não envia
+		// Avaliar no Avançado: sem a Relevância (está no Simples), com as outras três
 		await page.click('.zia-tab[data-group="avaliar"]');
-		await page.click('button[data-action="relevancia"]');
-		assert.match(await page.getAttribute(".zia-textarea", "placeholder"), /Escreve primeiro o teu tema/);
-		const before = await page.evaluate(() => window.lastPrompt);
-		await page.click(".zia-send");
-		await page.waitForSelector("text=Escreve primeiro o teu tema");
-		assert.equal(await page.evaluate(() => window.lastPrompt), before, "sem tema não envia");
-		await page.evaluate(() => { window.MOCK.answer = "## Relevância: Média\nTrata X em parte [D1:p3]."; });
-		await page.fill(".zia-textarea", "ensino a distância");
-		await page.click(".zia-send");
-		await page.waitForSelector("text=Relevância: Média");
-		assert.match(await page.evaluate(() => window.lastPrompt), /ensino a distância/);
-		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop"));
+		assert.equal(await page.locator('button[data-action="relevancia"]').count(), 0, "Relevância só no Simples");
+		assert.deepEqual(await page.$$eval(".zia-action", bs => bs.map(b => b.dataset.action)), ["critica", "metodos", "conclusoes"]);
 		await page.click('.zia-tab[data-group="compreender"]');
-		assert.equal(await page.textContent('button[data-action="resumo"]'), "Resumir", "botão com verbo");
 		assert.equal(await page.textContent('button[data-action="pontos"]'), "Ideias principais");
 		assert.equal(await page.locator('button[data-action="revisao"]').count(), 0, "revisão de literatura só em Comparar");
 		await page.close();
-		console.log("OK Referências-chave com a lista de referências, relevância no avançado, Investigação futura, Resumir, Ideias principais");
+		console.log("OK Referências-chave com a lista de referências, Investigação futura, Ideias principais, Avançado sem as ações do Simples");
 	}
 
 	// ---------- Registo e PDF partilham a mesma conversa ----------
 	{
 		const page = await open("?mode=section", { width: 420, height: 800 });
 		await page.evaluate(() => { window.MOCK.answer = "Resumo do artigo [D1:p1]."; });
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector("text=Resumo do artigo");
 		const same = await page.evaluate(async () => {
 			const parent = Zotero.Items.get(1), pdf = Zotero.Items.get(2);
@@ -501,7 +501,7 @@ async function main() {
 		assert.match(p, /Os assistentes reduzem o tempo de resposta/, "os destaques vão no pedido");
 		// Anki a partir do Testar o que percebi
 		await page.evaluate(() => { window.MOCK.answer = "**Pergunta 1.** O que mede o estudo?\n*Resposta:* Mede o tempo de resposta [D1:p2].\n\n**Pergunta 2.** Com que amostra?\n*Resposta:* 120 pessoas [D1:p4]."; });
-		await act(page, "estudo");
+		await actSimple(page, "estudo");
 		await page.waitForSelector("text=Exportar para o Anki");
 		await page.waitForFunction(() => !document.querySelector(".zia-typing"));
 		await page.click("text=Exportar para o Anki");
@@ -602,7 +602,7 @@ async function main() {
 		assert.equal(await page.locator(".zia-setup button[data-engine]").count(), 5, "5 formas de ligação");
 		await page.screenshot({ path: path.join(OUT, "ui_configuracao.png") });
 		// uma ação sem motor mostra o cartão e não envia nada
-		await act(page, "resumo");
+		await act(page, "pontos");
 		assert.equal(await page.evaluate(() => window.lastEngine), undefined);
 		await page.click('.zia-setup button[data-engine="anthropic"]');
 		assert.deepEqual(await page.evaluate(() => window.opened), ["prefs"]);
@@ -616,19 +616,19 @@ async function main() {
 	{
 		const page = await open("?mode=section&noack=1", { width: 420, height: 800 });
 		await page.evaluate(a => { window.MOCK.answer = a; }, pontos);
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector(".zia-privacy");
 		await page.screenshot({ path: path.join(OUT, "ui_privacidade.png") });
 		await page.click(".zia-privacy >> text=Cancelar");
 		await page.waitForSelector(".zia-privacy", { state: "detached" });
 		assert.equal(await page.evaluate(() => window.lastEngine), undefined, "cancelar não envia nada");
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.click("text=Aceitar e continuar");
 		await page.waitForSelector("text=Guardar como nota", { timeout: 30000 });
 		assert.equal(await page.evaluate(() => window.lastEngine), "claude");
 		// segundo pedido: já não pergunta
 		await page.evaluate(() => { window.MOCK.answer = "Outra resposta [D1:p1]."; });
-		await act(page, "pontos");
+		await act(page, "esquema");
 		await page.waitForSelector("text=Outra resposta");
 		assert.equal(await page.locator(".zia-privacy").count(), 0);
 		console.log("OK privacidade: aviso antes do primeiro envio, cancelar não envia, aceitar fica memorizado");
@@ -675,25 +675,25 @@ async function main() {
 		await page.keyboard.press("Enter");
 		assert.equal(await page.evaluate(() => window.lastEngine), undefined, "Enter não envia");
 		await page.fill(".zia-textarea", "");
-		await page.click('button[data-action="resumo"]');
+		await page.click('button[data-action="pontos"]');
 		await page.waitForSelector("text=Guardar como nota");
-		assert.equal(await page.locator('button[data-action="resumo"].zia-done').count(), 1, "ação já pedida fica marcada");
+		assert.equal(await page.locator('button[data-action="pontos"].zia-done').count(), 1, "ação já pedida fica marcada");
 		// sem título repetido: a bolha do pedido some e as indicações ficam ao lado do nome da ação
 		assert.equal(await page.locator(".zia-msg-user:visible").count(), 0, "ação sem bolha repetida");
 		// cada ação tem o seu separador
-		await act(page, "pontos");
+		await act(page, "esquema");
 		await page.waitForFunction(() => document.querySelectorAll(".zia-conv-tab").length === 2 && !document.querySelector(".zia-send.zia-stop"));
-		assert.equal(await page.locator(".zia-msg-assistant").count(), 1, "o separador Ideias principais só tem a sua resposta");
-		assert.match(await page.textContent(".zia-conv-tab >> nth=0"), /Resumo/);
-		assert.match(await page.textContent(".zia-conv-tab >> nth=1"), /Ideias principais/);
+		assert.equal(await page.locator(".zia-msg-assistant").count(), 1, "o separador Esquema só tem a sua resposta");
+		assert.match(await page.textContent(".zia-conv-tab >> nth=0"), /Ideias principais/);
+		assert.match(await page.textContent(".zia-conv-tab >> nth=1"), /Esquema/);
 		await page.screenshot({ path: path.join(OUT, "ui_painel_separadores.png") });
 		// escolher uma ação já pedida abre o separador dela, sem repetir o pedido
 		const before = await page.evaluate(() => window.lastPrompt);
-		await page.click('button[data-action="resumo"]');
-		assert.equal(await page.getAttribute(".zia-conv-tab >> nth=0", "aria-selected"), "true", "abre o separador Resumo");
+		await page.click('button[data-action="pontos"]');
+		assert.equal(await page.getAttribute(".zia-conv-tab >> nth=0", "aria-selected"), "true", "abre o separador Ideias principais");
 		assert.match(await page.textContent(".zia-status"), /Já pediste/);
 		assert.equal(await page.evaluate(() => window.lastPrompt), before, "nada foi enviado");
-		await page.click('button[data-action="resumo"]');
+		await page.click('button[data-action="pontos"]');
 		// o título só tem a ação e o x: o motor usado fica por baixo do texto
 		assert.equal(await page.locator(".zia-msg-head .zia-engine-tag, .zia-msg-head .zia-fold").count(), 0, "sem motor nem recolher no título");
 		assert.equal(await page.locator(".zia-msg-assistant .zia-msg-meta").count() >= 1, true, "motor por baixo da resposta");
@@ -773,9 +773,9 @@ async function main() {
 		// a resposta mais recente fica em cima e a anterior pode ser guardada como nota já recolhida
 		await tab(page, "compreender");
 		await page.evaluate(() => { window.MOCK.answer = "Resposta B [D1:p2]."; });
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && [...document.querySelectorAll(".zia-msg-assistant")].some(e => /Resposta B/.test(e.textContent)));
-		assert.equal(await page.locator(".zia-conv-tab").count(), 2, "Teoria e Resumo em separadores diferentes");
+		assert.equal(await page.locator(".zia-conv-tab").count(), 2, "Teoria e Ideias principais em separadores diferentes");
 		// guardar como nota a partir do botão por cima do texto
 		await page.evaluate(() => { window.saved = []; const o = ZoteroIA.saveNote; ZoteroIA.saveNote = async a => { window.saved.push(a.heading); return o(a); }; });
 		await page.click(".zia-msg-assistant >> nth=0 >> button:has-text(\"Guardar como nota\")");
@@ -791,20 +791,14 @@ async function main() {
 		const page = await open("?mode=section", { width: 420, height: 900 });
 		await page.evaluate(() => { window.MOCK.answer = "Relevante [D1:p1]."; });
 		await tab(page, "avaliar");
-		await page.click('button[data-action="relevancia"]');
-		assert.equal(await page.evaluate(() => window.engineCalls || 0), 0, "sem tema não envia");
-		assert.equal(await page.isVisible(".zia-hints-input"), true, "abre o campo para o tema");
-		assert.match(await page.getAttribute(".zia-hints-input", "placeholder"), /tema/);
-		await page.fill(".zia-hints-input", "literacia digital");
-		await page.click(".zia-hints-run");
+		await page.click('button[data-action="critica"]');
 		await page.waitForSelector("text=Guardar como nota");
-		assert.match(await page.evaluate(() => window.lastPrompt), /literacia digital/);
 		// o Gemini está "Pronto" (teste ok): aparece Repetir com Gemini
 		assert.equal(await page.locator("button:has-text(\"Repetir com Gemini\")").count(), 1);
 		await page.close();
 		const p2 = await open("?mode=section", { width: 420, height: 900 });
 		await p2.evaluate(() => { ZoteroIA.setPref("gemini.lastTest", ""); window.MOCK.answer = "Resumo [D1:p1]."; });
-		await act(p2, "resumo");
+		await act(p2, "pontos");
 		await p2.waitForSelector("text=Guardar como nota");
 		assert.equal(await p2.locator("button:has-text(\"Repetir com\"), .zia-retry-sel").count(), 0, "motor nunca testado: sem Repetir com");
 		await p2.close();
@@ -813,7 +807,7 @@ async function main() {
 		await dd(w, ".zia-engine", "gemini");
 		assert.equal(await w.evaluate(() => view.engine), "gemini", "lista do motor da janela funciona");
 		await w.close();
-		console.log("OK Avançado: relevância pede o tema, Repetir com só para motores prontos, listas da janela funcionam");
+		console.log("OK Avançado: Repetir com só para motores prontos, listas da janela funcionam");
 	}
 
 	// ---------- Janela aberta com um artigo: o caso real do Mapa de temas ----------
@@ -1041,7 +1035,7 @@ async function main() {
 			window.MOCK.noticeMs = 700;
 			window.MOCK.finalNotice = "Respondeu o gemini-3.7-flash-lite, porque o gemini-3.8-flash estava ocupado";
 		}, pontos);
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector("text=A usar o modelo seguinte");
 		// durante a troca: progresso normal, sem laranja, sem vermelho e sem ×
 		const during = await page.evaluate(() => {
@@ -1070,7 +1064,7 @@ async function main() {
 	{
 		const page = await open("?mode=section", { width: 420, height: 700 });
 		await page.evaluate(a => { window.MOCK.answer = a; window.MOCK.delayMs = 40; }, pontos);
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector(".zia-send.zia-stop");
 		await page.waitForTimeout(600);
 		await page.click(".zia-send");
@@ -1159,7 +1153,7 @@ async function main() {
 		// erros: um x retira a resposta e a pergunta da conversa
 		await page.evaluate(() => { window.MOCK.error = { kind: "busy", message: "Os servidores estão sobrecarregados." }; });
 		await tab(page, "compreender");
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForSelector(".zia-msg-del");
 		const before = await page.locator(".zia-msg").count();
 		const errMsg = page.locator(".zia-msg-assistant", { hasText: "sobrecarregados" });
@@ -1363,7 +1357,7 @@ async function main() {
 		assert.match(await page.evaluate(() => window.lastPrompt), /<historico>[\s\S]*Qual é a amostra\?[\s\S]*40 pessoas[\s\S]*<\/historico>[\s\S]*E quando foi recolhida/, "leva a troca anterior");
 		// Uma ação continua a ir para o seu separador
 		await page.evaluate(() => { window.MOCK.answer = "Resumo curto [D1:p1]."; });
-		await act(page, "resumo");
+		await act(page, "pontos");
 		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && view.state.convs.length === 2);
 		assert.equal(await page.evaluate(() => window.lastPrompt.includes("<historico>")), false, "as ações não levam histórico");
 		console.log("OK painel: pergunta de seguimento no mesmo separador, com a troca anterior, e a ação no seu separador");
