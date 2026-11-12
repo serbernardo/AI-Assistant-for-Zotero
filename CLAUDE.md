@@ -350,7 +350,7 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
 - **Clique direito nos itens** (submenu Assistente IA): Abrir na janela do assistente, Perguntar a
   estes artigos (`chooseAction`: fica escolhida a espera da pergunta), Mapa de temas (`autoAction`) e
   as comparacoes.
-- **Nomes dos modos (a pedido):** Essencial / Avancado (Essentials / Advanced), o id continua simple e advanced. Tema da Relevancia guardado (pref `relevance.topic`). Creditos com o email sergiob@fe.up.pt (mailto) e "Enviar diagnostico ao desenvolvedor" (`diagnosticText`, `noteError`: ultimos 15 erros, sem chaves). Exemplo dos campos do IAEdu: "Cola aqui…". PDF digitalizado explica como resolver.
+- **Nomes dos modos (a pedido):** Essencial / Avancado (Essentials / Advanced), o id continua simple e advanced. Tema da Relevancia guardado (pref `relevance.topic`). Creditos com o email sergiob@fe.up.pt (mailto). "Enviar diagnostico" e "Apagar o historico das conversas" sairam a pedido. As tres caixas das Respostas sairam (a pedido): o historico e as fichas da opcao "Usar fichas" guardam-se sempre e os destaques do PDF so vao para a IA na acao "Explicar os meus destaques" (`useAnnotations`). As prefs `history.save`, `fichas.autoSave` e `context.annotations` ja nao existem. Exemplo dos campos do IAEdu: "Cola aqui…". PDF digitalizado explica como resolver.
 - **1.0.24 (a pedido, depois da maquete):** ponto do estado do motor ao lado da roda dentada (`_engineDot`,
   `dot.*`, verde ok, vermelho fail, so contorno por testar, observa `<motor>.lastTest`); pesquisa no historico
   (lupa na linha de cima, `_toggleSearch`, `core.searchHistory`, `lib.searchConversations`: so as respostas
@@ -623,7 +623,7 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
 - **Historico por artigo:** `saveConversation`/`loadConversation` guardam as
   mensagens (sem o texto dos PDFs) em
   `<pasta de dados do Zotero>/zoteroia/conversas/<biblioteca>_<chave>.json`.
-  Varias conversas por artigo. Pref `history.save` (ligada por omissao), botao para apagar nas definicoes.
+  Varias conversas por artigo. Guarda-se sempre (sem pref nem botao para apagar, retirados a pedido).
   A escrita passa por um ficheiro `.tmp` (`tmpPath`): fechar o Zotero a meio nao estraga o historico.
 - **Modelos Claude:** API com `claude-sonnet-5-5` por omissao (tambem quando a pref tem um nome
   invalido) e esforco `medium` (`output_config.effort`) nos modelos Sonnet, Opus e Haiku 5. Lista:

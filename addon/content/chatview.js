@@ -279,7 +279,6 @@ var ZIAChatView = class {
 				clearTimeout(timer);
 				timer = setTimeout(() => this._runSearch(input.value), 250);
 			});
-			if (this.core.pref("history.save") === false) this._searchOut.appendChild(this._el("div", "zia-muted", this.T("search.off")));
 		}
 		this._searchInput.focus();
 	}
@@ -2358,7 +2357,6 @@ var ZIAChatView = class {
 	async _collectFichas(a, docs) {
 		const fichaDocs = [];
 		const falhadas = [];
-		const autoSave = this.core.pref("fichas.autoSave") !== false;
 		let reused = 0, created = 0;
 		for (const d of docs) {
 			const note = this.core.findFichaNote(d.parentID);
@@ -2384,7 +2382,7 @@ var ZIAChatView = class {
 				continue;
 			}
 			created++;
-			if (autoSave && d.parentID) {
+			if (d.parentID) {
 				try {
 					await this._saveMessageNote(msg, { quiet: true });
 				}
@@ -2804,11 +2802,10 @@ var ZIAChatView = class {
 					this.core.log("Ficha sem o texto do PDF: " + e);
 				}
 			}
-			// Anotações do utilizador (opcional)
-			const withAnn = !!this.core.pref("context.annotations");
+			// Destaques do utilizador: só na ação que os explica (o resto lê só o PDF)
 			for (const d of docs) {
 				if (d.kind === "ficha") continue;
-				d.annotations = (withAnn || (action && action.useAnnotations)) && this.core.loadAnnotations ? this.core.loadAnnotations(d) : null;
+				d.annotations = action && action.useAnnotations && this.core.loadAnnotations ? this.core.loadAnnotations(d) : null;
 			}
 			// 2. Ajuste de tamanho
 			const fitted = this.L.fitDocuments(docs, this.core.maxCharsFor(engine), { keepRefs: !!(action && action.keepRefs) });

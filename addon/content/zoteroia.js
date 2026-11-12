@@ -135,37 +135,6 @@ var ZoteroIA = {
 		Zotero.debug("Assistente IA: " + msg);
 	},
 
-	/** Últimos erros (para o diagnóstico): só o tipo e a mensagem, nunca chaves nem texto dos PDFs. */
-	noteError(kind, message) {
-		const list = this._errors || (this._errors = []);
-		const msg = String(message || "").replace(/\b(sk-[A-Za-z0-9_-]{6})[A-Za-z0-9_-]+/g, "$1…").replace(/\bAIza[0-9A-Za-z_-]{10,}/g, "AIza…").slice(0, 300);
-		list.push({ at: new Date().toISOString().slice(0, 16).replace("T", " "), kind: kind || "", msg });
-		if (list.length > 15) list.shift();
-	},
-
-	/** Texto do diagnóstico enviado ao desenvolvedor. */
-	diagnosticText() {
-		const lines = [];
-		let zv = "", os = "";
-		try { zv = Zotero.version; } catch (e) { /* sem versão */ }
-		try { os = Services.appinfo.OS; } catch (e) { /* sem sistema */ }
-		lines.push(`Zotero ${zv} · ${os}`);
-		lines.push(`Assistente IA ${this.version}`);
-		const eng = this.defaultEngine();
-		lines.push(`Motor: ${eng || "nenhum"} · estado: ${eng ? (this.pref(eng + ".lastTest") || "por testar") : "-"}`);
-		if (eng === "iaedu") {
-			const pf = this.iaeduPrefix();
-			const ep = this.pref(pf + ".endpoint") || "";
-			lines.push(`IAEdu, agente ${this.iaeduAgentName()}`);
-			lines.push(`IAEdu: ${ep ? "agente próprio, endpoint " + (this.lib.isIAEduEndpoint(ep) ? "válido" : "INVÁLIDO") : "agente partilhado"} · canal ${this.pref(pf + ".channel") ? "preenchido" : "vazio"} · chave ${this.hasSecret("iaedu") ? "guardada" : "em falta"}`);
-		}
-		lines.push(`Língua: ${this.lib.I18N.getLang()} · modo: ${this.pref("ui.mode") || "simple"}`);
-		const errs = this._errors || [];
-		lines.push("", errs.length ? "Últimos erros:" : "Sem erros nesta sessão do Zotero.");
-		for (const e of errs) lines.push(`${e.at} [${e.kind}] ${e.msg}`);
-		return lines.join("\n");
-	},
-
 	pref(key) {
 		return Zotero.Prefs.get(this.PREF_BRANCH + key, true);
 	},
@@ -175,7 +144,6 @@ var ZoteroIA = {
 	},
 
 	error(kind, message, extra) {
-		this.noteError(kind, message);
 		const e = new Error(message);
 		e.kind = kind;
 		if (extra) Object.assign(e, extra);
@@ -633,7 +601,7 @@ var ZoteroIA = {
 	},
 
 	async loadConversation(key) {
-		if (!key || this.pref("history.save") === false) return null;
+		if (!key) return null;
 		try {
 			const { file } = this._conversationPath(key);
 			if (!(await IOUtils.exists(file))) return null;
@@ -667,7 +635,7 @@ var ZoteroIA = {
 				if (messages.length) conversations.push({ messages });
 				else if (i < active) active--;
 			});
-			if (!conversations.length || this.pref("history.save") === false) {
+			if (!conversations.length) {
 				if (await IOUtils.exists(file)) await IOUtils.remove(file);
 				return;
 			}

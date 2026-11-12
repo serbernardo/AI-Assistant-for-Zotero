@@ -3,8 +3,6 @@
 pref("extensions.zoteroia.engine", "");
 // Língua da interface: "auto" (a do Zotero), "pt-PT" ou "en"
 pref("extensions.zoteroia.ui.lang", "auto");
-pref("extensions.zoteroia.context.annotations", false);
-pref("extensions.zoteroia.fichas.autoSave", true);
 pref("extensions.zoteroia.relevance.topic", "");
 pref("extensions.zoteroia.ficha.fields", "");
 pref("extensions.zoteroia.iaedu.agent", "1");
@@ -13,7 +11,6 @@ pref("extensions.zoteroia.iaedu2.channel", "");
 pref("extensions.zoteroia.iaedu2.key", "");
 pref("extensions.zoteroia.custom.prompts", "");
 // Guardar as conversas de cada artigo neste computador (pasta de dados do Zotero)
-pref("extensions.zoteroia.history.save", true);
 pref("extensions.zoteroia.ui.group", "compreender");
 // Painel: "simple" (licenciatura, poucos botões grandes) ou "advanced" (todas as ações)
 pref("extensions.zoteroia.ui.mode", "simple");
