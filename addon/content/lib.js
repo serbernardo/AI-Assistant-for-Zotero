@@ -2503,35 +2503,9 @@ var ZIALib = (function () {
 		};
 	}
 
-	// ---- Pesquisa no histórico das conversas (ficheiros guardados neste computador)
+	// ---- Texto sem acentos nem maiúsculas
 
 	const foldText = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-
-	/**
-	 * files: [{ key, data: { conversations: [{ messages }] } }]. Procura só nas respostas (role assistant),
-	 * sem acentos nem maiúsculas. Devolve [{ key, conv, actionID, heading, time, snippet: [antes, achado, depois] }].
-	 */
-	function searchConversations(files, query, max) {
-		const q = foldText(query).trim();
-		if (q.length < 2) return [];
-		const hits = [];
-		for (const f of files || []) {
-			const convs = (f.data && f.data.conversations) || [];
-			convs.forEach((c, ci) => {
-				for (const m of (c.messages || [])) {
-					if (m.role !== "assistant" || !m.text) continue;
-					const plain = String(m.text).replace(CITE_GROUP_RE, "").replace(/[*_#|>`]+/g, " ").replace(/\s+/g, " ").replace(/\s+([.,;:!?])/g, "$1").trim();
-					const at = foldText(plain).indexOf(q);
-					if (at < 0) continue;
-					const a = Math.max(0, at - 70), b = Math.min(plain.length, at + q.length + 90);
-					hits.push({ key: f.key, conv: ci, actionID: m.actionID || null, heading: m.heading || "", time: m.time || 0,
-						snippet: [(a ? "…" : "") + plain.slice(a, at), plain.slice(at, at + q.length), plain.slice(at + q.length, b) + (b < plain.length ? "…" : "")] });
-				}
-			});
-		}
-		hits.sort((x, y) => (y.time || 0) - (x.time || 0));
-		return hits.slice(0, max || 50);
-	}
 
 	// ---- Verificar o sentido de uma paráfrase com outro motor (segunda opinião, nunca uma prova)
 
@@ -3242,7 +3216,7 @@ var ZIALib = (function () {
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
-		setFichaFields, fichaTemplate, answerToDocx, searchConversations, meaningPrompt, parseMeaning, foldText,
+		setFichaFields, fichaTemplate, answerToDocx, meaningPrompt, parseMeaning, foldText,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,

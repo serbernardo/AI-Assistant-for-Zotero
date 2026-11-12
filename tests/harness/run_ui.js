@@ -143,9 +143,8 @@ async function main() {
 		// PT/EN e definições numa linha (sem título repetido), e a faixa "Vários artigos" abre a janela
 		assert.equal((await page.textContent(".zia-langswitch")).replace(/\s/g, ""), "PTEN", "sem título repetido");
 		assert.equal(await page.textContent(".zia-top-title"), "", "sem título repetido");
-		// Estado do motor ao lado da roda dentada, e a lupa da pesquisa no histórico
+		// Estado do motor ao lado da roda dentada
 		assert.equal(await page.locator(".zia-top .zia-engine-dot").count(), 1, "estado do motor à vista");
-		assert.equal(await page.locator(".zia-top .zia-search-btn").count(), 1, "lupa da pesquisa");
 		assert.equal(await page.locator(".zia-top .zia-gear").count(), 1, "definições na linha do título");
 		await page.click(".zia-multi-strip");
 		assert.ok(await page.evaluate(() => !!window.openedWindow), "a faixa abre a janela do assistente");

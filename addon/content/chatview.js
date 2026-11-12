@@ -248,95 +248,13 @@ var ZIAChatView = class {
 		if (!b) return;
 		const e = this.core.defaultEngine();
 		const st = !e ? "none" : this.core.pref(e + ".lastTest") === "ok" ? "ok" : this.core.pref(e + ".lastTest") === "fail" ? "fail" : "todo";
-		b.className = "zia-btn-small zia-engine-dot zia-dot-" + st;
+		b.className = "zia-engine-dot zia-eng-" + st;
 		while (b.firstChild) b.removeChild(b.firstChild);
 		b.appendChild(this._el("span", "zia-dot-mark"));
 		b.appendChild(this._el("span", "zia-dot-name", e ? this.core.engineLabel(e) : this.T("engine.none")));
 		const tip = this.T("dot." + st, { engine: e ? this.core.engineLabel(e) : "" });
 		b.title = tip;
 		b.setAttribute("aria-label", tip);
-	}
-
-	// ---- Pesquisa no histórico (as respostas guardadas neste computador, em todos os artigos)
-
-	_toggleSearch() {
-		const box = this.searchEl;
-		if (!box) return;
-		box.hidden = !box.hidden;
-		if (box.hidden) return;
-		if (!box.firstChild) {
-			box.appendChild(this._el("div", "zia-search-info", this.T("search.info")));
-			const input = this._el("input", "zia-search-input");
-			input.type = "search";
-			input.setAttribute("placeholder", this.T("search.placeholder"));
-			input.setAttribute("aria-label", this.T("search.placeholder"));
-			this._searchInput = input;
-			box.appendChild(input);
-			this._searchOut = this._el("div", "zia-search-out");
-			box.appendChild(this._searchOut);
-			let timer = null;
-			input.addEventListener("input", () => {
-				clearTimeout(timer);
-				timer = setTimeout(() => this._runSearch(input.value), 250);
-			});
-		}
-		this._searchInput.focus();
-	}
-
-	async _runSearch(q) {
-		const out = this._searchOut;
-		const token = this._searchToken = (this._searchToken || 0) + 1;
-		let hits = [];
-		if (String(q).trim().length >= 2) {
-			try { hits = await this.core.searchHistory(q); }
-			catch (e) { this.core.log("Pesquisa: " + e); }
-		}
-		if (token !== this._searchToken) return;
-		while (out.firstChild) out.removeChild(out.firstChild);
-		if (String(q).trim().length < 2) return;
-		out.appendChild(this._el("div", "zia-muted", this.T(hits.length ? "search.count" : "search.none", { n: hits.length })));
-		for (const h of hits) {
-			const row = this._button("", "zia-search-hit", () => this._openHit(h));
-			const head = this._el("div", "zia-search-head");
-			head.appendChild(this._el("b", null, h.ref || h.title));
-			const what = h.actionID ? this._actionTitle({ actionID: h.actionID }) : this.T("chat.question");
-			head.appendChild(this._el("span", "zia-muted", " · " + what));
-			row.appendChild(head);
-			const sn = this._el("div", "zia-search-snip");
-			sn.appendChild(this.doc.createTextNode(h.snippet[0]));
-			sn.appendChild(this._el("mark", null, h.snippet[1]));
-			sn.appendChild(this.doc.createTextNode(h.snippet[2]));
-			row.appendChild(sn);
-			if (h.title && h.ref) row.title = h.title;
-			out.appendChild(row);
-		}
-	}
-
-	/** Abre o artigo da resposta encontrada, no separador dessa conversa. */
-	async _openHit(h) {
-		const item = Zotero.Items.get(h.itemID);
-		if (!item) return;
-		this._pendingConv = { key: h.key, conv: h.conv };
-		try {
-			const win = Zotero.getMainWindow();
-			if (win && win.Zotero_Tabs) win.Zotero_Tabs.select("zotero-pane");
-			if (win && win.ZoteroPane) await win.ZoteroPane.selectItem(item.id);
-		}
-		catch (e) { this.core.log("Pesquisa: " + e); }
-		if (this.historyKey === h.key) this._applyPendingConv();
-	}
-
-	_applyPendingConv() {
-		const p = this._pendingConv;
-		if (!p || p.key !== this.historyKey) return;
-		this._pendingConv = null;
-		if (this.state.convs && this.state.convs[p.conv]) {
-			this.state.active = p.conv;
-			this.state.messages = this.state.convs[p.conv];
-			this._renderConvTabs();
-			this._renderMessages();
-		}
-		if (this.searchEl) this.searchEl.hidden = true;
 	}
 
 	// ---- "Explicar isto" a partir do leitor de PDF
@@ -411,12 +329,8 @@ var ZIAChatView = class {
 			}
 			top.appendChild(lang);
 			top.appendChild(this._engineDot());
-			top.appendChild(this._iconButton("search", "zia-search-btn", () => this._toggleSearch(), this.T("search.tip")));
 			top.appendChild(this._gearButton());
 			root.appendChild(top);
-			this.searchEl = this._el("div", "zia-search");
-			this.searchEl.hidden = true;
-			root.appendChild(this.searchEl);
 			const strip = this._button("", "zia-multi-strip", () => this.openInWindow(), this.T("multi.tip"));
 			const ic = this._el("span", "zia-multi-icon");
 			ic.appendChild(this._icon("docs"));
@@ -1064,8 +978,6 @@ var ZIAChatView = class {
 		this._renderDocs();
 		this._renderMessages();
 		this._updateButtons();
-		// Vindo da pesquisa no histórico: abre o separador da resposta encontrada
-		this._applyPendingConv();
 	}
 
 	// ------------------------------------------------------------------

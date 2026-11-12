@@ -351,11 +351,8 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   estes artigos (`chooseAction`: fica escolhida a espera da pergunta), Mapa de temas (`autoAction`) e
   as comparacoes.
 - **Nomes dos modos (a pedido):** Essencial / Avancado (Essentials / Advanced), o id continua simple e advanced. Tema da Relevancia guardado (pref `relevance.topic`). Creditos com o email sergiob@fe.up.pt (mailto). "Enviar diagnostico" e "Apagar o historico das conversas" sairam a pedido. As tres caixas das Respostas sairam (a pedido): o historico e as fichas da opcao "Usar fichas" guardam-se sempre e os destaques do PDF so vao para a IA na acao "Explicar os meus destaques" (`useAnnotations`). As prefs `history.save`, `fichas.autoSave` e `context.annotations` ja nao existem. Exemplo dos campos do IAEdu: "Cola aqui…". PDF digitalizado explica como resolver.
-- **1.0.24 (a pedido, depois da maquete):** ponto do estado do motor ao lado da roda dentada (`_engineDot`,
-  `dot.*`, verde ok, vermelho fail, so contorno por testar, observa `<motor>.lastTest`); pesquisa no historico
-  (lupa na linha de cima, `_toggleSearch`, `core.searchHistory`, `lib.searchConversations`: so as respostas
-  guardadas neste computador, sem acentos nem maiusculas; clicar abre o artigo no separador dessa conversa,
-  `_pendingConv`); aviso das paginas cortadas com quais ficaram de fora (`warn.pagesOmitted` com `omittedRanges`);
+- **1.0.24 (a pedido, depois da maquete):** estado do motor ao lado da roda dentada, pastilha neutra com contorno fino como o PT/EN e so o ponto com cor (`_engineDot`, classes `zia-eng-*`, nunca `zia-dot-*`, que pintava o botao todo de verde,
+  `dot.*`, verde ok, vermelho fail, so contorno por testar, observa `<motor>.lastTest`); aviso das paginas cortadas com quais ficaram de fora (`warn.pagesOmitted` com `omittedRanges`);
   estimativa de tempo na janela (`win.largeNote.time`, ~40 s por pedido, 70 no Gemini); Exportar para Word
   (`lib.answerToDocx` faz o XML, `core.saveDocx`/`writeZip` com nsIZipWriter; validado com python-docx);
   ficha a medida (`_fichaFieldsEl`, pref `ficha.fields` em JSON, modelos Padrao, Estudo qualitativo e Revisao

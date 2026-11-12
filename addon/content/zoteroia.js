@@ -2177,41 +2177,6 @@ var ZoteroIA = {
 		this.lib.setFichaFields(this.fichaFields());
 	},
 
-	// ------------------------------------------------------------------
-	// Pesquisa no histórico: as respostas guardadas neste computador, em todos os artigos
-	// ------------------------------------------------------------------
-
-	async searchHistory(query) {
-		const dir = PathUtils.join(Zotero.DataDirectory.dir, "zoteroia", "conversas");
-		if (!(await IOUtils.exists(dir))) return [];
-		const files = [];
-		for (const path of await IOUtils.getChildren(dir)) {
-			if (!path.endsWith(".json")) continue;
-			try { files.push({ key: PathUtils.filename(path).replace(/\.json$/, ""), data: JSON.parse(await IOUtils.readUTF8(path)) }); }
-			catch (e) { this.log("Pesquisa: " + e); }
-		}
-		const hits = this.lib.searchConversations(files, query, 40);
-		for (const h of hits) {
-			const m = /^(\d+)_([A-Z0-9]+)$/.exec(h.key);
-			const item = m ? Zotero.Items.getByLibraryAndKey(+m[1], m[2]) : null;
-			h.itemID = item ? item.id : null;
-			h.title = item ? (item.getDisplayTitle ? item.getDisplayTitle() : item.getField("title")) : "";
-			h.ref = item ? this.shortRef(item) : "";
-		}
-		return hits.filter(h => h.itemID);
-	},
-
-	/** Autor e ano de um registo, para as listas ("Silva et al., 2021"). */
-	shortRef(item) {
-		try {
-			const c = item.getCreators ? item.getCreators() : [];
-			const names = c.filter(x => x.lastName || x.name).map(x => x.lastName || x.name);
-			const who = names.length > 2 ? names[0] + " et al." : names.join(" " + this.t("ref.and") + " ");
-			const y = (String(item.getField("date") || "").match(/\d{4}/) || [""])[0];
-			return [who, y].filter(Boolean).join(", ");
-		}
-		catch (e) { return ""; }
-	},
 
 	// ------------------------------------------------------------------
 	// Verificar o sentido de uma paráfrase com outro motor (segunda opinião)

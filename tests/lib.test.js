@@ -787,18 +787,6 @@ test("Word: o .docx leva títulos, listas, tabelas e citações formatadas, sem 
 	assert.match(d, /• /);
 });
 
-test("pesquisa no histórico: só nas respostas, sem acentos nem maiúsculas, com o excerto à volta", () => {
-	const files = [{ key: "1_ABC", data: { conversations: [{ messages: [
-		{ role: "user", text: "amostragem?" },
-		{ role: "assistant", text: "A Amostragem foi de conveniência [D1:p3].", actionID: "ficha", time: 2 },
-	] }] } }, { key: "1_XYZ", data: { conversations: [{ messages: [{ role: "assistant", text: "Nada a ver.", time: 3 }] }] } }];
-	const h = L.searchConversations(files, "AMOSTRAGEM");
-	assert.equal(h.length, 1, "a pergunta do utilizador não conta");
-	assert.deepEqual(h[0].snippet, ["A ", "Amostragem", " foi de conveniência."]);
-	assert.equal(h[0].actionID, "ficha");
-	assert.deepEqual(L.searchConversations(files, "a"), [], "menos de 2 letras não procura");
-});
-
 test("verificar o sentido: o pedido leva as duas frases e a resposta lê-se em SIM, EM PARTE ou NÃO", () => {
 	L.I18N.setLang("pt-PT");
 	const p = L.meaningPrompt("O modelo explica quase tudo.", "o modelo explicou 47% da variância");
