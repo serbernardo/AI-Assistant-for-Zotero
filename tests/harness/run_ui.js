@@ -961,7 +961,7 @@ async function main() {
 		assert.equal(await page.locator(".zia-msg-assistant").count(), 1);
 		assert.equal(await page.locator(".zia-msg-assistant .zia-table tbody tr").count(), 25, "todas as linhas");
 		const waits = await page.evaluate(() => window.waits);
-		assert.ok(waits.some(t => /IAEdu pediu uma pausa.*Continua sozinho dentro de 1 s/.test(t)), "avisa a espera: " + waits.join(" | "));
+		assert.ok(waits.some(t => /IAEdu · OpenAI pediu uma pausa.*Continua sozinho dentro de 1 s/.test(t)), "avisa a espera: " + waits.join(" | "));
 		assert.ok(waits.some(t => /Pausa curta/.test(t)), "depois do aviso, pausa curta entre lotes");
 		// Fichas (um pedido por artigo, antes de comparar): a ficha que bateu no limite repete-se e não fica com erro
 		await page.evaluate(async () => {

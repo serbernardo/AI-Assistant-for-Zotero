@@ -50,7 +50,7 @@ const json = (status, o) => new Response(JSON.stringify(o), { status });
 	assert.equal(core.iaeduEndpoint(), ENDPOINT, "um agente próprio vale mais do que o de omissão");
 	assert.ok(core.isEngineReady("iaedu"));
 	assert.ok(core.readyEngines().includes("iaedu"));
-	assert.equal(core.engineLabel("iaedu"), "IAEdu");
+	assert.equal(core.engineLabel("iaedu"), "IAEdu · OpenAI", "o nome diz o agente em uso");
 	assert.ok(L.isIAEduEndpoint(ENDPOINT));
 	assert.ok(L.isIAEduEndpoint("https://api.iaedu.pt/x"));
 	assert.ok(!L.isIAEduEndpoint("http://api.iaedu.pt/x"), "só https");

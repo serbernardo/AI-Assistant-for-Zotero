@@ -180,6 +180,12 @@
 		<html:div class="zia-engine-panel" data-engine="iaedu">
 			<html:div class="zia-guide" data-guide="iaedu"/>
 			<!-- Os três valores, pela ordem do painel Informação da API do IAEdu, sempre à vista -->
+			<!-- Dois agentes (cartões) do IAEdu, OpenAI e DeepSeek: o escolhido é o que responde -->
+			<html:div class="zia-prefs-row zia-iaedu-row">
+				<label data-zia-label="prefs.iaedu.agentInUse"/>
+				<html:div id="zia-iaedu-agent" class="zia-agent-seg" role="group"/>
+			</html:div>
+			<html:div class="zia-prefs-note" data-zia="prefs.iaedu.agentsNote"/>
 			<html:div class="zia-prefs-note zia-iaedu-fields-note" data-zia="prefs.iaedu.fields"/>
 			<html:div class="zia-prefs-row zia-iaedu-row">
 				<label data-zia-label="prefs.iaedu.endpoint"/>

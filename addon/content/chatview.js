@@ -575,7 +575,7 @@ var ZIAChatView = class {
 		this._prefObservers = [];
 		const P = Zotero.Prefs;
 		if (!P || !P.registerObserver) return;
-		const keys = ["anthropic.lastTest", "openai.lastTest", "gemini.lastTest", "iaedu.lastTest", "claude.lastTest", "codex.lastTest", "engine", "anthropic.key", "openai.key", "gemini.key", "iaedu.key", "iaedu.endpoint", "iaedu.channel", "claude.enabled", "codex.enabled", "custom.prompts", "ui.lang", "ui.mode", "update.available", "update.state"];
+		const keys = ["anthropic.lastTest", "openai.lastTest", "gemini.lastTest", "iaedu.lastTest", "claude.lastTest", "codex.lastTest", "engine", "anthropic.key", "openai.key", "gemini.key", "iaedu.key", "iaedu.endpoint", "iaedu.channel", "iaedu.agent", "iaedu2.key", "iaedu2.endpoint", "iaedu2.channel", "claude.enabled", "codex.enabled", "custom.prompts", "ui.lang", "ui.mode", "update.available", "update.state"];
 		for (const k of keys) {
 			try {
 				this._prefObservers.push(P.registerObserver(this.core.PREF_BRANCH + k, () => this._onPrefsChanged(k), true));

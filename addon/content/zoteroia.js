@@ -34,7 +34,7 @@ var ZoteroIA = {
 	MAIN_ENGINES: ["gemini", "claude", "codex"],
 
 	// Chaves de API guardadas de forma segura (nunca em texto simples nas preferências)
-	SECRETS: { anthropic: "anthropic.key", openai: "openai.key", gemini: "gemini.key", iaedu: "iaedu.key" },
+	SECRETS: { anthropic: "anthropic.key", openai: "openai.key", gemini: "gemini.key", iaedu: "iaedu.key", iaedu2: "iaedu2.key" },
 	LOGIN_ORIGIN: "chrome://zoteroia",
 
 	API_TIMEOUT_MS: 15 * 60 * 1000,
@@ -154,8 +154,10 @@ var ZoteroIA = {
 		const eng = this.defaultEngine();
 		lines.push(`Motor: ${eng || "nenhum"} · estado: ${eng ? (this.pref(eng + ".lastTest") || "por testar") : "-"}`);
 		if (eng === "iaedu") {
-			const ep = this.pref("iaedu.endpoint") || "";
-			lines.push(`IAEdu: ${ep ? "agente próprio, endpoint " + (this.lib.isIAEduEndpoint(ep) ? "válido" : "INVÁLIDO") : "agente partilhado"} · canal ${this.pref("iaedu.channel") ? "preenchido" : "vazio"} · chave ${this.hasSecret("iaedu") ? "guardada" : "em falta"}`);
+			const pf = this.iaeduPrefix();
+			const ep = this.pref(pf + ".endpoint") || "";
+			lines.push(`IAEdu, agente ${this.iaeduAgentName()}`);
+			lines.push(`IAEdu: ${ep ? "agente próprio, endpoint " + (this.lib.isIAEduEndpoint(ep) ? "válido" : "INVÁLIDO") : "agente partilhado"} · canal ${this.pref(pf + ".channel") ? "preenchido" : "vazio"} · chave ${this.hasSecret("iaedu") ? "guardada" : "em falta"}`);
 		}
 		lines.push(`Língua: ${this.lib.I18N.getLang()} · modo: ${this.pref("ui.mode") || "simple"}`);
 		const errs = this._errors || [];
@@ -1149,6 +1151,11 @@ var ZoteroIA = {
 	// Nunca se guarda a chave em texto simples.
 	// ------------------------------------------------------------------
 
+	/** O IAEdu pode ter dois agentes (cartões): "iaedu" quer dizer o agente em uso (pref iaedu.agent). */
+	_secretName(name, raw) {
+		return !raw && name === "iaedu" && this.iaeduPrefix() === "iaedu2" ? "iaedu2" : name;
+	},
+
 	_secretPref(name) {
 		const p = this.SECRETS[name];
 		if (!p) throw new Error("Segredo desconhecido: " + name);
@@ -1189,7 +1196,8 @@ var ZoteroIA = {
 	},
 
 	/** Guarda uma chave de API. Devolve "encrypted", "login" ou "empty". */
-	async setSecret(name, value) {
+	async setSecret(name, value, raw) {
+		name = this._secretName(name, raw);
 		const prefKey = this._secretPref(name);
 		value = String(value || "").trim();
 		// apaga sempre a cópia anterior no gestor de credenciais
@@ -1222,6 +1230,7 @@ var ZoteroIA = {
 	},
 
 	async getSecret(name) {
+		name = this._secretName(name);
 		const v = this.pref(this._secretPref(name)) || "";
 		if (!v) return "";
 		const label = this.t("key." + name);
@@ -1247,6 +1256,7 @@ var ZoteroIA = {
 
 	/** Estado de uma chave, sem a desencriptar: "none", "encrypted", "login" ou "plain". */
 	secretState(name) {
+		name = this._secretName(name);
 		const v = this.pref(this._secretPref(name)) || "";
 		if (!v) return "none";
 		if (v.startsWith("oskv1:")) return "encrypted";
@@ -1274,7 +1284,7 @@ var ZoteroIA = {
 	},
 
 	async clearAllSecrets() {
-		for (const name of Object.keys(this.SECRETS)) await this.setSecret(name, "");
+		for (const name of Object.keys(this.SECRETS)) await this.setSecret(name, "", true);
 	},
 
 	// Compatibilidade com a versão 0.1
@@ -1866,14 +1876,27 @@ var ZoteroIA = {
 	// A chave só é enviada para endereços https do domínio iaedu.pt.
 	// ------------------------------------------------------------------
 
-	// Sem valores próprios nas definições, usa o agente por omissão (partilhado com a UPorto)
+	/** Agente em uso: "iaedu" (o primeiro) ou "iaedu2" (um segundo cartão, por exemplo outro modelo). */
+	iaeduPrefix() {
+		return String(this.pref("iaedu.agent") || "1") === "2" ? "iaedu2" : "iaedu";
+	},
+
+	/** Nome do agente em uso: OpenAI (o primeiro) ou DeepSeek (o segundo). */
+	iaeduAgentName(prefix) {
+		return this.t((prefix || this.iaeduPrefix()) === "iaedu2" ? "prefs.iaedu.agent2" : "prefs.iaedu.agent1");
+	},
+
+	// Sem valores próprios nas definições, o primeiro agente usa o agente por omissão (partilhado com a UPorto).
+	// O segundo agente não tem omissão: precisa dos três campos.
 	iaeduChannel() {
-		const c = String(this.pref("iaedu.channel") || "").trim() || this.lib.IAEDU_DEFAULT_CHANNEL;
+		const p = this.iaeduPrefix();
+		const c = String(this.pref(p + ".channel") || "").trim() || (p === "iaedu" ? this.lib.IAEDU_DEFAULT_CHANNEL : "");
 		return /^[A-Za-z0-9_-]{8,80}$/.test(c) ? c : "";
 	},
 
 	iaeduEndpoint() {
-		return String(this.pref("iaedu.endpoint") || "").trim() || this.lib.IAEDU_DEFAULT_ENDPOINT;
+		const p = this.iaeduPrefix();
+		return String(this.pref(p + ".endpoint") || "").trim() || (p === "iaedu" ? this.lib.IAEDU_DEFAULT_ENDPOINT : "");
 	},
 
 	/**
@@ -1882,7 +1905,8 @@ var ZoteroIA = {
 	 */
 	_iaeduAuthHint(c) {
 		if (c.kind !== "auth") return c.message;
-		const own = String(this.pref("iaedu.endpoint") || "").trim() || String(this.pref("iaedu.channel") || "").trim();
+		const p = this.iaeduPrefix();
+		const own = p !== "iaedu" || String(this.pref(p + ".endpoint") || "").trim() || String(this.pref(p + ".channel") || "").trim();
 		return this.t(own ? "err.iaedu.auth" : "err.iaedu.authDefault");
 	},
 
@@ -2046,7 +2070,11 @@ var ZoteroIA = {
 	// ------------------------------------------------------------------
 
 	engineLabel(engine) {
-		return this.ENGINES[engine] ? this.t("engine." + engine) : this.t("engine.none");
+		if (!this.ENGINES[engine]) return this.t("engine.none");
+		const base = this.t("engine." + engine);
+		if (engine !== "iaedu") return base;
+		// Com dois agentes, o nome diz qual está a responder
+		return `${base} · ${this.iaeduAgentName()}`;
 	},
 
 	/** Motor escolhido nas definições ("" quando ainda não foi configurado). */
