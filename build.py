@@ -12,7 +12,7 @@ import zipfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 ADDON = os.path.join(ROOT, "addon")
-REPO = "serbernardo/zotero-assistente-ia"
+REPO = "serbernardo/AI-Assistant-for-Zotero"
 DIST = os.path.join(ROOT, "dist")
 INCLUDE = ["manifest.json", "bootstrap.js", "prefs.js", "content", "locale"]
 

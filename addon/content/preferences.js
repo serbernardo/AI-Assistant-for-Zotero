@@ -747,7 +747,7 @@ window.ZIAPrefs = {
 			b = document.createElementNS("http://www.w3.org/1999/xhtml", "button");
 			b.id = "zia-update-manual";
 			b.className = "zia-btn zia-btn-small";
-			b.addEventListener("click", () => Zotero.launchURL("https://github.com/serbernardo/zotero-assistente-ia/releases/latest"));
+			b.addEventListener("click", () => Zotero.launchURL("https://github.com/serbernardo/AI-Assistant-for-Zotero/releases/latest"));
 			res.parentNode.insertBefore(b, res.nextSibling);
 		}
 		b.textContent = this.T("prefs.update.manual");

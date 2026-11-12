@@ -87,7 +87,7 @@ var ZoteroIA = {
 
 	// Página de apoio (Ko-fi e MB WAY). Botão escondido até a página estar pronta: mudar para true.
 	SUPPORT_ENABLED: false,
-	SUPPORT_URL: "https://github.com/serbernardo/zotero-assistente-ia/blob/main/APOIAR.md",
+	SUPPORT_URL: "https://github.com/serbernardo/AI-Assistant-for-Zotero/blob/main/APOIAR.md",
 
 	/**
 	 * Botão "Buy me a coffee": desenhado aqui, sem o script do site (código de fora não corre dentro

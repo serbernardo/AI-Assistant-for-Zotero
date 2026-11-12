@@ -14,7 +14,7 @@ The interface is available in **English** and **European Portuguese**.
 
 ## Install
 
-1. Download the latest `.xpi` file from **[Releases](https://github.com/serbernardo/zotero-assistente-ia/releases/latest)**.
+1. Download the latest `.xpi` file from **[Releases](https://github.com/serbernardo/AI-Assistant-for-Zotero/releases/latest)**.
 2. In Zotero: **Tools → Plugins**.
 3. Drag the `.xpi` onto the Plugins window, or use the gear icon → **Install Plugin From File…**
 
@@ -97,7 +97,7 @@ Copyright (C) 2026 Sérgio Bernardo. Licensed under the **GNU Affero General Pub
 
 ## Feedback
 
-Found a problem or have an idea? Open an [issue](https://github.com/serbernardo/zotero-assistente-ia/issues).
+Found a problem or have an idea? Open an [issue](https://github.com/serbernardo/AI-Assistant-for-Zotero/issues).
 
 ---
 
@@ -105,7 +105,7 @@ Found a problem or have an idea? Open an [issue](https://github.com/serbernardo/
 
 O **Assistente IA** ajuda a ler, avaliar e comparar artigos científicos no Zotero, com a tua própria conta de IA (gratuita ou paga): Gemini, ChatGPT ou IAEdu. Todas as respostas citam a página do PDF e são verificadas contra o texto dos PDFs.
 
-**Instalação:** descarrega o `.xpi` mais recente em [Releases](https://github.com/serbernardo/zotero-assistente-ia/releases/latest) e, no Zotero, vai a **Ferramentas → Plugins** e arrasta o ficheiro para a janela. Precisa do Zotero 8 ou mais recente. A interface muda para português nas definições ou no botão PT/EN do painel.
+**Instalação:** descarrega o `.xpi` mais recente em [Releases](https://github.com/serbernardo/AI-Assistant-for-Zotero/releases/latest) e, no Zotero, vai a **Ferramentas → Plugins** e arrasta o ficheiro para a janela. Precisa do Zotero 8 ou mais recente. A interface muda para português nas definições ou no botão PT/EN do painel.
 
 **Privacidade:** para responder, o texto dos PDFs escolhidos é enviado ao serviço de IA que escolheste. Não há nenhum servidor deste projeto pelo meio. As conversas ficam só no teu computador.
 

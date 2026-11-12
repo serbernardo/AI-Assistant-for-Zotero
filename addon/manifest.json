@@ -4,7 +4,7 @@
 	"version": "1.0.23",
 	"description": "Assistente de leitura científica / research reading assistant: resumos, avaliação crítica, fichas, comparação de PDFs, revisão de literatura e lacunas, com citações à página. Gemini, ChatGPT ou IAEdu, com contas gratuitas ou pagas.",
 	"author": "Sérgio Bernardo",
-	"homepage_url": "https://github.com/serbernardo/zotero-assistente-ia",
+	"homepage_url": "https://github.com/serbernardo/AI-Assistant-for-Zotero",
 	"icons": {
 		"48": "content/icons/icon48.svg",
 		"96": "content/icons/icon48.svg"
@@ -12,7 +12,7 @@
 	"applications": {
 		"zotero": {
 			"id": "assistente-ia@sbhg.pt",
-			"update_url": "https://github.com/serbernardo/zotero-assistente-ia/releases/latest/download/updates.json",
+			"update_url": "https://github.com/serbernardo/AI-Assistant-for-Zotero/releases/latest/download/updates.json",
 			"strict_min_version": "8.0",
 			"strict_max_version": "11.0.*"
 		}

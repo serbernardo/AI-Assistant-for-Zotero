@@ -4,7 +4,7 @@ Ajuda a **ler, avaliar e comparar artigos científicos** no Zotero, com a **tua 
 
 ## Instalar
 
-1. Descarrega o `.xpi` mais recente em [Releases](https://github.com/serbernardo/zotero-assistente-ia/releases/latest).
+1. Descarrega o `.xpi` mais recente em [Releases](https://github.com/serbernardo/AI-Assistant-for-Zotero/releases/latest).
 2. No Zotero: **Ferramentas → Plugins** e arrasta o ficheiro para a janela (ou roda dentada → **Install Plugin From File…**).
 3. Precisa do **Zotero 8 ou superior**. O plugin atualiza-se sozinho.
 
