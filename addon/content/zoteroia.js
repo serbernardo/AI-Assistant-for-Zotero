@@ -44,7 +44,10 @@ var ZoteroIA = {
 		this.version = version;
 		this.rootURI = rootURI;
 		this.ChatView = ZIAChatView;
+		// Painéis e janelas abertos (para o "Explicar isto" do leitor de PDF encontrar o painel do artigo)
+		this.views = new Set();
 		this.applyLanguage();
+		this.applyFichaFields();
 		// Citações no estilo escolhido no Zotero (se não houver estilo, usa o formato simples)
 		this.lib.setCiteFormatter((cites, docsMap) => this.formatCitesWithStyle(cites, docsMap));
 		// Migra chaves antigas guardadas sem encriptação
@@ -2154,6 +2157,145 @@ var ZoteroIA = {
 		}
 		await note.saveTx();
 		return note;
+	},
+
+	// ------------------------------------------------------------------
+	// Ficha de leitura com campos à escolha (pref ficha.fields, lista em JSON; vazia = os 14 de sempre)
+	// ------------------------------------------------------------------
+
+	fichaFields() {
+		try {
+			const v = JSON.parse(this.pref("ficha.fields") || "[]");
+			return Array.isArray(v) ? v.filter(x => typeof x === "string" && x.trim()) : [];
+		}
+		catch (e) { return []; }
+	},
+
+	setFichaFields(list) {
+		const clean = (list || []).map(s => String(s).trim()).filter(Boolean);
+		this.setPref("ficha.fields", clean.length ? JSON.stringify(clean) : "");
+		this.applyFichaFields();
+	},
+
+	applyFichaFields() {
+		this.lib.setFichaFields(this.fichaFields());
+	},
+
+	// ------------------------------------------------------------------
+	// Pesquisa no histórico: as respostas guardadas neste computador, em todos os artigos
+	// ------------------------------------------------------------------
+
+	async searchHistory(query) {
+		const dir = PathUtils.join(Zotero.DataDirectory.dir, "zoteroia", "conversas");
+		if (!(await IOUtils.exists(dir))) return [];
+		const files = [];
+		for (const path of await IOUtils.getChildren(dir)) {
+			if (!path.endsWith(".json")) continue;
+			try { files.push({ key: PathUtils.filename(path).replace(/\.json$/, ""), data: JSON.parse(await IOUtils.readUTF8(path)) }); }
+			catch (e) { this.log("Pesquisa: " + e); }
+		}
+		const hits = this.lib.searchConversations(files, query, 40);
+		for (const h of hits) {
+			const m = /^(\d+)_([A-Z0-9]+)$/.exec(h.key);
+			const item = m ? Zotero.Items.getByLibraryAndKey(+m[1], m[2]) : null;
+			h.itemID = item ? item.id : null;
+			h.title = item ? (item.getDisplayTitle ? item.getDisplayTitle() : item.getField("title")) : "";
+			h.ref = item ? this.shortRef(item) : "";
+		}
+		return hits.filter(h => h.itemID);
+	},
+
+	/** Autor e ano de um registo, para as listas ("Silva et al., 2021"). */
+	shortRef(item) {
+		try {
+			const c = item.getCreators ? item.getCreators() : [];
+			const names = c.filter(x => x.lastName || x.name).map(x => x.lastName || x.name);
+			const who = names.length > 2 ? names[0] + " et al." : names.join(" " + this.t("ref.and") + " ");
+			const y = (String(item.getField("date") || "").match(/\d{4}/) || [""])[0];
+			return [who, y].filter(Boolean).join(", ");
+		}
+		catch (e) { return ""; }
+	},
+
+	// ------------------------------------------------------------------
+	// Verificar o sentido de uma paráfrase com outro motor (segunda opinião)
+	// ------------------------------------------------------------------
+
+	async checkMeaning(engine, claim, passage, win) {
+		const { system, prompt } = this.lib.meaningPrompt(claim, passage);
+		const r = await this.runEngine(engine, { system, prompt, win });
+		return Object.assign(this.lib.parseMeaning(r.text), { engine, model: r.model || "" });
+	},
+
+	// ------------------------------------------------------------------
+	// Leitor de PDF: "Explicar isto" na caixa que aparece ao selecionar texto
+	// ------------------------------------------------------------------
+
+	onTextSelectionPopup({ reader, doc, params, append }) {
+		try {
+			const ann = params && params.annotation;
+			const text = ann && String(ann.text || "").trim();
+			if (!text) return;
+			const b = doc.createElement("button");
+			b.className = "toolbar-button wide-button";
+			b.textContent = "✦ " + this.t("reader.explain");
+			b.title = this.t("reader.explain.tip");
+			b.addEventListener("click", async () => {
+				const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
+				const ok = await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel });
+				if (!ok) b.textContent = this.t("reader.explain.noPanel");
+			});
+			append(b);
+		}
+		catch (e) { this.log("Explicar isto: " + e); }
+	},
+
+	/** Envia o excerto para o painel do artigo (o do lado direito do leitor). Falso se não houver painel aberto. */
+	async explainSelection({ itemID, text, page, pageLabel }) {
+		const att = itemID && Zotero.Items.get(itemID);
+		if (!att) return false;
+		const owner = this.conversationItem ? await this.conversationItem(att) : att;
+		const views = [...(this.views || [])].filter(v => v.mode === "section" && v.root && v.root.isConnected);
+		const view = views.find(v => v.sessionKey === `item:${owner.id}`) || views.find(v => v.root.offsetParent) || views[0];
+		if (!view) return false;
+		await view.explainExcerpt({ item: att, text, page, pageLabel });
+		return true;
+	},
+
+	// ------------------------------------------------------------------
+	// Exportar para Word: o .docx é um zip com os ficheiros XML feitos em lib.answerToDocx
+	// ------------------------------------------------------------------
+
+	async saveDocx(win, files, defaultName) {
+		const { FilePicker } = ChromeUtils.importESModule("chrome://zotero/content/modules/filePicker.mjs");
+		const fp = new FilePicker();
+		fp.init(win, this.t("chat.exportWord"), fp.modeSave);
+		fp.appendFilter("Word", "*.docx");
+		fp.defaultString = (defaultName || "resposta").replace(/[\\/:*?"<>|]+/g, " ").slice(0, 80) + ".docx";
+		fp.defaultExtension = "docx";
+		const rv = await fp.show();
+		if (rv !== fp.returnOK && rv !== fp.returnReplace) return null;
+		this.writeZip(fp.file, files);
+		return fp.file;
+	},
+
+	writeZip(path, files) {
+		const file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile);
+		file.initWithPath(path);
+		const zw = Components.classes["@mozilla.org/zipwriter;1"].createInstance(Components.interfaces.nsIZipWriter);
+		// PR_RDWR | PR_CREATE_FILE | PR_TRUNCATE
+		zw.open(file, 0x04 | 0x08 | 0x20);
+		try {
+			// O [Content_Types].xml tem de ser o primeiro ficheiro do zip
+			for (const name of Object.keys(files).sort((a, b) => (b.startsWith("[") ? 1 : 0) - (a.startsWith("[") ? 1 : 0))) {
+				const stream = Components.classes["@mozilla.org/io/string-input-stream;1"].createInstance(Components.interfaces.nsIStringInputStream);
+				stream.setUTF8Data(files[name]);
+				zw.addEntryStream(name, Date.now() * 1000, Components.interfaces.nsIZipWriter.COMPRESSION_DEFAULT, stream, false);
+			}
+		}
+		finally {
+			zw.close();
+		}
 	},
 
 	async saveCSV(win, csv, defaultName) {

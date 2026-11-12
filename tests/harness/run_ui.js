@@ -141,8 +141,12 @@ async function main() {
 		// no painel, Comparar já não é separador: o atalho do rodapé leva à janela grande com os PDFs da conversa
 		assert.equal(await page.locator('.zia-tab[data-group="comparar"]').count(), 0, "sem separador Comparar no painel");
 		// PT/EN e definições numa linha (sem título repetido), e a faixa "Vários artigos" abre a janela
-		assert.equal((await page.textContent(".zia-top")).replace(/\s/g, ""), "PTEN", "sem título repetido");
-		assert.equal(await page.locator(".zia-top .zia-btn-icon").count(), 1, "definições na linha do título");
+		assert.equal((await page.textContent(".zia-langswitch")).replace(/\s/g, ""), "PTEN", "sem título repetido");
+		assert.equal(await page.textContent(".zia-top-title"), "", "sem título repetido");
+		// Estado do motor ao lado da roda dentada, e a lupa da pesquisa no histórico
+		assert.equal(await page.locator(".zia-top .zia-engine-dot").count(), 1, "estado do motor à vista");
+		assert.equal(await page.locator(".zia-top .zia-search-btn").count(), 1, "lupa da pesquisa");
+		assert.equal(await page.locator(".zia-top .zia-gear").count(), 1, "definições na linha do título");
 		await page.click(".zia-multi-strip");
 		assert.ok(await page.evaluate(() => !!window.openedWindow), "a faixa abre a janela do assistente");
 		assert.equal(await page.evaluate(() => window.openedWindow.items.length), 0, "a janela abre vazia, sem o artigo do painel");
@@ -417,7 +421,7 @@ async function main() {
 		const page = await open("?mode=section&uimode=simple&ui=en", { width: 300, height: 800 });
 		const labels = await page.$$eval(".zia-simple-btn .zia-simple-label", ls => ls.map(l => l.textContent));
 		assert.deepEqual(labels, ["Summarise", "Plain-language summary", "Key concepts", "Mind map", "Test my understanding", "Relevance to my topic"]);
-		assert.deepEqual(await page.$$eval(".zia-modeswitch .zia-mode-btn", bs => bs.map(b => b.textContent)), ["Essentials", "More actions"]);
+		assert.deepEqual(await page.$$eval(".zia-modeswitch .zia-mode-btn", bs => bs.map(b => b.textContent)), ["Essentials", "Advanced"]);
 		await page.close();
 		const win = await open("?mode=window&uimode=simple", { width: 820, height: 800 });
 		assert.equal(await win.locator(".zia-modeswitch").count(), 0, "a janela é sempre avançada");
@@ -583,7 +587,7 @@ async function main() {
 		const right = await btn.evaluate(el => el.getBoundingClientRect().right);
 		assert.ok(right <= box + 1, "não sai do rodapé: " + mode);
 		await btn.click();
-		assert.deepEqual(await page.evaluate(() => window.opened), ["https://github.com/serbernardo/zotero-assistente-ia/blob/main/APOIAR.md"]);
+		assert.deepEqual(await page.evaluate(() => window.opened), ["https://github.com/serbernardo/AI-Assistant-for-Zotero/blob/main/APOIAR.md"]);
 		await page.close();
 	}
 	console.log("OK Buy me a coffee escondido por omissão; ligado, abre a página de apoio (painel e janela)");
@@ -1146,8 +1150,16 @@ async function main() {
 		await tab(page, "compreender");
 		await page.click(".zia-info-btn");
 		await page.waitForSelector(".zia-info-panel");
-		assert.equal(await page.locator(".zia-info-fields li").count(), 14, "a explicação lista os campos da ficha");
+		assert.equal(await page.locator(".zia-ficha-field input:checked").count(), 14, "os 14 campos de sempre, todos ligados");
+		// Ficha à medida: um modelo pronto e um campo próprio vão para o pedido
+		await page.click('.zia-ficha-presets button:has-text("Estudo qualitativo")');
+		await page.fill(".zia-ficha-new", "País");
+		await page.click('.zia-ficha-add button');
+		assert.match(await page.evaluate(() => ZoteroIA.lib.ACTIONS.ficha.prompt), /\| Paradigma e abordagem \|[\s\S]*\| País \|/, "os campos escolhidos entram no pedido");
+		assert.doesNotMatch(await page.evaluate(() => ZoteroIA.lib.ACTIONS.ficha.prompt), /\| Palavras-chave \|/, "os que saíram não");
 		await page.screenshot({ path: path.join(OUT, "ui_painel_ficha_info.png") });
+		await page.click('.zia-ficha-presets button:has-text("Padrão")');
+		assert.equal(await page.evaluate(() => ZoteroIA.pref("ficha.fields")), "", "Padrão volta aos 14 de sempre");
 		await page.click(".zia-info-close");
 		assert.equal(await page.locator(".zia-info-panel").count(), 0);
 		// artigo sem ficha: criar e guardar logo como nota

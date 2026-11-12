@@ -350,7 +350,20 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
 - **Clique direito nos itens** (submenu Assistente IA): Abrir na janela do assistente, Perguntar a
   estes artigos (`chooseAction`: fica escolhida a espera da pergunta), Mapa de temas (`autoAction`) e
   as comparacoes.
-- **Nomes dos modos (a pedido):** Essencial / Mais acoes (Essentials / More actions), o id continua simple e advanced. Tema da Relevancia guardado (pref `relevance.topic`). Creditos com o email sergiob@fe.up.pt (mailto) e "Enviar diagnostico ao desenvolvedor" (`diagnosticText`, `noteError`: ultimos 15 erros, sem chaves). Exemplo dos campos do IAEdu: "Cola aqui…". PDF digitalizado explica como resolver.
+- **Nomes dos modos (a pedido):** Essencial / Avancado (Essentials / Advanced), o id continua simple e advanced. Tema da Relevancia guardado (pref `relevance.topic`). Creditos com o email sergiob@fe.up.pt (mailto) e "Enviar diagnostico ao desenvolvedor" (`diagnosticText`, `noteError`: ultimos 15 erros, sem chaves). Exemplo dos campos do IAEdu: "Cola aqui…". PDF digitalizado explica como resolver.
+- **1.0.24 (a pedido, depois da maquete):** ponto do estado do motor ao lado da roda dentada (`_engineDot`,
+  `dot.*`, verde ok, vermelho fail, so contorno por testar, observa `<motor>.lastTest`); pesquisa no historico
+  (lupa na linha de cima, `_toggleSearch`, `core.searchHistory`, `lib.searchConversations`: so as respostas
+  guardadas neste computador, sem acentos nem maiusculas; clicar abre o artigo no separador dessa conversa,
+  `_pendingConv`); aviso das paginas cortadas com quais ficaram de fora (`warn.pagesOmitted` com `omittedRanges`);
+  estimativa de tempo na janela (`win.largeNote.time`, ~40 s por pedido, 70 no Gemini); Exportar para Word
+  (`lib.answerToDocx` faz o XML, `core.saveDocx`/`writeZip` com nsIZipWriter; validado com python-docx);
+  ficha a medida (`_fichaFieldsEl`, pref `ficha.fields` em JSON, modelos Padrao, Estudo qualitativo e Revisao
+  sistematica, `lib.setFichaFields`, `fichaTemplate`, o prompt da ficha e um getter); "Explicar isto" no leitor
+  de PDF (`Zotero.Reader.registerEventListener("renderTextSelectionPopup")` no bootstrap, `onTextSelectionPopup`,
+  `explainSelection` procura o painel do artigo em `core.views`, `explainExcerpt`; sem painel aberto o botao diz
+  para o abrir); "Verificar o sentido" no cartao ≈ (`_meaningEl`, `core.checkMeaning`, `lib.meaningPrompt`,
+  `parseMeaning`: outro motor pronto, ou o mesmo; resultado em `part.meaning`, nunca vira ✓).
 - **Simples por omissao:** `simpleModeOnce` no `bootstrap.js` poe `ui.mode` = simple uma so vez (pref
   `ui.simpleApplied`), depois fica a escolha da pessoa.
 - **Icones das acoes** (`_actionIcon`, `_icon`): cada acao tem um icone em linha fina num quadrado claro

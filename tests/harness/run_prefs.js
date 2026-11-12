@@ -245,7 +245,7 @@ async function main() {
 		assert.equal(await btn.count(), 1);
 		assert.ok(await btn.isVisible());
 		await btn.click();
-		assert.ok((await pg.evaluate(() => window.opened)).includes("https://github.com/serbernardo/zotero-assistente-ia/blob/main/APOIAR.md"));
+		assert.ok((await pg.evaluate(() => window.opened)).includes("https://github.com/serbernardo/AI-Assistant-for-Zotero/blob/main/APOIAR.md"));
 		await pg.screenshot({ path: path.join(OUT, "ui_definicoes_creditos.png"), fullPage: true });
 		await pg.close();
 	}
@@ -262,7 +262,7 @@ async function main() {
 		assert.match(msg, /9\.9\.9/);
 		assert.match(msg, /em uso|in use/, "diz o motivo: " + msg);
 		await manual.click();
-		assert.ok((await pg.evaluate(() => window.opened)).includes("https://github.com/serbernardo/zotero-assistente-ia/releases/latest"));
+		assert.ok((await pg.evaluate(() => window.opened)).includes("https://github.com/serbernardo/AI-Assistant-for-Zotero/releases/latest"));
 		await pg.evaluate(() => { ZoteroIA.checkForUpdates = async () => ({ status: "restart", version: "9.9.9" }); });
 		await pg.click("#zia-update-check");
 		await pg.waitForFunction(() => /9\.9\.9/.test(document.getElementById("zia-update-result").textContent) && document.getElementById("zia-update-manual").hidden);

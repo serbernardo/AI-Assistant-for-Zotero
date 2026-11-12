@@ -1969,3 +1969,30 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-check .zia-check-info-btn { border: none; background: none; padding: 0 4px; min-width: 0; color: var(--zia-fg2); cursor: pointer; font-size: 13px; vertical-align: -1px; }
 .zia-check-legend { margin: 2px 0 6px; padding-inline-start: 18px; font-size: 11.5px; color: var(--zia-fg2); }
 .zia-check-legend[hidden] { display: none; }
+
+/* ---------- 1.0.24: estado do motor, pesquisa no histórico, ficha à medida, verificar o sentido ---------- */
+.zia-engine-dot { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; color: var(--zia-fg2); padding: 2px 8px; border-radius: 20px; max-width: 46%; }
+.zia-engine-dot .zia-dot-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zia-dot-mark { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--zia-border); }
+.zia-dot-ok .zia-dot-mark { background: var(--zia-green, #2e8b3d); }
+.zia-dot-fail .zia-dot-mark { background: var(--zia-red, #d93f33); }
+.zia-dot-todo .zia-dot-mark { background: transparent; border: 1.5px solid var(--zia-fg2); }
+.zia-search { margin: 4px 0 10px; padding: 10px; border: 1px solid var(--zia-border); border-radius: 8px; background: var(--zia-bg); display: flex; flex-direction: column; gap: 7px; }
+.zia-search-info { font-size: 12px; color: var(--zia-fg2); line-height: 1.45; }
+.zia-search-input { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid var(--zia-border); border-radius: 6px; font: inherit; background: var(--zia-bg); color: var(--zia-fg); }
+.zia-search-out { display: flex; flex-direction: column; gap: 4px; max-height: 45vh; overflow: auto; }
+.zia-btn.zia-search-hit, .zia-search-hit { display: block; text-align: start; width: 100%; height: auto; white-space: normal; padding: 6px 8px; border: 1px solid var(--zia-border); border-radius: 6px; background: var(--zia-bg); color: var(--zia-fg); cursor: pointer; font-size: 12px; line-height: 1.4; }
+.zia-search-hit:hover { border-color: var(--zia-accent); }
+.zia-search-snip { color: var(--zia-fg2); margin-top: 2px; }
+.zia-search-snip mark, .zia-meaning mark { background: #fff2a8; color: inherit; padding: 0 1px; }
+.zia-ficha-fields { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 8px; }
+.zia-ficha-presets { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+.zia-ficha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 2px 10px; font-size: 12px; }
+.zia-ficha-field { display: flex; align-items: flex-start; gap: 4px; cursor: pointer; }
+.zia-ficha-add { display: flex; gap: 6px; }
+.zia-ficha-new { flex: 1; min-width: 0; padding: 4px 7px; border: 1px solid var(--zia-border); border-radius: 6px; font: inherit; font-size: 12px; background: var(--zia-bg); color: var(--zia-fg); }
+.zia-meaning { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.zia-meaning-res { font-size: 12px; padding: 5px 8px; border-radius: 6px; background: var(--zia-sand, #f1ebe6); }
+.zia-meaning-yes { color: var(--zia-green, #2e8b3d); }
+.zia-meaning-partly { color: var(--zia-orange, #c77700); }
+.zia-meaning-no { color: var(--zia-red, #d93f33); }

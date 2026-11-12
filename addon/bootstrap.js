@@ -55,6 +55,15 @@ async function startup({ id, version, rootURI }) {
 	undoClosedByDefault(sectionID);
 	simpleModeOnce();
 	registerMenus(id, rootURI);
+	// Leitor de PDF: "Explicar isto" na caixa que aparece ao selecionar texto (o Zotero retira-o ao desligar o plugin)
+	try {
+		if (Zotero.Reader && Zotero.Reader.registerEventListener) {
+			Zotero.Reader.registerEventListener("renderTextSelectionPopup", ev => ZoteroIA && ZoteroIA.onTextSelectionPopup(ev), id);
+		}
+	}
+	catch (e) {
+		Zotero.logError(e);
+	}
 
 	for (const win of Zotero.getMainWindows()) {
 		if (win.ZoteroPane) onMainWindowLoad({ window: win });

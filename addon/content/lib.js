@@ -161,6 +161,19 @@ var ZIALib = (function () {
 		"| Palavras-chave | |",
 	].join("\n");
 
+	// Campos da ficha: os 14 de FICHA_TEMPLATE por omissão, ou a lista escolhida pela pessoa (pref ficha.fields)
+	const FICHA_HINTS = Object.fromEntries(FICHA_TEMPLATE.split("\n").slice(2)
+		.map(l => l.split("|").map(x => x.trim())).map(c => [c[1], c[2]]));
+	let fichaFields = null;
+	function setFichaFields(list) {
+		const clean = (Array.isArray(list) ? list : []).map(s => String(s || "").replace(/[|\n]/g, " ").trim()).filter(Boolean);
+		fichaFields = clean.length ? clean.slice(0, 30) : null;
+	}
+	function fichaTemplate() {
+		if (!fichaFields) return FICHA_TEMPLATE;
+		return ["| Campo | Conteúdo |", "|---|---|", ...fichaFields.map(f => `| ${f} | ${FICHA_HINTS[f] || ""} |`)].join("\n");
+	}
+
 	// Grupos de ações (separadores na interface)
 	// "escrever" (Extrair) juntou-se a "compreender" (a pedido): com as 6 acoes do Simples fora do
 	// Avancado, o separador Compreender ficava com duas acoes
@@ -315,11 +328,13 @@ var ZIALib = (function () {
 			group: "compreender",
 			minDocs: 1,
 			perDoc: true,
-			prompt: "Preenche uma ficha de extração para cada documento, com esta tabela Markdown "
-				+ "(duas colunas: Campo e Conteúdo):\n\n" + FICHA_TEMPLATE + "\n\n"
+			get prompt() {
+				return "Preenche uma ficha de extração para cada documento, com esta tabela Markdown "
+				+ "(duas colunas: Campo e Conteúdo):\n\n" + fichaTemplate() + "\n\n"
 				+ "Cada campo preenchido leva citação com a página. Campos sem informação ficam com "
 				+ "a indicação de não reportado. Com vários documentos, usa um título ## por documento, "
-				+ "com o formato: ## Ficha IA · Autor Ano",
+				+ "com o formato: ## Ficha IA · Autor Ano";
+			},
 		},
 		excertos: {
 			group: "compreender",
@@ -869,8 +884,8 @@ var ZIALib = (function () {
 				if (size > budget) {
 					d.keep = choosePages(d.usedPages, budget);
 					d.truncated = true;
-					const omitted = d.keep.filter(k => !k).length;
-					warnings.push(t("warn.pagesOmitted", { doc: d.ref, n: omitted }));
+					const kept = d.keep.filter(Boolean).length;
+					warnings.push(t("warn.pagesOmitted", { doc: d.ref, kept, total: d.keep.length, ranges: omittedRanges(d.keep).join(", ") }));
 				}
 			}
 			total = prepared.reduce((a, d) => {
@@ -2426,6 +2441,121 @@ var ZIALib = (function () {
 		}).join("");
 	}
 
+	// ---- Exportar para Word (.docx): só XML, o núcleo junta os ficheiros num zip
+
+	function xmlEsc(s) {
+		return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+			.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "");
+	}
+
+	/** Ficheiros de um .docx com a resposta: títulos, parágrafos, listas, tabelas e citações formatadas. */
+	function answerToDocx(md, ctx, title) {
+		const run = (text, f) => text ? `<w:r>${f && (f.b || f.i || f.code) ? `<w:rPr>${f.b ? "<w:b/>" : ""}${f.i ? "<w:i/>" : ""}${f.code ? '<w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/>' : ""}</w:rPr>` : ""}`
+			+ String(text).split("\n").map(p => `<w:t xml:space="preserve">${xmlEsc(p)}</w:t>`).join("<w:br/>") + "</w:r>" : "";
+		const runs = (inlines, f = {}) => (inlines || []).map(n => {
+			switch (n.t) {
+				case "text": return run(tidyMarkers(replaceDocIds(n.v, ctx && ctx.docsMap)), f);
+				case "code": return run(n.v, Object.assign({}, f, { code: true }));
+				case "strong": return runs(n.c, Object.assign({}, f, { b: true }));
+				case "em": return runs(n.c, Object.assign({}, f, { i: true }));
+				case "link": return runs(n.c, f) + run(` (${n.href})`, f);
+				case "br": return "<w:r><w:br/></w:r>";
+				case "cite": return run(joinCites(n.cites, ctx && ctx.docsMap), f);
+				default: return "";
+			}
+		}).join("");
+		const para = (inner, style, extra) => `<w:p>${style || extra ? `<w:pPr>${style ? `<w:pStyle w:val="${style}"/>` : ""}${extra || ""}</w:pPr>` : ""}${inner}</w:p>`;
+		const blocks = (list, depth = 0) => (list || []).map(b => {
+			switch (b.type) {
+				case "heading": return para(runs(b.inlines), "Heading" + Math.min(Math.max(b.level, 1), 3));
+				case "para": return para(runs(b.inlines));
+				case "hr": return para("", null, '<w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="999999"/></w:pBdr>');
+				case "code": return para(run(b.text, { code: true }));
+				case "quote": return blocks(b.blocks, depth + 1).replace(/<w:p>/g, '<w:p><w:pPr><w:ind w:left="567"/></w:pPr>');
+				case "list": return b.items.map((it, i) => {
+					const mark = b.ordered ? `${i + 1}. ` : "• ";
+					const ind = `<w:ind w:left="${360 * (depth + 1)}" w:hanging="284"/>`;
+					return (it.blocks || []).map((x, j) => x.type === "para" ? para(run(j ? "" : mark) + runs(x.inlines), null, ind)
+						: x.type === "list" ? blocks([x], depth + 1) : blocks([x], depth + 1)).join("");
+				}).join("");
+				case "table": {
+					const cell = (c, head) => `<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/></w:tcPr>${para(runs(head ? c : expandDocCell(c, ctx), head ? { b: true } : {}))}</w:tc>`;
+					const border = '<w:tblBorders>' + ["top", "left", "bottom", "right", "insideH", "insideV"].map(s => `<w:${s} w:val="single" w:sz="4" w:space="0" w:color="BBBBBB"/>`).join("") + "</w:tblBorders>";
+					return `<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/>${border}</w:tblPr>`
+						+ `<w:tr>${b.header.map(c => cell(c, true)).join("")}</w:tr>`
+						+ b.rows.map(r => `<w:tr>${r.map(c => cell(c)).join("")}</w:tr>`).join("") + "</w:tbl>" + para("");
+				}
+				default: return "";
+			}
+		}).join("");
+		const W = 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"';
+		const body = (title ? para(run(tidyMarkers(replaceDocIds(title, ctx && ctx.docsMap))), "Title") : "") + blocks(parseMarkdown(md));
+		const style = (id, name, size, extra) => `<w:style w:type="paragraph" w:styleId="${id}"><w:name w:val="${name}"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:qFormat/><w:pPr><w:spacing w:before="240" w:after="80"/>${extra || ""}</w:pPr><w:rPr><w:b/><w:sz w:val="${size}"/></w:rPr></w:style>`;
+		return {
+			"[Content_Types].xml": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>',
+			"_rels/.rels": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>',
+			"word/_rels/document.xml.rels": '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>',
+			"word/styles.xml": `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles ${W}><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/><w:sz w:val="22"/><w:lang w:val="pt-PT"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="120" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults>`
+				+ '<w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/></w:style>'
+				+ style("Title", "Title", 36) + style("Heading1", "heading 1", 30, '<w:outlineLvl w:val="0"/>') + style("Heading2", "heading 2", 26, '<w:outlineLvl w:val="1"/>') + style("Heading3", "heading 3", 23, '<w:outlineLvl w:val="2"/>')
+				+ "</w:styles>",
+			"word/document.xml": `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document ${W}><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1417" w:right="1417" w:bottom="1417" w:left="1417" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr></w:body></w:document>`,
+		};
+	}
+
+	// ---- Pesquisa no histórico das conversas (ficheiros guardados neste computador)
+
+	const foldText = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+	/**
+	 * files: [{ key, data: { conversations: [{ messages }] } }]. Procura só nas respostas (role assistant),
+	 * sem acentos nem maiúsculas. Devolve [{ key, conv, actionID, heading, time, snippet: [antes, achado, depois] }].
+	 */
+	function searchConversations(files, query, max) {
+		const q = foldText(query).trim();
+		if (q.length < 2) return [];
+		const hits = [];
+		for (const f of files || []) {
+			const convs = (f.data && f.data.conversations) || [];
+			convs.forEach((c, ci) => {
+				for (const m of (c.messages || [])) {
+					if (m.role !== "assistant" || !m.text) continue;
+					const plain = String(m.text).replace(CITE_GROUP_RE, "").replace(/[*_#|>`]+/g, " ").replace(/\s+/g, " ").replace(/\s+([.,;:!?])/g, "$1").trim();
+					const at = foldText(plain).indexOf(q);
+					if (at < 0) continue;
+					const a = Math.max(0, at - 70), b = Math.min(plain.length, at + q.length + 90);
+					hits.push({ key: f.key, conv: ci, actionID: m.actionID || null, heading: m.heading || "", time: m.time || 0,
+						snippet: [(a ? "…" : "") + plain.slice(a, at), plain.slice(at, at + q.length), plain.slice(at + q.length, b) + (b < plain.length ? "…" : "")] });
+				}
+			});
+		}
+		hits.sort((x, y) => (y.time || 0) - (x.time || 0));
+		return hits.slice(0, max || 50);
+	}
+
+	// ---- Verificar o sentido de uma paráfrase com outro motor (segunda opinião, nunca uma prova)
+
+	function meaningPrompt(claim, passage) {
+		const sys = "Comparas uma frase escrita por uma IA com o excerto do artigo científico em que ela diz basear-se. "
+			+ "Respondes numa só linha, a começar por SIM, EM PARTE ou NÃO, seguido de dois pontos e de uma frase curta "
+			+ "a explicar. SIM: o excerto diz o mesmo, sem acrescentar nem exagerar. EM PARTE: diz parte, ou a frase "
+			+ "generaliza, exagera ou junta algo que o excerto não diz. NÃO: o excerto não suporta a frase. "
+			+ "Só contas com o que está no excerto, nunca com conhecimento geral. " + answerLanguageLine();
+		const prompt = `Frase da IA:\n«${String(claim).trim()}»\n\nExcerto do artigo:\n«${String(passage).trim()}»`;
+		return { system: sys, prompt };
+	}
+	function answerLanguageLine() {
+		return I.getLang() === "en" ? "The short sentence after the colon is in English." : "A frase curta é em português europeu.";
+	}
+	function parseMeaning(text) {
+		const s = String(text || "").trim().replace(/^[*_\s]+/, "");
+		const m = /^(SIM|EM PARTE|NÃO|NAO|YES|PARTLY|NO)\b[*_\s]*[:.\-–]?\s*([\s\S]*)$/i.exec(s);
+		if (!m) return { verdict: null, note: s.slice(0, 300) };
+		const v = m[1].toUpperCase();
+		const verdict = /^(SIM|YES)$/.test(v) ? "yes" : /^(EM PARTE|PARTLY)$/.test(v) ? "partly" : "no";
+		return { verdict, note: m[2].split("\n")[0].replace(/[*_]+/g, "").trim().slice(0, 300) };
+	}
+
 	function extractTables(md) {
 		const out = [];
 		const walk = blocks => {
@@ -3112,6 +3242,7 @@ var ZIALib = (function () {
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
+		setFichaFields, fichaTemplate, answerToDocx, searchConversations, meaningPrompt, parseMeaning, foldText,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,

@@ -34,6 +34,7 @@ var ZIAChatView = class {
 		this.mode = mode || "window";
 		this.core = core;
 		this.L = core.lib;
+		if (core.views) core.views.add(this);
 		this.state = this._emptyState();
 		this.engine = core.defaultEngine();
 		// Um separador guardado que ja nao existe (ex.: "escrever", que se juntou ao "compreender")
@@ -234,6 +235,136 @@ var ZIAChatView = class {
 		return b;
 	}
 
+	/** Ponto do estado do motor em uso: verde (respondeu), vermelho (o último pedido falhou), cinzento (por testar). */
+	_engineDot() {
+		const b = this._button("", "zia-engine-dot", () => this._openPrefs(null));
+		this._dot = b;
+		this._renderEngineDot();
+		return b;
+	}
+
+	_renderEngineDot() {
+		const b = this._dot;
+		if (!b) return;
+		const e = this.core.defaultEngine();
+		const st = !e ? "none" : this.core.pref(e + ".lastTest") === "ok" ? "ok" : this.core.pref(e + ".lastTest") === "fail" ? "fail" : "todo";
+		b.className = "zia-btn-small zia-engine-dot zia-dot-" + st;
+		while (b.firstChild) b.removeChild(b.firstChild);
+		b.appendChild(this._el("span", "zia-dot-mark"));
+		b.appendChild(this._el("span", "zia-dot-name", e ? this.core.engineLabel(e) : this.T("engine.none")));
+		const tip = this.T("dot." + st, { engine: e ? this.core.engineLabel(e) : "" });
+		b.title = tip;
+		b.setAttribute("aria-label", tip);
+	}
+
+	// ---- Pesquisa no histórico (as respostas guardadas neste computador, em todos os artigos)
+
+	_toggleSearch() {
+		const box = this.searchEl;
+		if (!box) return;
+		box.hidden = !box.hidden;
+		if (box.hidden) return;
+		if (!box.firstChild) {
+			box.appendChild(this._el("div", "zia-search-info", this.T("search.info")));
+			const input = this._el("input", "zia-search-input");
+			input.type = "search";
+			input.setAttribute("placeholder", this.T("search.placeholder"));
+			input.setAttribute("aria-label", this.T("search.placeholder"));
+			this._searchInput = input;
+			box.appendChild(input);
+			this._searchOut = this._el("div", "zia-search-out");
+			box.appendChild(this._searchOut);
+			let timer = null;
+			input.addEventListener("input", () => {
+				clearTimeout(timer);
+				timer = setTimeout(() => this._runSearch(input.value), 250);
+			});
+			if (this.core.pref("history.save") === false) this._searchOut.appendChild(this._el("div", "zia-muted", this.T("search.off")));
+		}
+		this._searchInput.focus();
+	}
+
+	async _runSearch(q) {
+		const out = this._searchOut;
+		const token = this._searchToken = (this._searchToken || 0) + 1;
+		let hits = [];
+		if (String(q).trim().length >= 2) {
+			try { hits = await this.core.searchHistory(q); }
+			catch (e) { this.core.log("Pesquisa: " + e); }
+		}
+		if (token !== this._searchToken) return;
+		while (out.firstChild) out.removeChild(out.firstChild);
+		if (String(q).trim().length < 2) return;
+		out.appendChild(this._el("div", "zia-muted", this.T(hits.length ? "search.count" : "search.none", { n: hits.length })));
+		for (const h of hits) {
+			const row = this._button("", "zia-search-hit", () => this._openHit(h));
+			const head = this._el("div", "zia-search-head");
+			head.appendChild(this._el("b", null, h.ref || h.title));
+			const what = h.actionID ? this._actionTitle({ actionID: h.actionID }) : this.T("chat.question");
+			head.appendChild(this._el("span", "zia-muted", " · " + what));
+			row.appendChild(head);
+			const sn = this._el("div", "zia-search-snip");
+			sn.appendChild(this.doc.createTextNode(h.snippet[0]));
+			sn.appendChild(this._el("mark", null, h.snippet[1]));
+			sn.appendChild(this.doc.createTextNode(h.snippet[2]));
+			row.appendChild(sn);
+			if (h.title && h.ref) row.title = h.title;
+			out.appendChild(row);
+		}
+	}
+
+	/** Abre o artigo da resposta encontrada, no separador dessa conversa. */
+	async _openHit(h) {
+		const item = Zotero.Items.get(h.itemID);
+		if (!item) return;
+		this._pendingConv = { key: h.key, conv: h.conv };
+		try {
+			const win = Zotero.getMainWindow();
+			if (win && win.Zotero_Tabs) win.Zotero_Tabs.select("zotero-pane");
+			if (win && win.ZoteroPane) await win.ZoteroPane.selectItem(item.id);
+		}
+		catch (e) { this.core.log("Pesquisa: " + e); }
+		if (this.historyKey === h.key) this._applyPendingConv();
+	}
+
+	_applyPendingConv() {
+		const p = this._pendingConv;
+		if (!p || p.key !== this.historyKey) return;
+		this._pendingConv = null;
+		if (this.state.convs && this.state.convs[p.conv]) {
+			this.state.active = p.conv;
+			this.state.messages = this.state.convs[p.conv];
+			this._renderConvTabs();
+			this._renderMessages();
+		}
+		if (this.searchEl) this.searchEl.hidden = true;
+	}
+
+	// ---- "Explicar isto" a partir do leitor de PDF
+
+	async explainExcerpt({ item, text, page, pageLabel }) {
+		if (this.busy) {
+			this._setStatus(this.T("reader.explain.busy"), "warn");
+			return;
+		}
+		const owner = this.core.conversationItem ? await this.core.conversationItem(item) : item;
+		if (this.sessionKey !== `item:${owner.id}`) await this.showItem(item);
+		if (!this.state.docs.length) return;
+		if (!this._engineReady()) {
+			this._showSetupInline();
+			return;
+		}
+		const p = pageLabel || page;
+		const quote = text.length > 1500 ? text.slice(0, 1500) + "…" : text;
+		const short = text.length > 70 ? text.slice(0, 67) + "…" : text;
+		await this._ask({
+			promptText: this.T("reader.explain.prompt", { p: p || "?", text: quote }),
+			display: this.T("reader.explain.display", { p: p || "?", text: short }),
+			heading: this.T("reader.explain.heading") + (p ? " · p. " + p : ""),
+			docs: this.state.docs.slice(),
+		});
+	}
+
 	_renderUpdateBadge() {
 		const b = this._gear;
 		if (!b) return;
@@ -280,8 +411,13 @@ var ZIAChatView = class {
 				lang.appendChild(b);
 			}
 			top.appendChild(lang);
+			top.appendChild(this._engineDot());
+			top.appendChild(this._iconButton("search", "zia-search-btn", () => this._toggleSearch(), this.T("search.tip")));
 			top.appendChild(this._gearButton());
 			root.appendChild(top);
+			this.searchEl = this._el("div", "zia-search");
+			this.searchEl.hidden = true;
+			root.appendChild(this.searchEl);
 			const strip = this._button("", "zia-multi-strip", () => this.openInWindow(), this.T("multi.tip"));
 			const ic = this._el("span", "zia-multi-icon");
 			ic.appendChild(this._icon("docs"));
@@ -439,7 +575,7 @@ var ZIAChatView = class {
 		this._prefObservers = [];
 		const P = Zotero.Prefs;
 		if (!P || !P.registerObserver) return;
-		const keys = ["engine", "anthropic.key", "openai.key", "gemini.key", "iaedu.key", "iaedu.endpoint", "iaedu.channel", "claude.enabled", "codex.enabled", "custom.prompts", "ui.lang", "ui.mode", "update.available", "update.state"];
+		const keys = ["anthropic.lastTest", "openai.lastTest", "gemini.lastTest", "iaedu.lastTest", "claude.lastTest", "codex.lastTest", "engine", "anthropic.key", "openai.key", "gemini.key", "iaedu.key", "iaedu.endpoint", "iaedu.channel", "claude.enabled", "codex.enabled", "custom.prompts", "ui.lang", "ui.mode", "update.available", "update.state"];
 		for (const k of keys) {
 			try {
 				this._prefObservers.push(P.registerObserver(this.core.PREF_BRANCH + k, () => this._onPrefsChanged(k), true));
@@ -456,6 +592,8 @@ var ZIAChatView = class {
 			this._renderUpdateBadge();
 			return;
 		}
+		this._renderEngineDot();
+		if (key.endsWith(".lastTest")) return;
 		if (key === "ui.lang") {
 			this.core.applyLanguage();
 			this._rebuild();
@@ -494,6 +632,7 @@ var ZIAChatView = class {
 	}
 
 	destroy() {
+		if (this.core.views) this.core.views.delete(this);
 		this.stop();
 		this._saveSession();
 		if (this._pendingPrivacy) this._pendingPrivacy(false);
@@ -688,11 +827,67 @@ var ZIAChatView = class {
 		box.appendChild(this._el("p", null, this.T("ficha.info.what")));
 		box.appendChild(this._el("p", null, this.T("ficha.info.where")));
 		box.appendChild(this._el("div", "zia-info-sub", this.T("ficha.info.fieldsTitle")));
-		const ul = this._el("ul", "zia-info-fields");
-		for (const f of this.T("ficha.info.fields").split("|")) ul.appendChild(this._el("li", null, f.trim()));
-		box.appendChild(ul);
+		box.appendChild(this._fichaFieldsEl());
 		box.appendChild(this._el("p", "zia-muted", this.T("ficha.info.pages")));
 		return box;
+	}
+
+	/** Campos da ficha: caixas para ligar e desligar, modelos prontos e campos próprios (pref ficha.fields). */
+	_fichaFieldsEl() {
+		const wrap = this._el("div", "zia-ficha-fields");
+		const defaults = this.T("ficha.info.fields").split("|").map(f => f.trim());
+		const saved = this.core.fichaFields();
+		const chosen = new Set(saved.length ? saved : defaults);
+		const extra = saved.filter(f => !defaults.includes(f));
+		const all = defaults.concat(extra);
+		const save = () => {
+			const list = all.filter(f => chosen.has(f));
+			// Os 14 de sempre, pela ordem de sempre: volta ao modelo por omissão
+			this.core.setFichaFields(list.length === defaults.length && list.every((f, i) => f === defaults[i]) ? [] : list);
+		};
+		const presets = this._el("div", "zia-ficha-presets");
+		presets.appendChild(this._el("span", "zia-muted", this.T("ficha.fields.presets")));
+		for (const k of ["standard", "qual", "review"]) {
+			presets.appendChild(this._button(this.T("ficha.fields.preset." + k), "zia-btn-small zia-btn-quiet", () => {
+				const list = k === "standard" ? defaults : this.T("ficha.fields.preset." + k + ".list").split("|").map(f => f.trim());
+				chosen.clear();
+				for (const f of list) { chosen.add(f); if (!all.includes(f)) all.push(f); }
+				save();
+				this._renderActions();
+			}));
+		}
+		wrap.appendChild(presets);
+		const grid = this._el("div", "zia-ficha-grid");
+		for (const f of all) {
+			const lab = this._el("label", "zia-ficha-field");
+			const cb = this._el("input");
+			cb.type = "checkbox";
+			cb.checked = chosen.has(f);
+			cb.addEventListener("change", () => { if (cb.checked) chosen.add(f); else chosen.delete(f); save(); });
+			lab.appendChild(cb);
+			lab.appendChild(this.doc.createTextNode(" " + f));
+			grid.appendChild(lab);
+		}
+		wrap.appendChild(grid);
+		const add = this._el("div", "zia-ficha-add");
+		const input = this._el("input", "zia-ficha-new");
+		input.type = "text";
+		input.setAttribute("placeholder", this.T("ficha.fields.new"));
+		input.setAttribute("aria-label", this.T("ficha.fields.new"));
+		const addIt = () => {
+			const v = input.value.replace(/[|\n]/g, " ").trim();
+			if (!v || all.includes(v)) return;
+			all.push(v);
+			chosen.add(v);
+			save();
+			this._renderActions();
+		};
+		input.addEventListener("keydown", ev => { if (ev.key === "Enter") { ev.preventDefault(); addIt(); } });
+		add.appendChild(input);
+		add.appendChild(this._button(this.T("ficha.fields.add"), "zia-btn-small", addIt));
+		wrap.appendChild(add);
+		wrap.appendChild(this._el("div", "zia-muted", this.T("ficha.fields.note", { n: chosen.size })));
+		return wrap;
 	}
 
 	/** Fichas dos artigos da conversa: abrir as que existem (notas do Zotero) e criar as que faltam. */
@@ -870,6 +1065,8 @@ var ZIAChatView = class {
 		this._renderDocs();
 		this._renderMessages();
 		this._updateButtons();
+		// Vindo da pesquisa no histórico: abre o separador da resposta encontrada
+		this._applyPendingConv();
 	}
 
 	// ------------------------------------------------------------------
@@ -1166,9 +1363,13 @@ var ZIAChatView = class {
 		if (!mode) return;
 		const n = this.state.docs.length;
 		const b = Math.ceil(n / this.L.BATCH_SIZE);
-		el.textContent = mode === "themes"
+		// Tempo aproximado: cerca de 40 s por pedido (o Gemini gratuito espera mais entre pedidos)
+		const per = this.engine === "gemini" ? 70 : 40;
+		const r = mode === "themes" ? Math.max(3, Math.ceil(n / 6) + 2) : b + 1;
+		const min = Math.max(1, Math.round(r * per / 60));
+		el.textContent = (mode === "themes"
 			? this.T("win.largeNote.themes", { n })
-			: this.T("win.largeNote", { n, b, r: b + 1 });
+			: this.T("win.largeNote", { n, b, r: b + 1 })) + " " + this.T("win.largeNote.time", { min });
 	}
 
 	_updatePlaceholder() {
@@ -3738,6 +3939,19 @@ var ZIAChatView = class {
 			this._setStatus(this.T("chat.copied"));
 		}, this.T("chat.copy.tip")));
 		row.appendChild(this._saveNoteButton(m, "zia-btn-small"));
+		if (!m.pending && m.text) {
+			row.appendChild(this._button(this.T("chat.exportWord"), "zia-btn-small", async () => {
+				const heading = m.heading || this.T("note.defaultHeading");
+				const files = this.L.answerToDocx(m.text, { docsMap: this._docsMap(m) }, heading);
+				try {
+					const path = await this.core.saveDocx(this.win, files, heading);
+					if (path) this._setStatus(this.T("chat.exportedWord", { path }));
+				}
+				catch (e) {
+					this._setStatus(this.T("chat.exportError", { e: e.message || e }), "error");
+				}
+			}, this.T("chat.exportWord.tip")));
+		}
 		if (this.L.extractTables(m.text).length) {
 			row.appendChild(this._button(this.T("chat.exportCsv"), "zia-btn-small", async () => {
 				const csv = this.L.tablesToCSV(m.text, { docsMap: this._docsMap(m) });
@@ -3862,7 +4076,7 @@ var ZIAChatView = class {
 			chip.classList.remove("zia-cite-open");
 			return;
 		}
-		const card = this._proofCard(item, c, m, () => this._toggleProof(item, c, chip, m, k), k);
+		const card = this._proofCard(item, c, m, () => this._toggleProof(item, c, chip, m, k), k, chip);
 		// Por baixo do parágrafo, do item da lista ou da tabela onde está a citação
 		const table = chip.closest("table");
 		const host = (table && (table.closest(".zia-table-wrap") || table)) || chip.closest("li, p, blockquote, h2, h3, h4, h5, h6") || chip.parentNode;
@@ -3873,7 +4087,45 @@ var ZIAChatView = class {
 	}
 
 	/** Cartão de prova: o parágrafo do PDF com a frase a amarelo, ou o que o PDF diz quando não bate certo. */
-	_proofCard(item, c, m, onClose, k) {
+	/** "Verificar o sentido": outro motor diz se a paráfrase diz o mesmo que a frase de base. Nunca vira ✓. */
+	_meaningEl(part, ev, chip, m) {
+		const box = this._el("div", "zia-meaning");
+		const show = r => {
+			while (box.firstChild) box.removeChild(box.firstChild);
+			const v = r.verdict || "unclear";
+			const line = this._el("div", "zia-meaning-res zia-meaning-" + v,
+				this.T("meaning." + v, { engine: this.core.engineLabel(r.engine) }) + (r.note ? " " + r.note : ""));
+			box.appendChild(line);
+			box.appendChild(this._el("div", "zia-muted", this.T("meaning.caveat")));
+		};
+		if (part.meaning) { show(part.meaning); return box; }
+		// Outro motor pronto, se houver (uma segunda opinião vale mais vinda de outro modelo)
+		const others = this._otherReadyEngines(m.engine || this.engine);
+		const engine = others[0] || m.engine || this.engine;
+		const b = this._button(this.T(others.length ? "meaning.btn" : "meaning.btnSame", { engine: this.core.engineLabel(engine) }), "zia-btn-small", async () => {
+			const para = chip && chip.closest ? chip.closest("p, li, td, .zia-p") : null;
+			const claim = (para ? para.textContent : "").replace(/[✓≈↪✗]/g, "").replace(/\s+/g, " ").trim().slice(0, 800);
+			const passage = [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim().slice(0, 1200);
+			if (!claim || !passage) return;
+			b.disabled = true;
+			b.textContent = this.T("meaning.running", { engine: this.core.engineLabel(engine) });
+			try {
+				const r = await this.core.checkMeaning(engine, claim, passage, this.win);
+				part.meaning = { engine, verdict: r.verdict, note: r.note };
+				show(part.meaning);
+				this._persist();
+			}
+			catch (e) {
+				b.disabled = false;
+				b.textContent = this.T("meaning.btn", { engine: this.core.engineLabel(engine) });
+				box.appendChild(this._el("div", "zia-muted", this.T("meaning.error", { e: e.message || e })));
+			}
+		}, this.T("meaning.tip"));
+		box.appendChild(b);
+		return box;
+	}
+
+	_proofCard(item, c, m, onClose, k, chip) {
 		const L = this.L;
 		const dm = this._docsMap(m);
 		const pg = (doc, page) => "p. " + L.pageLabel(dm[doc], page);
@@ -3913,6 +4165,7 @@ var ZIAChatView = class {
 				passage(ev);
 				text(this.T("proof.based.text"));
 				open((ev && ev.doc) || c.doc, (ev && ev.page) || c.page);
+				if (ev && ev.match) card.appendChild(this._meaningEl(src, ev, chip, m));
 				break;
 			case "ok":
 				title.textContent = this.T("proof.ok", { p: pg((ev && ev.doc) || c.doc, (ev && ev.page) || c.page) });
