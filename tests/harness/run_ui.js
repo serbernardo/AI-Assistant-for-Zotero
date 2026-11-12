@@ -417,7 +417,7 @@ async function main() {
 		const page = await open("?mode=section&uimode=simple&ui=en", { width: 300, height: 800 });
 		const labels = await page.$$eval(".zia-simple-btn .zia-simple-label", ls => ls.map(l => l.textContent));
 		assert.deepEqual(labels, ["Summarise", "Plain-language summary", "Key concepts", "Mind map", "Test my understanding", "Relevance to my topic"]);
-		assert.deepEqual(await page.$$eval(".zia-modeswitch .zia-mode-btn", bs => bs.map(b => b.textContent)), ["Simple", "Advanced"]);
+		assert.deepEqual(await page.$$eval(".zia-modeswitch .zia-mode-btn", bs => bs.map(b => b.textContent)), ["Essentials", "More actions"]);
 		await page.close();
 		const win = await open("?mode=window&uimode=simple", { width: 820, height: 800 });
 		assert.equal(await win.locator(".zia-modeswitch").count(), 0, "a janela é sempre avançada");

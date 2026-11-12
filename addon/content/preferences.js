@@ -169,6 +169,7 @@ window.ZIAPrefs = {
 			catch (e) { this.setText("zia-history-result", e.message || String(e), true); }
 		});
 		on("zia-reset-privacy", () => this.resetPrivacy());
+		on("zia-diag-send", () => this.sendDiagnostic());
 		// Ligações: abrem no browser
 		for (const a of document.querySelectorAll("a.zia-link[data-url]")) {
 			a.href = a.getAttribute("data-url");
@@ -625,6 +626,19 @@ window.ZIAPrefs = {
 		catch (e) {
 			this.setText("zia-security-result", e.message || String(e), true);
 		}
+	},
+
+	/** Diagnóstico para o desenvolvedor: abre o email já escrito e copia o texto, para o caso de não abrir. */
+	sendDiagnostic() {
+		const core = this.core();
+		const text = core.diagnosticText();
+		try { core.copyToClipboard(text); }
+		catch (e) { /* sem área de transferência */ }
+		const url = "mailto:sergiob@fe.up.pt?subject=" + encodeURIComponent(this.T("prefs.diag.subject"))
+			+ "&body=" + encodeURIComponent(text);
+		try { Zotero.launchURL(url); }
+		catch (e) { core.log("Diagnóstico: " + e); }
+		this.setText("zia-diag-result", this.T("prefs.diag.copied"));
 	},
 
 	resetPrivacy() {

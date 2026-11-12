@@ -350,6 +350,7 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
 - **Clique direito nos itens** (submenu Assistente IA): Abrir na janela do assistente, Perguntar a
   estes artigos (`chooseAction`: fica escolhida a espera da pergunta), Mapa de temas (`autoAction`) e
   as comparacoes.
+- **Nomes dos modos (a pedido):** Essencial / Mais acoes (Essentials / More actions), o id continua simple e advanced. Tema da Relevancia guardado (pref `relevance.topic`). Creditos com o email sergiob@fe.up.pt (mailto) e "Enviar diagnostico ao desenvolvedor" (`diagnosticText`, `noteError`: ultimos 15 erros, sem chaves). Exemplo dos campos do IAEdu: "Cola aqui…". PDF digitalizado explica como resolver.
 - **Simples por omissao:** `simpleModeOnce` no `bootstrap.js` poe `ui.mode` = simple uma so vez (pref
   `ui.simpleApplied`), depois fica a escolha da pessoa.
 - **Icones das acoes** (`_actionIcon`, `_icon`): cada acao tem um icone em linha fina num quadrado claro

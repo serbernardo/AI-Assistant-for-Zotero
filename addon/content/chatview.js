@@ -1805,7 +1805,9 @@ var ZIAChatView = class {
 		const a = this._action(id);
 		// A relevância precisa do tema, escrito na caixa de texto (pode repetir-se com outro tema)
 		if (a && a.needsCriteria) {
-			const extra = this.textarea.value.trim();
+			// O tema fica guardado: no artigo seguinte basta carregar no botão
+			const extra = this.textarea.value.trim() || String(this.core.pref("relevance.topic") || "").trim();
+			if (extra) this.core.setPref("relevance.topic", extra);
 			if (!extra) {
 				this._setStatus(this.T(a.needsMsg), "warn");
 				this.textarea.focus();
