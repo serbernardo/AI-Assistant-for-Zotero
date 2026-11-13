@@ -1,2 +1,10 @@
 (node:9312) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
 (Use `node --trace-warnings ...` to show where the warning was created)
+lote 1: 15 pares, 30 s, 15 respostas lidas
+lote 2: 15 pares, 48 s, 15 respostas lidas
+lote 3: 15 pares, 35 s, 15 respostas lidas
+lote 4: 15 pares, 31 s, 15 respostas lidas
+lote 5: 15 pares, 37 s, 15 respostas lidas
+lote 6: 15 pares, 31 s, 15 respostas lidas
+lote 7: 15 pares, 42 s, 15 respostas lidas
+lote 8: 15 pares, 36 s, 15 respostas lidas
