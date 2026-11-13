@@ -49,6 +49,7 @@ async function run() {
 	if (!KEY) { console.error("Falta IAEDU_API_KEY"); process.exit(2); }
 	const { core, L } = await setup();
 	await core.setSecret("iaedu", KEY);
+	if (process.env.IAEDU_ENDPOINT) { core.setPref("iaedu.endpoint", process.env.IAEDU_ENDPOINT.trim()); core.setPref("iaedu.channel", (process.env.IAEDU_CHANNEL || "").trim()); }
 	const win = { fetch, AbortController, FormData };
 	const good = JSON.parse(fs.readFileSync(path.join(OUT, "pares.json"), "utf8")).map(p => Object.assign({ expect: "yes", kind: "certa" }, p));
 	const bad = JSON.parse(fs.readFileSync(path.join(OUT, "estragados.json"), "utf8"));
@@ -79,6 +80,7 @@ async function run() {
 		const v = L.parseMeaningBatch(r.text, chunk.length);
 		chunk.forEach((p, k) => results.push(Object.assign({}, p, { verdict: v[k] ? v[k].verdict : null, note: v[k] ? v[k].note : "" })));
 		fs.writeFileSync(RES, JSON.stringify(results, null, 1));
+		if (i + BATCH < todo.length) await new Promise(res => setTimeout(res, (parseInt(process.env.PAUSE, 10) || 20) * 1000));
 		console.log(`lote ${i / BATCH + 1}: ${chunk.length} pares, ${((Date.now() - t0) / 1000).toFixed(0)} s, ${v.filter(Boolean).length} respostas lidas`);
 	}
 	const g = results.filter(r => r.expect === "yes"), b = results.filter(r => r.expect !== "yes");
