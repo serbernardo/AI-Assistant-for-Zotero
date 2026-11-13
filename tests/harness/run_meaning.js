@@ -38,11 +38,16 @@ async function extract() {
 	for (const f of fs.readdirSync(SRC).filter(f => f.endsWith(".md")).sort()) {
 		const text = fs.readFileSync(path.join(SRC, f), "utf8");
 		const res = L.verifyAnswer(text, map);
-		for (const p of L.meaningClaims(text, res)) pairs.push(Object.assign({ id: f.replace(/\.md$/, "") + ":" + p.key + ":" + p.k }, p));
+		for (const p of L.meaningClaims(text, res)) pairs.push(Object.assign({ id: f.replace(/\.md$/, "") + ":" + p.key }, p));
 	}
+	// Sem repetidos; entram todos os grupos usados pelas frases estragadas e 1 em cada 3 dos outros
+	const wanted = new Set(JSON.parse(fs.readFileSync(path.join(OUT, "estragados.json"), "utf8")).map(b => b.id.replace(/:\d+$/, "")));
+	const seen = new Set(), uniq = [];
+	for (const p of pairs) { const k = p.claim + "||" + p.passage; if (!seen.has(k)) { seen.add(k); uniq.push(p); } }
+	const pick = uniq.filter((p, i) => wanted.has(p.id) || i % 3 === 0);
 	fs.mkdirSync(OUT, { recursive: true });
-	fs.writeFileSync(path.join(OUT, "pares.json"), JSON.stringify(pairs, null, 1));
-	console.log(`${pairs.length} pares em ${path.join(OUT, "pares.json")}`);
+	fs.writeFileSync(path.join(OUT, "pares.json"), JSON.stringify(pick, null, 1));
+	console.log(`${pairs.length} citações com frase de base, ${uniq.length} sem repetidos, ${pick.length} na amostra (${[...wanted].filter(id => pick.some(p => p.id === id)).length} de ${wanted.size} com versão estragada)`);
 }
 
 async function run() {
@@ -54,7 +59,8 @@ async function run() {
 	const good = JSON.parse(fs.readFileSync(path.join(OUT, "pares.json"), "utf8")).map(p => Object.assign({ expect: "yes", kind: "certa" }, p));
 	const bad = JSON.parse(fs.readFileSync(path.join(OUT, "estragados.json"), "utf8"));
 	const base = Object.fromEntries(good.map(p => [p.id, p]));
-	const broken = bad.map(b => ({ id: b.id + "~" + b.kind, kind: b.kind, expect: "not-yes", claim: b.claim, passage: base[b.id].passage, orig: base[b.id].claim }));
+	const bad0 = bad; // ids das estragadas: sem o ":k" da citação do grupo
+	const broken = bad.filter(b => base[b.id.replace(/:\d+$/, "")]).map(b => { const o = base[b.id.replace(/:\d+$/, "")]; return { id: b.id + "~" + b.kind, kind: b.kind, expect: "not-yes", claim: b.claim, passage: o.passage, orig: o.claim }; });
 	// Mistura certos e estragados (ordem fixa, por um número tirado do id), para o modelo não ver o padrão
 	const h = t => [...t].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
 	const items = [...good, ...broken].sort((a, b) => h(a.id + a.kind) - h(b.id + b.kind));

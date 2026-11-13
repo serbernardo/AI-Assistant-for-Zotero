@@ -2566,8 +2566,9 @@ var ZIALib = (function () {
 	}
 
 	/**
-	 * Cada paráfrase com frase de base encontrada no PDF: a frase da resposta que a usa (claim) e o excerto do PDF
-	 * à volta da frase de base (passage). Chave = a mesma do item ("D1:p4#2") e k = posição da citação no grupo.
+	 * Uma entrada por citação com frases de base encontradas no PDF: a frase da resposta que a usa (claim) e TODOS os
+	 * excertos do PDF que essa citação reúne (passage), porque uma frase pode juntar ideias de várias fontes.
+	 * key = a mesma do item ("D1:p4#2"); parts = posições das citações do grupo que entram.
 	 */
 	function meaningClaims(text, res) {
 		const out = [];
@@ -2592,24 +2593,30 @@ var ZIALib = (function () {
 			let claim = plainClaim(before.slice(cut));
 			if (claim.split(" ").length < 4) claim = plainClaim(before);
 			if (claim.split(" ").length < 3) continue;
+			const parts = [], passages = [];
 			it.parts.forEach((part, k) => {
 				if (!part || !["based", "moved"].includes(part.status) || !part.evidence || !part.evidence.match) return;
 				const ev = part.evidence;
-				const passage = [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
-				out.push({ key: it.key, k, claim: claim.slice(0, 600), passage: passage.slice(0, 900), anchor: part.anchor });
+				const t = [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim().slice(0, 700);
+				if (!passages.includes(t)) passages.push(t);
+				parts.push(k);
 			});
+			if (!parts.length) continue;
+			out.push({ key: it.key, parts, claim: claim.slice(0, 700), passage: passages.map((t, i) => (passages.length > 1 ? `(${i + 1}) ` : "") + t).join(" ").slice(0, 2000) });
 		}
 		return out;
 	}
 
 	function meaningBatchPrompt(pairs) {
-		const sys = "Comparas frases escritas por uma IA com os excertos de artigos científicos em que elas dizem basear-se. "
+		const sys = "Comparas frases escritas por uma IA com os excertos de artigos científicos em que ela diz basear-se. "
 			+ "Para cada número, respondes numa linha: o número, dois pontos, SIM, EM PARTE ou NÃO, dois pontos e uma frase curta. "
-			+ "SIM: o excerto suporta a frase, mesmo que por outras palavras ou noutra língua. "
-			+ "EM PARTE: a frase generaliza, exagera, troca quem ou quando, ou junta uma ideia que o excerto não diz. "
-			+ "NÃO: o excerto contradiz a frase ou não tem nada a ver com ela. "
-			+ "Uma frase pode juntar várias fontes: só avalias a parte que este excerto deveria suportar e não penalizas o resto. "
-			+ "Números, negações e quem fez o quê têm de bater certo. Só contas com o excerto, nunca com conhecimento geral. "
+			+ "Os excertos de cada número são todos os que a frase cita: a frase pode juntar ideias de vários, por isso avalias a frase contra o conjunto. "
+			+ "SIM: o conjunto de excertos suporta o que a frase afirma sobre o conteúdo, mesmo por outras palavras ou noutra língua. "
+			+ "Não contas como falha: o nome dos autores ou do artigo, a secção onde a ideia está, o número da página, "
+			+ "uma etiqueta ou título, nem a escolha de palavras de ligação ou de uma conclusão evidente. "
+			+ "EM PARTE: a frase afirma algo importante sobre o conteúdo que os excertos não dizem, ou exagera ou generaliza para além deles. "
+			+ "NÃO: os excertos contradizem a frase (números, negação, quem fez o quê, o contrário do que se diz) ou não têm nada a ver com ela. "
+			+ "Números, negações e quem fez o quê têm de bater certo. Só contas com os excertos, nunca com conhecimento geral. "
 			+ "Não escreves mais nada além das linhas. " + answerLanguageLine();
 		const prompt = pairs.map((p, i) => `${i + 1}.\nFrase da IA: «${String(p.claim).trim()}»\nExcerto do artigo: «${String(p.passage).trim()}»`).join("\n\n");
 		return { system: sys, prompt };
