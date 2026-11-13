@@ -1,0 +1,191 @@
+[
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conceitos:D1:p3 «foram as variáveis independentes principais»; D1:p4 «explicou a maior parte da variância»#1",
+  "key": "D1:p3 «foram as variáveis independentes principais»; D1:p4 «explicou a maior parte da variância»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "É tratada como uma das variáveis independentes principais e como o factor que mais explica a intenção de uso",
+  "passage": "(1) A utilidade percebida e a facilidade de uso foram as variáveis independentes principais . (2) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "verdict": "yes",
+  "note": "A utilidade percebida é uma variável independente principal e explica a maior parte da variância."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os resultados indicam que a utilidade percebida teve o maior efeito reportado na intenção de uso, com beta = 0,52 e p < 0,001",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "verdict": "yes",
+  "note": "O excerto reporta beta = 0,52 e p < 0,001 para a utilidade percebida."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes:D1:p4 «O modelo explicou 47% da variância»#3",
+  "key": "D1:p4 «O modelo explicou 47% da variância»#3",
+  "parts": [
+   0
+  ],
+  "claim": "O modelo explicou 47% da variância, porque o valor é reportado directamente com R2 = 0,47",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "verdict": "yes",
+  "note": "O excerto diz directamente que o modelo explicou 47% da variância."
+ },
+ {
+  "id": "cmp_resultados:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «students rarely used the chatbot for literature searches»#1:1~inverte",
+  "kind": "inverte",
+  "expect": "not-yes",
+  "claim": "Ambos apontam elevada confiança e uso frequente para apoio à pesquisa",
+  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica . (2) Third, students rarely used the chatbot for literature searches , preferring human help.",
+  "orig": "Ambos apontam baixa confiança ou baixo uso para apoio à pesquisa",
+  "verdict": "no",
+  "note": "Os excertos indicam baixa confiança e uso raro para apoio à pesquisa."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_conceitos:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3",
+  "key": "D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3",
+  "parts": [
+   0
+  ],
+  "claim": "Silva et al., 2021 mede confiança dos estudantes no apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "verdict": "yes",
+  "note": "O excerto mede a confiança dos estudantes no apoio à pesquisa bibliográfica."
+ },
+ {
+  "id": "ficha:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1:0~generaliza",
+  "kind": "generaliza",
+  "expect": "not-yes",
+  "claim": "O objetivo foi medir a utilização real de chatbots em todas as bibliotecas da Europa",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "orig": "O objetivo foi medir a intenção de uso de chatbots e os fatores explicativos",
+  "verdict": "no",
+  "note": "O excerto fala de intenção de uso e TAM, não de utilização real em toda a Europa."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conceitos:D1:p4 «O modelo explicou 47% da variância»#1",
+  "key": "D1:p4 «O modelo explicou 47% da variância»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Variância explicada, R2",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "verdict": "yes",
+  "note": "O excerto associa a variância explicada ao R2."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conceitos:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais (chatbots)»#1",
+  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais (chatbots)»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O termo aparece associado a chatbots em bibliotecas universitárias portuguesas, como objecto central do estudo",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) ) em bibliotecas universitárias portuguesas.",
+  "verdict": "yes",
+  "note": "O estudo analisa chatbots em bibliotecas universitárias portuguesas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "mapa:D1:p5 «como horários, renovações e reservas»#1",
+  "key": "D1:p5 «como horários, renovações e reservas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Exemplos: horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "verdict": "yes",
+  "note": "O excerto dá horários, renovações e reservas como exemplos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "esquema:D1:p5 «como horários, renovações e reservas»#1",
+  "key": "D1:p5 «como horários, renovações e reservas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Esses serviços incluem horários, renovações e reservas.",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "verdict": "yes",
+  "note": "O excerto inclui horários, renovações e reservas nesses serviços."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "esquema:D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O estudo tem desenho transversal.",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.",
+  "verdict": "yes",
+  "note": "O excerto identifica o estudo como tendo desenho transversal."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "etiquetas:D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
+  "parts": [
+   0
+  ],
+  "claim": "inquérito online: método de recolha de dados usado entre março e maio de 2021",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "verdict": "yes",
+  "note": "O excerto refere um inquérito online entre março e maio de 2021."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes:D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#1",
+  "key": "D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "A comparação com a utilidade percebida é sustentada pelos coeficientes reportados",
+  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ). (2) A facilidade de uso teve um efeito menor ( beta = 0,21; p = 0,003 ).",
+  "verdict": "yes",
+  "note": "Os coeficientes reportados permitem comparar a utilidade percebida com a facilidade de uso."
+ },
+ {
+  "id": "critica:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0~generaliza",
+  "kind": "generaliza",
+  "expect": "not-yes",
+  "claim": "Os resultados aplicam-se a todos os estudantes do ensino superior em Portugal",
+  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "orig": "A extrapolação para outras regiões ou para a população nacional de estudantes deve ser prudente",
+  "verdict": "no",
+  "note": "O excerto limita o estudo ao Norte de Portugal e não permite generalizar."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_metodos:D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Interviews lasted 45 to 70 minutes»#1",
+  "key": "D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Interviews lasted 45 to 70 minutes»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Entrevistas semiestruturadas, com duração de 45 a 70 minutos",
+  "passage": "(1) We conducted 18 semi-structured interviews with librarians from six universities in 2022. (2) Interviews lasted 45 to 70 minutes and were coded in NVivo.",
+  "verdict": "yes",
+  "note": "Os excertos referem entrevistas semiestruturadas com duração de 45 a 70 minutos."
+ }
+]
