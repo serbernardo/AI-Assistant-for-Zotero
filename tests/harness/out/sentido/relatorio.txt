@@ -2,3 +2,21 @@
 (Use `node --trace-warnings ...` to show where the warning was created)
   limite do IAEdu, pausa de 5 min (00:23)
   limite do IAEdu, pausa de 5 min (00:28)
+  limite do IAEdu, pausa de 5 min (00:33)
+  limite do IAEdu, pausa de 5 min (00:38)
+  limite do IAEdu, pausa de 5 min (00:43)
+  limite do IAEdu, pausa de 5 min (00:48)
+  limite do IAEdu, pausa de 5 min (00:53)
+  limite do IAEdu, pausa de 5 min (00:58)
+  limite do IAEdu, pausa de 5 min (01:03)
+  limite do IAEdu, pausa de 5 min (01:08)
+  limite do IAEdu, pausa de 5 min (01:13)
+  limite do IAEdu, pausa de 5 min (01:18)
+Error: Limite de pedidos de IAEdu atingido. Espera um pouco e tenta de novo, ou analisa menos PDFs de cada vez.
+Detalhe: Rate limit reached (429)
+    at Object.error (content/zoteroia.js:147:13)
+    at Object.runIAEdu (content/zoteroia.js:1923:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async run (/home/user/zotero-assistente-ia/tests/harness/run_meaning.js:72:14) {
+  kind: 'limit'
+}
