@@ -1,29 +1,28 @@
-## Relevância: Baixa
+## Relevância: Média
 
-A relevância específica não pode ser avaliada com rigor, porque o tema do trabalho não foi indicado na mensagem. Silva et al., 2021 centra-se na aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas [D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»]. O estudo usa um inquérito online a estudantes de três universidades do Norte de Portugal [D1:p1 «a 412 estudantes de três universidades do Norte de Portugal»]. Se o tema for chatbots em bibliotecas universitárias, intenção de uso ou TAM, o documento poderá ser muito pertinente [D1:p2 «medir a intenção de uso de chatbots»].
+Silva et al., 2021 é relevante porque estuda assistentes conversacionais em bibliotecas universitárias portuguesas e inclui estudantes como população analisada [D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»]. O documento é especialmente útil para o tema porque reporta confiança dos estudantes num serviço digital específico, o chatbot, para apoio à pesquisa bibliográfica [D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»]. A relevância não é alta porque o foco principal é a aceitação e a intenção de uso, não a confiança como conceito central [D1:p2 «medir a intenção de uso de chatbots e os fatores»]. Também não cobre serviços digitais de bibliotecas universitárias para além de chatbots. Não reportado.
 
 ## O que o documento traz para o tema
 
-- Define como foco a aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas [D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»].
-- Apresenta dados empíricos recolhidos por inquérito online a 412 estudantes [D1:p1 «Aplicámos um inquérito online a 412 estudantes»].
-- Usa o Modelo de Aceitação de Tecnologia como enquadramento analítico [D1:p2 «com base no Modelo de Aceitação de Tecnologia»].
-- Identifica a utilidade percebida como principal fator associado à intenção de uso [D1:p4 «A utilidade percebida explicou a maior parte da variância»].
-- Reporta que 68% dos estudantes usariam um chatbot para horários e empréstimos [D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»].
-- Indica menor confiança no chatbot para apoio à pesquisa bibliográfica [D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»].
+- Dados sobre confiança: apenas 31% dos estudantes confiariam no chatbot para apoio à pesquisa bibliográfica [D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»].
+- Dados sobre intenção de uso: 68% dos estudantes usariam um chatbot para questões de horário e empréstimo [D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»].
+- Enquadramento teórico: o estudo usa o Modelo de Aceitação de Tecnologia, TAM, para analisar a intenção de uso [D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»].
+- Método: aplica um inquérito online a 412 estudantes de três universidades do Norte de Portugal [D1:p1 «inquérito online a 412 estudantes de três universidades»].
+- Resultados explicativos: a utilidade percebida é apresentada como o principal fator associado à intenção de uso [D1:p4 «A utilidade percebida explicou a maior parte da variância»].
+- Limitações relevantes: a amostra de conveniência e o desenho transversal não permitem inferir causalidade [D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»].
 
 ## O que ler primeiro
 
-1. **Resumo, página 1**, para perceber o objetivo, a amostra e os principais resultados [D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»].
-2. **Introdução, página 2**, para identificar a pergunta de investigação e o enquadramento TAM [D1:p2 «que fatores explicam a intenção de uso de um chatbot»].
-3. **Método, página 3**, para compreender o desenho transversal, o questionário e a análise estatística [D1:p3 «Desenho transversal, com questionário de 24 itens»].
-4. **Resultados, página 4**, para consultar os efeitos da utilidade percebida, da facilidade de uso e o valor de R2 [D1:p4 «O modelo explicou 47% da variância»].
-5. **Discussão e conclusão, página 5**, para ver implicações, limitações e propostas de investigação futura [D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»].
+1. **Resumo, página 1**: para obter rapidamente o foco do estudo, a amostra e os principais resultados sobre uso e confiança [D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»].
+2. **Resultados, página 4**: para perceber os fatores associados à intenção de uso, incluindo utilidade percebida e facilidade de uso [D1:p4 «A utilidade percebida explicou a maior parte da variância»].
+3. **Método, página 3**: para avaliar o desenho transversal, a escala, a amostra e a regressão linear múltipla [D1:p3 «Desenho transversal, com questionário de 24 itens»].
+4. **Discussão e conclusão, página 5**: para identificar a interpretação dos autores, as recomendações e as limitações [D1:p5 «Concluímos que a utilidade percebida é o fator decisivo»].
+5. **Introdução, página 2**: para ver a pergunta de investigação e o enquadramento no TAM [D1:p2 «que fatores explicam a intenção de uso de um chatbot»].
 
 ## O que não cobre
 
-- O tema do trabalho não está indicado, por isso ficou difícil avaliar a relevância de forma específica.
-- Silva et al., 2021 não permite inferir causalidade, segundo os próprios autores [D1:p5 «não permitem inferir causalidade; o estudo cobre apenas»].
-- O estudo cobre apenas o Norte de Portugal [D1:p5 «o estudo cobre apenas o Norte de Portugal»].
-- Não reportado: implementação real de um chatbot em funcionamento.
-- Não reportado: comparação empírica com outras regiões.
-- Para tornar o tema mais preciso, poderias formulá-lo como, por exemplo, “aceitação de chatbots em bibliotecas universitárias”, “uso de TAM para estudar chatbots” ou “confiança dos estudantes em assistentes conversacionais para pesquisa bibliográfica”.
+- Não reportado: confiança dos estudantes em serviços digitais das bibliotecas universitárias para além de chatbots.
+- Não reportado: comparação entre diferentes tipos de serviços digitais de biblioteca.
+- Não reportado: evolução da confiança antes e depois da implementação real de um chatbot.
+- Não reportado: resultados fora do Norte de Portugal.
+- Não reportado: relações causais, pois os autores indicam que o desenho transversal não permite inferir causalidade [D1:p5 «o desenho transversal não permitem inferir causalidade»].

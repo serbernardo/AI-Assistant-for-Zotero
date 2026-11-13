@@ -1,35 +1,10 @@
-Motor iaedu, agente partilhado (por omissão), modelo o do agente, app em pt-PT
+Motor iaedu, agente https://api.iaedu.pt/agent-chat//api/v1/agent/cmor5objoex9gfp01vm7p95jh/stream, modelo o do agente, app em pt-PT
 Documentos:
   D1 Silva et al., 2021: 6 páginas, 2259 caracteres, desvio das páginas não detetado
   D2 García e Ortega, 2023: 5 páginas, 1677 caracteres, desvio das páginas não detetado
 
-OK  resumo                     5 citações  excertos 0/0   bases 13/13 sem marca 0    17 s  gpt-5.5                  
-OK  pontos                     8 citações  excertos 8/8   bases 0/0   sem marca 0    15 s  gpt-5.5                  
-OK  simples                   10 citações  excertos 0/0   bases 11/11 sem marca 0    16 s  gpt-5.5                  
-OK  conceitos                 40 citações  excertos 0/0   bases 43/43 sem marca 0    25 s  gpt-5.5                  
-OK  estudo                    15 citações  excertos 0/0   bases 15/15 sem marca 0    34 s  gpt-5.5                  
-FALHOU destaques                  0 citações  excertos 0/0   bases 0/0   sem marca 0     6 s  gpt-5.5                  sem citações
-OK  esquema                   18 citações  excertos 0/0   bases 18/18 sem marca 0    17 s  gpt-5.5                  
-OK  mapa                      19 citações  excertos 0/0   bases 19/19 sem marca 0    20 s  gpt-5.5                  
-OK  relevancia                16 citações  excertos 0/0   bases 16/16 sem marca 0    20 s  gpt-5.5                  
-OK  critica                   28 citações  excertos 0/0   bases 45/45 sem marca 0    35 s  gpt-5.5                  
-OK  metodos                   21 citações  excertos 0/0   bases 21/21 sem marca 0    22 s  gpt-5.5                  
-OK  conclusoes                55 citações  excertos 0/0   bases 57/57 sem marca 1    55 s  gpt-5.5                  
-FALHOU ficha                     19 citações  excertos 1/1   bases 22/23 sem marca 0    27 s  gpt-5.5                  frase de base changed: «Referência: Silva, Ana; Costa, Rui; Reis, Marta»
-OK  excertos                  10 citações  excertos 10/10 bases 0/0   sem marca 0    14 s  gpt-5.5                  
-OK  etiquetas                  8 citações  excertos 0/0   bases 9/9   sem marca 0    17 s  gpt-5.5                  
-OK  comparar                  31 citações  excertos 0/0   bases 59/59 sem marca 0    81 s  gpt-5.5                  
-OK  cmp_metodos               20 citações  excertos 0/0   bases 37/37 sem marca 2    24 s  gpt-5.5                  
-OK  cmp_resultados            15 citações  excertos 0/0   bases 18/18 sem marca 0    26 s  gpt-5.5                  
-OK  cmp_conceitos             30 citações  excertos 0/0   bases 41/41 sem marca 0    59 s  gpt-5.5                  
-FALHOU cmp_tabela                 4 citações  excertos 1/1   bases 3/4   sem marca 0    17 s  gpt-5.5                  frase de base bad: «in bibliotecas universitárias portuguesas»
-FALHOU pergunta                   0 citações  excertos 0/0   bases 0/0   sem marca 0    14 s  gpt-5.5                  sem citações
-OK  temas                      4 citações  excertos 0/0   bases 0/0   sem marca 4     8 s  gpt-5.5                  
-OK  cmp_sintese               27 citações  excertos 0/0   bases 54/54 sem marca 0    44 s  gpt-5.5                  
-OK  lacunas                   29 citações  excertos 0/0   bases 35/35 sem marca 0    36 s  gpt-5.5                  
-OK  referencias               10 citações  excertos 1/1   bases 10/10 sem marca 0    39 s  gpt-5.5                  
-OK  perguntas                 11 citações  excertos 0/0   bases 11/11 sem marca 0    43 s  gpt-5.5                  
-OK  armadilha_financiamento    0 citações  excertos 0/0   bases 0/0   sem marca 0    13 s  gpt-5.5                  
-OK  armadilha_alfa             1 citações  excertos 1/1   bases 0/0   sem marca 0     6 s  gpt-5.5                  
-OK  armadilha_premissa         3 citações  excertos 1/1   bases 3/3   sem marca 0     7 s  gpt-5.5                  
-OK  seguimento                 1 citações  excertos 0/0   bases 1/1   sem marca 0     8 s  gpt-5.5                  
+OK  destaques                  9 citações  excertos 2/2   bases 7/7   sem marca 0    11 s  gpt-5.5                  
+OK  relevancia                15 citações  excertos 0/0   bases 15/15 sem marca 0    16 s  gpt-5.5                  
+OK  ficha                     14 citações  excertos 0/0   bases 19/19 sem marca 1    17 s  gpt-5.5                  
+OK  cmp_tabela                13 citações  excertos 0/0   bases 18/18 sem marca 2    13 s  gpt-5.5                  
+OK  pergunta                   5 citações  excertos 2/2   bases 4/4   sem marca 0    12 s  gpt-5.5                  

@@ -101,6 +101,8 @@ var ZIALib = (function () {
 			"   afirmação. Por exemplo: [D1:p5 «the model explained 47% of the variance»]. Quem lê não a vê:",
 			"   serve para o assistente confirmar a citação no PDF, por isso tem de ser uma cópia exata.",
 			"   Para intervalos usa [D1:p5-6 «…»]. Para várias fontes usa [D1:p5 «…»; D2:p3 «…»].",
+			"   A frase de base vem sempre do texto das páginas, nunca da linha «Referência:», que é escrita pelo",
+			"   assistente. Para o que só está nessa linha (autores, ano, título, revista), cita só [D1].",
 			"   Usa apenas identificadores de documento e números de página que existam nas marcas",
 			"   <documento id=...> e <p n=...>. Se o documento não tiver marcas de página, cita apenas [D1].",
 			"2. Quando for útil, inclui antes da citação um excerto curto e literal entre aspas",

@@ -247,15 +247,31 @@ async function main() {
 	const ONLY = (process.env.ONLY || "").split(",").map(x => x.trim()).filter(Boolean);
 	const unknownIDs = ONLY.filter(id => !L.ACTIONS[id]);
 	if (unknownIDs.length) console.warn(`Ações desconhecidas em ONLY (ignoradas): ${unknownIDs.join(", ")}`);
+	// Como no addon: as ações que precisam de indicações (tema, colunas, pergunta) levam-nas, e Explicar os meus
+	// destaques leva destaques dos PDFs de teste. Sem isto a IA dizia, com razão, que faltava a pergunta.
+	const EXTRA = {
+		relevancia: "O meu tema: confiança dos estudantes em serviços digitais das bibliotecas universitárias.",
+		cmp_tabela: "País | Participantes | Método | Principal resultado",
+		pergunta: "Os estudos encontram problemas de confiança nas respostas dos chatbots?",
+	};
+	const ANNOTATIONS = {
+		D1: [
+			{ page: 4, text: "A utilidade percebida explicou a maior parte da variância da intenção de uso", comment: "Usar na revisão de literatura" },
+			{ page: 5, text: "o estudo cobre apenas o Norte de Portugal" },
+		],
+		D2: [{ page: 4, text: "librarians distrusted chatbot answers to research questions", comment: "Comparar com Silva" }],
+	};
 	const runAction = (id, reqDocs, tag) => async () => {
-		const a = L.ACTIONS[id];
+		const a0 = L.ACTIONS[id];
+		const a = EXTRA[id] && !CUSTOM ? Object.assign({}, a0, { prompt: a0.prompt + "\n\nIndicações adicionais do utilizador: " + EXTRA[id] }) : a0;
+		if (a0.useAnnotations && !CUSTOM) reqDocs = reqDocs.map(d => Object.assign({}, d, { annotations: ANNOTATIONS[d.id] || null }));
 		const name = tag ? `${id}_${tag}` : id;
 		try {
 			// Mapa de temas: como no addon, só o título, o resumo e as palavras-chave de cada artigo
 			const sent = a.metaOnly
 				? await Promise.all(reqDocs.map(async d => Object.assign({}, d, { kind: "ficha", fichaText: await core.itemMetaText(d) })))
 				: reqDocs;
-			const r = await ask(sent, L.actionPrompt(id, sent), null, id);
+			const r = await ask(sent, L.actionPrompt(a, sent), null, id);
 			fs.writeFileSync(path.join(OUT, name + ".md"), r.text);
 			const c = check(name, r.text, reqDocs, { needCites: id !== "etiquetas" });
 			if (id === "etiquetas" && !L.parseTagLine(r.text).length) c.problems.push("sem linha de etiquetas");
