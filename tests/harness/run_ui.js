@@ -1411,12 +1411,12 @@ async function main() {
 				"-:Volik e Kovaleva, 2020, p. 2", "based:Volik e Kovaleva, 2020, p. 1\u2248"],
 			"✓ na certa, ✗ na alterada e no número, ≈ na paráfrase com frase de base, sem marca a paráfrase sem ela");
 		assert.equal((await msg.locator(".zia-check").textContent()).trim(),
-			"\u2713 confirmadas no PDF: 1 · \u2248 por confirmar: 1 · 1 sem verificação · 2 a rever ›\u24d8");
+			"\u2713 confirmadas no PDF: 1 · \u2248 a confirmar: 1 · 1 sem verificação · 2 a rever ›\u24d8");
 		assert.doesNotMatch(await msg.locator(".zia-md").textContent(), /The main goal of implementing/, "a frase de base não aparece a quem lê");
 		assert.match(await chips.nth(3).getAttribute("title"), /Sem verificação automática/);
 		// ⓘ: a legenda das marcas
 		await msg.locator(".zia-check-info-btn").click();
-		assert.match(await msg.locator(".zia-check-legend").textContent(), /✓ está no PDF e diz o mesmo.*≈ a frase de base está no PDF, mas o sentido ficou por confirmar.*Sem marca: não verificada/);
+		assert.match(await msg.locator(".zia-check-legend").textContent(), /✓ está no PDF e diz o mesmo.*≈ a confirmar: a frase de base está no PDF.*Sem marca: não verificada/);
 		// ≈: o cartão mostra a frase de base no PDF
 		await chips.nth(4).click();
 		const based = msg.locator(".zia-proof-based");

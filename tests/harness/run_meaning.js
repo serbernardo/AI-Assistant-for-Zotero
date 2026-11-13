@@ -91,18 +91,20 @@ async function run() {
 	}
 	const g = results.filter(r => r.expect === "yes"), b = results.filter(r => r.expect !== "yes");
 	const cnt = (arr, v) => arr.filter(r => r.verdict === v).length;
-	console.log(`\nCertas (${g.length}): SIM ${cnt(g, "yes")} · EM PARTE ${cnt(g, "partly")} · NÃO ${cnt(g, "no")} · sem resposta ${cnt(g, null)}`);
-	console.log(`Estragadas (${b.length}): apanhadas ${b.filter(r => r.verdict && r.verdict !== "yes").length} · passaram como SIM ${cnt(b, "yes")} · sem resposta ${cnt(b, null)}`);
+	console.log(`\nCertas (${g.length}): SIM ${cnt(g, "yes")} · INTERPRETAÇÃO ${cnt(g, "inference")} · EM PARTE ${cnt(g, "partly")} · NÃO ${cnt(g, "no")} · sem resposta ${cnt(g, null)}`);
+	console.log(`Estragadas (${b.length}): NÃO ${cnt(b, "no")} · EM PARTE ${cnt(b, "partly")} · INTERPRETAÇÃO ${cnt(b, "inference")} · SIM ${cnt(b, "yes")} · sem resposta ${cnt(b, null)}`);
 	const kinds = [...new Set(b.map(r => r.kind))];
 	for (const k of kinds) {
 		const x = b.filter(r => r.kind === k);
-		console.log(`  ${k.padEnd(14)} ${x.filter(r => r.verdict && r.verdict !== "yes").length} de ${x.length} apanhadas`);
+		console.log(`  ${k.padEnd(14)} ${x.filter(r => r.verdict === "no" || r.verdict === "partly").length} de ${x.length} apanhadas (não passaram a verde)`);
 	}
 	console.log(`Tempo nesta execução: ${secs.toFixed(0)} s`);
 	console.log("\nCertas marcadas como problema (rever à mão):");
 	for (const r of g.filter(r => r.verdict !== "yes")) console.log(`- [${r.verdict}] ${r.id}\n  IA: ${r.claim}\n  PDF: ${r.passage}\n  Nota: ${r.note}`);
-	console.log("\nEstragadas que passaram:");
-	for (const r of b.filter(r => r.verdict === "yes")) console.log(`- ${r.id}\n  IA: ${r.claim}\n  PDF: ${r.passage}`);
+	console.log("\nCertas como INTERPRETAÇÃO:");
+	for (const r of g.filter(r => r.verdict === "inference")) console.log(`- ${r.claim}\n  Nota: ${r.note}`);
+	console.log("\nEstragadas que passaram (SIM ou INTERPRETAÇÃO):");
+	for (const r of b.filter(r => r.verdict === "yes" || r.verdict === "inference")) console.log(`- ${r.id}\n  IA: ${r.claim}\n  PDF: ${r.passage}`);
 }
 
 (process.argv[2] === "run" ? run : extract)().catch(e => { console.error(e); process.exit(1); });

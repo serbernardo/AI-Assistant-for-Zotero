@@ -2552,10 +2552,10 @@ var ZIALib = (function () {
 	}
 	function parseMeaning(text) {
 		const s = String(text || "").trim().replace(/^[*_\s]+/, "");
-		const m = /^(SIM|EM PARTE|NÃO|NAO|YES|PARTLY|NO)\b[*_\s]*[:.\-–]?\s*([\s\S]*)$/i.exec(s);
+		const m = /^(SIM|INTERPRETAÇÃO|INTERPRETACAO|INTERPRETATION|EM PARTE|NÃO|NAO|YES|PARTLY|NO)(?![\wÀ-ÿ])[*_\s]*[:.\-–]?\s*([\s\S]*)$/i.exec(s);
 		if (!m) return { verdict: null, note: s.slice(0, 300) };
 		const v = m[1].toUpperCase();
-		const verdict = /^(SIM|YES)$/.test(v) ? "yes" : /^(EM PARTE|PARTLY)$/.test(v) ? "partly" : "no";
+		const verdict = /^(SIM|YES)$/.test(v) ? "yes" : /^INTERPRETA/.test(v) ? "inference" : /^(EM PARTE|PARTLY)$/.test(v) ? "partly" : "no";
 		return { verdict, note: m[2].split("\n")[0].replace(/[*_]+/g, "").trim().slice(0, 300) };
 	}
 
@@ -2612,12 +2612,15 @@ var ZIALib = (function () {
 	const MEANING_BATCH = 15, MEANING_MAX = 45;
 	function meaningBatchPrompt(pairs) {
 		const sys = "Comparas frases escritas por uma IA com os excertos de artigos científicos em que ela diz basear-se. "
-			+ "Para cada número, respondes numa linha: o número, dois pontos, SIM, EM PARTE ou NÃO, dois pontos e uma frase curta. "
+			+ "Para cada número, respondes numa linha: o número, dois pontos, SIM, INTERPRETAÇÃO, EM PARTE ou NÃO, dois pontos e uma frase curta. "
 			+ "Os excertos de cada número são todos os que a frase cita: a frase pode juntar ideias de vários, por isso avalias a frase contra o conjunto. "
 			+ "SIM: o conjunto de excertos suporta o que a frase afirma sobre o conteúdo, mesmo por outras palavras ou noutra língua. "
 			+ "Não contas como falha: o nome dos autores ou do artigo, a secção onde a ideia está, o número da página, "
 			+ "uma etiqueta ou título, nem a escolha de palavras de ligação ou de uma conclusão evidente. "
-			+ "EM PARTE: a frase afirma algo importante sobre o conteúdo que os excertos não dizem, ou exagera ou generaliza para além deles. "
+			+ "INTERPRETAÇÃO: a frase tira uma conclusão que decorre direta e necessariamente do que os excertos dizem, sem factos novos "
+			+ "(por exemplo: «é um estudo observacional» a partir de «inquérito online, sem intervenção»). Não é interpretação válida: "
+			+ "atribuir aos autores o que eles não dizem, afirmar causas, generalizar, ou chamar a algo principal, central ou de base sem que os excertos o mostrem. "
+			+ "EM PARTE: a frase afirma algo importante sobre o conteúdo que os excertos não dizem e que não decorre deles, ou exagera ou generaliza para além deles. "
 			+ "NÃO: os excertos contradizem a frase (números, negação, quem fez o quê, o contrário do que se diz) ou não têm nada a ver com ela. "
 			+ "Números, negações e quem fez o quê têm de bater certo. Só contas com os excertos, nunca com conhecimento geral. "
 			+ "Não escreves mais nada além das linhas. " + answerLanguageLine();
