@@ -2833,11 +2833,13 @@ var ZIAChatView = class {
 	async _autoMeaning(m, engine) {
 		if (this.core.pref("verify.meaning") === false) return;
 		const items = Object.fromEntries((m.check.items || []).map(it => [it.key, it]));
-		// O texto do PDF ainda está em memória logo a seguir à resposta: a segunda leitura vê o parágrafo à volta
-		const pagesOf = id => { const d = this.state.allDocs && this.state.allDocs[id]; return d && d.pages ? d.pages : null; };
-		const todo = this.L.meaningClaims(m.text, m.check, pagesOf)
+		// Só a frase do PDF (o que foi medido). O parágrafo à volta (meaningClaims com pagesOf) fica por medir:
+		// o IAEdu bloqueou a chave a meio da 4.a medição
+		// IAEdu: no máximo um pedido por resposta (a chave bloqueia depois de 30 a 40 pedidos seguidos)
+		const max = engine === "iaedu" ? this.L.MEANING_BATCH : this.L.MEANING_MAX;
+		const todo = this.L.meaningClaims(m.text, m.check)
 			.filter(p => items[p.key] && p.parts.some(k => items[p.key].parts[k] && !items[p.key].parts[k].meaning))
-			.slice(0, this.L.MEANING_MAX);
+			.slice(0, max);
 		if (!todo.length) return;
 		const redraw = () => { try { if (m.el && m.el.isConnected) this._renderMessage(m); } catch (e) { this.core.log("Sentido: " + e); } };
 		m.meaningRunning = true;

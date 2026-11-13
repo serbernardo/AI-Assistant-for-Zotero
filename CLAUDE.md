@@ -229,6 +229,15 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   IA" a seguir a citacao (se a frase ainda nao a tiver) e o cartao `proof.inference`. 3.a volta (`out/sentido/`, a 2.a em
   `out/sentido/v2`): certas 123 SIM, 8 INTERPRETACAO, 24 EM PARTE, 1 NAO (um juizo da IA que cita a frase errada);
   estragadas 28 NAO, 1 EM PARTE, 1 SIM, 0 INTERPRETACAO. "a confirmar" (≈) em vez de "por confirmar", a pedido.
+  Paragrafo a volta (`widePassage`, `meaningClaims(text, res, pagesOf)`, `MEANING_SPAN` = 600): pronto mas DESLIGADO no
+  painel, porque a 4.a medicao parou no limite do IAEdu depois de 1 lote (15 pares: 1 EM PARTE passou a SIM, os 3 erros
+  continuaram NAO; resultados em `out/sentido/`, a 3.a em `out/sentido/v3`). Para ligar: passar `pagesOf` em
+  `_autoMeaning` e medir com `run_meaning.js` (`NARROW=1` volta a so a frase). No IAEdu a segunda leitura faz no maximo
+  1 pedido por resposta (15 citacoes): a chave bloqueia depois de 30 a 40 pedidos seguidos, durante mais de 1 hora.
+  O teste real (`run_ai_real.js`) manda tema, colunas, pergunta (`EXTRA`) e destaques (`ANNOTATIONS`). A frase de base
+  nunca vem da linha "Referencia:" (regra 1). Copiar, notas, Word, CSV e Anki usam `fixCitePages` (pagina certa).
+  Ficha a medida: `localFichaFields`/`fichaFieldIn` passam os campos dos modelos para a lingua atual pela posicao
+  (antes, mudar de PT para EN mostrava os campos nas duas linguas).
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"
