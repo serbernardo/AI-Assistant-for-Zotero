@@ -187,5 +187,577 @@
   "passage": "(1) We conducted 18 semi-structured interviews with librarians from six universities in 2022. (2) Interviews lasted 45 to 70 minutes and were coded in NVivo.",
   "verdict": "yes",
   "note": "Os excertos indicam entrevistas semiestruturadas com 45 a 70 minutos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "resumo:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1",
+  "parts": [
+   0,
+   1,
+   2
+  ],
+  "claim": "O modelo explicou 47% da variância",
+  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). (2) A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). (3) O modelo explicou 47% da variância (R2 = 0,47).",
+  "verdict": "yes",
+  "note": "O excerto afirma exactamente que o modelo explicou 47% da variância."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_metodos:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Momento e objecto do estudo: Silva et al., 2021 analisam a intenção de uso antes da implementação, com estudantes, enquanto García e Ortega, 2023 estudam a experiência pós-implementação, com bibliotecários",
+  "passage": "(1) O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). (2) Our aim is to understand the post-deployment experience from the librarians' perspective .",
+  "verdict": "partly",
+  "note": "Os excertos apoiam a intenção de uso e a experiência pós-implementação dos bibliotecários, mas não indicam estudantes nem antes da implementação."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "relevancia:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
+  "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Define como foco a aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas .",
+  "verdict": "yes",
+  "note": "O excerto diz que o estudo analisa a aceitação de chatbots em bibliotecas universitárias portuguesas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_sintese:D1:p5 «estudos longitudinais após a implementação real»; D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1",
+  "key": "D1:p5 «estudos longitudinais após a implementação real»; D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1",
+  "parts": [
+   0,
+   1,
+   2
+  ],
+  "claim": "Um novo estudo ficaria, portanto, justificado se combinasse estudantes e bibliotecários, observasse chatbots já implementados e examinasse serviços de rotina e apoio à investigação com fontes verificadas, pois estas necessidades são explicitamente apontadas nas recomendações finais dos dois documentos",
+  "passage": "(1) Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. (2) Future research should combine librarian and student perspectives and test chatbots with verified sources. (3) Future research should combine librarian and student perspectives and test chatbots with verified sources .",
+  "verdict": "partly",
+  "note": "Os excertos apoiam combinar perspectivas, implementação real e fontes verificadas, mas não mencionam serviços de rotina nem apoio à investigação."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "simples:D1:p1 «68% dos estudantes usariam um chatbot para questões»#1",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões»#1",
+  "parts": [
+   0
+  ],
+  "claim": "68% dos estudantes usariam um chatbot para horários e empréstimos",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica.",
+  "verdict": "yes",
+  "note": "O excerto refere que 68% dos estudantes usariam um chatbot para horários e empréstimos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_conceitos:D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "key": "D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Também recomenda serviços simples, como horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "verdict": "yes",
+  "note": "O excerto recomenda começar por serviços simples como horários, renovações e reservas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_conceitos:D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#2",
+  "key": "D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Silva et al., 2021 especifica exemplos concretos, como horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "verdict": "yes",
+  "note": "O excerto especifica exemplos concretos como horários, renovações e reservas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "esquema:D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
+  "key": "D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O estudo pergunta que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes.",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?",
+  "verdict": "yes",
+  "note": "O excerto apresenta exactamente essa pergunta de investigação."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Trata-se de um estudo observacional quantitativo, pois aplicou um inquérito online a estudantes e analisou associações entre variáveis, sem intervenção experimental",
+  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) A análise usou regressão linear múltipla .",
+  "verdict": "partly",
+  "note": "O inquérito online e a regressão apoiam a abordagem quantitativa, mas a ausência de intervenção experimental não é explicitada."
+ },
+ {
+  "id": "critica:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações»#1:1~sujeito",
+  "kind": "sujeito",
+  "expect": "not-yes",
+  "claim": "A recomendação dos estudantes de começar por serviços complexos de apoio à investigação é compatível com o resultado de que 68% usariam um chatbot",
+  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas.",
+  "orig": "A recomendação de começar por serviços simples, como horários, renovações e reservas, é compatível com o resultado descritivo de que 68% dos estudantes usariam um chatbot para horário e empréstimo",
+  "verdict": "no",
+  "note": "O excerto recomenda serviços simples e indica baixa confiança no apoio à pesquisa bibliográfica."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conceitos:D1:p5 «não permitem inferir causalidade»#2",
+  "key": "D1:p5 «não permitem inferir causalidade»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Discussão e conclusão",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "verdict": "yes",
+  "note": "É apenas uma etiqueta ou título, sem conteúdo substantivo a validar."
+ },
+ {
+  "id": "comparar:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#3:1~generaliza",
+  "kind": "generaliza",
+  "expect": "not-yes",
+  "claim": "referem amostra representativa de todos os estudantes portugueses",
+  "passage": "(1) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "orig": "referem amostra de conveniência e cobertura apenas do Norte de Portugal",
+  "verdict": "no",
+  "note": "O excerto diz que a amostra é de conveniência e cobre apenas o Norte de Portugal."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica:D1:p2 «que fatores explicam a intenção de uso de um chatbot»; D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»; D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "key": "D1:p2 «que fatores explicam a intenção de uso de um chatbot»; D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»; D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "parts": [
+   0,
+   1,
+   2
+  ],
+  "claim": "Silva et al., 2021 apresenta uma pergunta clara, uma amostra descrita e resultados quantitativos coerentes com a conclusão central sobre a utilidade percebida",
+  "passage": "(1) A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres) ). (3) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "verdict": "yes",
+  "note": "Os excertos indicam a pergunta, a amostra e resultados quantitativos sobre a utilidade percebida."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conceitos:D1:p2 «medir a intenção de uso de chatbots»#1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Resumo, introdução e discussão",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "verdict": "yes",
+  "note": "É apenas uma indicação de secções, sem conteúdo substantivo a validar."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos:D1:p3 «Amostra de conveniência: 412 respostas válidas»#2",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#2",
+  "parts": [
+   0
+  ],
+  "claim": "O recrutamento foi feito por amostra de conveniência",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "verdict": "yes",
+  "note": "O excerto identifica a amostra como de conveniência."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes:D1:p4 «A utilidade percebida explicou a maior parte da variância»#2",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#2",
+  "parts": [
+   0
+  ],
+  "claim": "O suporte é forte porque inclui direcção, peso relativo e significância do efeito",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "verdict": "yes",
+  "note": "O excerto indica direcção do efeito, beta e significância."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conceitos:D1:p2 «medir a intenção de uso de chatbots»#2",
+  "key": "D1:p2 «medir a intenção de uso de chatbots»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Intenção de uso",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "verdict": "yes",
+  "note": "O excerto refere explicitamente a intenção de uso."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_sintese:D2:p4 «citing incorrect references generated by the system»#1",
+  "key": "D2:p4 «citing incorrect references generated by the system»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Em García e Ortega, 2023, a desconfiança aparece do lado dos bibliotecários, que referem respostas incorrectas a perguntas de investigação e referências incorrectas geradas pelo sistema",
+  "passage": "Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system .",
+  "verdict": "partly",
+  "note": "Há desconfiança dos bibliotecários e referências incorrectas, mas não respostas incorrectas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "perguntas:D1:p5 «serviços simples e de alto valor, como horários, renovações e»#1",
+  "key": "D1:p5 «serviços simples e de alto valor, como horários, renovações e»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Silva et al., 2021 concluem que as bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas.",
+  "verdict": "yes",
+  "note": "A frase reproduz o conteúdo do excerto."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_metodos:D2:p5 «small sample, only Spanish institutions, and no student data»#1",
+  "key": "D2:p5 «small sample, only Spanish institutions, and no student data»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Amostra pequena, apenas instituições espanholas, e ausência de dados de estudantes",
+  "passage": "Limitations: small sample, only Spanish institutions, and no student data .",
+  "verdict": "yes",
+  "note": "As três limitações coincidem com o excerto."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "mapa:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Medir intenção de uso e fatores explicativos",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "verdict": "yes",
+  "note": "O objectivo indicado é medir intenção de uso e factores explicativos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "mapa:D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Desenho transversal com questionário de 24 itens",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.",
+  "verdict": "yes",
+  "note": "O desenho transversal e o questionário de 24 itens são referidos."
+ },
+ {
+  "id": "conclusoes:D1:p2 «de um chatbot de biblioteca pelos estudantes»#1:0~negacao",
+  "kind": "negacao",
+  "expect": "not-yes",
+  "claim": "A introdução não formula qualquer pergunta de investigação",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?",
+  "orig": "A introdução formula a pergunta de investigação de modo explícito",
+  "verdict": "no",
+  "note": "O excerto apresenta explicitamente uma pergunta de investigação."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_conceitos:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Silva et al., 2021 usa o Modelo de Aceitação de Tecnologia, TAM",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "verdict": "yes",
+  "note": "O excerto diz que o estudo se baseia no TAM."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_metodos:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Amostra de conveniência, com 412 respostas válidas, de estudantes de três universidades do Norte de Portugal",
+  "passage": "(1) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). (2) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "verdict": "yes",
+  "note": "A amostra, o número de respostas e as instituições coincidem."
+ },
+ {
+  "id": "cmp_conceitos:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Interviews lasted 45 to 70 minutes and were coded in NVivo»#1:1~numero",
+  "kind": "numero",
+  "expect": "not-yes",
+  "claim": "Analisa a experiência pós-implementação a partir da perspetiva dos bibliotecários, com entrevistas de 15 a 20 minutos codificadas em NVivo",
+  "passage": "(1) Our aim is to understand the post-deployment experience from the librarians' perspective . (2) Interviews lasted 45 to 70 minutes and were coded in NVivo .",
+  "orig": "Analisa a experiência pós-implementação a partir da perspetiva dos bibliotecários, com entrevistas de 45 a 70 minutos codificadas em NVivo",
+  "verdict": "no",
+  "note": "A duração das entrevistas indicada contradiz o excerto."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes:D1:p1 «em bibliotecas universitárias portuguesas»#1",
+  "key": "D1:p1 «em bibliotecas universitárias portuguesas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O resumo explicita o objeto do estudo e o contexto institucional",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas : um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.",
+  "verdict": "yes",
+  "note": "O resumo identifica o objecto e o contexto institucional."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "ficha:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O objetivo foi medir a intenção de uso de chatbots e os fatores explicativos",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "verdict": "yes",
+  "note": "O excerto afirma esse objectivo."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "referencias:D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»#2",
+  "key": "D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Teoria de base, pelo título da referência e pela proximidade temática com aceitação de tecnologia",
+  "passage": "Venkatesh, V. (2003). UTAUT. MIS Quarterly. .",
+  "verdict": "partly",
+  "note": "A referência a UTAUT existe, mas não é dito que seja teoria de base."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos:D1:p3 «A análise usou regressão linear múltipla»#1",
+  "key": "D1:p3 «A análise usou regressão linear múltipla»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A técnica de análise foi a regressão linear múltipla",
+  "passage": "A análise usou regressão linear múltipla .",
+  "verdict": "yes",
+  "note": "O excerto indica regressão linear múltipla."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_conceitos:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1",
+  "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "O conceito é tratado como aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas, medido por inquérito online a estudantes",
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas . (2) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "verdict": "yes",
+  "note": "O excerto apoia a aceitação de chatbots em bibliotecas universitárias portuguesas medida por inquérito online a estudantes."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "relevancia:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Identifica a utilidade percebida como principal fator associado à intenção de uso",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "verdict": "yes",
+  "note": "A utilidade percebida surge como o fator que mais explica a intenção de uso."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "simples:D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "key": "D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O estudo importa porque sugere uma estratégia prudente: começar por serviços simples e úteis, como horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "verdict": "yes",
+  "note": "O excerto recomenda começar por serviços simples e de alto valor, incluindo horários, renovações e reservas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "comparar:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "referem que 68% dos estudantes usariam chatbot para horário e empréstimo, e recomendam serviços como horários, renovações e reservas",
+  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "verdict": "yes",
+  "note": "Ambos os dados e a recomendação aparecem no excerto."
+ },
+ {
+  "id": "comparar:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «six Spanish universities that had used a chatbot»#1:0~sujeito",
+  "kind": "sujeito",
+  "expect": "not-yes",
+  "claim": "García e Ortega acrescentam evidência qualitativa sobre a experiência dos estudantes após a implementação em Espanha",
+  "passage": "(1) Our aim is to understand the post-deployment experience from the librarians' perspective . (2) Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.",
+  "orig": "García e Ortega acrescentam evidência qualitativa sobre experiência profissional após implementação em Espanha",
+  "verdict": "no",
+  "note": "O excerto trata a experiência de bibliotecários, não de estudantes."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica:D1:p3 «A utilidade percebida e a facilidade de uso foram»#1",
+  "key": "D1:p3 «A utilidade percebida e a facilidade de uso foram»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A análise estatística principal é indicada, com regressão linear múltipla e variáveis independentes principais claramente nomeadas",
+  "passage": "A utilidade percebida e a facilidade de uso foram as variáveis independentes principais.",
+  "verdict": "partly",
+  "note": "O excerto nomeia as variáveis independentes principais, mas não refere regressão linear múltipla."
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «librarians distrusted chatbot answers to research questions»#1:0~negacao",
+  "kind": "negacao",
+  "expect": "not-yes",
+  "claim": "Também aparece ligada à confiança dos bibliotecários nas respostas a questões de investigação",
+  "passage": "Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system.",
+  "orig": "Também aparece ligada à desconfiança em respostas a questões de investigação",
+  "verdict": "yes",
+  "note": "O excerto liga o tema à desconfiança dos bibliotecários nas respostas a questões de investigação."
+ },
+ {
+  "id": "estudo:D1:p5 «começar por serviços simples e de alto valor»#1:0~inverte",
+  "kind": "inverte",
+  "expect": "not-yes",
+  "claim": "Resposta: os autores recomendam começar pelo apoio à pesquisa bibliográfica avançada, porque é o serviço de maior valor",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor , como horários, renovações e reservas.",
+  "orig": "Resposta: Uma opção coerente seria começar por horários, renovações ou reservas, porque os autores recomendam serviços simples e de alto valor",
+  "verdict": "no",
+  "note": "O excerto recomenda serviços simples, não apoio à pesquisa bibliográfica avançada."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_conceitos:D2:p1 «how librarians experience chatbots after deployment in Spanish university libraries»; D2:p1 «We conducted 18 semi-structured interviews with librarians from six universities»#1",
+  "key": "D2:p1 «how librarians experience chatbots after deployment in Spanish university libraries»; D2:p1 «We conducted 18 semi-structured interviews with librarians from six universities»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "O conceito é tratado como experiência de bibliotecários com chatbots já implementados em bibliotecas universitárias espanholas, medido por entrevistas semiestruturadas",
+  "passage": "(1) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries . (2) We conducted 18 semi-structured interviews with librarians from six universities in 2022.",
+  "verdict": "yes",
+  "note": "O excerto apoia experiência de bibliotecários com chatbots implementados em universidades espanholas por entrevistas semiestruturadas."
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3:0~sujeito",
+  "kind": "sujeito",
+  "expect": "not-yes",
+  "claim": "Silva et al., 2021 mede a confiança dos bibliotecários no apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "orig": "Silva et al., 2021 mede confiança dos estudantes no apoio à pesquisa bibliográfica",
+  "verdict": "no",
+  "note": "O excerto fala de estudantes, não de bibliotecários."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "etiquetas:D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1",
+  "key": "D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "utilidade percebida: variável independente principal e fator com maior peso nos resultados",
+  "passage": "(1) A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "verdict": "yes",
+  "note": "A utilidade percebida é variável independente principal e tem o maior peso na explicação da intenção de uso."
+ },
+ {
+  "id": "cmp_metodos:D1:p4 «beta = 0,52»; D1:p4 «O modelo explicou 47% da variância»; D2:p4 «Three themes emerged»#1:1~numero",
+  "kind": "numero",
+  "expect": "not-yes",
+  "claim": "Por isso, Silva et al., 2021 produzem estimativas como o modelo a explicar 97% da variância",
+  "passage": "(1) O modelo explicou 47% da variância (R2 = 0,47). (2) Findings Three themes emerged .",
+  "orig": "Por isso, Silva et al., 2021 produzem estimativas como beta e R2, enquanto García e Ortega, 2023 produzem temas interpretativos",
+  "verdict": "no",
+  "note": "O excerto diz 47% da variância, não 97%."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes:D1:p1 «três universidades do Norte de Portugal entre março e maio»#1",
+  "key": "D1:p1 «três universidades do Norte de Portugal entre março e maio»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto indica instrumento, dimensão da amostra, instituições e região",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "verdict": "yes",
+  "note": "O excerto indica instrumento, amostra, instituições e região."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_resultados:D1:p4 «modelo explicou 47% da variância»#1",
+  "key": "D1:p4 «modelo explicou 47% da variância»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Silva et al., 2021 reporta que o modelo explicou 47% da variância, com R2 = 0,47",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "verdict": "yes",
+  "note": "O excerto afirma que o modelo explicou 47% da variância, com R2 = 0,47."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "cmp_metodos:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Amostra de conveniência, desenho transversal sem inferência causal, e cobertura apenas do Norte de Portugal",
+  "passage": "(1) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "verdict": "yes",
+  "note": "O excerto apoia todas as limitações referidas."
  }
 ]
