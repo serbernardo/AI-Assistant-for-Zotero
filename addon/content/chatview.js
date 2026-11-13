@@ -3889,14 +3889,14 @@ var ZIAChatView = class {
 	_messageTools(m) {
 		const row = this._el("div", "zia-msg-tools");
 		row.appendChild(this._button(this.T("chat.copy"), "zia-btn-small", () => {
-			this.core.copyToClipboard(this.L.citesToText(m.text, this._docsMap(m)));
+			this.core.copyToClipboard(this.L.citesToText(this._outText(m), this._docsMap(m)));
 			this._setStatus(this.T("chat.copied"));
 		}, this.T("chat.copy.tip")));
 		row.appendChild(this._saveNoteButton(m, "zia-btn-small"));
 		if (!m.pending && m.text) {
 			row.appendChild(this._button(this.T("chat.exportWord"), "zia-btn-small", async () => {
 				const heading = m.heading || this.T("note.defaultHeading");
-				const files = this.L.answerToDocx(m.text, { docsMap: this._docsMap(m) }, heading);
+				const files = this.L.answerToDocx(this._outText(m), { docsMap: this._docsMap(m) }, heading);
 				try {
 					const path = await this.core.saveDocx(this.win, files, heading);
 					if (path) this._setStatus(this.T("chat.exportedWord", { path }));
@@ -3908,7 +3908,7 @@ var ZIAChatView = class {
 		}
 		if (this.L.extractTables(m.text).length) {
 			row.appendChild(this._button(this.T("chat.exportCsv"), "zia-btn-small", async () => {
-				const csv = this.L.tablesToCSV(m.text, { docsMap: this._docsMap(m) });
+				const csv = this.L.tablesToCSV(this._outText(m), { docsMap: this._docsMap(m) });
 				try {
 					const path = await this.core.saveCSV(this.win, csv, m.heading || "tabela");
 					if (path) this._setStatus(this.T("chat.exported", { path }));
@@ -3934,7 +3934,7 @@ var ZIAChatView = class {
 		// Testar o que percebi: perguntas e respostas para o Anki
 		if (m.actionID === "estudo") {
 			row.appendChild(this._button(this.T("chat.anki"), "zia-btn-small", async () => {
-				const r = this.L.studyToAnki(this.L.citesToText(m.text, this._docsMap(m)));
+				const r = this.L.studyToAnki(this.L.citesToText(this._outText(m), this._docsMap(m)));
 				if (!r.count) {
 					this._setStatus(this.T("chat.anki.none"), "warn");
 					return;
@@ -3970,12 +3970,18 @@ var ZIAChatView = class {
 		return row;
 	}
 
+	/** O texto que sai do painel (cópia, nota, Word, CSV, Anki), com as páginas corrigidas como no ecrã. */
+	_outText(m) {
+		try { return m.check ? this.L.fixCitePages(m.text, m.check) : m.text; }
+		catch (e) { return m.text; }
+	}
+
 	async _saveMessageNote(m, { quiet } = {}) {
 		const docsMap = this._docsMap(m);
 		const docs = (m.docIDs || []).map(id => docsMap[id]).filter(Boolean);
 		if (!docs.length) throw new Error("sem documentos associados");
 		const note = await this.core.saveNote({
-			markdown: m.text,
+			markdown: this._outText(m),
 			heading: m.heading || this.T("note.defaultHeading"),
 			docs,
 			docsMap,

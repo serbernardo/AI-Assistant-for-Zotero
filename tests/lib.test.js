@@ -943,3 +943,11 @@ test("ficha à medida: mudar de língua não duplica os campos", () => {
 	}
 	finally { I.setLang(was); L.setFichaFields([]); }
 });
+
+test("copiar e notas: a citação com a frase noutra página passa à página certa", () => {
+	const pages = ["Introdução sem nada.", "A amostra foi de conveniência e cobre o Norte do país."];
+	const text = "A amostra foi de conveniência [D1:p1 «A amostra foi de conveniência e cobre o Norte»]. Outra [D1:p2].";
+	const res = L.verifyAnswer(text, { D1: { pages } });
+	assert.equal(L.fixCitePages(text, res), "A amostra foi de conveniência [D1:p2 «A amostra foi de conveniência e cobre o Norte»]. Outra [D1:p2].");
+	assert.equal(L.fixCitePages("Sem nada [D1:p2].", null), "Sem nada [D1:p2].");
+});

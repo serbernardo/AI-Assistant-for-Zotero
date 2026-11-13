@@ -1809,6 +1809,33 @@ var ZIALib = (function () {
 		return stateOf(item.status);
 	}
 
+	/**
+	 * Texto da resposta com as páginas corrigidas: quando a transcrição ou a frase de base está noutra página do mesmo
+	 * artigo, a citação passa a essa página. Usado ao copiar, nas notas, no Word, no CSV e no Anki, como no ecrã.
+	 */
+	function fixCitePages(text, res) {
+		const src = String(text || "");
+		if (!res || !res.items) return src;
+		const byKey = Object.fromEntries(res.items.map(it => [it.key, it]));
+		const seen = {};
+		return src.replace(CITE_GROUP_RE, (all, inner) => {
+			const nth = seen[inner] = (seen[inner] || 0) + 1;
+			const it = byKey[inner + "#" + nth];
+			if (!it) return all;
+			const cs = parseCiteGroup(inner);
+			let changed = false;
+			cs.forEach((c, k) => {
+				const p = it.parts ? it.parts[k] : (cs.length === 1 ? it : null);
+				// Também a página vizinha aceite pela verificação (based, ok): a citação passa à página onde a frase está
+				const ev = p && ["moved", "based", "ok"].includes(p.status) ? p.evidence : null;
+				if (ev && ev.doc === c.doc && ev.page && ev.page !== c.page) { c.page = ev.page; c.pageEnd = null; changed = true; }
+			});
+			if (!changed) return all;
+			return "[" + cs.map(c => c.doc + (c.page ? ":p" + c.page + (c.pageEnd && c.pageEnd !== c.page ? "-" + c.pageEnd : "") : "")
+				+ (c.anchor ? " «" + c.anchor + "»" : "")).join("; ") + "]";
+		});
+	}
+
 	/** Contas da linha do fim: confirmadas (✓), por confirmar (≈) e a rever (✗), uma por citação. */
 	function checkCounts(res) {
 		const n = { ok: 0, based: 0, bad: 0 };
@@ -3374,7 +3401,7 @@ var ZIALib = (function () {
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
-		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
+		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, fixCitePages, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};
 })();
 
