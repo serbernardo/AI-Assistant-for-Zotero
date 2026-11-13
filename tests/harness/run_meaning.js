@@ -38,7 +38,8 @@ async function extract() {
 	for (const f of fs.readdirSync(SRC).filter(f => f.endsWith(".md")).sort()) {
 		const text = fs.readFileSync(path.join(SRC, f), "utf8");
 		const res = L.verifyAnswer(text, map);
-		for (const p of L.meaningClaims(text, res)) pairs.push(Object.assign({ id: f.replace(/\.md$/, "") + ":" + p.key }, p));
+		const pagesOf = id => (map[id] ? map[id].pages : null);
+		for (const p of L.meaningClaims(text, res, process.env.NARROW ? null : pagesOf)) pairs.push(Object.assign({ id: f.replace(/\.md$/, "") + ":" + p.key }, p));
 	}
 	// Sem repetidos; entram todos os grupos usados pelas frases estragadas e 1 em cada 3 dos outros
 	const wanted = new Set(JSON.parse(fs.readFileSync(path.join(OUT, "estragados.json"), "utf8")).map(b => b.id.replace(/:\d+$/, "")));

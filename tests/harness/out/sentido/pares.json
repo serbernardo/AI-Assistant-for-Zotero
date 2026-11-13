@@ -7,7 +7,7 @@
    1
   ],
   "claim": "O estudo também indica que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica ."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "cmp_conceitos:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1",
@@ -17,7 +17,7 @@
    1
   ],
   "claim": "O conceito é tratado como aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas, medido por inquérito online a estudantes",
-  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas . (2) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "cmp_conceitos:D2:p1 «how librarians experience chatbots after deployment in Spanish university libraries»; D2:p1 «We conducted 18 semi-structured interviews with librarians from six universities»#1",
@@ -27,7 +27,7 @@
    1
   ],
   "claim": "O conceito é tratado como experiência de bibliotecários com chatbots já implementados em bibliotecas universitárias espanholas, medido por entrevistas semiestruturadas",
-  "passage": "(1) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries . (2) We conducted 18 semi-structured interviews with librarians from six universities in 2022."
+  "passage": "Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries. We conducted 18 semi-structured interviews with librarians from six universities in 2022. Librarians reported reduced repetitive queries but raised concerns about accuracy and user trust."
  },
  {
   "id": "cmp_conceitos:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
@@ -37,7 +37,7 @@
    1
   ],
   "claim": "Mede a intenção de uso de um chatbot de biblioteca pelos estudantes, por questionário de 24 itens em escala de Likert de 5 pontos",
-  "passage": "(1) A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ? (2) Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos , adaptado do TAM."
+  "passage": "(1) 1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "cmp_conceitos:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Interviews lasted 45 to 70 minutes and were coded in NVivo»#1",
@@ -47,7 +47,7 @@
    1
   ],
   "claim": "Analisa a experiência pós-implementação a partir da perspetiva dos bibliotecários, com entrevistas de 45 a 70 minutos codificadas em NVivo",
-  "passage": "(1) Our aim is to understand the post-deployment experience from the librarians' perspective . (2) Interviews lasted 45 to 70 minutes and were coded in NVivo ."
+  "passage": "(1) 1. Introduction Most studies on library chatbots measure student intentions before deployment. Our aim is to understand the post-deployment experience from the librarians' perspective. Research question: how do librarians perceive the impact of chatbots on reference work? (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "cmp_conceitos:D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
@@ -56,7 +56,7 @@
    0
   ],
   "claim": "Também recomenda serviços simples, como horários, renovações e reservas",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "cmp_conceitos:D2:p4 «students rarely used the chatbot for literature searches, preferring human help»#1",
@@ -65,7 +65,7 @@
    0
   ],
   "claim": "Os estudantes raramente usaram o chatbot para pesquisas de literatura e preferiram ajuda humana",
-  "passage": "Third, students rarely used the chatbot for literature searches, preferring human help ."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_conceitos:D2:p4 «librarians distrusted chatbot answers to research questions»#1",
@@ -74,7 +74,7 @@
    0
   ],
   "claim": "Também aparece ligada à desconfiança em respostas a questões de investigação",
-  "passage": "Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_conceitos:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»#1",
@@ -83,7 +83,7 @@
    0
   ],
   "claim": "Em Silva et al., 2021, o uso é uma intenção de uso declarada por estudantes",
-  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?"
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "cmp_conceitos:D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#2",
@@ -92,7 +92,7 @@
    0
   ],
   "claim": "Silva et al., 2021 especifica exemplos concretos, como horários, renovações e reservas",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "cmp_conceitos:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3",
@@ -101,7 +101,7 @@
    0
   ],
   "claim": "Silva et al., 2021 mede confiança dos estudantes no apoio à pesquisa bibliográfica",
-  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica ."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "cmp_conceitos:D1:p1 «confiariam nele para apoio à pesquisa bibliográfica»#1",
@@ -110,7 +110,7 @@
    0
   ],
   "claim": "Em Silva et al., 2021, a confiança refere-se ao apoio à pesquisa bibliográfica",
-  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica ."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "cmp_conceitos:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
@@ -119,7 +119,7 @@
    0
   ],
   "claim": "Silva et al., 2021 usa o Modelo de Aceitação de Tecnologia, TAM",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) )."
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "cmp_metodos:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1",
@@ -129,7 +129,7 @@
    1
   ],
   "claim": "Amostra de conveniência, com 412 respostas válidas, de estudantes de três universidades do Norte de Portugal",
-  "passage": "(1) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). (2) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "cmp_metodos:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
@@ -139,7 +139,7 @@
    1
   ],
   "claim": "Amostra de conveniência, desenho transversal sem inferência causal, e cobertura apenas do Norte de Portugal",
-  "passage": "(1) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "cmp_metodos:D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Interviews lasted 45 to 70 minutes»#1",
@@ -149,7 +149,7 @@
    1
   ],
   "claim": "Entrevistas semiestruturadas, com duração de 45 a 70 minutos",
-  "passage": "(1) We conducted 18 semi-structured interviews with librarians from six universities in 2022. (2) Interviews lasted 45 to 70 minutes and were coded in NVivo."
+  "passage": "(1) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries. We conducted 18 semi-structured interviews with librarians from six universities in 2022. Librarians reported reduced repetitive queries but raised concerns about accuracy and user trust. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "cmp_metodos:D2:p5 «small sample, only Spanish institutions, and no student data»#1",
@@ -158,7 +158,7 @@
    0
   ],
   "claim": "Amostra pequena, apenas instituições espanholas, e ausência de dados de estudantes",
-  "passage": "Limitations: small sample, only Spanish institutions, and no student data ."
+  "passage": "4. Conclusion Chatbots are useful for routine services but not yet reliable for research support. Limitations: small sample, only Spanish institutions, and no student data. Future research should combine librarian and student perspectives and test chatbots with verified sources. References Braun, V., & Clarke, V. (2006). Thematic analysis. QRP. Silva, A. (2021). Assistentes conversacionais."
  },
  {
   "id": "cmp_metodos:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1",
@@ -168,7 +168,7 @@
    1
   ],
   "claim": "Momento e objecto do estudo: Silva et al., 2021 analisam a intenção de uso antes da implementação, com estudantes, enquanto García e Ortega, 2023 estudam a experiência pós-implementação, com bibliotecários",
-  "passage": "(1) O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). (2) Our aim is to understand the post-deployment experience from the librarians' perspective ."
+  "passage": "(1) 1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) 1. Introduction Most studies on library chatbots measure student intentions before deployment. Our aim is to understand the post-deployment experience from the librarians' perspective. Research question: how do librarians perceive the impact of chatbots on reference work?"
  },
  {
   "id": "cmp_metodos:D1:p3 «A análise usou regressão linear múltipla»; D2:p3 «Qualitative design with thematic analysis»#1",
@@ -178,7 +178,7 @@
    1
   ],
   "claim": "Assim, os resultados quantitativos de Silva et al., 2021 não são directamente equivalentes aos temas qualitativos de García e Ortega, 2023",
-  "passage": "(1) A análise usou regressão linear múltipla . (2) Methods Qualitative design with thematic analysis (Braun and Clarke)."
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "cmp_metodos:D1:p1 «inquérito online a 412 estudantes»; D2:p3 «Purposive sample of 18 librarians»#1",
@@ -188,7 +188,7 @@
    1
   ],
   "claim": "População estudada: Silva et al., 2021 estudam estudantes, enquanto García e Ortega, 2023 estudam bibliotecários",
-  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "cmp_metodos:D1:p1 «412 estudantes de três universidades do Norte de Portugal»; D2:p3 «18 librarians»; D2:p3 «from six Spanish universities»#1",
@@ -198,7 +198,7 @@
    2
   ],
   "claim": "Escala e contexto geográfico: Silva et al., 2021 incluem 412 respostas de três universidades do Norte de Portugal, enquanto García e Ortega, 2023 incluem 18 bibliotecários de seis universidades espanholas",
-  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "cmp_metodos:D1:p4 «beta = 0,52»; D1:p4 «O modelo explicou 47% da variância»; D2:p4 «Three themes emerged»#1",
@@ -208,7 +208,7 @@
    2
   ],
   "claim": "Por isso, Silva et al., 2021 produzem estimativas como beta e R2, enquanto García e Ortega, 2023 produzem temas interpretativos",
-  "passage": "(1) O modelo explicou 47% da variância (R2 = 0,47). (2) Findings Three themes emerged ."
+  "passage": "(1) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades. (2) 3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_resultados:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D2:p1 «how librarians experience chatbots after deployment»#1",
@@ -218,7 +218,7 @@
    1
   ],
   "claim": "Silva et al., 2021 mede intenção de uso de estudantes, enquanto García e Ortega, 2023 reporta experiência pós-implementação de bibliotecários",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries. We conducted 18 semi-structured interviews with librarians from six universities in 2022. Librarians reported reduced repetitive queries but raised concerns about accuracy and user trust."
  },
  {
   "id": "cmp_resultados:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «students rarely used the chatbot for literature searches»#1",
@@ -228,7 +228,7 @@
    1
   ],
   "claim": "Ambos apontam baixa confiança ou baixo uso para apoio à pesquisa",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica . (2) Third, students rarely used the chatbot for literature searches , preferring human help."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_resultados:D1:p1 «apoio à pesquisa bibliográfica»; D2:p4 «incorrect references generated by the system»#1",
@@ -238,7 +238,7 @@
    1
   ],
   "claim": "Ambos associam o chatbot a limitações no apoio à investigação ou pesquisa",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica . (2) Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system ."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_resultados:D1:p4 «modelo explicou 47% da variância»#1",
@@ -247,7 +247,7 @@
    0
   ],
   "claim": "Silva et al., 2021 reporta que o modelo explicou 47% da variância, com R2 = 0,47",
-  "passage": "O modelo explicou 47% da variância (R2 = 0,47)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "cmp_resultados:D2:p4 «freeing time for complex reference work»#1",
@@ -256,7 +256,7 @@
    0
   ],
   "claim": "García e Ortega, 2023 reporta que os chatbots libertaram tempo para trabalho de referência complexo",
-  "passage": "First, chatbots handled about 40% of routine questions, freeing time for complex reference work ."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_resultados:D2:p4 «incorrect references generated by the system»#1",
@@ -265,7 +265,7 @@
    0
   ],
   "claim": "García e Ortega, 2023 identifica preocupações com referências incorretas geradas pelo sistema",
-  "passage": "Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system ."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_sintese:D1:p5 «serviços simples e de alto valor, como horários»; D2:p5 «useful for routine services but not yet reliable»#1",
@@ -275,7 +275,7 @@
    1
   ],
   "claim": "Os dois estudos convergem na ideia de que os chatbots são mais adequados para serviços simples, rotineiros ou administrativos do que para apoio à investigação bibliográfica",
-  "passage": "(1) As bibliotecas devem começar por serviços simples e de alto valor, como horários , renovações e reservas. (2) Conclusion Chatbots are useful for routine services but not yet reliable for research support."
+  "passage": "(1) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly. (2) 4. Conclusion Chatbots are useful for routine services but not yet reliable for research support. Limitations: small sample, only Spanish institutions, and no student data. Future research should combine librarian and student perspectives and test chatbots with verified sources. References Braun, V., & Clarke, V. (2006). Thematic analysis. QRP. Silva, A. (2021). Assistentes conversacionais."
  },
  {
   "id": "cmp_sintese:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1",
@@ -285,7 +285,7 @@
    1
   ],
   "claim": "Em Silva et al., 2021, 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica ."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "cmp_sintese:D1:p5 «como horários, renovações e reservas»; D2:p5 «Chatbots are useful for routine services»#1",
@@ -295,7 +295,7 @@
    1
   ],
   "claim": "Esta convergência é reforçada pelas conclusões dos dois estudos, pois Silva et al., 2021 recomendam começar por horários, renovações e reservas, e García e Ortega, 2023 concluem que os chatbots são úteis para serviços de rotina",
-  "passage": "(1) As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas . (2) Conclusion Chatbots are useful for routine services but not yet reliable for research support."
+  "passage": "(1) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly. (2) 4. Conclusion Chatbots are useful for routine services but not yet reliable for research support. Limitations: small sample, only Spanish institutions, and no student data. Future research should combine librarian and student perspectives and test chatbots with verified sources. References Braun, V., & Clarke, V. (2006). Thematic analysis. QRP. Silva, A. (2021). Assistentes conversacionais."
  },
  {
   "id": "cmp_sintese:D2:p4 «citing incorrect references generated by the system»#1",
@@ -304,7 +304,7 @@
    0
   ],
   "claim": "Em García e Ortega, 2023, a desconfiança aparece do lado dos bibliotecários, que referem respostas incorrectas a perguntas de investigação e referências incorrectas geradas pelo sistema",
-  "passage": "Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system ."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "cmp_sintese:D1:p5 «a utilidade percebida é o fator decisivo»; D1:p4 «explicou a maior parte da variância»#1",
@@ -314,7 +314,7 @@
    1
   ],
   "claim": "Em Silva et al., 2021, a utilidade percebida é apresentada como o factor decisivo para a adoção, tendo explicado a maior parte da variância da intenção de uso",
-  "passage": "(1) Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. (2) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "passage": "(1) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly. (2) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "cmp_sintese:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1",
@@ -324,7 +324,7 @@
    1
   ],
   "claim": "A divergência entre intenção de uso e experiência após a implementação é central para interpretar os resultados em conjunto",
-  "passage": "(1) O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). (2) Our aim is to understand the post-deployment experience from the librarians' perspective ."
+  "passage": "(1) 1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) 1. Introduction Most studies on library chatbots measure student intentions before deployment. Our aim is to understand the post-deployment experience from the librarians' perspective. Research question: how do librarians perceive the impact of chatbots on reference work?"
  },
  {
   "id": "cmp_sintese:D1:p1 «um inquérito online a 412 estudantes»; D2:p1 «18 semi-structured interviews with librarians»#1",
@@ -334,7 +334,7 @@
    1
   ],
   "claim": "A comparação sugere uma complementaridade entre os estudos, pois um mostra expectativas e predisposições de estudantes e o outro mostra a avaliação profissional depois da implementação",
-  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) We conducted 18 semi-structured interviews with librarians from six universities in 2022."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries. We conducted 18 semi-structured interviews with librarians from six universities in 2022. Librarians reported reduced repetitive queries but raised concerns about accuracy and user trust."
  },
  {
   "id": "cmp_sintese:D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1",
@@ -344,7 +344,7 @@
    1
   ],
   "claim": "García e Ortega, 2023 defendem combinar perspectivas de bibliotecários e estudantes e testar chatbots com fontes verificadas",
-  "passage": "(1) Future research should combine librarian and student perspectives and test chatbots with verified sources. (2) Future research should combine librarian and student perspectives and test chatbots with verified sources ."
+  "passage": "4. Conclusion Chatbots are useful for routine services but not yet reliable for research support. Limitations: small sample, only Spanish institutions, and no student data. Future research should combine librarian and student perspectives and test chatbots with verified sources. References Braun, V., & Clarke, V. (2006). Thematic analysis. QRP. Silva, A. (2021). Assistentes conversacionais."
  },
  {
   "id": "cmp_sintese:D1:p5 «cobre apenas o Norte de Portugal»; D2:p5 «small sample, only Spanish institutions»#1",
@@ -354,7 +354,7 @@
    1
   ],
   "claim": "Também não permitem generalizar os resultados para todos os contextos universitários, pois Silva et al., 2021 cobrem apenas o Norte de Portugal e García e Ortega, 2023 assumem uma amostra pequena e limitada a instituições espanholas",
-  "passage": "(1) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal . (2) Limitations: small sample, only Spanish institutions , and no student data."
+  "passage": "(1) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly. (2) 4. Conclusion Chatbots are useful for routine services but not yet reliable for research support. Limitations: small sample, only Spanish institutions, and no student data. Future research should combine librarian and student perspectives and test chatbots with verified sources. References Braun, V., & Clarke, V. (2006). Thematic analysis. QRP. Silva, A. (2021). Assistentes conversacionais."
  },
  {
   "id": "cmp_sintese:D1:p5 «estudos longitudinais após a implementação real»; D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1",
@@ -365,26 +365,45 @@
    2
   ],
   "claim": "Um novo estudo ficaria, portanto, justificado se combinasse estudantes e bibliotecários, observasse chatbots já implementados e examinasse serviços de rotina e apoio à investigação com fontes verificadas, pois estas necessidades são explicitamente apontadas nas recomendações finais dos dois documentos",
-  "passage": "(1) Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. (2) Future research should combine librarian and student perspectives and test chatbots with verified sources. (3) Future research should combine librarian and student perspectives and test chatbots with verified sources ."
+  "passage": "(1) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly. (2) 4. Conclusion Chatbots are useful for routine services but not yet reliable for research support. Limitations: small sample, only Spanish institutions, and no student data. Future research should combine librarian and student perspectives and test chatbots with verified sources. References Braun, V., & Clarke, V. (2006). Thematic analysis. QRP. Silva, A. (2021). Assistentes conversacionais."
  },
  {
-  "id": "cmp_tabela:D1:p1 «in bibliotecas universitárias portuguesas»; D2:p1 «librarians in Spain»#1",
-  "key": "D1:p1 «in bibliotecas universitárias portuguesas»; D2:p1 «librarians in Spain»#1",
+  "id": "cmp_tabela:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
   "parts": [
-   1
+   0
   ],
-  "claim": "Os dois estudos tratam assistentes conversacionais em bibliotecas universitárias, mas Silva et al., 2021 analisa estudantes em bibliotecas portuguesas, enquanto García e Ortega, 2023 analisa bibliotecários em bibliotecas universitárias espanholas",
-  "passage": "Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries."
+  "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso, com beta = 0,52 e p < 0,001",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "comparar:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1",
-  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1",
+  "id": "cmp_tabela:D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»#1",
+  "key": "D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»#1",
   "parts": [
    0,
    1
   ],
-  "claim": "412 respostas válidas, estudantes de três universidades do Norte de Portugal",
-  "passage": "(1) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). (2) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
+  "claim": "Entrevistas semiestruturadas e análise temática",
+  "passage": "(1) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries. We conducted 18 semi-structured interviews with librarians from six universities in 2022. Librarians reported reduced repetitive queries but raised concerns about accuracy and user trust. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
+ },
+ {
+  "id": "cmp_tabela:D1:p3 «Desenho transversal, com questionário de 24 itens»; D2:p3 «Qualitative design with thematic analysis»#1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D2:p3 «Qualitative design with thematic analysis»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "A diferença metodológica é clara: Silva et al., 2021 usam um desenho transversal com questionário, ao passo que García e Ortega, 2023 usam um desenho qualitativo com entrevistas",
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
+ },
+ {
+  "id": "comparar:D1:p2 «O objetivo deste trabalho é medir a intenção de uso»#1",
+  "key": "D1:p2 «O objetivo deste trabalho é medir a intenção de uso»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Medir a intenção de uso de chatbots em bibliotecas universitárias, com base no TAM",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "comparar:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1",
@@ -395,7 +414,7 @@
    2
   ],
   "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso, a facilidade de uso teve efeito menor e o modelo explicou 47% da variância",
-  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). (2) A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). (3) O modelo explicou 47% da variância (R2 = 0,47)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "comparar:D2:p2 «understand the post-deployment experience from the librarians' perspective»#1",
@@ -404,7 +423,7 @@
    0
   ],
   "claim": "Compreender a experiência pós-implementação dos bibliotecários com chatbots em bibliotecas universitárias espanholas",
-  "passage": "Our aim is to understand the post-deployment experience from the librarians' perspective ."
+  "passage": "1. Introduction Most studies on library chatbots measure student intentions before deployment. Our aim is to understand the post-deployment experience from the librarians' perspective. Research question: how do librarians perceive the impact of chatbots on reference work?"
  },
  {
   "id": "comparar:D2:p4 «chatbots handled about 40% of routine questions»; D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1",
@@ -415,7 +434,7 @@
    2
   ],
   "claim": "Os chatbots trataram cerca de 40% das perguntas rotineiras, mas os bibliotecários desconfiaram das respostas a questões de investigação e os estudantes raramente os usaram para pesquisas bibliográficas",
-  "passage": "(1) First, chatbots handled about 40% of routine questions , freeing time for complex reference work. (2) Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system. (3) Third, students rarely used the chatbot for literature searches , preferring human help."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "comparar:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2",
@@ -425,7 +444,7 @@
    1
   ],
   "claim": "Fragilidade: Os autores reconhecem que a amostra de conveniência e o desenho transversal não permitem inferir causalidade, e que o estudo cobre apenas o Norte de Portugal",
-  "passage": "(1) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "comparar:D2:p1 «18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»; D2:p3 «six Spanish universities that had used a chatbot»#1",
@@ -436,7 +455,7 @@
    2
   ],
   "claim": "Ponto forte: O estudo é forte para captar a experiência prática dos bibliotecários, porque usa entrevistas semiestruturadas e análise temática com profissionais de seis universidades que já tinham usado chatbots",
-  "passage": "(1) We conducted 18 semi-structured interviews with librarians from six universities in 2022. (2) Methods Qualitative design with thematic analysis (Braun and Clarke). (3) Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year."
+  "passage": "(1) Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries. We conducted 18 semi-structured interviews with librarians from six universities in 2022. Librarians reported reduced repetitive queries but raised concerns about accuracy and user trust. (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "comparar:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
@@ -446,7 +465,7 @@
    1
   ],
   "claim": "referem que 68% dos estudantes usariam chatbot para horário e empréstimo, e recomendam serviços como horários, renovações e reservas",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "comparar:D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1",
@@ -456,7 +475,7 @@
    1
   ],
   "claim": "García e Ortega referem desconfiança dos bibliotecários nas respostas a questões de investigação e uso raro pelos estudantes para pesquisas bibliográficas",
-  "passage": "(1) Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system. (2) Third, students rarely used the chatbot for literature searches , preferring human help."
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
  },
  {
   "id": "comparar:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#3",
@@ -466,7 +485,7 @@
    1
   ],
   "claim": "referem amostra de conveniência e cobertura apenas do Norte de Portugal",
-  "passage": "(1) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "comparar:D1:p2 «medir a intenção de uso de chatbots»; D1:p3 «A análise usou regressão linear múltipla»; D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Qualitative design with thematic analysis»#1",
@@ -478,7 +497,7 @@
    3
   ],
   "claim": "medem intenção de uso dos estudantes, com questionário e regressão linear múltipla, enquanto García e Ortega estudam a experiência pós-implementação dos bibliotecários, com entrevistas e análise temática",
-  "passage": "(1) O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). (2) A análise usou regressão linear múltipla . (3) Our aim is to understand the post-deployment experience from the librarians' perspective . (4) Methods Qualitative design with thematic analysis (Braun and Clarke)."
+  "passage": "(1) 1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (3) 1. Introduction Most studies on library chatbots measure student intentions before deployment. Our aim is to understand the post-deployment experience from the librarians' perspective. Research question: how do librarians perceive the impact of chatbots on reference work? (4) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "comparar:D1:p4 «Estudantes de engenharia mostraram maior intenção de uso»#1",
@@ -487,7 +506,7 @@
    0
   ],
   "claim": "indicam que estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "comparar:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p4 «O modelo explicou 47% da variância»#1",
@@ -497,7 +516,7 @@
    1
   ],
   "claim": "contribuem com evidência quantitativa sobre intenção de uso estudantil em Portugal",
-  "passage": "(1) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). (2) O modelo explicou 47% da variância (R2 = 0,47)."
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "comparar:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «six Spanish universities that had used a chatbot»#1",
@@ -507,7 +526,7 @@
    1
   ],
   "claim": "García e Ortega acrescentam evidência qualitativa sobre experiência profissional após implementação em Espanha",
-  "passage": "(1) Our aim is to understand the post-deployment experience from the librarians' perspective . (2) Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year."
+  "passage": "(1) 1. Introduction Most studies on library chatbots measure student intentions before deployment. Our aim is to understand the post-deployment experience from the librarians' perspective. Research question: how do librarians perceive the impact of chatbots on reference work? (2) 2. Methods Qualitative design with thematic analysis (Braun and Clarke). Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year. Interviews lasted 45 to 70 minutes and were coded in NVivo."
  },
  {
   "id": "conceitos:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais (chatbots)»#1",
@@ -516,7 +535,7 @@
    0
   ],
   "claim": "O termo aparece associado a chatbots em bibliotecas universitárias portuguesas, como objecto central do estudo",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) ) em bibliotecas universitárias portuguesas."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "conceitos:D1:p2 «medir a intenção de uso de chatbots»#1",
@@ -525,7 +544,7 @@
    0
   ],
   "claim": "Resumo, introdução e discussão",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "conceitos:D1:p2 «medir a intenção de uso de chatbots»#2",
@@ -534,7 +553,7 @@
    0
   ],
   "claim": "Intenção de uso",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "conceitos:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
@@ -543,7 +562,7 @@
    0
   ],
   "claim": "Modelo de Aceitação de Tecnologia, TAM",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) )."
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "conceitos:D1:p3 «foram as variáveis independentes principais»; D1:p4 «explicou a maior parte da variância»#1",
@@ -553,7 +572,7 @@
    1
   ],
   "claim": "É tratada como uma das variáveis independentes principais e como o factor que mais explica a intenção de uso",
-  "passage": "(1) A utilidade percebida e a facilidade de uso foram as variáveis independentes principais . (2) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conceitos:D1:p3 «foram as variáveis independentes principais»; D1:p4 «A facilidade de uso teve um efeito menor»#1",
@@ -563,7 +582,7 @@
    1
   ],
   "claim": "É tratada como variável independente principal, mas com efeito menor do que a utilidade percebida",
-  "passage": "(1) A utilidade percebida e a facilidade de uso foram as variáveis independentes principais . (2) A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003)."
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conceitos:D1:p5 «a amostra de conveniência e o desenho transversal»#1",
@@ -572,7 +591,7 @@
    0
   ],
   "claim": "Método e limitações",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "conceitos:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
@@ -581,7 +600,7 @@
    0
   ],
   "claim": "Amostra de conveniência",
-  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres)."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "conceitos:D1:p4 «O modelo explicou 47% da variância»#1",
@@ -590,7 +609,7 @@
    0
   ],
   "claim": "Variância explicada, R2",
-  "passage": "O modelo explicou 47% da variância (R2 = 0,47)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conceitos:D1:p5 «não permitem inferir causalidade»#2",
@@ -599,7 +618,7 @@
    0
   ],
   "claim": "Discussão e conclusão",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "conclusoes:D1:p1 «em bibliotecas universitárias portuguesas»#1",
@@ -608,7 +627,7 @@
    0
   ],
   "claim": "O resumo explicita o objeto do estudo e o contexto institucional",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas : um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "conclusoes:D1:p1 «três universidades do Norte de Portugal entre março e maio»#1",
@@ -617,7 +636,7 @@
    0
   ],
   "claim": "O texto indica instrumento, dimensão da amostra, instituições e região",
-  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "conclusoes:D1:p1 «68% dos estudantes usariam um chatbot»#1",
@@ -626,7 +645,7 @@
    0
   ],
   "claim": "A percentagem e o uso previsto aparecem de forma directa no texto",
-  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "conclusoes:D1:p1 «apenas 31% confiariam nele»#1",
@@ -635,7 +654,7 @@
    0
   ],
   "claim": "A afirmação reproduz um resultado medido tal como é reportado",
-  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "conclusoes:D1:p2 «O objetivo deste trabalho é medir»#1",
@@ -644,7 +663,7 @@
    0
   ],
   "claim": "O suporte é uma declaração explícita do objectivo do estudo",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "conclusoes:D1:p2 «de um chatbot de biblioteca pelos estudantes»#1",
@@ -653,7 +672,7 @@
    0
   ],
   "claim": "A introdução formula a pergunta de investigação de modo explícito",
-  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?"
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "conclusoes:D1:p2 «A pergunta de investigação é»#1",
@@ -662,7 +681,7 @@
    0
   ],
   "claim": "A afirmação corresponde à pergunta escrita pelos autores",
-  "passage": "A pergunta de investigação é : que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "conclusoes:D1:p3 «em escala de Likert de 5 pontos»#1",
@@ -671,7 +690,7 @@
    0
   ],
   "claim": "A afirmação é sustentada pela descrição metodológica apresentada",
-  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos , adaptado do TAM."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "conclusoes:D1:p3 «412 respostas válidas (idade média 22,4 anos»#1",
@@ -680,7 +699,7 @@
    0
   ],
   "claim": "O suporte textual contém a amostra e os indicadores demográficos citados",
-  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos ; 61% mulheres)."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "conclusoes:D1:p3 «utilidade percebida e a facilidade de uso»#1",
@@ -689,7 +708,7 @@
    0
   ],
   "claim": "A afirmação é sustentada pela descrição directa da análise",
-  "passage": "A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "conclusoes:D1:p4 «A utilidade percebida explicou a maior parte da variância»#2",
@@ -698,7 +717,7 @@
    0
   ],
   "claim": "O suporte é forte porque inclui direcção, peso relativo e significância do efeito",
-  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#1",
@@ -708,7 +727,7 @@
    1
   ],
   "claim": "A comparação com a utilidade percebida é sustentada pelos coeficientes reportados",
-  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ). (2) A facilidade de uso teve um efeito menor ( beta = 0,21; p = 0,003 )."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p4 «O modelo explicou 47% da variância»#2",
@@ -717,7 +736,7 @@
    0
   ],
   "claim": "O suporte é directo, embora o texto não detalhe outros diagnósticos do modelo",
-  "passage": "O modelo explicou 47% da variância (R2 = 0,47)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p4 «maior intenção de uso do que estudantes de humanidades»#1",
@@ -726,7 +745,7 @@
    0
   ],
   "claim": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades ."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p4 «maior intenção de uso do que estudantes de humanidades»#2",
@@ -735,7 +754,7 @@
    0
   ],
   "claim": "A existência da diferença é afirmada, mas o suporte numérico não é mostrado no excerto fornecido",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades ."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p4 «A facilidade de uso teve um efeito menor»#2",
@@ -744,7 +763,7 @@
    0
   ],
   "claim": "A conclusão é sustentada pelos resultados reportados, sobretudo pela comparação com a facilidade de uso",
-  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p5 «como horários, renovações e reservas»#1",
@@ -753,7 +772,7 @@
    0
   ],
   "claim": "A recomendação é plausivelmente ligada aos resultados, mas o texto não apresenta teste específico sobre renovações e reservas",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "conclusoes:D1:p5 «não permitem inferir causalidade»#1",
@@ -762,7 +781,7 @@
    0
   ],
   "claim": "Os autores afirmam que a amostra de conveniência e o desenho transversal não permitem inferir causalidade",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "conclusoes:D1:p5 «a amostra de conveniência e o desenho transversal»#1",
@@ -771,7 +790,7 @@
    0
   ],
   "claim": "A limitação é explicitamente reconhecida pelos autores e apoiada pela descrição metodológica",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "conclusoes:D1:p4 «O modelo explicou 47% da variância»#3",
@@ -780,7 +799,7 @@
    0
   ],
   "claim": "O modelo explicou 47% da variância, porque o valor é reportado directamente com R2 = 0,47",
-  "passage": "O modelo explicou 47% da variância (R2 = 0,47)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "conclusoes:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#1",
@@ -789,7 +808,7 @@
    0
   ],
   "claim": "O texto apresenta-a como caminho futuro, mas não a sustenta com dados adicionais no excerto fornecido",
-  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "critica:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D1:p3 «A análise usou regressão linear múltipla»#1",
@@ -799,7 +818,7 @@
    1
   ],
   "claim": "Trata-se de um estudo observacional quantitativo, pois aplicou um inquérito online a estudantes e analisou associações entre variáveis, sem intervenção experimental",
-  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) A análise usou regressão linear múltipla ."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "critica:D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»#1",
@@ -808,7 +827,7 @@
    0
   ],
   "claim": "A amostra é numericamente descrita, com 412 respostas válidas, idade média de 22,4 anos e 61% de mulheres",
-  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres) )."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "critica:D1:p3 «A utilidade percebida e a facilidade de uso foram»#1",
@@ -817,7 +836,7 @@
    0
   ],
   "claim": "A análise estatística principal é indicada, com regressão linear múltipla e variáveis independentes principais claramente nomeadas",
-  "passage": "A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "critica:D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#1",
@@ -827,7 +846,7 @@
    1
   ],
   "claim": "Os resultados principais são apresentados com coeficientes e valores de significância para utilidade percebida e facilidade de uso",
-  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ). (2) A facilidade de uso teve um efeito menor ( beta = 0,21; p = 0,003 )."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "critica:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
@@ -837,7 +856,7 @@
    1
   ],
   "claim": "Assim, os resultados sustentam associações entre variáveis, mas não demonstram que a utilidade percebida cause intenção de uso",
-  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
+  "passage": "(1) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades. (2) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "critica:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
@@ -847,7 +866,7 @@
    1
   ],
   "claim": "A extrapolação para outras regiões ou para a população nacional de estudantes deve ser prudente",
-  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "critica:D1:p3 «adaptado do TAM. Amostra de conveniência: 412 respostas válidas»; D1:p3 «A utilidade percebida e a facilidade de uso foram»#1",
@@ -857,7 +876,7 @@
    1
   ],
   "claim": "Validade de construto. O estudo indica que o questionário foi adaptado do TAM e que mediu utilidade percebida e facilidade de uso",
-  "passage": "(1) Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). (2) A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "critica:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
@@ -867,7 +886,7 @@
    1
   ],
   "claim": "Este aspeto pode afetar a representatividade dos estudantes incluídos",
-  "passage": "(1) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
+  "passage": "(1) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "critica:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
@@ -876,7 +895,7 @@
    0
   ],
   "claim": "Os resultados indicam que a utilidade percebida teve o maior efeito reportado na intenção de uso, com beta = 0,52 e p < 0,001",
-  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "critica:D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#2",
@@ -886,7 +905,7 @@
    1
   ],
   "claim": "Esta conclusão é coerente com os resultados apresentados, porque a utilidade percebida tem o beta mais elevado entre as variáveis principais reportadas",
-  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ). (2) A facilidade de uso teve um efeito menor ( beta = 0,21; p = 0,003 )."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "critica:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações»#1",
@@ -896,7 +915,7 @@
    1
   ],
   "claim": "A recomendação de começar por serviços simples, como horários, renovações e reservas, é compatível com o resultado descritivo de que 68% dos estudantes usariam um chatbot para horário e empréstimo",
-  "passage": "(1) Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "critica:D1:p2 «que fatores explicam a intenção de uso de um chatbot»; D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»; D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
@@ -907,34 +926,52 @@
    2
   ],
   "claim": "Silva et al., 2021 apresenta uma pergunta clara, uma amostra descrita e resultados quantitativos coerentes com a conclusão central sobre a utilidade percebida",
-  "passage": "(1) A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres) ). (3) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "passage": "(1) 1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes? (2) 2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (3) 3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "esquema:D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
-  "key": "D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
+  "id": "destaques:D1:p4 «A utilidade percebida explicou a maior parte da variância»#2",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#2",
   "parts": [
    0
   ],
-  "claim": "O estudo pergunta que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes.",
-  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
+  "claim": "Este destaque resume o principal resultado estatístico do estudo: a utilidade percebida foi o fator com maior peso na intenção de uso de chatbots em bibliotecas",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "esquema:D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
-  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "id": "destaques:D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
   "parts": [
    0
   ],
-  "claim": "O estudo tem desenho transversal.",
-  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM."
+  "claim": "Resposta ao comentário do utilizador: Pode ser usado na revisão de literatura como evidência de que, neste estudo, a utilidade percebida foi apresentada como fator central na aceitação de chatbots em bibliotecas universitárias",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "esquema:D1:p3 «A análise usou regressão linear múltipla»#1",
-  "key": "D1:p3 «A análise usou regressão linear múltipla»#1",
+  "id": "destaques:D1:p5 «a amostra de conveniência e o desenho transversal»#1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal»#1",
   "parts": [
    0
   ],
-  "claim": "A análise recorreu a regressão linear múltipla.",
-  "passage": "A análise usou regressão linear múltipla ."
+  "claim": "Os autores apresentam esta limitação juntamente com a amostra de conveniência e o desenho transversal",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "esquema:D1:p3 «A utilidade percebida e a facilidade de uso»#1",
+  "key": "D1:p3 «A utilidade percebida e a facilidade de uso»#1",
+  "parts": [
+   0
+  ],
+  "claim": "As variáveis independentes principais são a utilidade percebida e a facilidade de uso.",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+ },
+ {
+  "id": "esquema:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A amostra é de conveniência e inclui 412 respostas válidas.",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "esquema:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
@@ -943,34 +980,34 @@
    0
   ],
   "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso.",
-  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "esquema:D1:p4 «A facilidade de uso teve um efeito menor»#1",
-  "key": "D1:p4 «A facilidade de uso teve um efeito menor»#1",
+  "id": "esquema:D1:p4 «beta = 0,52; p < 0,001»#1",
+  "key": "D1:p4 «beta = 0,52; p < 0,001»#1",
   "parts": [
    0
   ],
-  "claim": "A facilidade de uso teve um efeito menor.",
-  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003)."
+  "claim": "O efeito reportado foi beta = 0,52, com p < 0,001.",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "esquema:D1:p4 «Estudantes de engenharia mostraram maior intenção de uso»#1",
-  "key": "D1:p4 «Estudantes de engenharia mostraram maior intenção de uso»#1",
+  "id": "esquema:D1:p4 «O modelo explicou 47% da variância»#1",
+  "key": "D1:p4 «O modelo explicou 47% da variância»#1",
   "parts": [
    0
   ],
-  "claim": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades.",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
+  "claim": "O modelo explicou 47% da variância.",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "esquema:D1:p5 «como horários, renovações e reservas»#1",
-  "key": "D1:p5 «como horários, renovações e reservas»#1",
+  "id": "esquema:D1:p5 «As bibliotecas devem começar por serviços simples e de alto valor»#1",
+  "key": "D1:p5 «As bibliotecas devem começar por serviços simples e de alto valor»#1",
   "parts": [
    0
   ],
-  "claim": "Esses serviços incluem horários, renovações e reservas.",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
+  "claim": "Recomendam que as bibliotecas comecem por serviços simples e de alto valor.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "esquema:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir causalidade»#1",
@@ -979,34 +1016,34 @@
    0
   ],
   "claim": "A amostra de conveniência e o desenho transversal não permitem inferir causalidade.",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "estudo:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
-  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "id": "esquema:D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
   "parts": [
    0
   ],
-  "claim": "Também procurou identificar os factores que explicam essa intenção, com base no TAM",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
+  "claim": "O estudo cobre apenas o Norte de Portugal.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "estudo:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário e empréstimo»#1",
-  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário e empréstimo»#1",
+  "id": "estudo:D1:p1 «entre março e maio de 2021»#1",
+  "key": "D1:p1 «entre março e maio de 2021»#1",
   "parts": [
    0
   ],
-  "claim": "Resposta: O estudo indica que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo",
-  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo , mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+  "claim": "A recolha decorreu entre março e maio de 2021",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
-  "id": "estudo:D1:p4 «facilidade de uso teve um efeito menor»#1",
-  "key": "D1:p4 «facilidade de uso teve um efeito menor»#1",
+  "id": "estudo:D1:p4 «utilidade percebida explicou a maior parte da variância»#1",
+  "key": "D1:p4 «utilidade percebida explicou a maior parte da variância»#1",
   "parts": [
    0
   ],
-  "claim": "A facilidade de uso também teve efeito, mas esse efeito foi menor",
-  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003)."
+  "claim": "Resposta: A utilidade percebida foi o factor que explicou a maior parte da variância da intenção de uso",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
   "id": "estudo:D1:p5 «começar por serviços simples e de alto valor»#1",
@@ -1015,34 +1052,34 @@
    0
   ],
   "claim": "Resposta: Uma opção coerente seria começar por horários, renovações ou reservas, porque os autores recomendam serviços simples e de alto valor",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor , como horários, renovações e reservas."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "estudo:D1:p4 «Estudantes de engenharia mostraram maior intenção de uso do que»#1",
-  "key": "D1:p4 «Estudantes de engenharia mostraram maior intenção de uso do que»#1",
+  "id": "estudo:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário e empréstimo»#2",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário e empréstimo»#2",
   "parts": [
    0
   ],
-  "claim": "Resposta: A implementação poderia prestar atenção às diferenças entre cursos, porque os estudantes de engenharia mostraram maior intenção de uso do que os estudantes de humanidades",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
+  "claim": "Esta aplicação também é coerente com o resultado de que 68% dos estudantes usariam o chatbot para horário e empréstimo",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
-  "id": "estudo:D1:p5 «não permitem inferir causalidade»#2",
-  "key": "D1:p5 «não permitem inferir causalidade»#2",
+  "id": "estudo:D1:p5 «a amostra de conveniência e o desenho transversal»#1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal»#1",
   "parts": [
    0
   ],
-  "claim": "Por isso, o estudo não permite inferir causalidade",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
+  "claim": "Resposta: Os autores indicam que a amostra de conveniência e o desenho transversal são limitações do estudo",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "etiquetas:D1:p1 «analisa a aceitação de assistentes conversacionais (chatbots)»#1",
-  "key": "D1:p1 «analisa a aceitação de assistentes conversacionais (chatbots)»#1",
+  "id": "estudo:D1:p5 «implementação real de um chatbot e comparação com outras regiões»#1",
+  "key": "D1:p5 «implementação real de um chatbot e comparação com outras regiões»#1",
   "parts": [
    0
   ],
-  "claim": "assistentes conversacionais: tema central do estudo, formulado como análise da aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) ) em bibliotecas universitárias portuguesas."
+  "claim": "Os autores propõem trabalho futuro com comparação com outras regiões",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "etiquetas:D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1",
@@ -1051,26 +1088,34 @@
    0
   ],
   "claim": "bibliotecas universitárias: contexto institucional do estudo, referido no título e no resumo como bibliotecas universitárias portuguesas",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas : um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
-  "id": "etiquetas:D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
+  "id": "etiquetas:D1:p1 «a 412 estudantes de três universidades»#1",
+  "key": "D1:p1 «a 412 estudantes de três universidades»#1",
+  "parts": [
+   0
+  ],
+  "claim": "estudantes: população inquirida no estudo, com 412 estudantes de três universidades",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+ },
+ {
+  "id": "etiquetas:D1:p2 «que fatores explicam a intenção de uso»#1",
+  "key": "D1:p2 «que fatores explicam a intenção de uso»#1",
+  "parts": [
+   0
+  ],
+  "claim": "intenção de uso: variável explicada pela investigação, associada à pergunta de investigação do estudo",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
+ },
+ {
+  "id": "ficha:D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
   "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
   "parts": [
    0
   ],
-  "claim": "inquérito online: método de recolha de dados usado entre março e maio de 2021",
-  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
- },
- {
-  "id": "etiquetas:D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1",
-  "key": "D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1",
-  "parts": [
-   0,
-   1
-  ],
-  "claim": "utilidade percebida: variável independente principal e fator com maior peso nos resultados",
-  "passage": "(1) A utilidade percebida e a facilidade de uso foram as variáveis independentes principais. (2) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "claim": "Empírico, com inquérito online a estudantes.",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "ficha:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
@@ -1078,89 +1123,64 @@
   "parts": [
    0
   ],
-  "claim": "O objetivo foi medir a intenção de uso de chatbots e os fatores explicativos",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
+  "claim": "O objetivo foi medir a intenção de uso de chatbots e os fatores explicativos.",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
-  "id": "ficha:D1:p3 «idade média 22,4 anos; 61% mulheres»#1",
-  "key": "D1:p3 «idade média 22,4 anos; 61% mulheres»#1",
+  "id": "ficha:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Desenho transversal, com regressão linear múltipla.",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+ },
+ {
+  "id": "ficha:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "68% usariam um chatbot para horários e empréstimos, mas 31% confiariam nele para apoio à pesquisa bibliográfica.",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+ },
+ {
+  "id": "ficha:D1:p5 «a utilidade percebida é o fator decisivo para a adoção»#1",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo para a adoção»#1",
   "parts": [
    0
   ],
-  "claim": "A amostra tinha idade média de 22,4 anos e 61% de mulheres",
-  "passage": "Amostra de conveniência: 412 respostas válidas ( idade média 22,4 anos; 61% mulheres )."
+  "claim": "A utilidade percebida é apresentada como o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "ficha:D1:p4 «beta = 0,52; p < 0,001»#1",
-  "key": "D1:p4 «beta = 0,52; p < 0,001»#1",
+  "id": "ficha:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
   "parts": [
    0
   ],
-  "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso, com beta = 0,52 e p < 0,001",
-  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 )."
+  "claim": "O estudo identifica a utilidade percebida como principal explicação da intenção de uso de chatbots em bibliotecas universitárias portuguesas.",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "ficha:D1:p5 «a utilidade percebida é o fator decisivo»#1",
-  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "id": "lacunas:D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#3",
+  "key": "D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#3",
   "parts": [
    0
   ],
-  "claim": "Os autores concluem que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas",
-  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas."
+  "claim": "1 documento, porque apenas Silva et al., 2021 refere esta limitação nos documentos analisados.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "ficha:D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
-  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "id": "lacunas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#3",
+  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#3",
   "parts": [
    0
   ],
-  "claim": "O estudo cobre apenas o Norte de Portugal",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
- },
- {
-  "id": "lacunas:D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#1",
-  "key": "D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Os autores indicam isto como limitação do estudo.",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal."
- },
- {
-  "id": "lacunas:D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
-  "key": "D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Os autores afirmam que não permite inferir causalidade.",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
- },
- {
-  "id": "lacunas:D1:p5 «o estudo cobre apenas o Norte de Portugal»#2",
-  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#2",
-  "parts": [
-   0
-  ],
-  "claim": "Silva et al., 2021",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
- },
- {
-  "id": "lacunas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#2",
-  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#2",
-  "parts": [
-   0
-  ],
-  "claim": "Silva et al., 2021",
-  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões."
- },
- {
-  "id": "lacunas:D1:p5 «implementação real de um chatbot e comparação com outras regiões»#2",
-  "key": "D1:p5 «implementação real de um chatbot e comparação com outras regiões»#2",
-  "parts": [
-   0
-  ],
-  "claim": "Silva et al., 2021",
-  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões ."
+  "claim": "1 documento, porque apenas Silva et al., 2021 refere este trabalho futuro nos documentos analisados.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "lacunas:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2",
@@ -1170,7 +1190,7 @@
    1
   ],
   "claim": "Silva et al., 2021",
-  "passage": "(1) Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
+  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica. (2) 4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
   "id": "lacunas:D1:p1 «assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
@@ -1179,255 +1199,252 @@
    0
   ],
   "claim": "Falta testar o tema fora de bibliotecas universitárias, porque o estudo analisa chatbots nesse tipo de biblioteca.",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas ."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
-  "id": "lacunas:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p5 «o desenho transversal não permitem inferir causalidade»#2",
-  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p5 «o desenho transversal não permitem inferir causalidade»#2",
-  "parts": [
-   0,
-   1
-  ],
-  "claim": "Silva et al., 2021",
-  "passage": "(1) Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. (2) Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal."
- },
- {
-  "id": "lacunas:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
-  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
+  "id": "lacunas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#4",
+  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#4",
   "parts": [
    0
   ],
-  "claim": "Silva et al., 2021",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) )."
+  "claim": "Falta avaliar o uso depois da implementação real de um chatbot, porque os autores propõem esse trabalho futuro.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "mapa:D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1",
-  "key": "D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1",
+  "id": "lacunas:D1:p1 «entre março e maio de 2021»#1",
+  "key": "D1:p1 «entre março e maio de 2021»#1",
   "parts": [
    0
   ],
-  "claim": "Assistentes conversacionais em bibliotecas universitárias",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas : um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas."
+  "claim": "Falta evidência posterior ao período de recolha reportado, porque os dados foram recolhidos entre março e maio de 2021.",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
-  "id": "mapa:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
-  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Medir intenção de uso e fatores explicativos",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
- },
- {
-  "id": "mapa:D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
-  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Desenho transversal com questionário de 24 itens",
-  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM."
- },
- {
-  "id": "mapa:D1:p4 «A utilidade percebida explicou a maior parte»#1",
-  "key": "D1:p4 «A utilidade percebida explicou a maior parte»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Utilidade percebida teve maior efeito",
-  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
- },
- {
-  "id": "mapa:D1:p4 «Estudantes de engenharia mostraram maior intenção de uso»#1",
-  "key": "D1:p4 «Estudantes de engenharia mostraram maior intenção de uso»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Engenharia mostrou maior intenção de uso",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
- },
- {
-  "id": "mapa:D1:p5 «como horários, renovações e reservas»#1",
-  "key": "D1:p5 «como horários, renovações e reservas»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Exemplos: horários, renovações e reservas",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
- },
- {
-  "id": "mapa:D1:p5 «estudos longitudinais após a implementação real»#1",
-  "key": "D1:p5 «estudos longitudinais após a implementação real»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Futuro: estudos longitudinais após implementação real",
-  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões."
- },
- {
-  "id": "metodos:D1:p1 «estudantes de três universidades do Norte de Portugal entre março»#1",
-  "key": "D1:p1 «estudantes de três universidades do Norte de Portugal entre março»#1",
-  "parts": [
-   0
-  ],
-  "claim": "A população estudada foi composta por estudantes de três universidades do Norte de Portugal",
-  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
- },
- {
-  "id": "metodos:D1:p3 «Amostra de conveniência: 412 respostas válidas»#2",
-  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#2",
-  "parts": [
-   0
-  ],
-  "claim": "O recrutamento foi feito por amostra de conveniência",
-  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres)."
- },
- {
-  "id": "metodos:D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
-  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
-  "parts": [
-   0
-  ],
-  "claim": "O estudo cobriu apenas o Norte de Portugal, segundo a limitação indicada pelos autores",
-  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal ."
- },
- {
-  "id": "metodos:D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
-  "key": "D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
-  "parts": [
-   0
-  ],
-  "claim": "O instrumento foi um questionário de 24 itens, com escala de Likert de 5 pontos",
-  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos , adaptado do TAM."
- },
- {
-  "id": "metodos:D1:p3 «A análise usou regressão linear múltipla»#1",
-  "key": "D1:p3 «A análise usou regressão linear múltipla»#1",
-  "parts": [
-   0
-  ],
-  "claim": "A técnica de análise foi a regressão linear múltipla",
-  "passage": "A análise usou regressão linear múltipla ."
- },
- {
-  "id": "perguntas:D1:p5 «serviços simples e de alto valor, como horários, renovações e»#1",
-  "key": "D1:p5 «serviços simples e de alto valor, como horários, renovações e»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Silva et al., 2021 concluem que as bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas."
- },
- {
-  "id": "perguntas:D1:p4 «do que estudantes de humanidades»#1",
-  "key": "D1:p4 «do que estudantes de humanidades»#1",
-  "parts": [
-   0
-  ],
-  "claim": "O estudo não desenvolve os fatores que podem explicar essa diferença entre áreas disciplinares",
-  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades ."
- },
- {
-  "id": "perguntas:D1:p1 «três universidades do Norte de Portugal entre março e maio»#1",
-  "key": "D1:p1 «três universidades do Norte de Portugal entre março e maio»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Silva et al., 2021 estudaram estudantes de três universidades do Norte de Portugal",
-  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021."
- },
- {
-  "id": "referencias:D1:p5 «Davis, F. D. (1989). Perceived usefulness. MIS Quarterly.»#1",
-  "key": "D1:p5 «Davis, F. D. (1989). Perceived usefulness. MIS Quarterly.»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Perceived usefulness. MIS Quarterly.",
-  "passage": "References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. ."
- },
- {
-  "id": "referencias:D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»#2",
-  "key": "D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»#2",
-  "parts": [
-   0
-  ],
-  "claim": "Teoria de base, pelo título da referência e pela proximidade temática com aceitação de tecnologia",
-  "passage": "Venkatesh, V. (2003). UTAUT. MIS Quarterly. ."
- },
- {
-  "id": "referencias:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1",
-  "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1",
-  "parts": [
-   0,
-   1
-  ],
-  "claim": "Contudo, Silva et al., 2021 não indicam no corpo do texto onde usam esta fonte, nem para que argumento específico a mobilizam. Não reportado",
-  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas . (2) Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech. ."
- },
- {
-  "id": "relevancia:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#1",
-  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#1",
-  "parts": [
-   0
-  ],
-  "claim": "Silva et al., 2021 centra-se na aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas."
- },
- {
-  "id": "relevancia:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
+  "id": "mapa:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
   "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
   "parts": [
    0
   ],
-  "claim": "Define como foco a aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas ."
+  "claim": "Aceitação de chatbots em bibliotecas universitárias",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
-  "id": "relevancia:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
-  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "id": "mapa:D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
+  "key": "D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
   "parts": [
    0
   ],
-  "claim": "Identifica a utilidade percebida como principal fator associado à intenção de uso",
-  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001)."
+  "claim": "Explicar intenção de uso pelos estudantes",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
-  "id": "relevancia:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#2",
-  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#2",
+  "id": "mapa:D1:p3 «A análise usou regressão linear múltipla»#1",
+  "key": "D1:p3 «A análise usou regressão linear múltipla»#1",
   "parts": [
    0
   ],
-  "claim": "Resumo, página 1, para perceber o objetivo, a amostra e os principais resultados",
-  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas."
+  "claim": "Análise por regressão linear múltipla",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
-  "id": "relevancia:D1:p4 «O modelo explicou 47% da variância»#1",
+  "id": "mapa:D1:p4 «O modelo explicou 47% da variância»#1",
   "key": "D1:p4 «O modelo explicou 47% da variância»#1",
   "parts": [
    0
   ],
-  "claim": "Resultados, página 4, para consultar os efeitos da utilidade percebida, da facilidade de uso e o valor de R2",
-  "passage": "O modelo explicou 47% da variância (R2 = 0,47)."
+  "claim": "Modelo explicou 47% da variância",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
  },
  {
-  "id": "resumo:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»; D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente de apoio»#1",
-  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»; D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente de apoio»#1",
+  "id": "mapa:D1:p5 «serviços simples e de alto valor»#1",
+  "key": "D1:p5 «serviços simples e de alto valor»#1",
   "parts": [
-   0,
-   1
+   0
   ],
-  "claim": "O estudo parte da procura crescente de apoio fora do horário de atendimento nas bibliotecas universitárias",
-  "passage": "(1) Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. (2) Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento."
+  "claim": "Serviços iniciais devem ser simples e valiosos",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  },
  {
-  "id": "resumo:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1",
-  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1",
+  "id": "mapa:D1:p5 «cobre apenas o Norte de Portugal»#1",
+  "key": "D1:p5 «cobre apenas o Norte de Portugal»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Estudo cobre apenas o Norte de Portugal",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "metodos:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O objetivo foi medir a intenção de uso de chatbots e os fatores que a explicam",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
+ },
+ {
+  "id": "metodos:D1:p3 «idade média 22,4 anos; 61% mulheres»#1",
+  "key": "D1:p3 «idade média 22,4 anos; 61% mulheres»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A idade média foi 22,4 anos e 61% dos participantes eram mulheres",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+ },
+ {
+  "id": "metodos:D1:p1 «entre março e maio de 2021»#1",
+  "key": "D1:p1 «entre março e maio de 2021»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O inquérito foi aplicado entre março e maio de 2021",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+ },
+ {
+  "id": "metodos:D1:p3 «A utilidade percebida e a facilidade de uso foram as»#1",
+  "key": "D1:p3 «A utilidade percebida e a facilidade de uso foram as»#1",
+  "parts": [
+   0
+  ],
+  "claim": "As variáveis independentes principais foram a utilidade percebida e a facilidade de uso",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+ },
+ {
+  "id": "metodos:D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O procedimento descrito foi a aplicação de um inquérito online",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+ },
+ {
+  "id": "pergunta:D2:p4 «librarians distrusted chatbot answers to research questions»#1",
+  "key": "D2:p4 «librarians distrusted chatbot answers to research questions»#1",
+  "parts": [
+   0
+  ],
+  "claim": "García e Ortega, 2023 identifica directamente problemas de confiança nas respostas, incluindo desconfiança dos bibliotecários perante respostas a questões de investigação",
+  "passage": "3. Findings Three themes emerged. First, chatbots handled about 40% of routine questions, freeing time for complex reference work. Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system. Third, students rarely used the chatbot for literature searches, preferring human help."
+ },
+ {
+  "id": "perguntas:D1:p1 «mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "key": "D1:p1 «mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O estudo identifica a diferença, mas não explica as razões dessa menor confiança",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+ },
+ {
+  "id": "perguntas:D1:p4 «Estudantes de engenharia mostraram maior intenção de uso do que»#1",
+  "key": "D1:p4 «Estudantes de engenharia mostraram maior intenção de uso do que»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Silva et al., 2021 indicam que estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades",
+  "passage": "3. Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). O modelo explicou 47% da variância (R2 = 0,47). Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades."
+ },
+ {
+  "id": "perguntas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#1",
+  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os autores também apontam como trabalho futuro estudos longitudinais após a implementação real de um chatbot",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "perguntas:D1:p5 «comparação com outras regiões»#1",
+  "key": "D1:p5 «comparação com outras regiões»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Também propõem comparação com outras regiões como trabalho futuro",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "referencias:D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»#1",
+  "key": "D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»#1",
+  "parts": [
+   0
+  ],
+  "claim": "(2003). UTAUT. MIS Quarterly.",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "referencias:D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1",
+  "key": "D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Chatbots in academic libraries. Library Hi Tech.",
+  "passage": "Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech. Smith, J. (2020). AI services. JAL."
+ },
+ {
+  "id": "referencias:D1:p6 «Smith, J. (2020). AI services. JAL.»#2",
+  "key": "D1:p6 «Smith, J. (2020). AI services. JAL.»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Também não há citação no corpo do texto que indique onde esta referência é usada. Não reportado",
+  "passage": "Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech. Smith, J. (2020). AI services. JAL."
+ },
+ {
+  "id": "relevancia:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A relevância não é alta porque o foco principal é a aceitação e a intenção de uso, não a confiança como conceito central",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
+ },
+ {
+  "id": "relevancia:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Enquadramento teórico: o estudo usa o Modelo de Aceitação de Tecnologia, TAM, para analisar a intenção de uso",
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
+ },
+ {
+  "id": "relevancia:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»#1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Limitações relevantes: a amostra de conveniência e o desenho transversal não permitem inferir causalidade",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "relevancia:D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Método, página 3: para avaliar o desenho transversal, a escala, a amostra e a regressão linear múltipla",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
+ },
+ {
+  "id": "relevancia:D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
+  "key": "D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Não reportado: relações causais, pois os autores indicam que o desenho transversal não permite inferir causalidade",
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
+ },
+ {
+  "id": "resumo:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p3 «A análise usou regressão linear múltipla»#1",
   "parts": [
    0,
    1,
    2
   ],
-  "claim": "O modelo explicou 47% da variância",
-  "passage": "(1) Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001). (2) A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003). (3) O modelo explicou 47% da variância (R2 = 0,47)."
+  "claim": "A análise recorreu a regressão linear múltipla",
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "seguimento:D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres»#1",
@@ -1436,7 +1453,7 @@
    0
   ],
   "claim": "61% da amostra eram mulheres.",
-  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres )."
+  "passage": "2. Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM. Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres). A análise usou regressão linear múltipla. A utilidade percebida e a facilidade de uso foram as variáveis independentes principais."
  },
  {
   "id": "simples:D1:p2 «medir a intenção de uso de chatbots»#1",
@@ -1445,7 +1462,7 @@
    0
   ],
   "claim": "Os autores quiseram medir a intenção de uso destes chatbots e perceber que fatores a explicam",
-  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM)."
+  "passage": "1. Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento. O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM). A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?"
  },
  {
   "id": "simples:D1:p1 «68% dos estudantes usariam um chatbot para questões»#1",
@@ -1454,7 +1471,7 @@
    0
   ],
   "claim": "68% dos estudantes usariam um chatbot para horários e empréstimos",
-  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021. Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica."
  },
  {
   "id": "simples:D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
@@ -1463,6 +1480,6 @@
    0
   ],
   "claim": "O estudo importa porque sugere uma estratégia prudente: começar por serviços simples e úteis, como horários, renovações e reservas",
-  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas ."
+  "passage": "4. Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas. As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas. Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal. Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões. References Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. Venkatesh, V. (2003). UTAUT. MIS Quarterly."
  }
 ]

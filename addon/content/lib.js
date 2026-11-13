@@ -2641,7 +2641,21 @@ var ZIALib = (function () {
 	 * excertos do PDF que essa citação reúne (passage), porque uma frase pode juntar ideias de várias fontes.
 	 * key = a mesma do item ("D1:p4#2"); parts = posições das citações do grupo que entram.
 	 */
-	function meaningClaims(text, res) {
+	/** O excerto à volta da frase de base, com até `span` caracteres de cada lado (o parágrafo, não só a frase). */
+	function widePassage(ev, pageText, span) {
+		const sent = [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+		const page = String(pageText || "").replace(/\s+/g, " ");
+		const key = String(ev.match || "").replace(/\s+/g, " ").trim().slice(0, 40);
+		const at = key.length >= 12 ? page.indexOf(key) : -1;
+		if (at < 0) return sent;
+		let a = Math.max(0, at - span), b = Math.min(page.length, at + key.length + span);
+		// Começa e acaba em frases inteiras
+		const s0 = page.lastIndexOf(". ", a); if (a > 0 && s0 >= 0 && at - s0 < span * 1.5) a = s0 + 2;
+		const e0 = page.indexOf(". ", b); if (b < page.length && e0 >= 0 && e0 - at < span * 1.5) b = e0 + 1;
+		return (a > 0 ? "… " : "") + page.slice(a, b).trim() + (b < page.length ? " …" : "");
+	}
+
+	function meaningClaims(text, res, pagesOf) {
 		const out = [];
 		if (!res || !res.items) return out;
 		const byKey = {};
@@ -2668,17 +2682,19 @@ var ZIALib = (function () {
 			it.parts.forEach((part, k) => {
 				if (!part || !["based", "moved"].includes(part.status) || !part.evidence || !part.evidence.match) return;
 				const ev = part.evidence;
-				const t = [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim().slice(0, 700);
+				// Com o texto do PDF à mão: o excerto à volta da frase (o que está ao lado também conta). Sem ele: só a frase
+				const pages = pagesOf ? pagesOf(ev.doc) : null;
+				const t = (pages && pages[ev.page - 1] ? widePassage(ev, pages[ev.page - 1], MEANING_SPAN) : [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim()).slice(0, 1600);
 				if (!passages.includes(t)) passages.push(t);
 				parts.push(k);
 			});
 			if (!parts.length) continue;
-			out.push({ key: it.key, parts, claim: claim.slice(0, 700), passage: passages.map((t, i) => (passages.length > 1 ? `(${i + 1}) ` : "") + t).join(" ").slice(0, 2000) });
+			out.push({ key: it.key, parts, claim: claim.slice(0, 700), passage: passages.map((t, i) => (passages.length > 1 ? `(${i + 1}) ` : "") + t).join(" ").slice(0, 4000) });
 		}
 		return out;
 	}
 
-	const MEANING_BATCH = 15, MEANING_MAX = 45;
+	const MEANING_BATCH = 15, MEANING_MAX = 45, MEANING_SPAN = 600;
 	function meaningBatchPrompt(pairs) {
 		const sys = "Comparas frases escritas por uma IA com os excertos de artigos científicos em que ela diz basear-se. "
 			+ "Para cada número, respondes numa linha: o número, dois pontos, SIM, INTERPRETAÇÃO, EM PARTE ou NÃO, dois pontos e uma frase curta. "
@@ -3397,7 +3413,7 @@ var ZIALib = (function () {
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
-		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
+		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, widePassage, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
