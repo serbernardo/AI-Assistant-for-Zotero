@@ -1,0 +1,344 @@
+(node:316) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+lote 1: 15 pares, 33 s, 15 respostas lidas
+lote 2: 15 pares, 41 s, 15 respostas lidas
+lote 3: 15 pares, 33 s, 15 respostas lidas
+lote 4: 15 pares, 36 s, 15 respostas lidas
+lote 5: 15 pares, 35 s, 15 respostas lidas
+lote 6: 15 pares, 40 s, 15 respostas lidas
+lote 7: 15 pares, 107 s, 15 respostas lidas
+lote 8: 15 pares, 32 s, 15 respostas lidas
+lote 9: 15 pares, 26 s, 15 respostas lidas
+lote 10: 15 pares, 32 s, 15 respostas lidas
+lote 11: 15 pares, 39 s, 15 respostas lidas
+lote 12: 15 pares, 33 s, 15 respostas lidas
+lote 13: 15 pares, 31 s, 15 respostas lidas
+lote 14: 13 pares, 12 s, 13 respostas lidas
+
+Certas (178): SIM 100 · EM PARTE 64 · NÃO 14 · sem resposta 0
+Estragadas (30): apanhadas 30 · passaram como SIM 0 · sem resposta 0
+  inverte        7 de 7 apanhadas
+  generaliza     3 de 3 apanhadas
+  sujeito        6 de 6 apanhadas
+  negacao        5 de 5 apanhadas
+  numero         5 de 5 apanhadas
+  exagero        3 de 3 apanhadas
+  causalidade    1 de 1 apanhadas
+Tempo nesta execução: 271 s
+
+Certas marcadas como problema (rever à mão):
+- [partly] etiquetas:D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1:1
+  IA: utilidade percebida: variável independente principal e fator com maior peso nos resultados
+  PDF: Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).
+  Nota: O excerto mostra maior variância explicada, mas não diz que era a variável independente principal.
+- [partly] cmp_conceitos:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1:0
+  IA: O conceito é tratado como aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas, medido por inquérito online a estudantes
+  PDF: Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas .
+  Nota: O excerto confirma o tema e os estudantes, mas não diz que o inquérito foi online.
+- [partly] relevancia:D1:p4 «O modelo explicou 47% da variância»#1:0
+  IA: Resultados, página 4, para consultar os efeitos da utilidade percebida, da facilidade de uso e o valor de R2
+  PDF: O modelo explicou 47% da variância (R2 = 0,47).
+  Nota: O excerto só confirma o valor de R2, não a página nem os outros efeitos.
+- [partly] comparar:D1:p5 «serviços simples e de alto valor»; D2:p4 «chatbots handled about 40% of routine questions»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p5 «not yet reliable for research support»#1:0
+  IA: Em conjunto, os documentos sugerem uma leitura prudente: os chatbots parecem mais adequados a serviços simples ou rotineiros do que ao apoio à pesquisa bibliográfica
+  PDF: As bibliotecas devem começar por serviços simples e de alto valor , como horários, renovações e reservas.
+  Nota: O excerto apoia começar por serviços simples, mas não compara com apoio à pesquisa bibliográfica.
+- [partly] conclusoes:D1:p1 «para questões de horário e empréstimo»#1:0
+  IA: O resumo apresenta este valor como resultado do inquérito
+  PDF: Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo , mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica.
+  Nota: O excerto apresenta o valor como resultado, mas não diz que é no resumo nem que vem de inquérito.
+- [partly] lacunas:D1:p5 «implementação real de um chatbot e comparação com outras regiões»#3:0
+  IA: 1 documento, porque apenas Silva et al., 2021 refere este trabalho futuro nos documentos analisados.
+  PDF: Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões .
+  Nota: O excerto refere esse trabalho futuro, mas não diz que é só um documento nem identifica Silva et al.
+- [partly] cmp_sintese:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1:1
+  IA: Em Silva et al., 2021, 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica
+  PDF: Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .
+  Nota: O excerto confirma os valores e os tipos de uso, mas não identifica Silva et al., 2021.
+- [partly] critica:D1:p5 «a amostra de conveniência e o desenho transversal não permitem»; D1:p5 «o estudo cobre apenas o Norte de Portugal»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»; D1:p3 «A análise usou regressão linear múltipla»#1:1
+  IA: A qualidade científica é limitada sobretudo pela amostra de conveniência, pelo desenho transversal, pela restrição ao Norte de Portugal e pela ausência de informação reportada sobre validação do instrumento, pressupostos da regressão e conflitos de interesse
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .
+  Nota: O excerto apoia algumas limitações, mas não menciona validação, pressupostos da regressão ou conflitos de interesse.
+- [partly] cmp_sintese:D1:p5 «estudos longitudinais após a implementação real»; D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1:1
+  IA: Um novo estudo ficaria, portanto, justificado se combinasse estudantes e bibliotecários, observasse chatbots já implementados e examinasse serviços de rotina e apoio à investigação com fontes verificadas, pois estas necessidades são explicitamente apontadas nas recomendações finais dos dois documentos
+  PDF: Future research should combine librarian and student perspectives and test chatbots with verified sources.
+  Nota: O excerto apoia combinar perspetivas e testar fontes verificadas, mas não menciona todas as restantes condições.
+- [partly] comparar:D2:p2 «understand the post-deployment experience from the librarians' perspective»#1:0
+  IA: Compreender a experiência pós-implementação dos bibliotecários com chatbots em bibliotecas universitárias espanholas
+  PDF: Our aim is to understand the post-deployment experience from the librarians' perspective .
+  Nota: O excerto apoia a experiência pós-implementação dos bibliotecários, mas não menciona Espanha nem bibliotecas universitárias.
+- [partly] comparar:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1:1
+  IA: 412 respostas válidas, estudantes de três universidades do Norte de Portugal
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: Confirma 412 estudantes e três universidades, mas não diz “respostas válidas”.
+- [no] referencias:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1:1
+  IA: Contudo, Silva et al., 2021 não indicam no corpo do texto onde usam esta fonte, nem para que argumento específico a mobilizam. Não reportado
+  PDF: Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech. .
+  Nota: O excerto é só uma referência bibliográfica, não mostra uso ou ausência de uso no texto.
+- [no] cmp_sintese:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1:0
+  IA: A divergência entre intenção de uso e experiência após a implementação é central para interpretar os resultados em conjunto
+  PDF: O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).
+  Nota: O excerto fala apenas da intenção de uso e dos seus fatores explicativos.
+- [partly] conceitos:D1:p5 «a amostra de conveniência e o desenho transversal»#1:0
+  IA: Método e limitações
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal.
+  Nota: O excerto apresenta limitações, mas não descreve o método.
+- [partly] critica:D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0
+  IA: Enviesamento de medição. O estudo usou questionário online e itens em escala de Likert
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: Confirma o questionário online, mas não menciona escala de Likert nem enviesamento de medição.
+- [partly] cmp_sintese:D1:p4 «facilidade de uso teve um efeito menor»#1:0
+  IA: A facilidade de uso também teve efeito, mas menor do que a utilidade percebida, segundo os valores reportados pelos autores
+  PDF: A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003).
+  Nota: O excerto diz que o efeito foi menor, mas não o compara com a utilidade percebida.
+- [partly] comparar:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «six Spanish universities that had used a chatbot»#1:0
+  IA: García e Ortega acrescentam evidência qualitativa sobre experiência profissional após implementação em Espanha
+  PDF: Our aim is to understand the post-deployment experience from the librarians' perspective .
+  Nota: Confirma a experiência pós-implementação na perspetiva dos bibliotecários, mas não Espanha nem evidência qualitativa.
+- [partly] critica:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1:0
+  IA: Enviesamento de seleção. O risco é relevante, pois a amostra foi de conveniência
+  PDF: Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).
+  Nota: O excerto confirma a amostra de conveniência, mas não avalia o risco de enviesamento.
+- [partly] conceitos:D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente»#1:0
+  IA: Título, resumo e introdução
+  PDF: Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento.
+  Nota: O excerto mostra a introdução, mas não título nem resumo.
+- [partly] cmp_conceitos:D2:p1 «how librarians experience chatbots after deployment in Spanish university libraries»; D2:p1 «We conducted 18 semi-structured interviews with librarians from six universities»#1:1
+  IA: O conceito é tratado como experiência de bibliotecários com chatbots já implementados em bibliotecas universitárias espanholas, medido por entrevistas semiestruturadas
+  PDF: We conducted 18 semi-structured interviews with librarians from six universities in 2022.
+  Nota: O excerto refere entrevistas semiestruturadas com bibliotecários, mas não diz que eram sobre chatbots já implementados em bibliotecas espanholas.
+- [no] conceitos:D1:p5 «não permitem inferir causalidade»#2:0
+  IA: Discussão e conclusão
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.
+  Nota: O excerto é sobre limitações, não sobre discussão e conclusão.
+- [no] perguntas:D1:p5 «como horários, renovações e reservas»#1:0
+  IA: No entanto, o estudo não hierarquiza esses serviços em termos de intenção de uso
+  PDF: As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .
+  Nota: O excerto prioriza serviços simples e de alto valor, embora não fale de intenção de uso.
+- [partly] conclusoes:D1:p3 «variáveis independentes principais»#1:0
+  IA: O método identifica o procedimento estatístico e as variáveis principais
+  PDF: A utilidade percebida e a facilidade de uso foram as variáveis independentes principais .
+  Nota: O excerto identifica as variáveis principais, mas não o procedimento estatístico.
+- [partly] lacunas:D1:p5 «o estudo cobre apenas o Norte de Portugal»#3:0
+  IA: 1 documento, porque apenas Silva et al., 2021 refere esta limitação nos documentos analisados.
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .
+  Nota: O excerto refere a limitação, mas não prova que seja apenas um documento.
+- [partly] cmp_sintese:D1:p2 «com base no Modelo de Aceitação de Tecnologia»; D2:p3 «Qualitative design with thematic analysis»#1:1
+  IA: A explicação da aceitação também difere entre os estudos, porque Silva et al., 2021 adoptam um modelo quantitativo de aceitação tecnológica, enquanto García e Ortega, 2023 seguem uma análise qualitativa da experiência profissional após a implementação
+  PDF: Methods Qualitative design with thematic analysis (Braun and Clarke).
+  Nota: O excerto suporta o desenho qualitativo, mas não toda a comparação entre estudos.
+- [no] conceitos:D1:p2 «que fatores explicam a intenção de uso»#1:0
+  IA: Introdução, método e resultados
+  PDF: A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?
+  Nota: O excerto apresenta a pergunta de investigação, não “introdução, método e resultados”.
+- [partly] ficha:D1:p1 «412 estudantes de três universidades do Norte de Portugal»; D1:p1 «entre março e maio de 2021»#1:0
+  IA: N = 412 respostas válidas, estudantes de três universidades do Norte de Portugal, entre março e maio de 2021
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: O excerto confirma 412 estudantes, local e período, mas não diz “respostas válidas”.
+- [partly] conceitos:D1:p5 «a utilidade percebida é o fator decisivo»#1:0
+  IA: Método, resultados e conclusão
+  PDF: Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.
+  Nota: O excerto corresponde a discussão e conclusão, não a método e resultados.
+- [partly] cmp_sintese:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D2:p3 «Purposive sample of 18 librarians»#1:0
+  IA: Os dois estudos concordam, portanto, que o apoio à pesquisa bibliográfica é uma área problemática, mas divergem na fonte empírica dessa conclusão: Silva et al., 2021 baseiam-se em respostas de estudantes, enquanto García e Ortega, 2023 se baseiam em entrevistas a bibliotecários
+  PDF: Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).
+  Nota: O excerto só suporta a existência de 412 respostas válidas, não a comparação entre estudos.
+- [no] lacunas:D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p3 «Amostra de conveniência: 412 respostas válidas»#2:1
+  IA: Silva et al., 2021
+  PDF: Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).
+  Nota: O excerto não identifica autores nem ano.
+- [partly] critica:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D1:p3 «A análise usou regressão linear múltipla»#1:0
+  IA: Trata-se de um estudo observacional quantitativo, pois aplicou um inquérito online a estudantes e analisou associações entre variáveis, sem intervenção experimental
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: O excerto confirma o inquérito online a estudantes, mas não explicita as associações nem a ausência de intervenção.
+- [partly] cmp_conceitos:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D2:p1 «interviews with librarians from six universities in 2022»#1:0
+  IA: Isto impede comparar diretamente a intenção dos estudantes com a experiência profissional dos bibliotecários, porque os respondentes e o momento de medição são diferentes
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: o excerto identifica estudantes e momento, mas não compara com bibliotecários.
+- [partly] cmp_tabela:D2:p1 «Lucía García and Tomás Ortega»#1:0
+  IA: García e Ortega, 2023
+  PDF: Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries.
+  Nota: o excerto confirma García e Ortega, mas não o ano de 2023.
+- [partly] lacunas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#3:0
+  IA: 1 documento, porque apenas Silva et al., 2021 refere este trabalho futuro nos documentos analisados.
+  PDF: Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões.
+  Nota: o excerto mostra trabalho futuro, mas não prova que seja um único documento nem que só Silva et al. o refira.
+- [partly] cmp_metodos:D1:p5 «o estudo cobre apenas o Norte de Portugal»; D2:p5 «only Spanish institutions»#1:1
+  IA: A comparação deve considerar que os estudos diferem em dimensão da amostra e país analisado
+  PDF: Limitations: small sample, only Spanish institutions , and no student data.
+  Nota: o excerto suporta amostra pequena e instituições espanholas, mas não estabelece diretamente a comparação entre estudos.
+- [no] cmp_sintese:D1:p1 «um inquérito online a 412 estudantes»; D2:p1 «18 semi-structured interviews with librarians»#1:0
+  IA: A comparação sugere uma complementaridade entre os estudos, pois um mostra expectativas e predisposições de estudantes e o outro mostra a avaliação profissional depois da implementação
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: O excerto só descreve um inquérito a estudantes, não uma complementaridade entre estudos.
+- [partly] cmp_metodos:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D2:p3 «had used a chatbot for at least one year»#1:0
+  IA: Isto limita a comparação directa dos resultados, porque um estudo trata intenções dos utilizadores potenciais e o outro trata percepções profissionais após uso real
+  PDF: A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?
+  Nota: O excerto só mostra que o estudo trata a intenção de uso pelos estudantes.
+- [partly] cmp_sintese:D1:p4 «utilidade percebida explicou a maior parte da variância»; D1:p5 «após a implementação real de um chatbot»; D2:p4 «freeing time for complex reference work»; D2:p5 «and no student data»#1:2
+  IA: Uma justificação para um novo estudo pode, assim, partir da lacuna comum entre intenção, uso real e fiabilidade: Silva et al., 2021 mostram que a aceitação estudantil depende sobretudo da utilidade percebida, mas reconhecem a necessidade de estudos após implementação, enquanto García e Ortega, 2023 mostram benefícios operacionais e problemas de confiança depois da implementação, mas sem dados de estudantes
+  PDF: First, chatbots handled about 40% of routine questions, freeing time for complex reference work .
+  Nota: O excerto só suporta o benefício operacional de libertar tempo para trabalho complexo.
+- [partly] comparar:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D2:p3 «had used a chatbot for at least one year»#1:1
+  IA: Esta diferença pode ser explicada pelo contraste entre um estudo de aceitação estudantil e um estudo qualitativo com bibliotecários após uso real
+  PDF: Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year .
+  Nota: O excerto suporta bibliotecários após uso real, mas não o contraste com estudo de aceitação estudantil.
+- [partly] cmp_sintese:D1:p5 «serviços simples e de alto valor, como horários»; D2:p5 «useful for routine services but not yet reliable»#1:0
+  IA: Os dois estudos convergem na ideia de que os chatbots são mais adequados para serviços simples, rotineiros ou administrativos do que para apoio à investigação bibliográfica
+  PDF: As bibliotecas devem começar por serviços simples e de alto valor, como horários , renovações e reservas.
+  Nota: O excerto recomenda serviços simples, mas não compara com apoio à investigação bibliográfica nem fala dos dois estudos.
+- [partly] comparar:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1:1
+  IA: referem que 68% dos estudantes usariam chatbot para horário e empréstimo, e recomendam serviços como horários, renovações e reservas
+  PDF: As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .
+  Nota: O excerto suporta a recomendação de horários, renovações e reservas, mas não os 68%.
+- [partly] cmp_sintese:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «understand the post-deployment experience from the librarians' perspective»#1:1
+  IA: A literatura fornecida centra-se na adoção e uso de chatbots em bibliotecas universitárias, mas aborda o tema a partir de momentos e actores diferentes: Silva et al., 2021 analisam a intenção de uso por estudantes antes da implementação, enquanto García e Ortega, 2023 examinam a experiência de bibliotecários após a implementação
+  PDF: Our aim is to understand the post-deployment experience from the librarians' perspective .
+  Nota: O excerto suporta a experiência pós-implementação na perspetiva dos bibliotecários, mas não a comparação com Silva et al.
+- [partly] conceitos:D1:p3 «adaptado do TAM»#1:0
+  IA: Introdução e método
+  PDF: Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM .
+  Nota: O excerto suporta método, mas não introdução.
+- [partly] conceitos:D1:p3 «foram as variáveis independentes principais»; D1:p4 «A facilidade de uso teve um efeito menor»#1:1
+  IA: É tratada como variável independente principal, mas com efeito menor do que a utilidade percebida
+  PDF: A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003).
+  Nota: O excerto diz que a facilidade de uso teve efeito menor, mas não que é variável independente principal nem menor do que a utilidade percebida.
+- [partly] cmp_conceitos:D2:p1 «concerns about accuracy and user trust»; D2:p4 «incorrect references generated by the system»#1:1
+  IA: Em García e Ortega, 2023, a confiança aparece associada a exatidão, confiança dos utilizadores e referências incorretas
+  PDF: Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system .
+  Nota: O excerto suporta desconfiança e referências incorretas em perguntas de investigação, mas não exatidão nem confiança dos utilizadores.
+- [no] referencias:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2:0
+  IA: Não reportado no texto principal
+  PDF: O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).
+  Nota: O excerto reporta o objetivo do trabalho, contrariando a frase.
+- [no] resumo:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»; D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente de apoio»#1:0
+  IA: O estudo parte da procura crescente de apoio fora do horário de atendimento nas bibliotecas universitárias
+  PDF: Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.
+  Nota: O excerto fala da aceitação de chatbots, mas não da procura crescente de apoio fora do horário.
+- [partly] critica:D1:p3 «adaptado do TAM. Amostra de conveniência: 412 respostas válidas»; D1:p3 «A utilidade percebida e a facilidade de uso foram»#1:1
+  IA: Validade de construto. O estudo indica que o questionário foi adaptado do TAM e que mediu utilidade percebida e facilidade de uso
+  PDF: A utilidade percebida e a facilidade de uso foram as variáveis independentes principais.
+  Nota: O excerto confirma as variáveis, mas não diz que o questionário foi adaptado do TAM.
+- [partly] comparar:D1:p3 «utilidade percebida e a facilidade de uso foram as variáveis»; D1:p4 «beta = 0,52; p <»; D1:p4 «O modelo explicou 47% da variância»#1:1
+  IA: Ponto forte: O estudo apresenta resultados quantitativos claros, porque explicita variáveis independentes, regressão linear múltipla, coeficientes beta, valores de p e R2
+  PDF: Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < < 0,001).
+  Nota: O excerto dá beta e p, mas não explicita regressão linear múltipla nem R2.
+- [partly] critica:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0
+  IA: A extrapolação para outras regiões ou para a população nacional de estudantes deve ser prudente
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: O excerto mostra uma amostra limitada ao Norte de Portugal, mas não afirma directamente a prudência na extrapolação.
+- [partly] perguntas:D1:p5 «o desenho transversal não permitem inferir causalidade»#1:0
+  IA: Silva et al., 2021 referem como limitação que o desenho transversal não permite inferir causalidade
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.
+  Nota: A limitação é suportada, mas o excerto não identifica Silva et al., 2021.
+- [partly] cmp_sintese:D1:p2 «intenção de uso de um chatbot»; D2:p5 «not yet reliable for research support»#1:1
+  IA: Em conjunto, estes contributos indicam que a avaliação dos chatbots de biblioteca deve articular intenção de uso, experiência de implementação, confiança e fiabilidade das respostas
+  PDF: Conclusion Chatbots are useful for routine services but not yet reliable for research support .
+  Nota: O excerto apoia a ideia de falta de fiabilidade, mas não menciona intenção de uso, implementação ou confiança.
+- [partly] cmp_sintese:D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1:0
+  IA: García e Ortega, 2023 defendem combinar perspectivas de bibliotecários e estudantes e testar chatbots com fontes verificadas
+  PDF: Future research should combine librarian and student perspectives and test chatbots with verified sources.
+  Nota: A recomendação coincide, mas o excerto não identifica García e Ortega nem o ano.
+- [partly] metodos:D1:p3 «Desenho transversal, com questionário de 24 itens em escala»#1:0
+  IA: Silva et al., 2021 realizaram um estudo com desenho transversal e questionário, orientado pelo Modelo de Aceitação de Tecnologia, TAM
+  PDF: Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.
+  Nota: O método e o TAM coincidem, mas o excerto não identifica Silva et al. nem 2021.
+- [partly] comparar:D1:p3 «Desenho transversal, com questionário de 24 itens em escala»; D1:p3 «A análise usou regressão linear múltipla»#1:0
+  IA: Desenho transversal, questionário de 24 itens em escala de Likert de 5 pontos e regressão linear múltipla
+  PDF: Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.
+  Nota: O excerto confirma o desenho e o questionário, mas não refere regressão linear múltipla.
+- [partly] cmp_conceitos:D1:p1 «31% confiariam nele»; D2:p4 «students rarely used the chatbot»#1:1
+  IA: Os resultados não são diretamente comparáveis, porque um estudo mede confiança declarada e o outro relata padrões de uso percebidos por bibliotecários
+  PDF: Third, students rarely used the chatbot for literature searches, preferring human help.
+  Nota: O excerto mostra um padrão de uso dos estudantes, mas não padrões percebidos por bibliotecários nem a comparação entre estudos.
+- [partly] critica:D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#2:0
+  IA: Esta conclusão é coerente com os resultados apresentados, porque a utilidade percebida tem o beta mais elevado entre as variáveis principais reportadas
+  PDF: Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ).
+  Nota: O excerto diz que a utilidade percebida explicou mais variância, mas não compara betas entre variáveis principais.
+- [partly] cmp_metodos:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p2 «com base no Modelo de Aceitação de Tecnologia»#1:1
+  IA: Estudo quantitativo, com desenho transversal e questionário baseado no TAM
+  PDF: O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).
+  Nota: O excerto confirma a base no TAM, mas não refere desenho transversal nem questionário.
+- [partly] lacunas:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2:0
+  IA: Silva et al., 2021
+  PDF: Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: O excerto confirma 2021, mas não identifica Silva et al.
+- [partly] critica:D1:p3 «A utilidade percebida e a facilidade de uso foram»#1:0
+  IA: A análise estatística principal é indicada, com regressão linear múltipla e variáveis independentes principais claramente nomeadas
+  PDF: A utilidade percebida e a facilidade de uso foram as variáveis independentes principais.
+  Nota: O excerto nomeia as variáveis independentes, mas não menciona regressão linear múltipla.
+- [partly] critica:D1:p2 «que fatores explicam a intenção de uso de um chatbot»; D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»; D1:p4 «A utilidade percebida explicou a maior parte da variância»#1:1
+  IA: Silva et al., 2021 apresenta uma pergunta clara, uma amostra descrita e resultados quantitativos coerentes com a conclusão central sobre a utilidade percebida
+  PDF: Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres) ).
+  Nota: O excerto descreve a amostra, mas não mostra pergunta, resultados ou conclusão.
+- [partly] critica:D1:p1 «bibliotecas universitárias portuguesas. Aplicámos um inquérito online»; D1:p5 «não permitem inferir causalidade; o estudo cobre apenas»#1:0
+  IA: O estudo é útil como evidência exploratória sobre aceitação de chatbots em bibliotecas universitárias portuguesas, mas não sustenta inferências causais nem generalizações amplas
+  PDF: Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.
+  Nota: O excerto suporta o tema e o inquérito, mas não as limitações causais ou de generalização.
+- [partly] cmp_metodos:D1:p4 «beta = 0,52»; D1:p4 «O modelo explicou 47% da variância»; D2:p4 «Three themes emerged»#1:1
+  IA: Por isso, Silva et al., 2021 produzem estimativas como beta e R2, enquanto García e Ortega, 2023 produzem temas interpretativos
+  PDF: O modelo explicou 47% da variância (R2 = 0,47).
+  Nota: O excerto confirma o R2, mas não beta nem os temas interpretativos de García e Ortega.
+- [partly] cmp_sintese:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «librarians distrusted chatbot answers to research questions»#1:1
+  IA: A confiança nos chatbots para tarefas de investigação surge como uma limitação comum nos dois documentos, embora observada por grupos diferentes
+  PDF: Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system.
+  Nota: O excerto mostra desconfiança dos bibliotecários em tarefas de investigação, mas não que seja comum aos dois documentos.
+- [no] lacunas:D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#2:0
+  IA: Silva et al., 2021
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal.
+  Nota: O excerto não identifica Silva et al. nem o ano 2021.
+- [no] cmp_sintese:D1:p1 «três universidades do Norte de Portugal»; D2:p3 «six Spanish universities that had used a chatbot»#1:1
+  IA: Silva et al., 2021 estudam estudantes de três universidades do Norte de Portugal, com um desenho transversal e questionário, enquanto García e Ortega, 2023 estudam bibliotecários de seis universidades espanholas que já tinham usado um chatbot durante pelo menos um ano
+  PDF: Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.
+  Nota: O excerto refere bibliotecários espanhóis, não estudantes do Norte de Portugal nem desenho transversal.
+- [partly] cmp_metodos:D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Interviews lasted 45 to 70 minutes»#1:1
+  IA: Entrevistas semiestruturadas, com duração de 45 a 70 minutos
+  PDF: Interviews lasted 45 to 70 minutes and were coded in NVivo.
+  Nota: o excerto confirma a duração, mas não que fossem entrevistas semiestruturadas.
+- [partly] cmp_conceitos:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Interviews lasted 45 to 70 minutes and were coded in NVivo»#1:1
+  IA: Analisa a experiência pós-implementação a partir da perspetiva dos bibliotecários, com entrevistas de 45 a 70 minutos codificadas em NVivo
+  PDF: Interviews lasted 45 to 70 minutes and were coded in NVivo .
+  Nota: o excerto confirma a duração e a codificação em NVivo, mas não a perspetiva nem o contexto pós-implementação.
+- [partly] relevancia:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#2:0
+  IA: Resumo, página 1, para perceber o objetivo, a amostra e os principais resultados
+  PDF: Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.
+  Nota: o excerto mostra o resumo e o objetivo geral, mas não a amostra nem os principais resultados.
+- [partly] lacunas:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1:0
+  IA: Falta evidência longitudinal e causal, porque o desenho é transversal e os autores afirmam que não permite inferir causalidade.
+  PDF: Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.
+  Nota: o excerto confirma o desenho transversal, mas não menciona inferência causal nem evidência longitudinal.
+- [partly] cmp_conceitos:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0
+  IA: Mede a intenção de uso de um chatbot de biblioteca pelos estudantes, por questionário de 24 itens em escala de Likert de 5 pontos
+  PDF: A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?
+  Nota: o excerto confirma a intenção de uso como foco, mas não o questionário de 24 itens.
+- [no] lacunas:D1:p5 «o desenho transversal não permitem inferir causalidade»#2:0
+  IA: Silva et al., 2021
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.
+  Nota: o excerto não identifica Silva et al., 2021.
+- [partly] critica:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1:1
+  IA: Assim, os resultados sustentam associações entre variáveis, mas não demonstram que a utilidade percebida cause intenção de uso
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.
+  Nota: O excerto suporta a ausência de inferência causal, mas não refere associações entre variáveis.
+- [partly] estudo:D1:p5 «não permitem inferir causalidade»#1:0
+  IA: Esta aplicação não permite concluir a causa dessa diferença, apenas usar a diferença reportada como alerta para planear comunicação ou formação diferenciada
+  PDF: Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.
+  Nota: O excerto apoia que não se pode inferir causalidade, mas não fala de diferenças nem de comunicação ou formação.
+- [partly] comparar:D2:p1 «18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»; D2:p3 «six Spanish universities that had used a chatbot»#1:2
+  IA: Ponto forte: O estudo é forte para captar a experiência prática dos bibliotecários, porque usa entrevistas semiestruturadas e análise temática com profissionais de seis universidades que já tinham usado chatbots
+  PDF: Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.
+  Nota: O excerto confirma os profissionais de seis universidades com experiência em chatbots, mas não refere entrevistas nem análise temática.
+- [no] resumo:D1:p5 «a utilidade percebida é o fator decisivo»; D1:p5 «começar por serviços simples e de alto valor»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0
+  IA: Assinalam como limitações a amostra de conveniência, o desenho transversal e a cobertura apenas do Norte de Portugal
+  PDF: Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.
+  Nota: O excerto não menciona essas limitações.
+- [no] cmp_sintese:D1:p5 «Trabalho futuro: estudos longitudinais após a implementação real»; D2:p5 «test chatbots with verified sources»#1:1
+  IA: Não reportado: comparações directas entre Portugal e Espanha, medidas de desempenho objectivo dos chatbots, taxas reais de erro, satisfação dos estudantes após implementação e efeitos de longo prazo
+  PDF: Future research should combine librarian and student perspectives and test chatbots with verified sources .
+  Nota: O excerto propõe investigação futura, mas não enumera esses aspetos como não reportados.
+- [partly] cmp_sintese:D1:p5 «Trabalho futuro: estudos longitudinais após a implementação real»; D2:p5 «Future research should combine librarian and student perspectives»#1:1
+  IA: Os documentos também concordam quanto à necessidade de investigação futura mais situada e robusta, embora proponham caminhos diferentes
+  PDF: Future research should combine librarian and student perspectives and test chatbots with verified sources.
+  Nota: O excerto apoia a necessidade de investigação futura, mas não mostra concordância entre documentos nem caminhos diferentes.
+
+Estragadas que passaram:
+fim 0
