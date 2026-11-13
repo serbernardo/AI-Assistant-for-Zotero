@@ -114,6 +114,13 @@
 	core.collectionItems = id => (id === 7 ? { name: "Tese", id: 7, items: [A, B] } : { name: "Capítulo 1", id: 8, items: [] });
 	core.openWindow = o => { window.openedWindow = o; };
 	core.runEngine = async (engine, { onDelta, onInfo, signal, system, prompt }) => {
+		// Segunda leitura do sentido (depois de cada resposta): contada à parte, para não baralhar os outros testes
+		if (/^Comparas frases/.test(system || "")) {
+			window.meaningCalls = (window.meaningCalls || []).concat(prompt);
+			const n = (prompt.match(/^\d+\.\n/gm) || []).length;
+			const text = MOCK.meaning ? MOCK.meaning(prompt, n) : "";
+			return { text, model: "mock" };
+		}
 		window.lastEngine = engine;
 		window.engineCalls = (window.engineCalls || 0) + 1;
 		window.lastSystem = system;

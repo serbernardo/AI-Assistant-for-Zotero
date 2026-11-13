@@ -2819,8 +2819,48 @@ var ZIAChatView = class {
 			this._saveSession();
 			if (this._rebuildLater) this._rebuild();
 		}
+		// Sentido das paráfrases: um pedido curto depois da resposta (não nas séries de fichas, para poupar pedidos)
+		if (!returnMessage && !botMsg.error && botMsg.check) this._autoMeaning(botMsg, engine);
 		if (returnMessage) return botMsg;
 		return !botMsg.error;
+	}
+
+	/**
+	 * Verifica o sentido de todas as paráfrases com frase de base encontrada: um pedido por 15 citações (no máximo 3),
+	 * ao mesmo motor. SIM fica ✓, NÃO fica ✗, EM PARTE fica ≈ com a nota. Uma falha (limite, rede) deixa tudo como estava.
+	 */
+	async _autoMeaning(m, engine) {
+		if (this.core.pref("verify.meaning") === false) return;
+		const items = Object.fromEntries((m.check.items || []).map(it => [it.key, it]));
+		const todo = this.L.meaningClaims(m.text, m.check)
+			.filter(p => items[p.key] && p.parts.some(k => items[p.key].parts[k] && !items[p.key].parts[k].meaning))
+			.slice(0, this.L.MEANING_MAX);
+		if (!todo.length) return;
+		const redraw = () => { try { if (m.el && m.el.isConnected) this._renderMessage(m); } catch (e) { this.core.log("Sentido: " + e); } };
+		m.meaningRunning = true;
+		redraw();
+		try {
+			for (let i = 0; i < todo.length; i += this.L.MEANING_BATCH) {
+				const chunk = todo.slice(i, i + this.L.MEANING_BATCH);
+				const { system, prompt } = this.L.meaningBatchPrompt(chunk);
+				const r = await this.core.runEngine(engine, { system, prompt, win: this.win });
+				const v = this.L.parseMeaningBatch(r.text, chunk.length);
+				chunk.forEach((p, j) => {
+					if (!v[j]) return;
+					for (const k of p.parts) {
+						const part = items[p.key].parts[k];
+						if (part && !part.meaning) part.meaning = { engine, verdict: v[j].verdict, note: v[j].note, auto: true };
+					}
+				});
+				redraw();
+			}
+		}
+		catch (e) { this.core.log("Sentido: " + (e && e.message || e)); }
+		finally {
+			m.meaningRunning = false;
+			redraw();
+			this._persist();
+		}
 	}
 
 	/** Pares pergunta e resposta já concluídos, pela ordem da conversa (sem erros). */
@@ -3641,22 +3681,26 @@ var ZIAChatView = class {
 		for (const e of (c.badCalcs || []).slice(0, 3)) loose.push(this.T("check.badCalc", { e }));
 		if ((c.looseNumbers || []).length) loose.push(this.T("check.numbers", { n: c.looseNumbers.slice(0, 8).join(", ") }));
 		const review = flagged + loose.length;
-		const found = c.quotesOK + (c.wrongPage || []).length;
 		if (!review && !c.quotes && !c.anchors) {
 			if (c.numbers) return this._el("div", "zia-check zia-check-ok", this.T("check.okNumbers", { n: c.numbers }));
 			return this._el("div", "zia-check zia-check-info", this.T(c.cites === 0 ? "check.noCites" : "check.okNoQuotes"));
 		}
 		const box = this._el("div", "zia-check zia-check-line" + (review ? " zia-check-review" : " zia-check-ok"));
 		box.setAttribute("role", "note");
-		// Transcrições (✓), paráfrases com frase de base (≈) e as que ficaram sem verificação
+		// ✓ confirmadas (transcrições iguais e paráfrases com o sentido confirmado), ≈ por confirmar, sem verificação
+		const n = L.checkCounts(c);
 		const bits = [];
-		if (c.quotes) bits.push((found ? "\u2713 " : "") + this.T("check.sum", { ok: found, n: c.quotes }));
-		if (c.anchors) bits.push((c.anchorsOK ? "\u2248 " : "") + this.T("check.sumBased", { ok: c.anchorsOK, n: c.anchors }));
+		if (n.ok) bits.push("\u2713 " + this.T("check.okAll", { n: n.ok }));
+		if (n.based) bits.push("\u2248 " + this.T("check.pending", { n: n.based }));
 		if (c.unmarked && (c.quotes || c.anchors)) bits.push(this.T("check.unmarked", { n: c.unmarked }));
 		bits.forEach((t, i) => {
 			if (i) box.appendChild(this.doc.createTextNode(" · "));
 			box.appendChild(this._el("span", null, t));
 		});
+		if (m.meaningRunning) {
+			if (bits.length) box.appendChild(this.doc.createTextNode(" · "));
+			box.appendChild(this._el("span", "zia-check-running", this.T("check.running")));
+		}
 		let list = null;
 		if (review) {
 			if (bits.length) box.appendChild(this.doc.createTextNode(" · "));
@@ -3674,7 +3718,7 @@ var ZIAChatView = class {
 		wrap.appendChild(box);
 		const legend = this._el("ul", "zia-check-legend");
 		legend.hidden = true;
-		for (const k of ["ok", "based", "moved", "bad", "none"]) legend.appendChild(this._el("li", null, this.T("check.legend." + k)));
+		for (const k of ["ok", "based", "bad", "none"]) legend.appendChild(this._el("li", null, this.T("check.legend." + k)));
 		const info = this._button("\u24d8", "zia-check-info-btn", () => { legend.hidden = !legend.hidden; }, this.T("check.legend.tip"));
 		info.setAttribute("aria-label", this.T("check.legend.tip"));
 		box.appendChild(info);
@@ -4069,23 +4113,37 @@ var ZIAChatView = class {
 		};
 		const ev = src.evidence, near = src.near;
 		switch (src.status) {
-			case "based":
-				title.textContent = this.T("proof.based", { p: pg((ev && ev.doc) || c.doc, (ev && ev.page) || c.page) });
+			case "based": {
+				const p = pg((ev && ev.doc) || c.doc, (ev && ev.page) || c.page);
+				const mean = src.meaning;
+				const v = mean && mean.verdict;
+				title.textContent = this.T(v === "yes" ? "proof.confirmed" : v === "no" ? "proof.differs" : "proof.based", { p });
 				passage(ev);
-				text(this.T("proof.based.text"));
+				if (v === "yes") text(this.T("proof.confirmed.text"));
+				else if (v === "no" || v === "partly") text(this.T(v === "no" ? "proof.differs.text" : "proof.partly.text", { note: mean.note || "" }));
+				else text(this.T("proof.based.text"));
 				open((ev && ev.doc) || c.doc, (ev && ev.page) || c.page);
-				if (ev && ev.match) card.appendChild(this._meaningEl(src, ev, chip, m));
+				if (ev && ev.match && !mean) card.appendChild(this._meaningEl(src, ev, chip, m));
 				break;
+			}
 			case "ok":
 				title.textContent = this.T("proof.ok", { p: pg((ev && ev.doc) || c.doc, (ev && ev.page) || c.page) });
 				passage(ev);
 				open((ev && ev.doc) || c.doc, (ev && ev.page) || c.page);
 				break;
-			case "moved":
-				title.textContent = this.T("proof.moved", { p: pg(ev.doc, ev.page), q: pg(c.doc, c.page) });
+			case "moved": {
+				// A frase está noutra página do mesmo artigo: a citação já mostra a página certa
+				const mean = part ? src.meaning : null;
+				const v = mean && mean.verdict;
+				const p = pg(ev.doc, ev.page);
+				title.textContent = !part ? this.T("proof.ok", { p }) : this.T(v === "yes" ? "proof.confirmed" : v === "no" ? "proof.differs" : "proof.based", { p });
 				passage(ev);
+				if (part && v) text(this.T(v === "yes" ? "proof.confirmed.text" : v === "no" ? "proof.differs.text" : "proof.partly.text", { note: mean.note || "" }));
+				text(this.T("proof.movedNote", { q: pg(c.doc, c.page), p }));
 				open(ev.doc, ev.page, this.T("proof.open"));
+				if (part && ev.match && !mean) card.appendChild(this._meaningEl(src, ev, chip, m));
 				break;
+			}
 			case "otherDoc":
 				title.textContent = this.T("proof.otherDoc");
 				text(this.T("proof.otherDoc.text", { doc: ref(ev.doc), p: ev.page ? ", " + pg(ev.doc, ev.page) : "", cited: ref(c.doc) }));

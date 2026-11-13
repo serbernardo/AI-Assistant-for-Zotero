@@ -902,3 +902,25 @@ test("frase de base em cada citação: lida, escondida e confirmada no PDF (≈)
 	const q = L.verifyAnswer("«Currently, CRM systems are popular in services» [D1:p1 «CRM systems are popular in services»].", docs);
 	assert.deepEqual([q.quotes, q.quotesOK, q.anchors], [1, 1, 0]);
 });
+
+test("sentido das paráfrases: uma entrada por citação com todos os excertos, SIM ✓, NÃO ✗, EM PARTE ≈", () => {
+	const pages = ["Os resultados indicam que 68% dos estudantes usariam um chatbot para horários. A amostra foi de conveniência e cobre o Norte."];
+	const text = "Em Silva, 68% usariam o chatbot e a amostra foi de conveniência [D1:p1 «68% dos estudantes usariam um chatbot»; D1:p1 «A amostra foi de conveniência»].";
+	const res = L.verifyAnswer(text, { D1: { pages } });
+	const claims = L.meaningClaims(text, res);
+	assert.equal(claims.length, 1, "uma entrada para a citação com duas fontes");
+	assert.deepEqual(claims[0].parts, [0, 1]);
+	assert.equal(claims[0].claim, "Em Silva, 68% usariam o chatbot e a amostra foi de conveniência");
+	assert.match(claims[0].passage, /68% dos estudantes/);
+	const { system, prompt } = L.meaningBatchPrompt(claims);
+	assert.match(system, /avalias a frase contra o conjunto/);
+	assert.match(prompt, /^1\.\nFrase da IA: «Em Silva/);
+	assert.deepEqual(L.parseMeaningBatch("1: SIM: diz o mesmo\n**2.** EM PARTE: acrescenta\n3 - NÃO: contradiz\nlixo", 4).map(r => r && r.verdict), ["yes", "partly", "no", null]);
+	const it = res.items[0];
+	assert.equal(L.citeState(it, 0), "based", "sem segunda leitura fica ≈");
+	it.parts[0].meaning = { verdict: "yes" }; it.parts[1].meaning = { verdict: "partly" };
+	assert.deepEqual([L.citeState(it, 0), L.citeState(it, 1)], ["ok", "based"]);
+	it.parts[1].meaning = { verdict: "no" };
+	assert.equal(L.citeState(it, 1), "bad");
+	assert.deepEqual(L.checkCounts(res), { ok: 1, based: 0, bad: 1 });
+});

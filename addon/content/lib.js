@@ -1756,14 +1756,16 @@ var ZIALib = (function () {
 	}
 	/**
 	 * Paráfrase com frase de base: a frase está no PDF (na página citada ou noutra do mesmo artigo, que a citação
-	 * passa a mostrar) e, depois da verificação do sentido, fica ✓ (diz o mesmo) ou ✗ (generaliza, troca, contradiz).
-	 * Sem o sentido verificado fica ≈.
+	 * passa a mostrar) e, depois da verificação do sentido, fica ✓ (SIM: diz o mesmo) ou ✗ (NÃO: o PDF diz outra
+	 * coisa). EM PARTE ou sem verificação fica ≈. Medido com o GPT-5.5 (out/sentido): 0 de 156 frases certas com NÃO,
+	 * 28 de 30 frases estragadas com NÃO.
 	 */
 	function partState(p) {
 		if (!p) return null;
 		if (["based", "moved"].includes(p.status)) {
 			const v = p.meaning && p.meaning.verdict;
-			return v === "yes" ? "ok" : v === "partly" || v === "no" ? "bad" : "based";
+			// EM PARTE não é erro (quase sempre um pequeno acrescento): fica ≈ com a nota no cartão
+			return v === "yes" ? "ok" : v === "no" ? "bad" : "based";
 		}
 		return stateOf(p.status);
 	}
@@ -2607,6 +2609,7 @@ var ZIALib = (function () {
 		return out;
 	}
 
+	const MEANING_BATCH = 15, MEANING_MAX = 45;
 	function meaningBatchPrompt(pairs) {
 		const sys = "Comparas frases escritas por uma IA com os excertos de artigos científicos em que ela diz basear-se. "
 			+ "Para cada número, respondes numa linha: o número, dois pontos, SIM, EM PARTE ou NÃO, dois pontos e uma frase curta. "
@@ -3322,7 +3325,7 @@ var ZIALib = (function () {
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
-		setFichaFields, fichaTemplate, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, meaningBatchPrompt, parseMeaningBatch, plainClaim,
+		setFichaFields, fichaTemplate, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,

@@ -1989,3 +1989,8 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-meaning-yes { color: var(--zia-green, #2e8b3d); }
 .zia-meaning-partly { color: var(--zia-orange, #c77700); }
 .zia-meaning-no { color: var(--zia-red, #d93f33); }
+
+/* Sentido das paráfrases: ≈ fica azul (por confirmar), nunca verde; ✓ só quando o sentido foi confirmado */
+.zia-cite.zia-cite-based .zia-cite-mk { color: var(--zia-accent); }
+.zia-proof-based { border-left-color: var(--zia-accent); }
+.zia-check-running { color: var(--zia-fg2); font-style: italic; }

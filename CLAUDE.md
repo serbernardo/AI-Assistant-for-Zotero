@@ -211,6 +211,19 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   citacao nao era reconhecida e quem lia via o texto tecnico "[D1:p5 «…" sem ligacao nem verificacao. Ficam de
   fora (raros): aspas sem fecho seguidas de outra fonte e duas frases de base na mesma citacao. A mudanca nao
   alterou nada nas 28 respostas reais guardadas nem na medicao com erros plantados.
+- **Sentido das parafrases, automatico (a pedido: "quero que tenham confianca no que a IA transmite"):** depois de
+  cada resposta (`_autoMeaning`, nao nas series de fichas), um pedido curto ao mesmo motor por 15 citacoes, no maximo 3
+  (`MEANING_BATCH`, `MEANING_MAX`). `meaningClaims` da uma entrada por citacao com a frase da resposta e TODOS os excertos
+  que ela cita (uma frase junta varias fontes), `meaningBatchPrompt` diz que autores, seccao, pagina e titulos nao contam,
+  `parseMeaningBatch` le "1: SIM: ...". `part.meaning` = { verdict, note, auto }. `partState`: SIM fica ✓, NAO fica ✗,
+  EM PARTE ou sem resposta fica ≈ (azul, nunca verde), com a nota no cartao (`proof.confirmed`, `proof.differs`,
+  `proof.partly.text`). A frase noutra pagina deixa de ser ↪: a citacao mostra a pagina certa e o cartao diz o que a IA
+  escreveu (`proof.movedNote`). Linha do fim: "✓ confirmadas no PDF: N · ≈ por confirmar: N · sem verificacao · a rever ›"
+  (`checkCounts`). Falha (limite, rede) deixa tudo como estava. Pref escondida `verify.meaning` = false desliga.
+  Medido com o GPT-5.5 (`run_meaning.js`, `out/sentido/`, 156 frases certas e 30 estragadas de 7 tipos): 1.a volta,
+  um excerto de cada vez, 44% de falsos alarmes (`out/sentido/v1`); 2.a volta, todos os excertos juntos: frases certas
+  131 SIM, 25 EM PARTE, 0 NAO; estragadas 28 NAO, 1 EM PARTE, 1 SIM (uma negacao ambigua). Custo: mais 1 a 3 pedidos por
+  resposta. Limite do IAEdu: uma chave ficou bloqueada mais de 1 hora depois de cerca de 37 pedidos seguidos.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"

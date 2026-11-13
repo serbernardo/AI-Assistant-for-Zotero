@@ -1397,9 +1397,13 @@ async function main() {
 			].join("\n");
 			return V.getBestAttachment ? (await V.getBestAttachment()).key : "VPDF";
 		});
+		// A segunda leitura ainda não responde: a paráfrase fica ≈ (por confirmar)
+		await page.evaluate(() => { window.MOCK.meaning = null; window.meaningCalls = []; });
 		await page.fill(".zia-textarea", "Cita frases.");
 		await page.click(".zia-send");
 		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && /relação com os clientes/.test(document.querySelector(".zia-messages").textContent));
+		await page.waitForFunction(() => window.meaningCalls.length === 1 && !/a confirmar o sentido/.test(document.querySelector(".zia-check").textContent));
+		assert.match(await page.evaluate(() => window.meaningCalls[0]), /^1\.\nFrase da IA: «O CRM serve sobretudo a relação com os clientes»\nExcerto do artigo: «.*The main goal of implementing and using CRM/s, "um pedido com a frase e o excerto do PDF");
 		const msg = page.locator(".zia-msg-assistant >> nth=0");
 		const chips = msg.locator(".zia-cite");
 		assert.deepEqual(await chips.evaluateAll(cs => cs.map(c => (c.className.match(/zia-cite-(ok|based|moved|bad)/) || [, "-"])[1] + ":" + c.textContent)),
@@ -1407,12 +1411,12 @@ async function main() {
 				"-:Volik e Kovaleva, 2020, p. 2", "based:Volik e Kovaleva, 2020, p. 1\u2248"],
 			"✓ na certa, ✗ na alterada e no número, ≈ na paráfrase com frase de base, sem marca a paráfrase sem ela");
 		assert.equal((await msg.locator(".zia-check").textContent()).trim(),
-			"\u2713 1 de 2 transcrições confirmadas no PDF · \u2248 1 de 1 paráfrases com base no PDF · 1 sem verificação · 2 a rever ›\u24d8");
+			"\u2713 confirmadas no PDF: 1 · \u2248 por confirmar: 1 · 1 sem verificação · 2 a rever ›\u24d8");
 		assert.doesNotMatch(await msg.locator(".zia-md").textContent(), /The main goal of implementing/, "a frase de base não aparece a quem lê");
 		assert.match(await chips.nth(3).getAttribute("title"), /Sem verificação automática/);
 		// ⓘ: a legenda das marcas
 		await msg.locator(".zia-check-info-btn").click();
-		assert.match(await msg.locator(".zia-check-legend").textContent(), /≈ a frase em que a IA se baseou está nessa página.*Sem marca: não verificada/);
+		assert.match(await msg.locator(".zia-check-legend").textContent(), /✓ está no PDF e diz o mesmo.*≈ a frase de base está no PDF, mas o sentido ficou por confirmar.*Sem marca: não verificada/);
 		// ≈: o cartão mostra a frase de base no PDF
 		await chips.nth(4).click();
 		const based = msg.locator(".zia-proof-based");
@@ -1447,6 +1451,20 @@ async function main() {
 		await page.evaluate(() => { window.opened.length = 0; });
 		await chips.nth(3).click();
 		assert.deepEqual(await page.evaluate(() => window.opened), [`${vk}#2`]);
+		// Segunda leitura: SIM passa a ✓ (confirmado), NÃO passa a ✗ com a nota
+		for (const [say, mk, cls, title] of [["SIM: diz o mesmo", "\u2713", "ok", "Confirmado no PDF · p. 1"], ["NÃO: o excerto fala de outra coisa", "\u2717", "bad", "O PDF diz outra coisa · p. 1"]]) {
+			await page.evaluate(s => { window.MOCK.meaning = (p, n) => Array.from({ length: n }, (_, i) => `${i + 1}: ${s}`).join("\n"); window.meaningCalls = []; }, say);
+			await page.evaluate(() => { const m = view.state.messages.find(x => x.role === "assistant"); for (const it of m.check.items) for (const p of it.parts || []) if (p) delete p.meaning; view._autoMeaning(m, "claude"); });
+			await page.waitForFunction(() => window.meaningCalls.length === 1 && !/a confirmar o sentido/.test(document.querySelector(".zia-check").textContent));
+			const last = page.locator(".zia-msg-assistant >> nth=0").locator(".zia-cite >> nth=4");
+			assert.equal(await last.textContent(), "Volik e Kovaleva, 2020, p. 1" + mk, say);
+			assert.ok(await last.evaluate((c, k) => c.classList.contains("zia-cite-" + k), cls));
+			await last.click();
+			assert.equal(await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-proof .zia-proof-title").textContent(), title);
+			if (cls === "bad") assert.match(await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-proof").textContent(), /fala de outra coisa/);
+			await last.click();
+		}
+		assert.match((await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-check").textContent()), /^\u2713 confirmadas no PDF: 1 · 1 sem verificação · 3 a rever/);
 		console.log("OK verificação por citação: marcas ✓ e ✗, cartão de prova com a frase do PDF, diferenças marcadas, linha no fim, sem caixa de pesquisa");
 
 		// Versão nova do addon: a roda dentada fica verde e diz porquê
