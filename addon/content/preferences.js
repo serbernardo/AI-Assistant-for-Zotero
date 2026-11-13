@@ -526,65 +526,29 @@ window.ZIAPrefs = {
 	 */
 	saveIAEduFields() {
 		const core = this.core();
-		const p = core.iaeduPrefix();
 		const ep = this.$("zia-iaedu-endpoint");
 		const ch = this.$("zia-iaedu-channel");
 		const endpoint = ((ep && ep.value) || "").trim();
 		const channel = ((ch && ch.value) || "").trim();
-		// O segundo agente não tem omissão: precisa do Endpoint e do Canal
-		if (endpoint || channel || p !== "iaedu") {
+		if (endpoint || channel) {
 			if (!core.lib.isIAEduEndpoint(endpoint)) return "prefs.iaedu.badEndpoint";
 			if (!/^[A-Za-z0-9_-]{8,80}$/.test(channel)) return "prefs.iaedu.badChannel";
 		}
-		core.setPref(p + ".endpoint", endpoint);
-		core.setPref(p + ".channel", channel);
+		core.setPref("iaedu.endpoint", endpoint);
+		core.setPref("iaedu.channel", channel);
 		return null;
-	},
-
-	/** Dois agentes do IAEdu (por exemplo GPT-5.5 e DeepSeek): o escolhido é o que responde. */
-	renderIAEduAgents() {
-		const core = this.core();
-		const box = this.$("zia-iaedu-agent");
-		if (!box) return;
-		while (box.firstChild) box.removeChild(box.firstChild);
-		const cur = core.iaeduPrefix();
-		for (const [n, p] of [["1", "iaedu"], ["2", "iaedu2"]]) {
-			const b = this.html("button", this.T("prefs.iaedu.agent" + n));
-			b.className = "zia-agent-btn" + (p === cur ? " on" : "");
-			b.setAttribute("aria-pressed", p === cur ? "true" : "false");
-			// O agente em uso já está escolhido: o botão dele não faz nada
-			b.disabled = p === cur;
-			b.dataset.agent = n;
-			b.addEventListener("click", () => this.switchIAEduAgent(n));
-			box.appendChild(b);
-		}
-	},
-
-	switchIAEduAgent(n) {
-		const core = this.core();
-		if (String(core.pref("iaedu.agent") || "1") === n) return;
-		core.setPref("iaedu.agent", n);
-		// O estado "Pronto" era do outro agente
-		core.setPref("iaedu.lastTest", "");
-		const key = this.$("zia-iaedu-key");
-		if (key) key.value = "";
-		this.initIAEdu();
-		this.setText("zia-iaedu-keystate", "");
-		this.refresh();
 	},
 
 	initIAEdu() {
 		const core = this.core();
-		const p = core.iaeduPrefix();
 		const ep = this.$("zia-iaedu-endpoint");
 		const ch = this.$("zia-iaedu-channel");
-		this.renderIAEduAgents();
 		if (ep) {
-			ep.value = core.pref(p + ".endpoint") || "";
+			ep.value = core.pref("iaedu.endpoint") || "";
 			ep.setAttribute("placeholder", this.T("prefs.iaedu.endpointPh"));
 		}
 		if (ch) {
-			ch.value = core.pref(p + ".channel") || "";
+			ch.value = core.pref("iaedu.channel") || "";
 			ch.setAttribute("placeholder", this.T("prefs.iaedu.channelPh"));
 		}
 	},
@@ -631,9 +595,8 @@ window.ZIAPrefs = {
 		core.setPref(name + ".lastTest", "");
 		// IAEdu: "Apagar" limpa os três campos (Endpoint, Chave e ID do Canal)
 		if (name === "iaedu") {
-			const p = core.iaeduPrefix();
-			core.setPref(p + ".endpoint", "");
-			core.setPref(p + ".channel", "");
+			core.setPref("iaedu.endpoint", "");
+			core.setPref("iaedu.channel", "");
 			for (const id of ["zia-iaedu-endpoint", "zia-iaedu-key", "zia-iaedu-channel"]) {
 				const el = this.$(id);
 				if (el) el.value = "";

@@ -5,10 +5,6 @@ pref("extensions.zoteroia.engine", "");
 pref("extensions.zoteroia.ui.lang", "auto");
 pref("extensions.zoteroia.relevance.topic", "");
 pref("extensions.zoteroia.ficha.fields", "");
-pref("extensions.zoteroia.iaedu.agent", "1");
-pref("extensions.zoteroia.iaedu2.endpoint", "");
-pref("extensions.zoteroia.iaedu2.channel", "");
-pref("extensions.zoteroia.iaedu2.key", "");
 pref("extensions.zoteroia.custom.prompts", "");
 // Guardar as conversas de cada artigo neste computador (pasta de dados do Zotero)
 pref("extensions.zoteroia.ui.group", "compreender");

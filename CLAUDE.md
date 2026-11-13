@@ -366,13 +366,6 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   `explainSelection` procura o painel do artigo em `core.views`, `explainExcerpt`; sem painel aberto o botao diz
   para o abrir); "Verificar o sentido" no cartao ≈ (`_meaningEl`, `core.checkMeaning`, `lib.meaningPrompt`,
   `parseMeaning`: outro motor pronto, ou o mesmo; resultado em `part.meaning`, nunca vira ✓).
-- **Dois agentes do IAEdu (a pedido): OpenAI e DeepSeek.** Nas definicoes, "Agente em uso:" com dois botoes
-  (`renderIAEduAgents`, `switchIAEduAgent`, pref `iaedu.agent` "1" ou "2"). Cada agente tem os seus tres valores:
-  OpenAI usa `iaedu.endpoint`/`iaedu.channel`/chave `iaedu`, DeepSeek usa `iaedu2.*` e a chave `iaedu2` no cofre
-  (`_secretName`: "iaedu" quer dizer o agente em uso, `raw` para o nome exato). `iaeduPrefix`, `iaeduAgentName`.
-  So a OpenAI volta ao agente partilhado da UPorto com os campos em branco: o DeepSeek pede Endpoint e Canal.
-  `engineLabel("iaedu")` = "IAEdu · OpenAI" ou "IAEdu · DeepSeek". Trocar de agente apaga o `iaedu.lastTest`.
-  O DeepSeek ainda nao foi medido com a verificacao (frases de base). Teste em `run_prefs.js`.
 - **Simples por omissao:** `simpleModeOnce` no `bootstrap.js` poe `ui.mode` = simple uma so vez (pref
   `ui.simpleApplied`), depois fica a escolha da pessoa.
 - **Icones das acoes** (`_actionIcon`, `_icon`): cada acao tem um icone em linha fina num quadrado claro

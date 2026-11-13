@@ -73,9 +73,8 @@ ${x}
 	core.setPref = (k, v) => { prefs[k] = v; };
 	core.applyLanguage();
 	const vault = {};
-	// Como o cofre real: "iaedu" quer dizer o agente do IAEdu em uso (OpenAI ou DeepSeek)
-	core.setSecret = async (n, v, raw) => { n = core._secretName(n, raw); vault[n] = v; prefs[n + ".key"] = v ? "oskv1:x" : ""; };
-	core.getSecret = async n => vault[core._secretName(n)] || "";
+	core.setSecret = async (n, v) => { vault[n] = v; prefs[n + ".key"] = v ? "oskv1:x" : ""; };
+	core.getSecret = async n => vault[n] || "";
 	core.testClaude = async () => ({ model: "claude-sonnet-5-5", reply: "OK" });
 	core.testCodex = async () => ({ model: "gpt-5", reply: "OK" });
 	core.findToolExecutable = async n => "/usr/local/bin/" + n;
@@ -337,7 +336,7 @@ async function main() {
 		// Títulos dos campos visíveis: o texto fica dentro do <label> (o Zotero não mostra o atributo label)
 		const titles = await pg.evaluate(() => [...document.querySelectorAll('.zia-engine-panel[data-engine="iaedu"] .zia-iaedu-row label')]
 			.map(l => (l.getBoundingClientRect().width > 0 ? "" : "INVISÍVEL ") + l.textContent.trim()));
-		assert.deepEqual(titles, ["Agente em uso:", "Endpoint da API:", "Chave da API:", "ID do Canal:"], "títulos antes dos três campos");
+		assert.deepEqual(titles, ["Endpoint da API:", "Chave da API:", "ID do Canal:"], "títulos antes dos três campos");
 		const semTexto = await pg.evaluate(() => [...document.querySelectorAll("label[data-zia-label]")].filter(l => !l.textContent.trim()).map(l => l.getAttribute("data-zia-label")));
 		assert.deepEqual(semTexto, [], "todos os títulos das definições têm texto à vista");
 		assert.match(await pg.textContent(".zia-iaedu-fields-note"), /mesmo cartão/);
@@ -349,33 +348,6 @@ async function main() {
 		assert.deepEqual(await pg.evaluate(() => window.iaeduCall), { url: DEF.url, key: KEY, channel: DEF.channel }, "só com a chave usa o agente por omissão");
 		assert.deepEqual(await pg.evaluate(() => [window.PREFS["iaedu.endpoint"], window.PREFS["iaedu.channel"], window.PREFS["iaedu.lastTest"]]), ["", "", "ok"]);
 		await pg.screenshot({ path: path.join(OUT, "ui_definicoes_iaedu.png"), fullPage: true });
-
-		// Dois agentes: OpenAI e DeepSeek, cada um com os seus três valores. O escolhido é o que responde
-		assert.deepEqual(await pg.$$eval(".zia-agent-btn", bs => bs.map(b => b.textContent + (b.disabled ? " (em uso)" : ""))), ["OpenAI (em uso)", "DeepSeek"]);
-		await pg.click('.zia-agent-btn[data-agent="2"]');
-		assert.equal(await pg.evaluate(() => window.PREFS["iaedu.agent"]), "2");
-		assert.equal(await pg.inputValue("#zia-iaedu-endpoint"), "", "campos do DeepSeek vazios");
-		const KEY2 = "sk-usr-deepseekdeepseekdeepseek0123";
-		await pg.fill("#zia-iaedu-key", KEY2);
-		await pg.click("#zia-iaedu-save");
-		assert.match(await state(), /iaedu\.pt/, "o DeepSeek não tem agente por omissão: pede o Endpoint");
-		const DS = "https://api.iaedu.pt/agent-chat//api/v1/agent/DEEPSEEK1/stream";
-		await pg.fill("#zia-iaedu-endpoint", DS);
-		await pg.fill("#zia-iaedu-channel", "canal-deepseek-01");
-		await pg.fill("#zia-iaedu-key", KEY2);
-		await pg.evaluate(() => { window.iaeduCall = null; });
-		await pg.click("#zia-iaedu-save");
-		await pg.waitForFunction(() => window.iaeduCall);
-		assert.deepEqual(await pg.evaluate(() => window.iaeduCall), { url: DS, key: KEY2, channel: "canal-deepseek-01" }, "responde o DeepSeek, com a chave dele");
-		assert.deepEqual(await pg.evaluate(() => [window.PREFS["iaedu.endpoint"], window.PREFS["iaedu2.endpoint"]]), ["", DS], "cada agente guarda os seus valores");
-		assert.equal(await pg.evaluate(() => ZoteroIA.engineLabel("iaedu")), "IAEdu · DeepSeek");
-		// De volta à OpenAI: os valores e a chave dela continuam lá
-		await pg.click('.zia-agent-btn[data-agent="1"]');
-		assert.equal(await pg.inputValue("#zia-iaedu-endpoint"), "");
-		await pg.evaluate(() => { window.iaeduCall = null; });
-		await pg.click("#zia-iaedu-save");
-		await pg.waitForFunction(() => window.iaeduCall);
-		assert.deepEqual(await pg.evaluate(() => window.iaeduCall), { url: DEF.url, key: KEY, channel: DEF.channel }, "a OpenAI continua com a sua chave");
 
 		// outro agente: valida antes de enviar
 		await pg.evaluate(() => { window.iaeduCall = null; });

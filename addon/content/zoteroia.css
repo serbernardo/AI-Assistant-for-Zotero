@@ -1989,10 +1989,3 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-meaning-yes { color: var(--zia-green, #2e8b3d); }
 .zia-meaning-partly { color: var(--zia-orange, #c77700); }
 .zia-meaning-no { color: var(--zia-red, #d93f33); }
-
-/* IAEdu: escolher entre dois agentes */
-.zia-agent-seg { display: inline-flex; border: 1px solid var(--zia-border, #ddd2c9); border-radius: 20px; overflow: hidden; }
-.zia-agent-btn { all: unset; cursor: pointer; padding: 4px 12px; font-size: 13px; font-weight: 600; color: var(--zia-fg2, #555); }
-.zia-agent-btn.on, .zia-agent-btn.on:disabled { cursor: default; opacity: 1; background: var(--zia-accent, #4a6fa5); color: #fff; }
-.zia-agent-btn:focus-visible { outline: 2px solid var(--zia-accent, #4a6fa5); outline-offset: 2px; }
-
