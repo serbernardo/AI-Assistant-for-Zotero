@@ -1,0 +1,6 @@
+Motor iaedu, agente partilhado (por omissão), modelo o do agente, app em pt-PT
+Documentos:
+  D1 Silva et al., 2021: 6 páginas, 2259 caracteres, desvio das páginas não detetado
+  D2 García e Ortega, 2023: 5 páginas, 1677 caracteres, desvio das páginas não detetado
+
+OK  resumo                    11 citações  excertos 0/0   bases 12/12 sem marca 0    15 s  gpt-5.5                  
