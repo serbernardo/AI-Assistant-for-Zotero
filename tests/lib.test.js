@@ -926,3 +926,20 @@ test("sentido das paráfrases: uma entrada por citação com todos os excertos, 
 	it.parts[1].meaning = { verdict: "inference" };
 	assert.equal(L.citeState(it, 1), "ok", "interpretação que decorre do PDF fica ✓");
 });
+
+test("ficha à medida: mudar de língua não duplica os campos", () => {
+	const I = require("../addon/content/i18n.js");
+	const was = I.getLang();
+	try {
+		I.setLang("en");
+		assert.deepEqual(L.localFichaFields(["Referência", "Tipo de estudo", "Paradigma e abordagem", "O meu campo", "Reference"]),
+			["Reference", "Study type", "Paradigm and approach", "O meu campo"]);
+		L.setFichaFields(["Referência", "Resultados principais"]);
+		const t = L.fichaTemplate();
+		assert.match(t, /\| Reference \|/);
+		assert.match(t, /\| Main results \| Com valores numéricos/, "a indicação do campo segue pela posição");
+		I.setLang("pt-PT");
+		assert.deepEqual(L.localFichaFields(["Reference", "Main results"]), ["Referência", "Resultados principais"]);
+	}
+	finally { I.setLang(was); L.setFichaFields([]); }
+});

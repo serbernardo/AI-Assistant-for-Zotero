@@ -749,7 +749,8 @@ var ZIAChatView = class {
 	_fichaFieldsEl() {
 		const wrap = this._el("div", "zia-ficha-fields");
 		const defaults = this.T("ficha.info.fields").split("|").map(f => f.trim());
-		const saved = this.core.fichaFields();
+		// Na língua atual: campos escolhidos noutra língua não aparecem duas vezes
+		const saved = this.L.localFichaFields(this.core.fichaFields());
 		const chosen = new Set(saved.length ? saved : defaults);
 		const extra = saved.filter(f => !defaults.includes(f));
 		const all = defaults.concat(extra);

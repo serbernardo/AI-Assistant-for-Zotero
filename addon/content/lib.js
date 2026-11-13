@@ -171,7 +171,34 @@ var ZIALib = (function () {
 	}
 	function fichaTemplate() {
 		if (!fichaFields) return FICHA_TEMPLATE;
-		return ["| Campo | Conteúdo |", "|---|---|", ...fichaFields.map(f => `| ${f} | ${FICHA_HINTS[f] || ""} |`)].join("\n");
+		return ["| Campo | Conteúdo |", "|---|---|", ...localFichaFields(fichaFields).map(f => `| ${f} | ${FICHA_HINTS[fichaFieldIn(f, "pt-PT")] || ""} |`)].join("\n");
+	}
+
+	/**
+	 * Os campos guardados ficam na língua em que foram escolhidos. Ao mudar de língua, os campos dos modelos (os 14 de
+	 * sempre, Estudo qualitativo, Revisão sistemática) passam para a língua atual pela posição na lista. Os campos
+	 * escritos pela pessoa ficam como estão. Sem isto, mudar de PT para EN mostrava os campos nas duas línguas.
+	 */
+	const FICHA_LISTS = ["ficha.info.fields", "ficha.fields.preset.qual.list", "ficha.fields.preset.review.list"];
+	function fichaFieldIn(name, lang) {
+		const n = String(name || "").trim();
+		for (const k of FICHA_LISTS) {
+			for (const from of Object.keys(I.STR)) {
+				const i = String(I.STR[from][k] || "").split("|").map(s => s.trim()).indexOf(n);
+				if (i < 0) continue;
+				const to = String((I.STR[lang] || {})[k] || "").split("|").map(s => s.trim())[i];
+				if (to) return to;
+			}
+		}
+		return n;
+	}
+	function localFichaFields(list) {
+		const out = [];
+		for (const f of list || []) {
+			const v = fichaFieldIn(f, I.getLang());
+			if (v && !out.includes(v)) out.push(v);
+		}
+		return out;
 	}
 
 	// Grupos de ações (separadores na interface)
@@ -3341,7 +3368,7 @@ var ZIALib = (function () {
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
-		setFichaFields, fichaTemplate, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
+		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,

@@ -1157,6 +1157,22 @@ async function main() {
 		assert.match(await page.evaluate(() => ZoteroIA.lib.ACTIONS.ficha.prompt), /\| Paradigma e abordagem \|[\s\S]*\| País \|/, "os campos escolhidos entram no pedido");
 		assert.doesNotMatch(await page.evaluate(() => ZoteroIA.lib.ACTIONS.ficha.prompt), /\| Palavras-chave \|/, "os que saíram não");
 		await page.screenshot({ path: path.join(OUT, "ui_painel_ficha_info.png") });
+		// Mudar de língua não duplica os campos (relato: apareciam em PT e em inglês)
+		const ptFields = await page.locator(".zia-ficha-field").count();
+		await page.click('.zia-langswitch [data-lang="en"]');
+		await tab(page, "compreender");
+		if (!(await page.locator(".zia-info-panel").count())) await page.click(".zia-info-btn");
+		await page.waitForSelector(".zia-info-panel");
+		const enFields = await page.locator(".zia-ficha-field").allTextContents();
+		assert.equal(enFields.length, ptFields, "o mesmo número de campos nas duas línguas: " + enFields.join(" /"));
+		assert.ok(enFields.some(f => /Paradigm and approach/.test(f)) && !enFields.some(f => /Paradigma e abordagem/.test(f)), "os campos do modelo passam para inglês");
+		assert.ok(enFields.some(f => /País/.test(f)), "o campo escrito pela pessoa fica como está");
+		assert.match(await page.evaluate(() => ZoteroIA.lib.ACTIONS.ficha.prompt), /\| Paradigm and approach \|/);
+		await page.click('.zia-langswitch [data-lang="pt-PT"]');
+		await tab(page, "compreender");
+		if (!(await page.locator(".zia-info-panel").count())) await page.click(".zia-info-btn");
+		await page.waitForSelector(".zia-info-panel");
+		assert.equal(await page.locator(".zia-ficha-field").count(), ptFields, "de volta a PT, sem duplicados");
 		await page.click('.zia-ficha-presets button:has-text("Padrão")');
 		assert.equal(await page.evaluate(() => ZoteroIA.pref("ficha.fields")), "", "Padrão volta aos 14 de sempre");
 		await page.click(".zia-info-close");
