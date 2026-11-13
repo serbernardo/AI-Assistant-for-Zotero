@@ -1,0 +1,25 @@
+- Assistentes conversacionais em bibliotecas universitárias [D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»]
+  - Problema
+    - Procura fora do horário de atendimento [D1:p2 «procura crescente de apoio fora do horário de atendimento»]
+    - Aceitação de chatbots em bibliotecas universitárias [D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»]
+  - Objetivo
+    - Medir intenção de uso e fatores explicativos [D1:p2 «medir a intenção de uso de chatbots e os fatores»]
+    - Usar o Modelo de Aceitação de Tecnologia [D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»]
+    - Explicar intenção de uso pelos estudantes [D1:p2 «que fatores explicam a intenção de uso de um chatbot»]
+  - Método
+    - Desenho transversal com questionário de 24 itens [D1:p3 «Desenho transversal, com questionário de 24 itens»]
+    - Amostra de conveniência com 412 respostas válidas [D1:p3 «Amostra de conveniência: 412 respostas válidas»]
+    - Análise por regressão linear múltipla [D1:p3 «A análise usou regressão linear múltipla»]
+  - Resultados
+    - Utilidade percebida teve maior efeito [D1:p4 «A utilidade percebida explicou a maior parte»]
+    - Facilidade de uso teve efeito menor [D1:p4 «A facilidade de uso teve um efeito menor»]
+    - Modelo explicou 47% da variância [D1:p4 «O modelo explicou 47% da variância»]
+    - Engenharia mostrou maior intenção de uso [D1:p4 «Estudantes de engenharia mostraram maior intenção de uso»]
+  - Conclusões
+    - Utilidade percebida foi o fator decisivo [D1:p5 «a utilidade percebida é o fator decisivo»]
+    - Serviços iniciais devem ser simples e valiosos [D1:p5 «serviços simples e de alto valor»]
+    - Exemplos: horários, renovações e reservas [D1:p5 «como horários, renovações e reservas»]
+  - Limitações e futuro
+    - Amostra e desenho não permitem causalidade [D1:p5 «não permitem inferir causalidade»]
+    - Estudo cobre apenas o Norte de Portugal [D1:p5 «cobre apenas o Norte de Portugal»]
+    - Futuro: estudos longitudinais após implementação real [D1:p5 «estudos longitudinais após a implementação real»]

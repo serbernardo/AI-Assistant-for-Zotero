@@ -200,7 +200,12 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   IA real (revisao do projeto, Claude Sonnet 5.5 com os PDFs de teste, `out/ia_real_claude_bases/`): segue o
   formato, 84 de 84 frases de base encontradas no PDF, 1 citacao sem marca em 95. Custo: as respostas em bruto
   ficam 25% a 66% mais longas (mais tempo e mais tokens de saida). `run_ai_real.js` mostra "bases N/M" e
-  "sem marca". Falta o GPT-5.5 pelo IAEdu e artigos reais longos.
+  "sem marca". GPT-5.5 pelo IAEdu (agente partilhado, 30 pedidos, `out/ia_real_iaedu/`): 561 de 563 frases de base
+  no PDF, 23 de 23 transcricoes, 3 citacoes sem marca em 458 (mais as 4 do Mapa de temas, que so le metadados). Os dois
+  deslizes: uma frase de base tirada da linha "Referencia" que o addon junta (nao e texto do PDF) e uma meio traduzida
+  ("in bibliotecas universitarias"). Destaques e Perguntar a colecao "falham" so porque o teste nao manda destaques
+  nem pergunta: a IA recusou inventar, o que e o certo. Correr com `NODE_USE_ENV_PROXY=1` nesta sessao. Falta o
+  DeepSeek e artigos reais longos.
   Deslizes de formato aceites (`ANCHOR`, `ANCHOR_RE`, `parseCiteGroup`): virgula ou dois pontos antes das aspas
   ([D1:p5, «…»]), aspas sem fecho no fim da citacao ([D1:p5 «…]) e [D1, p. 5] como uma so citacao. Antes, a
   citacao nao era reconhecida e quem lia via o texto tecnico "[D1:p5 «…" sem ligacao nem verificacao. Ficam de

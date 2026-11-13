@@ -1,0 +1,8 @@
+- Chatbots em bibliotecas universitárias
+  - Aceitação e intenção de uso por estudantes (1)
+    - Aceitação de chatbots em bibliotecas portuguesas [D1]
+  - Implementação e experiência pós-adoção (1)
+    - Experiência de bibliotecários após implementação [D2]
+  - Confiança, precisão e tipos de apoio (2)
+    - Confiança estudantil no apoio bibliográfico [D1]
+    - Precisão e confiança no uso real [D2]

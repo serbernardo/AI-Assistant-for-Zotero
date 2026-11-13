@@ -1,0 +1,14 @@
+## Fontes a ler a seguir em Silva et al., 2021
+
+Silva et al., 2021 tem apenas **quatro** entradas na lista de referências, por isso não é possível indicar 5 a 10 fontes sem inventar referências. As referências não são citadas no corpo do texto por autor e ano. Assim, a ordenação abaixo é inferida apenas a partir da ligação entre a lista de referências, o enquadramento TAM e os temas declarados no artigo.
+
+| Ordem | Referência tal como aparece | Tipo | Porque vale a pena ler a seguir |
+|---:|---|---|---|
+| 1 | Davis, F. D. (1989). Perceived usefulness. MIS Quarterly. [D1:p5 «Davis, F. D. (1989). Perceived usefulness. MIS Quarterly.»] | Teoria de base [Inferência], porque o artigo declara usar o TAM [D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»] | É a fonte mais importante para aprofundar a base teórica do estudo, porque Silva et al., 2021 medem a intenção de uso “com base no Modelo de Aceitação de Tecnologia (TAM)” e destacam a utilidade percebida como variável central [D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»; D1:p3 «A utilidade percebida e a facilidade de uso foram»]. |
+| 2 | Venkatesh, V. (2003). UTAUT. MIS Quarterly. [D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»] | Teoria de base [Inferência], pelo título da referência e pela proximidade temática com aceitação de tecnologia [D1:p5 «Venkatesh, V. (2003). UTAUT. MIS Quarterly.»] | Pode ser lida para alargar o enquadramento teórico da aceitação tecnológica. Contudo, Silva et al., 2021 não explicam no corpo do texto onde usam esta fonte, nem a citam por autor e ano. Não reportado no texto principal [D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»]. |
+| 3 | Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech. [D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»] | Não reportado | Vale a pena ler pela proximidade directa com o tema do artigo, chatbots em bibliotecas académicas. Contudo, Silva et al., 2021 não indicam no corpo do texto onde usam esta fonte, nem para que argumento específico a mobilizam. Não reportado [D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»]. |
+| 4 | Smith, J. (2020). AI services. JAL. [D1:p6 «Smith, J. (2020). AI services. JAL.»] | Não reportado | Pode ser relevante para contextualizar serviços de IA, mas o documento não explica a sua função no estudo. Também não há citação no corpo do texto que indique onde esta referência é usada. Não reportado [D1:p6 «Smith, J. (2020). AI services. JAL.»]. |
+
+## Nota sobre a evidência
+
+O artigo refere o TAM no enquadramento e no método, mas não apresenta chamadas bibliográficas no corpo do texto para Davis, Venkatesh, Lee ou Smith. Por isso, as ligações mais específicas entre cada referência e a sua função no artigo são limitadas ao que está explicitamente escrito.
