@@ -238,6 +238,12 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   nunca vem da linha "Referencia:" (regra 1). Copiar, notas, Word, CSV e Anki usam `fixCitePages` (pagina certa).
   Ficha a medida: `localFichaFields`/`fichaFieldIn` passam os campos dos modelos para a lingua atual pela posicao
   (antes, mudar de PT para EN mostrava os campos nas duas linguas).
+  1.0.27 (a pedido, depois de usar): o cartao de prova numa tabela abre numa linha propria (`tr.zia-proof-row`, td com
+  colspan) logo por baixo da linha da citacao, e nao no fim da tabela; os filtros das tabelas ignoram essa linha. A
+  interpretacao confirmada fica so com ✓ (sem etiqueta a seguir, o cartao diz que e interpretacao). Perguntas de
+  investigacao: sem a marca [Inferencia] em cada linha (`ctx.noInferBadge`, e o pedido ja nao a pede), porque tudo e
+  proposta da IA. Frase de base com "[...]" (`ANCHOR` aceita "[...]"/"[…]", `parseCiteGroup` fica com o pedaco mais
+  longo): antes a citacao aparecia como texto tecnico "[Sourri et al., 2026:p1 «…»]".
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"

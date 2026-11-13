@@ -1994,3 +1994,7 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-cite.zia-cite-based .zia-cite-mk { color: var(--zia-accent); }
 .zia-proof-based { border-left-color: var(--zia-accent); }
 .zia-check-running { color: var(--zia-fg2); font-style: italic; }
+
+/* Cartão de prova numa tabela: linha própria por baixo da linha da citação, a toda a largura */
+.zia-proof-row > td { padding: 4px 6px 6px; background: transparent; position: static; white-space: normal; }
+.zia-proof-row .zia-proof { margin: 0; }

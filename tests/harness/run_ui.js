@@ -1478,11 +1478,33 @@ async function main() {
 			await last.click();
 			assert.equal(await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-proof .zia-proof-title").textContent(), title);
 			if (cls === "bad") assert.match(await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-proof").textContent(), /fala de outra coisa/);
-			// Interpretação: ✓ com a etiqueta "interpretação da IA" a seguir à citação
-			assert.equal(await last.evaluate(c => !!(c.nextElementSibling && c.nextElementSibling.classList.contains("zia-ia-badge"))), /INTERPRETA/.test(say), "etiqueta só na interpretação");
+			// Interpretação certa: só o ✓, sem etiqueta a mais (o cartão diz que é uma interpretação)
+			assert.equal(await last.evaluate(c => !!(c.nextElementSibling && c.nextElementSibling.classList.contains("zia-ia-badge"))), false, "sem etiqueta a seguir à citação");
 			await last.click();
 		}
 		assert.match((await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-check").textContent()), /^\u2713 confirmadas no PDF: 1 · 1 sem verificação · 3 a rever/);
+		// Numa tabela: o cartão abre na linha logo por baixo da citação, não no fim da tabela
+		await page.evaluate(() => {
+			window.MOCK.answer = [
+				"| Conceito | Definição |", "|---|---|",
+				"| CRM | «optimize and automate business processes of customer relationships» [D1:p1] |",
+				"| Amostra | A proporção foi de 47,3% [D1:p2 «The share of firms using CRM was 47.3%»] |",
+				"| Última | Linha sem citação |",
+				"",
+				"Os tipos citados [D1:p1 «The main goal of implementing [...] and using CRM»] ficam reconhecidos.",
+			].join("\n");
+			window.MOCK.meaning = null;
+		});
+		await page.fill(".zia-textarea", "Tabela.");
+		await page.click(".zia-send");
+		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && /Linha sem citação/.test(document.querySelector(".zia-messages").textContent));
+		const tmsg = page.locator(".zia-msg-assistant >> nth=0");
+		await tmsg.locator("table .zia-cite >> nth=0").click();
+		const after = await tmsg.locator("table tbody tr").evaluateAll(rs => rs.map(r => r.classList.contains("zia-proof-row") ? "PROVA" : r.cells[0].textContent));
+		assert.deepEqual(after, ["CRM", "PROVA", "Amostra", "Última"], "o cartão fica por baixo da linha da citação");
+		await tmsg.locator("table .zia-cite >> nth=0").click();
+		assert.equal(await tmsg.locator("tr.zia-proof-row").count(), 0, "um segundo clique fecha");
+		assert.doesNotMatch(await tmsg.locator(".zia-md").textContent(), /\[D1|\[\.\.\.\]/, "a frase de base com [...] não aparece como texto técnico");
 		console.log("OK verificação por citação: marcas ✓ e ✗, cartão de prova com a frase do PDF, diferenças marcadas, linha no fim, sem caixa de pesquisa");
 
 		// Versão nova do addon: a roda dentada fica verde e diz porquê

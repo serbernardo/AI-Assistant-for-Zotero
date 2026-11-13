@@ -3214,6 +3214,8 @@ var ZIAChatView = class {
 			citeItem: m.check && m.check.items ? inner => items[inner + "#" + (seen[inner] = (seen[inner] || 0) + 1)] || null : null,
 			onCite: (c, extra) => this._openCite(c, extra && Object.assign({ m }, extra)),
 			onLink: href => this._openLink(href),
+			// Perguntas de investigação: tudo é proposta da IA, a etiqueta em cada linha só fazia ruído
+			noInferBadge: m.actionID === "perguntas",
 		};
 		if (m.text) {
 			try {
@@ -3820,7 +3822,7 @@ var ZIAChatView = class {
 		if (this.mode !== "window") return;
 		const norm = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 		for (const wrap of body.querySelectorAll(".zia-table-wrap")) {
-			const rows = [...wrap.querySelectorAll("tbody tr")];
+			const rows = [...wrap.querySelectorAll("tbody tr:not(.zia-proof-row)")];
 			if (rows.length < this.TABLE_TOOLS) continue;
 			wrap.classList.add("zia-table-big");
 			const bar = this._el("div", "zia-table-bar");
@@ -4041,9 +4043,21 @@ var ZIAChatView = class {
 			return;
 		}
 		const card = this._proofCard(item, c, m, () => this._toggleProof(item, c, chip, m, k), k, chip);
-		// Por baixo do parágrafo, do item da lista ou da tabela onde está a citação
-		const table = chip.closest("table");
-		const host = (table && (table.closest(".zia-table-wrap") || table)) || chip.closest("li, p, blockquote, h2, h3, h4, h5, h6") || chip.parentNode;
+		// Numa tabela: numa linha nova logo por baixo da linha da citação (antes ia para o fim da tabela)
+		const tr = chip.closest("tr");
+		if (tr && tr.parentNode) {
+			const row = this._el("tr", "zia-proof-row");
+			const td = this._el("td");
+			td.colSpan = Math.max(1, tr.children.length);
+			td.appendChild(card);
+			row.appendChild(td);
+			tr.parentNode.insertBefore(row, tr.nextSibling);
+			chip._proof = row;
+			chip.classList.add("zia-cite-open");
+			return;
+		}
+		// Por baixo do parágrafo ou do item da lista onde está a citação
+		const host = chip.closest("li, p, blockquote, h2, h3, h4, h5, h6") || chip.parentNode;
 		if (host.localName === "li") host.appendChild(card);
 		else host.parentNode.insertBefore(card, host.nextSibling);
 		chip._proof = card;

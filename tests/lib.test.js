@@ -951,3 +951,10 @@ test("copiar e notas: a citação com a frase noutra página passa à página ce
 	assert.equal(L.fixCitePages(text, res), "A amostra foi de conveniência [D1:p2 «A amostra foi de conveniência e cobre o Norte»]. Outra [D1:p2].");
 	assert.equal(L.fixCitePages("Sem nada [D1:p2].", null), "Sem nada [D1:p2].");
 });
+
+test("frase de base com [...] no meio: a citação é reconhecida e fica o pedaço mais longo", () => {
+	const t = "Tipos [D1:p1 «Common polymer types, including polyethylene (PE), [...] and PET»].";
+	const m = [...t.matchAll(L.CITE_GROUP_RE)];
+	assert.equal(m.length, 1);
+	assert.equal(L.parseCiteGroup(m[0][1])[0].anchor, "Common polymer types, including polyethylene (PE),");
+});

@@ -103,6 +103,7 @@ var ZIALib = (function () {
 			"   Para intervalos usa [D1:p5-6 «…»]. Para várias fontes usa [D1:p5 «…»; D2:p3 «…»].",
 			"   A frase de base vem sempre do texto das páginas, nunca da linha «Referência:», que é escrita pelo",
 			"   assistente. Para o que só está nessa linha (autores, ano, título, revista), cita só [D1].",
+			"   A frase de base é um pedaço seguido do texto, sem cortes nem [...].",
 			"   Usa apenas identificadores de documento e números de página que existam nas marcas",
 			"   <documento id=...> e <p n=...>. Se o documento não tiver marcas de página, cita apenas [D1].",
 			"2. Quando for útil, inclui antes da citação um excerto curto e literal entre aspas",
@@ -517,7 +518,8 @@ var ZIALib = (function () {
 			fichasOK: true,
 			prompt: "Propõe 5 perguntas de investigação novas e exequíveis que decorram dos documentos. Para cada uma, indica: "
 				+ "a pergunta, a lacuna que resolve (com citações), um desenho de estudo sugerido (método, amostra e dados), "
-				+ "as dificuldades previsíveis e o contributo esperado. Marca como [Inferência] tudo o que propões. "
+				+ "as dificuldades previsíveis e o contributo esperado. A lacuna leva citações. A pergunta, o desenho, as "
+				+ "dificuldades e o contributo são propostas tuas, por natureza: não lhes ponhas a marca [Inferência]. "
 				+ "Ordena da pergunta mais exequível para a mais ambiciosa.",
 		},
 	};
@@ -1360,8 +1362,8 @@ var ZIALib = (function () {
 	// Tolerante com os deslizes mais comuns dos modelos: vírgula ou dois pontos antes das aspas
 	// ([D1:p5, «…»]) e aspas sem fecho no fim da citação ([D1:p5 «…]). Sem isto, quem lê via o texto
 	// técnico da citação, sem ligação nem verificação.
-	const ANCHOR = `\\s*[,:]?\\s*(?:«[^«»\\]\\[|\\n]{3,300}»|\u201c[^\u201c\u201d\\]\\[|\\n]{3,300}\u201d|"[^"\\]\\[|\\n]{3,300}"`
-		+ `|«[^«»\\]\\[|\\n;]{3,300}(?=\\])|\u201c[^\u201c\u201d\\]\\[|\\n;]{3,300}(?=\\])|"[^"\\]\\[|\\n;]{3,300}(?=\\]))`;
+	const ANCHOR = `\\s*[,:]?\\s*(?:«(?:[^«»\\]\\[|\\n]|\\[(?:\\.\\.\\.|…)\\]){3,300}»|\u201c(?:[^\u201c\u201d\\]\\[|\\n]|\\[(?:\\.\\.\\.|…)\\]){3,300}\u201d|"(?:[^"\\]\\[|\\n]|\\[(?:\\.\\.\\.|…)\\]){3,300}"`
+		+ `|«(?:[^«»\\]\\[|\\n;]|\\[(?:\\.\\.\\.|…)\\]){3,300}(?=\\])|\u201c(?:[^\u201c\u201d\\]\\[|\\n;]|\\[(?:\\.\\.\\.|…)\\]){3,300}(?=\\])|"(?:[^"\\]\\[|\\n;]|\\[(?:\\.\\.\\.|…)\\]){3,300}(?=\\]))`;
 	const ONE_CITE = `D\\d+(?:\\s*:\\s*${PAGE_PART})?(?:${ANCHOR})?`;
 	const ANY_CITE = `(?:${ONE_CITE}|${PAGE_PART}(?:${ANCHOR})?)`;
 	const CITE_INNER = `${ONE_CITE}(?:\\s*[,;]\\s*${ANY_CITE})*`;
@@ -1369,14 +1371,16 @@ var ZIALib = (function () {
 	const DOC_PART_RE = /^D(\d+)(?:\s*:\s*p{1,2}\.?\s*(\d+)(?:\s*[-–]\s*(?:p{1,2}\.?\s*)?(\d+))?)?$/;
 	const PAGE_ONLY_RE = /^p{1,2}\.?\s*(\d+)(?:\s*[-–]\s*(?:p{1,2}\.?\s*)?(\d+))?$/;
 
-	const ANCHOR_RE = /\s*[,:]?\s*(?:«([^«»\]\[|\n]{3,300})»|\u201c([^\u201c\u201d\]\[|\n]{3,300})\u201d|"([^"\]\[|\n]{3,300})"|«([^«»\]\[|\n;]{3,300})$|\u201c([^\u201c\u201d\]\[|\n;]{3,300})$|"([^"\]\[|\n;]{3,300})$)/g;
+	const ANCHOR_RE = /\s*[,:]?\s*(?:«((?:[^«»\]\[|\n]|\[(?:\.\.\.|…)\]){3,300})»|\u201c((?:[^\u201c\u201d\]\[|\n]|\[(?:\.\.\.|…)\]){3,300})\u201d|"((?:[^"\]\[|\n]|\[(?:\.\.\.|…)\]){3,300})"|«((?:[^«»\]\[|\n;]|\[(?:\.\.\.|…)\]){3,300})$|\u201c((?:[^\u201c\u201d\]\[|\n;]|\[(?:\.\.\.|…)\]){3,300})$|"((?:[^"\]\[|\n;]|\[(?:\.\.\.|…)\]){3,300})$)/g;
 
 	function parseCiteGroup(inner) {
 		const out = [];
 		let lastDoc = null;
 		// As frases de base podem ter vírgulas: saem antes de separar as citações
 		const anchors = [];
-		const plain = String(inner).replace(ANCHOR_RE, (x, ...g) => "\u0001" + (anchors.push(g.slice(0, 6).find(Boolean).trim()) - 1) + "\u0002");
+		// Frase de base com "[...]" no meio (a IA saltou palavras): fica o pedaço mais longo, que é cópia exata
+		const longest = a => (/\[(?:\.\.\.|…)\]|…/.test(a) ? a.split(/\s*(?:\[(?:\.\.\.|…)\]|…)\s*/).sort((x, y) => y.length - x.length)[0] : a).trim();
+		const plain = String(inner).replace(ANCHOR_RE, (x, ...g) => "\u0001" + (anchors.push(longest(g.slice(0, 6).find(Boolean))) - 1) + "\u0002");
 		for (const raw of plain.split(/\s*[,;]\s*/)) {
 			let anchor = null;
 			const part = raw.replace(/\u0001(\d+)\u0002/, (x, i) => { anchor = anchors[+i]; return ""; }).trim();
@@ -2386,10 +2390,10 @@ var ZIALib = (function () {
 	}
 
 	// Texto com a etiqueta "interpretação da IA" no lugar de [Inferência] (e sem [Declarado])
-	function textToDOM(doc, parent, text) {
+	function textToDOM(doc, parent, text, noBadge) {
 		const parts = String(text).replace(STATED_RE, "").split(INFER_RE);
 		parts.forEach((x, i) => {
-			if (i > 0) {
+			if (i > 0 && !noBadge) {
 				const b = el(doc, "span", "zia-ia-badge", t("cite.inference"));
 				b.title = t("cite.inference.tip");
 				parent.appendChild(b);
@@ -2403,7 +2407,7 @@ var ZIALib = (function () {
 	function inlinesToDOM(doc, parent, inlines, ctx) {
 		for (const n of inlines || []) {
 			switch (n.t) {
-				case "text": textToDOM(doc, parent, replaceDocIds(n.v, ctx && ctx.docsMap)); break;
+				case "text": textToDOM(doc, parent, replaceDocIds(n.v, ctx && ctx.docsMap), ctx && ctx.noInferBadge); break;
 				case "code": parent.appendChild(el(doc, "code", null, n.v)); break;
 				case "strong": { const e = el(doc, "strong"); inlinesToDOM(doc, e, n.c, ctx); parent.appendChild(e); break; }
 				case "em": { const e = el(doc, "em"); inlinesToDOM(doc, e, n.c, ctx); parent.appendChild(e); break; }
@@ -2446,18 +2450,6 @@ var ZIALib = (function () {
 						if (!known) a.classList.add("zia-cite-unknown");
 						a.addEventListener("click", e => { e.preventDefault(); ctx.onCite && ctx.onCite(c, state ? { item, el: a, k } : null); });
 						parent.appendChild(a);
-						// Interpretação confirmada: etiqueta "interpretação da IA" a seguir, se a frase ainda não a tiver
-						if (part && part.meaning && part.meaning.verdict === "inference") {
-							let sib = a.previousSibling, has = false;
-							while (sib && !(sib.classList && sib.classList.contains("zia-cite"))) {
-								if (sib.classList && sib.classList.contains("zia-ia-badge")) { has = true; break; }
-								sib = sib.previousSibling;
-							}
-							if (!has) {
-								parent.appendChild(doc.createTextNode(" "));
-								parent.appendChild(el(doc, "span", "zia-ia-badge", t("cite.inference")));
-							}
-						}
 					});
 					break;
 				}
