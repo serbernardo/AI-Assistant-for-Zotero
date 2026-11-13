@@ -1,0 +1,152 @@
+[
+ {
+  "id": "cmp_conceitos:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Interviews lasted 45 to 70 minutes and were coded in NVivo»#1:1",
+  "kind": "numero",
+  "claim": "Analisa a experiência pós-implementação a partir da perspetiva dos bibliotecários, com entrevistas de 15 a 20 minutos codificadas em NVivo"
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «librarians distrusted chatbot answers to research questions»#1:0",
+  "kind": "negacao",
+  "claim": "Também aparece ligada à confiança dos bibliotecários nas respostas a questões de investigação"
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3:0",
+  "kind": "sujeito",
+  "claim": "Silva et al., 2021 mede a confiança dos bibliotecários no apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "cmp_metodos:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:1",
+  "kind": "exagero",
+  "claim": "Amostra de conveniência, desenho transversal sem inferência causal, e cobertura de todo o território português"
+ },
+ {
+  "id": "cmp_metodos:D2:p5 «small sample, only Spanish institutions, and no student data»#1:0",
+  "kind": "negacao",
+  "claim": "Amostra grande, instituições de vários países, e dados de estudantes incluídos"
+ },
+ {
+  "id": "cmp_resultados:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «students rarely used the chatbot for literature searches»#1:1",
+  "kind": "inverte",
+  "claim": "Ambos apontam elevada confiança e uso frequente para apoio à pesquisa"
+ },
+ {
+  "id": "cmp_resultados:D2:p4 «freeing time for complex reference work»#1:0",
+  "kind": "causalidade",
+  "claim": "García e Ortega, 2023 demonstram que os chatbots causaram uma melhoria comprovada na qualidade do trabalho de referência"
+ },
+ {
+  "id": "cmp_sintese:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1:1",
+  "kind": "numero",
+  "claim": "Em Silva et al., 2021, 86% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 13% confiariam nele para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "comparar:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1:2",
+  "kind": "numero",
+  "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso, a facilidade de uso teve efeito menor e o modelo explicou 74% da variância"
+ },
+ {
+  "id": "comparar:D2:p4 «chatbots handled about 40% of routine questions»; D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1:2",
+  "kind": "inverte",
+  "claim": "Os chatbots trataram cerca de 40% das perguntas rotineiras, os bibliotecários confiaram nas respostas a questões de investigação e os estudantes usaram-nos muito para pesquisas bibliográficas"
+ },
+ {
+  "id": "comparar:D2:p1 «18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»; D2:p3 «six Spanish universities that had used a chatbot»#1:2",
+  "kind": "numero",
+  "claim": "Ponto forte: o estudo é forte para captar a experiência prática dos bibliotecários, porque usa entrevistas com profissionais de dezasseis universidades que já tinham usado chatbots durante pelo menos cinco anos"
+ },
+ {
+  "id": "comparar:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#3:1",
+  "kind": "generaliza",
+  "claim": "referem amostra representativa de todos os estudantes portugueses"
+ },
+ {
+  "id": "comparar:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «six Spanish universities that had used a chatbot»#1:0",
+  "kind": "sujeito",
+  "claim": "García e Ortega acrescentam evidência qualitativa sobre a experiência dos estudantes após a implementação em Espanha"
+ },
+ {
+  "id": "conceitos:D1:p3 «foram as variáveis independentes principais»; D1:p4 «A facilidade de uso teve um efeito menor»#1:1",
+  "kind": "inverte",
+  "claim": "É tratada como variável independente principal, com efeito maior do que a utilidade percebida"
+ },
+ {
+  "id": "conclusoes:D1:p4 «maior intenção de uso do que estudantes de humanidades»#1:0",
+  "kind": "inverte",
+  "claim": "Estudantes de humanidades mostraram maior intenção de uso do que estudantes de engenharia"
+ },
+ {
+  "id": "conclusoes:D1:p5 «não permitem inferir causalidade»#1:0",
+  "kind": "negacao",
+  "claim": "Os autores afirmam que a amostra de conveniência e o desenho transversal permitem inferir causalidade"
+ },
+ {
+  "id": "conclusoes:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#1:0",
+  "kind": "exagero",
+  "claim": "O texto apresenta-a como já realizada, com dados longitudinais que confirmam os resultados"
+ },
+ {
+  "id": "critica:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações»#1:1",
+  "kind": "sujeito",
+  "claim": "A recomendação dos estudantes de começar por serviços complexos de apoio à investigação é compatível com o resultado de que 68% usariam um chatbot"
+ },
+ {
+  "id": "esquema:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1:0",
+  "kind": "inverte",
+  "claim": "A facilidade de uso explicou a maior parte da variância da intenção de uso."
+ },
+ {
+  "id": "esquema:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir causalidade»#1:0",
+  "kind": "negacao",
+  "claim": "A amostra aleatória e o desenho longitudinal permitem inferir causalidade."
+ },
+ {
+  "id": "estudo:D1:p5 «começar por serviços simples e de alto valor»#1:0",
+  "kind": "inverte",
+  "claim": "Resposta: os autores recomendam começar pelo apoio à pesquisa bibliográfica avançada, porque é o serviço de maior valor"
+ },
+ {
+  "id": "ficha:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1:0",
+  "kind": "generaliza",
+  "claim": "O objetivo foi medir a utilização real de chatbots em todas as bibliotecas da Europa"
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1:0",
+  "kind": "sujeito",
+  "claim": "O conceito é tratado como aceitação de assistentes conversacionais em bibliotecas municipais espanholas, medido por entrevistas a bibliotecários"
+ },
+ {
+  "id": "cmp_conceitos:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2:0",
+  "kind": "sujeito",
+  "claim": "Silva et al., 2021 usa a Teoria Unificada de Aceitação e Uso de Tecnologia, UTAUT"
+ },
+ {
+  "id": "cmp_metodos:D1:p1 «inquérito online a 412 estudantes»; D2:p3 «Purposive sample of 18 librarians»#1:0",
+  "kind": "inverte",
+  "claim": "População estudada: Silva et al., 2021 estudam bibliotecários, enquanto García e Ortega, 2023 estudam estudantes"
+ },
+ {
+  "id": "cmp_metodos:D1:p4 «beta = 0,52»; D1:p4 «O modelo explicou 47% da variância»; D2:p4 «Three themes emerged»#1:1",
+  "kind": "numero",
+  "claim": "Por isso, Silva et al., 2021 produzem estimativas como o modelo a explicar 97% da variância"
+ },
+ {
+  "id": "conclusoes:D1:p2 «de um chatbot de biblioteca pelos estudantes»#1:0",
+  "kind": "negacao",
+  "claim": "A introdução não formula qualquer pergunta de investigação"
+ },
+ {
+  "id": "critica:D1:p3 «A utilidade percebida e a facilidade de uso foram»#1:0",
+  "kind": "exagero",
+  "claim": "A análise estatística principal usa modelos de equações estruturais com dez variáveis independentes"
+ },
+ {
+  "id": "critica:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0",
+  "kind": "generaliza",
+  "claim": "Os resultados aplicam-se a todos os estudantes do ensino superior em Portugal"
+ },
+ {
+  "id": "etiquetas:D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1:0",
+  "kind": "sujeito",
+  "claim": "bibliotecas universitárias: contexto do estudo, referido no título como bibliotecas universitárias brasileiras"
+ }
+]

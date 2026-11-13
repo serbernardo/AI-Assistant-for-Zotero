@@ -1,0 +1,1426 @@
+[
+ {
+  "id": "armadilha_premissa:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1:0",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "k": 0,
+  "claim": "O estudo também indica que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica.",
+  "anchor": "68% dos estudantes usariam um chatbot para questões de horário"
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1:0",
+  "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1",
+  "k": 0,
+  "claim": "O conceito é tratado como aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas, medido por inquérito online a estudantes",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas .",
+  "anchor": "aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas"
+ },
+ {
+  "id": "cmp_conceitos:D2:p1 «how librarians experience chatbots after deployment in Spanish university libraries»; D2:p1 «We conducted 18 semi-structured interviews with librarians from six universities»#1:1",
+  "key": "D2:p1 «how librarians experience chatbots after deployment in Spanish university libraries»; D2:p1 «We conducted 18 semi-structured interviews with librarians from six universities»#1",
+  "k": 1,
+  "claim": "O conceito é tratado como experiência de bibliotecários com chatbots já implementados em bibliotecas universitárias espanholas, medido por entrevistas semiestruturadas",
+  "passage": "We conducted 18 semi-structured interviews with librarians from six universities in 2022.",
+  "anchor": "We conducted 18 semi-structured interviews with librarians from six universities"
+ },
+ {
+  "id": "cmp_conceitos:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0",
+  "key": "D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
+  "k": 0,
+  "claim": "Mede a intenção de uso de um chatbot de biblioteca pelos estudantes, por questionário de 24 itens em escala de Likert de 5 pontos",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?",
+  "anchor": "intenção de uso de um chatbot de biblioteca pelos estudantes"
+ },
+ {
+  "id": "cmp_conceitos:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Interviews lasted 45 to 70 minutes and were coded in NVivo»#1:1",
+  "key": "D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Interviews lasted 45 to 70 minutes and were coded in NVivo»#1",
+  "k": 1,
+  "claim": "Analisa a experiência pós-implementação a partir da perspetiva dos bibliotecários, com entrevistas de 45 a 70 minutos codificadas em NVivo",
+  "passage": "Interviews lasted 45 to 70 minutes and were coded in NVivo .",
+  "anchor": "Interviews lasted 45 to 70 minutes and were coded in NVivo"
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «chatbots handled about 40% of routine questions»; D2:p4 «freeing time for complex reference work»#1:0",
+  "key": "D2:p4 «chatbots handled about 40% of routine questions»; D2:p4 «freeing time for complex reference work»#1",
+  "k": 0,
+  "claim": "Os chatbots trataram cerca de 40% das questões rotineiras e libertaram tempo para trabalho de referência complexo",
+  "passage": "First, chatbots handled about 40% of routine questions , freeing time for complex reference work.",
+  "anchor": "chatbots handled about 40% of routine questions"
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «students rarely used the chatbot for literature searches, preferring human help»#1:0",
+  "key": "D2:p4 «students rarely used the chatbot for literature searches, preferring human help»#1",
+  "k": 0,
+  "claim": "Os estudantes raramente usaram o chatbot para pesquisas de literatura e preferiram ajuda humana",
+  "passage": "Third, students rarely used the chatbot for literature searches, preferring human help .",
+  "anchor": "students rarely used the chatbot for literature searches, preferring human help"
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «librarians distrusted chatbot answers to research questions»#1:0",
+  "key": "D2:p4 «librarians distrusted chatbot answers to research questions»#1",
+  "k": 0,
+  "claim": "Também aparece ligada à desconfiança em respostas a questões de investigação",
+  "passage": "Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system.",
+  "anchor": "librarians distrusted chatbot answers to research questions"
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «Three themes emerged»#1:0",
+  "key": "D2:p4 «Three themes emerged»#1",
+  "k": 0,
+  "claim": "O estudo reporta três temas emergentes",
+  "passage": "Findings Three themes emerged .",
+  "anchor": "Three themes emerged"
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D2:p1 «interviews with librarians from six universities in 2022»#1:0",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D2:p1 «interviews with librarians from six universities in 2022»#1",
+  "k": 0,
+  "claim": "Isto impede comparar diretamente a intenção dos estudantes com a experiência profissional dos bibliotecários, porque os respondentes e o momento de medição são diferentes",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "Aplicámos um inquérito online a 412 estudantes de três universidades"
+ },
+ {
+  "id": "cmp_conceitos:D2:p4 «chatbots handled about 40% of routine questions»#1:0",
+  "key": "D2:p4 «chatbots handled about 40% of routine questions»#1",
+  "k": 0,
+  "claim": "García e Ortega, 2023 usa a categoria mais ampla de questões rotineiras",
+  "passage": "First, chatbots handled about 40% of routine questions , freeing time for complex reference work.",
+  "anchor": "chatbots handled about 40% of routine questions"
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3:0",
+  "key": "D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#3",
+  "k": 0,
+  "claim": "Silva et al., 2021 mede confiança dos estudantes no apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "apenas 31% confiariam nele para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "cmp_conceitos:D1:p1 «31% confiariam nele»; D2:p4 «students rarely used the chatbot»#1:1",
+  "key": "D1:p1 «31% confiariam nele»; D2:p4 «students rarely used the chatbot»#1",
+  "k": 1,
+  "claim": "Os resultados não são diretamente comparáveis, porque um estudo mede confiança declarada e o outro relata padrões de uso percebidos por bibliotecários",
+  "passage": "Third, students rarely used the chatbot for literature searches, preferring human help.",
+  "anchor": "students rarely used the chatbot"
+ },
+ {
+  "id": "cmp_conceitos:D2:p1 «concerns about accuracy and user trust»; D2:p4 «incorrect references generated by the system»#1:1",
+  "key": "D2:p1 «concerns about accuracy and user trust»; D2:p4 «incorrect references generated by the system»#1",
+  "k": 1,
+  "claim": "Em García e Ortega, 2023, a confiança aparece associada a exatidão, confiança dos utilizadores e referências incorretas",
+  "passage": "Second, librarians distrusted chatbot answers to research questions, citing incorrect references generated by the system .",
+  "anchor": "incorrect references generated by the system"
+ },
+ {
+  "id": "cmp_conceitos:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
+  "k": 0,
+  "claim": "Silva et al., 2021 usa o Modelo de Aceitação de Tecnologia, TAM",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "cmp_metodos:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p2 «com base no Modelo de Aceitação de Tecnologia»#1:1",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p2 «com base no Modelo de Aceitação de Tecnologia»#1",
+  "k": 1,
+  "claim": "Estudo quantitativo, com desenho transversal e questionário baseado no TAM",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia"
+ },
+ {
+  "id": "cmp_metodos:D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0",
+  "key": "D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
+  "k": 0,
+  "claim": "Questionário de 24 itens, em escala de Likert de 5 pontos",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos , adaptado do TAM.",
+  "anchor": "questionário de 24 itens em escala de Likert de 5 pontos"
+ },
+ {
+  "id": "cmp_metodos:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "k": 1,
+  "claim": "Amostra de conveniência, desenho transversal sem inferência causal, e cobertura apenas do Norte de Portugal",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "cmp_metodos:D2:p3 «Purposive sample of 18 librarians»; D2:p3 «six Spanish universities that had used a chatbot for at least one year»#1:0",
+  "key": "D2:p3 «Purposive sample of 18 librarians»; D2:p3 «six Spanish universities that had used a chatbot for at least one year»#1",
+  "k": 0,
+  "claim": "Amostra intencional de 18 bibliotecários, de seis universidades espanholas que usavam chatbot há pelo menos um ano",
+  "passage": "Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.",
+  "anchor": "Purposive sample of 18 librarians"
+ },
+ {
+  "id": "cmp_metodos:D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Interviews lasted 45 to 70 minutes»#1:1",
+  "key": "D2:p1 «We conducted 18 semi-structured interviews with librarians»; D2:p3 «Interviews lasted 45 to 70 minutes»#1",
+  "k": 1,
+  "claim": "Entrevistas semiestruturadas, com duração de 45 a 70 minutos",
+  "passage": "Interviews lasted 45 to 70 minutes and were coded in NVivo.",
+  "anchor": "Interviews lasted 45 to 70 minutes"
+ },
+ {
+  "id": "cmp_metodos:D2:p5 «small sample, only Spanish institutions, and no student data»#1:0",
+  "key": "D2:p5 «small sample, only Spanish institutions, and no student data»#1",
+  "k": 0,
+  "claim": "Amostra pequena, apenas instituições espanholas, e ausência de dados de estudantes",
+  "passage": "Limitations: small sample, only Spanish institutions, and no student data .",
+  "anchor": "small sample, only Spanish institutions, and no student data"
+ },
+ {
+  "id": "cmp_metodos:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D2:p3 «had used a chatbot for at least one year»#1:0",
+  "key": "D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D2:p3 «had used a chatbot for at least one year»#1",
+  "k": 0,
+  "claim": "Isto limita a comparação directa dos resultados, porque um estudo trata intenções dos utilizadores potenciais e o outro trata percepções profissionais após uso real",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?",
+  "anchor": "intenção de uso de um chatbot de biblioteca pelos estudantes"
+ },
+ {
+  "id": "cmp_metodos:D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»; D2:p1 «18 semi-structured interviews with librarians»#1:1",
+  "key": "D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»; D2:p1 «18 semi-structured interviews with librarians»#1",
+  "k": 1,
+  "claim": "Tipo de dados: Silva et al., 2021 usam questionário em escala de Likert, enquanto García e Ortega, 2023 usam entrevistas semiestruturadas",
+  "passage": "We conducted 18 semi-structured interviews with librarians from six universities in 2022.",
+  "anchor": "18 semi-structured interviews with librarians"
+ },
+ {
+  "id": "cmp_metodos:D1:p1 «inquérito online a 412 estudantes»; D2:p3 «Purposive sample of 18 librarians»#1:0",
+  "key": "D1:p1 «inquérito online a 412 estudantes»; D2:p3 «Purposive sample of 18 librarians»#1",
+  "k": 0,
+  "claim": "População estudada: Silva et al., 2021 estudam estudantes, enquanto García e Ortega, 2023 estudam bibliotecários",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "inquérito online a 412 estudantes"
+ },
+ {
+  "id": "cmp_metodos:D1:p1 «412 estudantes de três universidades do Norte de Portugal»; D2:p3 «18 librarians»; D2:p3 «from six Spanish universities»#1:0",
+  "key": "D1:p1 «412 estudantes de três universidades do Norte de Portugal»; D2:p3 «18 librarians»; D2:p3 «from six Spanish universities»#1",
+  "k": 0,
+  "claim": "Escala e contexto geográfico: Silva et al., 2021 incluem 412 respostas de três universidades do Norte de Portugal, enquanto García e Ortega, 2023 incluem 18 bibliotecários de seis universidades espanholas",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "412 estudantes de três universidades do Norte de Portugal"
+ },
+ {
+  "id": "cmp_metodos:D1:p5 «o estudo cobre apenas o Norte de Portugal»; D2:p5 «only Spanish institutions»#1:1",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»; D2:p5 «only Spanish institutions»#1",
+  "k": 1,
+  "claim": "A comparação deve considerar que os estudos diferem em dimensão da amostra e país analisado",
+  "passage": "Limitations: small sample, only Spanish institutions , and no student data.",
+  "anchor": "only Spanish institutions"
+ },
+ {
+  "id": "cmp_metodos:D1:p4 «beta = 0,52»; D1:p4 «O modelo explicou 47% da variância»; D2:p4 «Three themes emerged»#1:1",
+  "key": "D1:p4 «beta = 0,52»; D1:p4 «O modelo explicou 47% da variância»; D2:p4 «Three themes emerged»#1",
+  "k": 1,
+  "claim": "Por isso, Silva et al., 2021 produzem estimativas como beta e R2, enquanto García e Ortega, 2023 produzem temas interpretativos",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "anchor": "O modelo explicou 47% da variância"
+ },
+ {
+  "id": "cmp_resultados:D2:p4 «chatbots handled about 40% of routine questions»#1:0",
+  "key": "D2:p4 «chatbots handled about 40% of routine questions»#1",
+  "k": 0,
+  "claim": "Os chatbots trataram cerca de 40% das perguntas de rotina",
+  "passage": "First, chatbots handled about 40% of routine questions , freeing time for complex reference work.",
+  "anchor": "chatbots handled about 40% of routine questions"
+ },
+ {
+  "id": "cmp_resultados:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1:0",
+  "key": "D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "k": 0,
+  "claim": "Apenas 31% dos estudantes confiariam no chatbot para apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "31% confiariam nele para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "cmp_resultados:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «students rarely used the chatbot for literature searches»#1:1",
+  "key": "D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «students rarely used the chatbot for literature searches»#1",
+  "k": 1,
+  "claim": "Ambos apontam baixa confiança ou baixo uso para apoio à pesquisa",
+  "passage": "Third, students rarely used the chatbot for literature searches , preferring human help.",
+  "anchor": "students rarely used the chatbot for literature searches"
+ },
+ {
+  "id": "cmp_resultados:D1:p1 «apoio à pesquisa bibliográfica»; D2:p4 «incorrect references generated by the system»#1:0",
+  "key": "D1:p1 «apoio à pesquisa bibliográfica»; D2:p4 «incorrect references generated by the system»#1",
+  "k": 0,
+  "claim": "Ambos associam o chatbot a limitações no apoio à investigação ou pesquisa",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "cmp_resultados:D1:p4 «facilidade de uso teve um efeito menor»#1:0",
+  "key": "D1:p4 «facilidade de uso teve um efeito menor»#1",
+  "k": 0,
+  "claim": "Silva et al., 2021 mostra que a facilidade de uso teve um efeito menor, com beta = 0,21 e p = 0,003",
+  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003).",
+  "anchor": "facilidade de uso teve um efeito menor"
+ },
+ {
+  "id": "cmp_resultados:D2:p4 «freeing time for complex reference work»#1:0",
+  "key": "D2:p4 «freeing time for complex reference work»#1",
+  "k": 0,
+  "claim": "García e Ortega, 2023 reporta que os chatbots libertaram tempo para trabalho de referência complexo",
+  "passage": "First, chatbots handled about 40% of routine questions, freeing time for complex reference work .",
+  "anchor": "freeing time for complex reference work"
+ },
+ {
+  "id": "cmp_sintese:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «understand the post-deployment experience from the librarians' perspective»#1:1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «understand the post-deployment experience from the librarians' perspective»#1",
+  "k": 1,
+  "claim": "A literatura fornecida centra-se na adoção e uso de chatbots em bibliotecas universitárias, mas aborda o tema a partir de momentos e actores diferentes: Silva et al., 2021 analisam a intenção de uso por estudantes antes da implementação, enquanto García e Ortega, 2023 examinam a experiência de bibliotecários após a implementação",
+  "passage": "Our aim is to understand the post-deployment experience from the librarians' perspective .",
+  "anchor": "understand the post-deployment experience from the librarians' perspective"
+ },
+ {
+  "id": "cmp_sintese:D1:p5 «serviços simples e de alto valor, como horários»; D2:p5 «useful for routine services but not yet reliable»#1:0",
+  "key": "D1:p5 «serviços simples e de alto valor, como horários»; D2:p5 «useful for routine services but not yet reliable»#1",
+  "k": 0,
+  "claim": "Os dois estudos convergem na ideia de que os chatbots são mais adequados para serviços simples, rotineiros ou administrativos do que para apoio à investigação bibliográfica",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários , renovações e reservas.",
+  "anchor": "serviços simples e de alto valor, como horários"
+ },
+ {
+  "id": "cmp_sintese:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1:1",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "k": 1,
+  "claim": "Em Silva et al., 2021, 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "31% confiariam nele para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "cmp_sintese:D1:p5 «como horários, renovações e reservas»; D2:p5 «Chatbots are useful for routine services»#1:0",
+  "key": "D1:p5 «como horários, renovações e reservas»; D2:p5 «Chatbots are useful for routine services»#1",
+  "k": 0,
+  "claim": "Esta convergência é reforçada pelas conclusões dos dois estudos, pois Silva et al., 2021 recomendam começar por horários, renovações e reservas, e García e Ortega, 2023 concluem que os chatbots são úteis para serviços de rotina",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "anchor": "como horários, renovações e reservas"
+ },
+ {
+  "id": "cmp_sintese:D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «librarians distrusted chatbot answers to research questions»#1:1",
+  "key": "D1:p1 «31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p4 «librarians distrusted chatbot answers to research questions»#1",
+  "k": 1,
+  "claim": "A confiança nos chatbots para tarefas de investigação surge como uma limitação comum nos dois documentos, embora observada por grupos diferentes",
+  "passage": "Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system.",
+  "anchor": "librarians distrusted chatbot answers to research questions"
+ },
+ {
+  "id": "cmp_sintese:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D2:p3 «Purposive sample of 18 librarians»#1:0",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»; D2:p3 «Purposive sample of 18 librarians»#1",
+  "k": 0,
+  "claim": "Os dois estudos concordam, portanto, que o apoio à pesquisa bibliográfica é uma área problemática, mas divergem na fonte empírica dessa conclusão: Silva et al., 2021 baseiam-se em respostas de estudantes, enquanto García e Ortega, 2023 se baseiam em entrevistas a bibliotecários",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "cmp_sintese:D1:p2 «com base no Modelo de Aceitação de Tecnologia»; D2:p3 «Qualitative design with thematic analysis»#1:1",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia»; D2:p3 «Qualitative design with thematic analysis»#1",
+  "k": 1,
+  "claim": "A explicação da aceitação também difere entre os estudos, porque Silva et al., 2021 adoptam um modelo quantitativo de aceitação tecnológica, enquanto García e Ortega, 2023 seguem uma análise qualitativa da experiência profissional após a implementação",
+  "passage": "Methods Qualitative design with thematic analysis (Braun and Clarke).",
+  "anchor": "Qualitative design with thematic analysis"
+ },
+ {
+  "id": "cmp_sintese:D1:p4 «facilidade de uso teve um efeito menor»#1:0",
+  "key": "D1:p4 «facilidade de uso teve um efeito menor»#1",
+  "k": 0,
+  "claim": "A facilidade de uso também teve efeito, mas menor do que a utilidade percebida, segundo os valores reportados pelos autores",
+  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003).",
+  "anchor": "facilidade de uso teve um efeito menor"
+ },
+ {
+  "id": "cmp_sintese:D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1:0",
+  "key": "D1:p2 «medir a intenção de uso de chatbots»; D2:p2 «post-deployment experience from the librarians' perspective»#1",
+  "k": 0,
+  "claim": "A divergência entre intenção de uso e experiência após a implementação é central para interpretar os resultados em conjunto",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "anchor": "medir a intenção de uso de chatbots"
+ },
+ {
+  "id": "cmp_sintese:D1:p1 «três universidades do Norte de Portugal»; D2:p3 «six Spanish universities that had used a chatbot»#1:1",
+  "key": "D1:p1 «três universidades do Norte de Portugal»; D2:p3 «six Spanish universities that had used a chatbot»#1",
+  "k": 1,
+  "claim": "Silva et al., 2021 estudam estudantes de três universidades do Norte de Portugal, com um desenho transversal e questionário, enquanto García e Ortega, 2023 estudam bibliotecários de seis universidades espanholas que já tinham usado um chatbot durante pelo menos um ano",
+  "passage": "Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.",
+  "anchor": "six Spanish universities that had used a chatbot"
+ },
+ {
+  "id": "cmp_sintese:D1:p1 «um inquérito online a 412 estudantes»; D2:p1 «18 semi-structured interviews with librarians»#1:0",
+  "key": "D1:p1 «um inquérito online a 412 estudantes»; D2:p1 «18 semi-structured interviews with librarians»#1",
+  "k": 0,
+  "claim": "A comparação sugere uma complementaridade entre os estudos, pois um mostra expectativas e predisposições de estudantes e o outro mostra a avaliação profissional depois da implementação",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "um inquérito online a 412 estudantes"
+ },
+ {
+  "id": "cmp_sintese:D1:p5 «Trabalho futuro: estudos longitudinais após a implementação real»; D2:p5 «Future research should combine librarian and student perspectives»#1:1",
+  "key": "D1:p5 «Trabalho futuro: estudos longitudinais após a implementação real»; D2:p5 «Future research should combine librarian and student perspectives»#1",
+  "k": 1,
+  "claim": "Os documentos também concordam quanto à necessidade de investigação futura mais situada e robusta, embora proponham caminhos diferentes",
+  "passage": "Future research should combine librarian and student perspectives and test chatbots with verified sources.",
+  "anchor": "Future research should combine librarian and student perspectives"
+ },
+ {
+  "id": "cmp_sintese:D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1:0",
+  "key": "D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1",
+  "k": 0,
+  "claim": "García e Ortega, 2023 defendem combinar perspectivas de bibliotecários e estudantes e testar chatbots com fontes verificadas",
+  "passage": "Future research should combine librarian and student perspectives and test chatbots with verified sources.",
+  "anchor": "combine librarian and student perspectives"
+ },
+ {
+  "id": "cmp_sintese:D1:p2 «intenção de uso de um chatbot»; D2:p5 «not yet reliable for research support»#1:1",
+  "key": "D1:p2 «intenção de uso de um chatbot»; D2:p5 «not yet reliable for research support»#1",
+  "k": 1,
+  "claim": "Em conjunto, estes contributos indicam que a avaliação dos chatbots de biblioteca deve articular intenção de uso, experiência de implementação, confiança e fiabilidade das respostas",
+  "passage": "Conclusion Chatbots are useful for routine services but not yet reliable for research support .",
+  "anchor": "not yet reliable for research support"
+ },
+ {
+  "id": "cmp_sintese:D1:p5 «cobre apenas o Norte de Portugal»; D2:p5 «small sample, only Spanish institutions»#1:0",
+  "key": "D1:p5 «cobre apenas o Norte de Portugal»; D2:p5 «small sample, only Spanish institutions»#1",
+  "k": 0,
+  "claim": "Também não permitem generalizar os resultados para todos os contextos universitários, pois Silva et al., 2021 cobrem apenas o Norte de Portugal e García e Ortega, 2023 assumem uma amostra pequena e limitada a instituições espanholas",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "cmp_sintese:D1:p5 «Trabalho futuro: estudos longitudinais após a implementação real»; D2:p5 «test chatbots with verified sources»#1:1",
+  "key": "D1:p5 «Trabalho futuro: estudos longitudinais após a implementação real»; D2:p5 «test chatbots with verified sources»#1",
+  "k": 1,
+  "claim": "Não reportado: comparações directas entre Portugal e Espanha, medidas de desempenho objectivo dos chatbots, taxas reais de erro, satisfação dos estudantes após implementação e efeitos de longo prazo",
+  "passage": "Future research should combine librarian and student perspectives and test chatbots with verified sources .",
+  "anchor": "test chatbots with verified sources"
+ },
+ {
+  "id": "cmp_sintese:D1:p4 «utilidade percebida explicou a maior parte da variância»; D1:p5 «após a implementação real de um chatbot»; D2:p4 «freeing time for complex reference work»; D2:p5 «and no student data»#1:2",
+  "key": "D1:p4 «utilidade percebida explicou a maior parte da variância»; D1:p5 «após a implementação real de um chatbot»; D2:p4 «freeing time for complex reference work»; D2:p5 «and no student data»#1",
+  "k": 2,
+  "claim": "Uma justificação para um novo estudo pode, assim, partir da lacuna comum entre intenção, uso real e fiabilidade: Silva et al., 2021 mostram que a aceitação estudantil depende sobretudo da utilidade percebida, mas reconhecem a necessidade de estudos após implementação, enquanto García e Ortega, 2023 mostram benefícios operacionais e problemas de confiança depois da implementação, mas sem dados de estudantes",
+  "passage": "First, chatbots handled about 40% of routine questions, freeing time for complex reference work .",
+  "anchor": "freeing time for complex reference work"
+ },
+ {
+  "id": "cmp_sintese:D1:p5 «estudos longitudinais após a implementação real»; D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1:1",
+  "key": "D1:p5 «estudos longitudinais após a implementação real»; D2:p5 «combine librarian and student perspectives»; D2:p5 «test chatbots with verified sources»#1",
+  "k": 1,
+  "claim": "Um novo estudo ficaria, portanto, justificado se combinasse estudantes e bibliotecários, observasse chatbots já implementados e examinasse serviços de rotina e apoio à investigação com fontes verificadas, pois estas necessidades são explicitamente apontadas nas recomendações finais dos dois documentos",
+  "passage": "Future research should combine librarian and student perspectives and test chatbots with verified sources.",
+  "anchor": "combine librarian and student perspectives"
+ },
+ {
+  "id": "cmp_tabela:D2:p1 «Lucía García and Tomás Ortega»#1:0",
+  "key": "D2:p1 «Lucía García and Tomás Ortega»#1",
+  "k": 0,
+  "claim": "García e Ortega, 2023",
+  "passage": "Library chatbots after deployment: a qualitative study with librarians in Spain Lucía García and Tomás Ortega Abstract This paper examines how librarians experience chatbots after deployment in Spanish university libraries.",
+  "anchor": "Lucía García and Tomás Ortega"
+ },
+ {
+  "id": "comparar:D1:p3 «Desenho transversal, com questionário de 24 itens em escala»; D1:p3 «A análise usou regressão linear múltipla»#1:0",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens em escala»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "k": 0,
+  "claim": "Desenho transversal, questionário de 24 itens em escala de Likert de 5 pontos e regressão linear múltipla",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.",
+  "anchor": "Desenho transversal, com questionário de 24 itens em escala"
+ },
+ {
+  "id": "comparar:D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1:1",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p1 «três universidades do Norte de Portugal»#1",
+  "k": 1,
+  "claim": "412 respostas válidas, estudantes de três universidades do Norte de Portugal",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "três universidades do Norte de Portugal"
+ },
+ {
+  "id": "comparar:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1:2",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p4 «A facilidade de uso teve um efeito menor»; D1:p4 «O modelo explicou 47% da variância»#1",
+  "k": 2,
+  "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso, a facilidade de uso teve efeito menor e o modelo explicou 47% da variância",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "anchor": "O modelo explicou 47% da variância"
+ },
+ {
+  "id": "comparar:D2:p2 «understand the post-deployment experience from the librarians' perspective»#1:0",
+  "key": "D2:p2 «understand the post-deployment experience from the librarians' perspective»#1",
+  "k": 0,
+  "claim": "Compreender a experiência pós-implementação dos bibliotecários com chatbots em bibliotecas universitárias espanholas",
+  "passage": "Our aim is to understand the post-deployment experience from the librarians' perspective .",
+  "anchor": "understand the post-deployment experience from the librarians' perspective"
+ },
+ {
+  "id": "comparar:D2:p3 «Purposive sample of 18 librarians»; D2:p3 «six Spanish universities that had used a chatbot»#1:0",
+  "key": "D2:p3 «Purposive sample of 18 librarians»; D2:p3 «six Spanish universities that had used a chatbot»#1",
+  "k": 0,
+  "claim": "18 bibliotecários de seis universidades espanholas que tinham usado um chatbot durante pelo menos um ano",
+  "passage": "Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.",
+  "anchor": "Purposive sample of 18 librarians"
+ },
+ {
+  "id": "comparar:D2:p4 «chatbots handled about 40% of routine questions»; D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1:2",
+  "key": "D2:p4 «chatbots handled about 40% of routine questions»; D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1",
+  "k": 2,
+  "claim": "Os chatbots trataram cerca de 40% das perguntas rotineiras, mas os bibliotecários desconfiaram das respostas a questões de investigação e os estudantes raramente os usaram para pesquisas bibliográficas",
+  "passage": "Third, students rarely used the chatbot for literature searches , preferring human help.",
+  "anchor": "students rarely used the chatbot for literature searches"
+ },
+ {
+  "id": "comparar:D1:p3 «utilidade percebida e a facilidade de uso foram as variáveis»; D1:p4 «beta = 0,52; p <»; D1:p4 «O modelo explicou 47% da variância»#1:1",
+  "key": "D1:p3 «utilidade percebida e a facilidade de uso foram as variáveis»; D1:p4 «beta = 0,52; p <»; D1:p4 «O modelo explicou 47% da variância»#1",
+  "k": 1,
+  "claim": "Ponto forte: O estudo apresenta resultados quantitativos claros, porque explicita variáveis independentes, regressão linear múltipla, coeficientes beta, valores de p e R2",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < < 0,001).",
+  "anchor": "beta = 0,52; p <"
+ },
+ {
+  "id": "comparar:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2:1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2",
+  "k": 1,
+  "claim": "Fragilidade: Os autores reconhecem que a amostra de conveniência e o desenho transversal não permitem inferir causalidade, e que o estudo cobre apenas o Norte de Portugal",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "comparar:D2:p1 «18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»; D2:p3 «six Spanish universities that had used a chatbot»#1:2",
+  "key": "D2:p1 «18 semi-structured interviews with librarians»; D2:p3 «Qualitative design with thematic analysis»; D2:p3 «six Spanish universities that had used a chatbot»#1",
+  "k": 2,
+  "claim": "Ponto forte: O estudo é forte para captar a experiência prática dos bibliotecários, porque usa entrevistas semiestruturadas e análise temática com profissionais de seis universidades que já tinham usado chatbots",
+  "passage": "Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year.",
+  "anchor": "six Spanish universities that had used a chatbot"
+ },
+ {
+  "id": "comparar:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1:1",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações e reservas»#1",
+  "k": 1,
+  "claim": "referem que 68% dos estudantes usariam chatbot para horário e empréstimo, e recomendam serviços como horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "anchor": "serviços simples e de alto valor, como horários, renovações e reservas"
+ },
+ {
+  "id": "comparar:D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1:0",
+  "key": "D2:p4 «librarians distrusted chatbot answers to research questions»; D2:p4 «students rarely used the chatbot for literature searches»#1",
+  "k": 0,
+  "claim": "García e Ortega referem desconfiança dos bibliotecários nas respostas a questões de investigação e uso raro pelos estudantes para pesquisas bibliográficas",
+  "passage": "Second, librarians distrusted chatbot answers to research questions , citing incorrect references generated by the system.",
+  "anchor": "librarians distrusted chatbot answers to research questions"
+ },
+ {
+  "id": "comparar:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#3:1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#3",
+  "k": 1,
+  "claim": "referem amostra de conveniência e cobertura apenas do Norte de Portugal",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "comparar:D1:p2 «medir a intenção de uso de chatbots»; D1:p3 «A análise usou regressão linear múltipla»; D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Qualitative design with thematic analysis»#1:1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots»; D1:p3 «A análise usou regressão linear múltipla»; D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «Qualitative design with thematic analysis»#1",
+  "k": 1,
+  "claim": "medem intenção de uso dos estudantes, com questionário e regressão linear múltipla, enquanto García e Ortega estudam a experiência pós-implementação dos bibliotecários, com entrevistas e análise temática",
+  "passage": "A análise usou regressão linear múltipla .",
+  "anchor": "A análise usou regressão linear múltipla"
+ },
+ {
+  "id": "comparar:D1:p5 «a utilidade percebida é o fator decisivo»; D2:p5 «useful for routine services but not yet reliable»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»; D2:p5 «useful for routine services but not yet reliable»#1",
+  "k": 0,
+  "claim": "interpretam a utilidade percebida como fator decisivo para a adoção, enquanto García e Ortega enfatizam a utilidade para serviços rotineiros e a falta de fiabilidade no apoio à investigação",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "comparar:D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D2:p3 «had used a chatbot for at least one year»#1:1",
+  "key": "D1:p2 «intenção de uso de um chatbot de biblioteca pelos estudantes»; D2:p3 «had used a chatbot for at least one year»#1",
+  "k": 1,
+  "claim": "Esta diferença pode ser explicada pelo contraste entre um estudo de aceitação estudantil e um estudo qualitativo com bibliotecários após uso real",
+  "passage": "Purposive sample of 18 librarians (12 women, 6 men) from six Spanish universities that had used a chatbot for at least one year .",
+  "anchor": "had used a chatbot for at least one year"
+ },
+ {
+  "id": "comparar:D1:p5 «serviços simples e de alto valor»; D2:p4 «chatbots handled about 40% of routine questions»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p5 «not yet reliable for research support»#1:0",
+  "key": "D1:p5 «serviços simples e de alto valor»; D2:p4 «chatbots handled about 40% of routine questions»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p5 «not yet reliable for research support»#1",
+  "k": 0,
+  "claim": "Em conjunto, os documentos sugerem uma leitura prudente: os chatbots parecem mais adequados a serviços simples ou rotineiros do que ao apoio à pesquisa bibliográfica",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor , como horários, renovações e reservas.",
+  "anchor": "serviços simples e de alto valor"
+ },
+ {
+  "id": "comparar:D1:p5 «serviços simples e de alto valor»; D2:p4 «chatbots handled about 40% of routine questions»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p5 «not yet reliable for research support»#1:3",
+  "key": "D1:p5 «serviços simples e de alto valor»; D2:p4 «chatbots handled about 40% of routine questions»; D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»; D2:p5 «not yet reliable for research support»#1",
+  "k": 3,
+  "claim": "Em conjunto, os documentos sugerem uma leitura prudente: os chatbots parecem mais adequados a serviços simples ou rotineiros do que ao apoio à pesquisa bibliográfica",
+  "passage": "Conclusion Chatbots are useful for routine services but not yet reliable for research support .",
+  "anchor": "not yet reliable for research support"
+ },
+ {
+  "id": "comparar:D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «six Spanish universities that had used a chatbot»#1:0",
+  "key": "D2:p2 «post-deployment experience from the librarians' perspective»; D2:p3 «six Spanish universities that had used a chatbot»#1",
+  "k": 0,
+  "claim": "García e Ortega acrescentam evidência qualitativa sobre experiência profissional após implementação em Espanha",
+  "passage": "Our aim is to understand the post-deployment experience from the librarians' perspective .",
+  "anchor": "post-deployment experience from the librarians' perspective"
+ },
+ {
+  "id": "comparar:D1:p5 «o estudo cobre apenas o Norte de Portugal»; D2:p5 «small sample, only Spanish institutions, and no student data»#1:1",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»; D2:p5 «small sample, only Spanish institutions, and no student data»#1",
+  "k": 1,
+  "claim": "A comparação é limitada pelas restrições reconhecidas nos próprios estudos, incluindo cobertura geográfica limitada, amostras específicas e ausência de dados de estudantes no estudo espanhol",
+  "passage": "Limitations: small sample, only Spanish institutions, and no student data .",
+  "anchor": "small sample, only Spanish institutions, and no student data"
+ },
+ {
+  "id": "conceitos:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais (chatbots)»#2:0",
+  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais (chatbots)»#2",
+  "k": 0,
+  "claim": "O termo é usado como equivalente a assistentes conversacionais e como tecnologia cuja aceitação é estudada",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) ) em bibliotecas universitárias portuguesas.",
+  "anchor": "Este estudo analisa a aceitação de assistentes conversacionais (chatbots)"
+ },
+ {
+  "id": "conceitos:D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente»#1:0",
+  "key": "D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente»#1",
+  "k": 0,
+  "claim": "Título, resumo e introdução",
+  "passage": "Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento.",
+  "anchor": "As bibliotecas universitárias enfrentam uma procura crescente"
+ },
+ {
+  "id": "conceitos:D1:p2 «que fatores explicam a intenção de uso»#1:0",
+  "key": "D1:p2 «que fatores explicam a intenção de uso»#1",
+  "k": 0,
+  "claim": "Introdução, método e resultados",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?",
+  "anchor": "que fatores explicam a intenção de uso"
+ },
+ {
+  "id": "conceitos:D1:p3 «adaptado do TAM»#1:0",
+  "key": "D1:p3 «adaptado do TAM»#1",
+  "k": 0,
+  "claim": "Introdução e método",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM .",
+  "anchor": "adaptado do TAM"
+ },
+ {
+  "id": "conceitos:D1:p5 «a utilidade percebida é o fator decisivo»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "k": 0,
+  "claim": "Método, resultados e conclusão",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "conceitos:D1:p3 «foram as variáveis independentes principais»; D1:p4 «A facilidade de uso teve um efeito menor»#1:1",
+  "key": "D1:p3 «foram as variáveis independentes principais»; D1:p4 «A facilidade de uso teve um efeito menor»#1",
+  "k": 1,
+  "claim": "É tratada como variável independente principal, mas com efeito menor do que a utilidade percebida",
+  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003).",
+  "anchor": "A facilidade de uso teve um efeito menor"
+ },
+ {
+  "id": "conceitos:D1:p5 «a amostra de conveniência e o desenho transversal»#1:0",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal»#1",
+  "k": 0,
+  "claim": "Método e limitações",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "a amostra de conveniência e o desenho transversal"
+ },
+ {
+  "id": "conceitos:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1:0",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "k": 0,
+  "claim": "Amostra de conveniência",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "conceitos:D1:p4 «O modelo explicou 47% da variância»#1:0",
+  "key": "D1:p4 «O modelo explicou 47% da variância»#1",
+  "k": 0,
+  "claim": "Variância explicada, R2",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "anchor": "O modelo explicou 47% da variância"
+ },
+ {
+  "id": "conceitos:D1:p5 «não permitem inferir causalidade»#2:0",
+  "key": "D1:p5 «não permitem inferir causalidade»#2",
+  "k": 0,
+  "claim": "Discussão e conclusão",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "não permitem inferir causalidade"
+ },
+ {
+  "id": "conclusoes:D1:p1 «analisa a aceitação de assistentes conversacionais (chatbots)»#1:0",
+  "key": "D1:p1 «analisa a aceitação de assistentes conversacionais (chatbots)»#1",
+  "k": 0,
+  "claim": "Silva et al., 2021 analisa a aceitação de chatbots em bibliotecas universitárias portuguesas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) ) em bibliotecas universitárias portuguesas.",
+  "anchor": "analisa a aceitação de assistentes conversacionais (chatbots)"
+ },
+ {
+  "id": "conclusoes:D1:p1 «inquérito online a 412 estudantes de três universidades»#1:0",
+  "key": "D1:p1 «inquérito online a 412 estudantes de três universidades»#1",
+  "k": 0,
+  "claim": "O estudo aplicou um inquérito online a 412 estudantes de três universidades do Norte de Portugal",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "inquérito online a 412 estudantes de três universidades"
+ },
+ {
+  "id": "conclusoes:D1:p1 «para questões de horário e empréstimo»#1:0",
+  "key": "D1:p1 «para questões de horário e empréstimo»#1",
+  "k": 0,
+  "claim": "O resumo apresenta este valor como resultado do inquérito",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo , mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica.",
+  "anchor": "para questões de horário e empréstimo"
+ },
+ {
+  "id": "conclusoes:D1:p1 «para apoio à pesquisa bibliográfica»#1:0",
+  "key": "D1:p1 «para apoio à pesquisa bibliográfica»#1",
+  "k": 0,
+  "claim": "O resumo apresenta este valor em contraste com o uso para horários e empréstimos",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "conclusoes:D1:p2 «com base no Modelo de Aceitação de Tecnologia»#1:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia»#1",
+  "k": 0,
+  "claim": "A introdução declara o objectivo e enquadra-o no TAM",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia"
+ },
+ {
+  "id": "conclusoes:D1:p2 «de um chatbot de biblioteca pelos estudantes»#1:0",
+  "key": "D1:p2 «de um chatbot de biblioteca pelos estudantes»#1",
+  "k": 0,
+  "claim": "A introdução formula a pergunta de investigação de modo explícito",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?",
+  "anchor": "de um chatbot de biblioteca pelos estudantes"
+ },
+ {
+  "id": "conclusoes:D1:p3 «Desenho transversal, com questionário de 24 itens»#1:0",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»#1",
+  "k": 0,
+  "claim": "A secção de método descreve desenho, instrumento e escala",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.",
+  "anchor": "Desenho transversal, com questionário de 24 itens"
+ },
+ {
+  "id": "conclusoes:D1:p3 «idade média 22,4 anos; 61% mulheres»#1:0",
+  "key": "D1:p3 «idade média 22,4 anos; 61% mulheres»#1",
+  "k": 0,
+  "claim": "A secção de método apresenta dimensão e composição da amostra",
+  "passage": "Amostra de conveniência: 412 respostas válidas ( idade média 22,4 anos; 61% mulheres ).",
+  "anchor": "idade média 22,4 anos; 61% mulheres"
+ },
+ {
+  "id": "conclusoes:D1:p3 «variáveis independentes principais»#1:0",
+  "key": "D1:p3 «variáveis independentes principais»#1",
+  "k": 0,
+  "claim": "O método identifica o procedimento estatístico e as variáveis principais",
+  "passage": "A utilidade percebida e a facilidade de uso foram as variáveis independentes principais .",
+  "anchor": "variáveis independentes principais"
+ },
+ {
+  "id": "conclusoes:D1:p4 «beta = 0,52; p < 0,001»#1:0",
+  "key": "D1:p4 «beta = 0,52; p < 0,001»#1",
+  "k": 0,
+  "claim": "O resultado é acompanhado por coeficiente beta e significância estatística",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ).",
+  "anchor": "beta = 0,52; p < 0,001"
+ },
+ {
+  "id": "conclusoes:D1:p4 «beta = 0,21; p = 0,003»#1:0",
+  "key": "D1:p4 «beta = 0,21; p = 0,003»#1",
+  "k": 0,
+  "claim": "O texto apresenta coeficiente beta e valor de significância",
+  "passage": "A facilidade de uso teve um efeito menor ( beta = 0,21; p = 0,003 ).",
+  "anchor": "beta = 0,21; p = 0,003"
+ },
+ {
+  "id": "conclusoes:D1:p4 «O modelo explicou 47% da variância»#1:0",
+  "key": "D1:p4 «O modelo explicou 47% da variância»#1",
+  "k": 0,
+  "claim": "O modelo explicou 47% da variância",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "anchor": "O modelo explicou 47% da variância"
+ },
+ {
+  "id": "conclusoes:D1:p4 «maior intenção de uso do que estudantes de humanidades»#1:0",
+  "key": "D1:p4 «maior intenção de uso do que estudantes de humanidades»#1",
+  "k": 0,
+  "claim": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades",
+  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades .",
+  "anchor": "maior intenção de uso do que estudantes de humanidades"
+ },
+ {
+  "id": "conclusoes:D1:p5 «a utilidade percebida é o fator decisivo»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "k": 0,
+  "claim": "Os autores concluem que a utilidade percebida é o factor decisivo para a adopção de chatbots em bibliotecas",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "conclusoes:D1:p5 «serviços simples e de alto valor, como horários»#1:0",
+  "key": "D1:p5 «serviços simples e de alto valor, como horários»#1",
+  "k": 0,
+  "claim": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários , renovações e reservas.",
+  "anchor": "serviços simples e de alto valor, como horários"
+ },
+ {
+  "id": "conclusoes:D1:p5 «não permitem inferir causalidade»#1:0",
+  "key": "D1:p5 «não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "Os autores afirmam que a amostra de conveniência e o desenho transversal não permitem inferir causalidade",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "não permitem inferir causalidade"
+ },
+ {
+  "id": "conclusoes:D1:p1 «inquérito online a 412 estudantes de três universidades»#2:0",
+  "key": "D1:p1 «inquérito online a 412 estudantes de três universidades»#2",
+  "k": 0,
+  "claim": "A aplicação de um inquérito online a 412 estudantes de três universidades do Norte de Portugal é uma afirmação sólida, porque o texto explicita amostra, instituições, região e período",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "inquérito online a 412 estudantes de três universidades"
+ },
+ {
+  "id": "conclusoes:D1:p4 «maior intenção de uso do que estudantes de humanidades»#3:0",
+  "key": "D1:p4 «maior intenção de uso do que estudantes de humanidades»#3",
+  "k": 0,
+  "claim": "O texto afirma a diferença, mas não apresenta valores, teste estatístico ou tamanho do efeito",
+  "passage": "Estudantes de engenharia mostraram maior intenção de uso do que estudantes de humanidades .",
+  "anchor": "maior intenção de uso do que estudantes de humanidades"
+ },
+ {
+  "id": "conclusoes:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#1:0",
+  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#1",
+  "k": 0,
+  "claim": "O texto apresenta-a como caminho futuro, mas não a sustenta com dados adicionais no excerto fornecido",
+  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões.",
+  "anchor": "estudos longitudinais após a implementação real de um chatbot"
+ },
+ {
+  "id": "critica:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D1:p3 «A análise usou regressão linear múltipla»#1:0",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "k": 0,
+  "claim": "Trata-se de um estudo observacional quantitativo, pois aplicou um inquérito online a estudantes e analisou associações entre variáveis, sem intervenção experimental",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "Aplicámos um inquérito online a 412 estudantes de três universidades"
+ },
+ {
+  "id": "critica:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "k": 0,
+  "claim": "O enquadramento teórico é identificado, pois os autores indicam que a análise se baseia no Modelo de Aceitação de Tecnologia, TAM",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "critica:D1:p3 «A utilidade percebida e a facilidade de uso foram»#1:0",
+  "key": "D1:p3 «A utilidade percebida e a facilidade de uso foram»#1",
+  "k": 0,
+  "claim": "A análise estatística principal é indicada, com regressão linear múltipla e variáveis independentes principais claramente nomeadas",
+  "passage": "A utilidade percebida e a facilidade de uso foram as variáveis independentes principais.",
+  "anchor": "A utilidade percebida e a facilidade de uso foram"
+ },
+ {
+  "id": "critica:D1:p5 «a amostra de conveniência e o desenho transversal não permitem»#1:0",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem»#1",
+  "k": 0,
+  "claim": "O estudo explicita limitações importantes, incluindo amostra de conveniência, desenho transversal e restrição geográfica ao Norte de Portugal",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "a amostra de conveniência e o desenho transversal não permitem"
+ },
+ {
+  "id": "critica:D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1:1",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
+  "k": 1,
+  "claim": "Assim, os resultados sustentam associações entre variáveis, mas não demonstram que a utilidade percebida cause intenção de uso",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "o desenho transversal não permitem inferir causalidade"
+ },
+ {
+  "id": "critica:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0",
+  "key": "D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "k": 0,
+  "claim": "A extrapolação para outras regiões ou para a população nacional de estudantes deve ser prudente",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "três universidades do Norte de Portugal entre março e maio"
+ },
+ {
+  "id": "critica:D1:p3 «adaptado do TAM. Amostra de conveniência: 412 respostas válidas»; D1:p3 «A utilidade percebida e a facilidade de uso foram»#1:1",
+  "key": "D1:p3 «adaptado do TAM. Amostra de conveniência: 412 respostas válidas»; D1:p3 «A utilidade percebida e a facilidade de uso foram»#1",
+  "k": 1,
+  "claim": "Validade de construto. O estudo indica que o questionário foi adaptado do TAM e que mediu utilidade percebida e facilidade de uso",
+  "passage": "A utilidade percebida e a facilidade de uso foram as variáveis independentes principais.",
+  "anchor": "A utilidade percebida e a facilidade de uso foram"
+ },
+ {
+  "id": "critica:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1:0",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "k": 0,
+  "claim": "Enviesamento de seleção. O risco é relevante, pois a amostra foi de conveniência",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "critica:D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
+  "k": 0,
+  "claim": "Enviesamento de medição. O estudo usou questionário online e itens em escala de Likert",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "Aplicámos um inquérito online a 412 estudantes"
+ },
+ {
+  "id": "critica:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1:0",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "k": 0,
+  "claim": "Os resultados indicam que a utilidade percebida teve o maior efeito reportado na intenção de uso, com beta = 0,52 e p < 0,001",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "anchor": "A utilidade percebida explicou a maior parte da variância"
+ },
+ {
+  "id": "critica:D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#2:0",
+  "key": "D1:p4 «beta = 0,52; p < 0,001»; D1:p4 «beta = 0,21; p = 0,003»#2",
+  "k": 0,
+  "claim": "Esta conclusão é coerente com os resultados apresentados, porque a utilidade percebida tem o beta mais elevado entre as variáveis principais reportadas",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ).",
+  "anchor": "beta = 0,52; p < 0,001"
+ },
+ {
+  "id": "critica:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações»#1:1",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»; D1:p5 «serviços simples e de alto valor, como horários, renovações»#1",
+  "k": 1,
+  "claim": "A recomendação de começar por serviços simples, como horários, renovações e reservas, é compatível com o resultado descritivo de que 68% dos estudantes usariam um chatbot para horário e empréstimo",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas.",
+  "anchor": "serviços simples e de alto valor, como horários, renovações"
+ },
+ {
+  "id": "critica:D1:p2 «que fatores explicam a intenção de uso de um chatbot»; D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»; D1:p4 «A utilidade percebida explicou a maior parte da variância»#1:1",
+  "key": "D1:p2 «que fatores explicam a intenção de uso de um chatbot»; D1:p3 «412 respostas válidas (idade média 22,4 anos; 61% mulheres)»; D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "k": 1,
+  "claim": "Silva et al., 2021 apresenta uma pergunta clara, uma amostra descrita e resultados quantitativos coerentes com a conclusão central sobre a utilidade percebida",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres) ).",
+  "anchor": "412 respostas válidas (idade média 22,4 anos; 61% mulheres)"
+ },
+ {
+  "id": "critica:D1:p5 «a amostra de conveniência e o desenho transversal não permitem»; D1:p5 «o estudo cobre apenas o Norte de Portugal»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»; D1:p3 «A análise usou regressão linear múltipla»#1:1",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem»; D1:p5 «o estudo cobre apenas o Norte de Portugal»; D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "k": 1,
+  "claim": "A qualidade científica é limitada sobretudo pela amostra de conveniência, pelo desenho transversal, pela restrição ao Norte de Portugal e pela ausência de informação reportada sobre validação do instrumento, pressupostos da regressão e conflitos de interesse",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "critica:D1:p1 «bibliotecas universitárias portuguesas. Aplicámos um inquérito online»; D1:p5 «não permitem inferir causalidade; o estudo cobre apenas»#1:0",
+  "key": "D1:p1 «bibliotecas universitárias portuguesas. Aplicámos um inquérito online»; D1:p5 «não permitem inferir causalidade; o estudo cobre apenas»#1",
+  "k": 0,
+  "claim": "O estudo é útil como evidência exploratória sobre aceitação de chatbots em bibliotecas universitárias portuguesas, mas não sustenta inferências causais nem generalizações amplas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas. Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "bibliotecas universitárias portuguesas. Aplicámos um inquérito online"
+ },
+ {
+  "id": "esquema:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "k": 0,
+  "claim": "O estudo enquadra a explicação da intenção de uso no Modelo de Aceitação de Tecnologia.",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "esquema:D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0",
+  "key": "D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
+  "k": 0,
+  "claim": "Usa um questionário de 24 itens em escala de Likert de 5 pontos.",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos , adaptado do TAM.",
+  "anchor": "questionário de 24 itens em escala de Likert de 5 pontos"
+ },
+ {
+  "id": "esquema:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1:0",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "k": 0,
+  "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso.",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "anchor": "A utilidade percebida explicou a maior parte da variância"
+ },
+ {
+  "id": "esquema:D1:p4 «beta = 0,21; p = 0,003»#1:0",
+  "key": "D1:p4 «beta = 0,21; p = 0,003»#1",
+  "k": 0,
+  "claim": "O efeito reportado foi beta = 0,21, com p = 0,003.",
+  "passage": "A facilidade de uso teve um efeito menor ( beta = 0,21; p = 0,003 ).",
+  "anchor": "beta = 0,21; p = 0,003"
+ },
+ {
+  "id": "esquema:D1:p5 «a utilidade percebida é o fator decisivo»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "k": 0,
+  "claim": "Os autores concluem que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "esquema:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir causalidade»#1:0",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "A amostra de conveniência e o desenho transversal não permitem inferir causalidade.",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "a amostra de conveniência e o desenho transversal não permitem inferir causalidade"
+ },
+ {
+  "id": "estudo:D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1:0",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes de três universidades»#1",
+  "k": 0,
+  "claim": "Resposta: O estudo aplicou um inquérito online a 412 estudantes de três universidades do Norte de Portugal",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "Aplicámos um inquérito online a 412 estudantes de três universidades"
+ },
+ {
+  "id": "estudo:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1:0",
+  "key": "D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "k": 0,
+  "claim": "Em contraste, apenas 31% confiariam no chatbot para apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "apenas 31% confiariam nele para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "estudo:D1:p5 «começar por serviços simples e de alto valor»#1:0",
+  "key": "D1:p5 «começar por serviços simples e de alto valor»#1",
+  "k": 0,
+  "claim": "Resposta: Uma opção coerente seria começar por horários, renovações ou reservas, porque os autores recomendam serviços simples e de alto valor",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor , como horários, renovações e reservas.",
+  "anchor": "começar por serviços simples e de alto valor"
+ },
+ {
+  "id": "estudo:D1:p5 «não permitem inferir causalidade»#1:0",
+  "key": "D1:p5 «não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "Esta aplicação não permite concluir a causa dessa diferença, apenas usar a diferença reportada como alerta para planear comunicação ou formação diferenciada",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "não permitem inferir causalidade"
+ },
+ {
+  "id": "estudo:D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "k": 0,
+  "claim": "Resposta: O estudo cobre apenas o Norte de Portugal, o que limita a extensão dos resultados a outras regiões",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "etiquetas:D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1:0",
+  "key": "D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1",
+  "k": 0,
+  "claim": "bibliotecas universitárias: contexto institucional do estudo, referido no título e no resumo como bibliotecas universitárias portuguesas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas : um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.",
+  "anchor": "Assistentes conversacionais em bibliotecas universitárias portuguesas"
+ },
+ {
+  "id": "etiquetas:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "k": 0,
+  "claim": "tam: teoria usada para explicar a intenção de uso dos chatbots",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "etiquetas:D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1:1",
+  "key": "D1:p3 «A utilidade percebida e a facilidade de uso»; D1:p4 «A utilidade percebida explicou a maior parte»#1",
+  "k": 1,
+  "claim": "utilidade percebida: variável independente principal e fator com maior peso nos resultados",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "anchor": "A utilidade percebida explicou a maior parte"
+ },
+ {
+  "id": "ficha:D1:p2 «medir a intenção de uso de chatbots e os fatores»#1:0",
+  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»#1",
+  "k": 0,
+  "claim": "O objetivo foi medir a intenção de uso de chatbots e os fatores explicativos",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM).",
+  "anchor": "medir a intenção de uso de chatbots e os fatores"
+ },
+ {
+  "id": "ficha:D1:p1 «412 estudantes de três universidades do Norte de Portugal»; D1:p1 «entre março e maio de 2021»#1:0",
+  "key": "D1:p1 «412 estudantes de três universidades do Norte de Portugal»; D1:p1 «entre março e maio de 2021»#1",
+  "k": 0,
+  "claim": "N = 412 respostas válidas, estudantes de três universidades do Norte de Portugal, entre março e maio de 2021",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "412 estudantes de três universidades do Norte de Portugal"
+ },
+ {
+  "id": "ficha:D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1:0",
+  "key": "D1:p3 «questionário de 24 itens em escala de Likert de 5 pontos»#1",
+  "k": 0,
+  "claim": "Questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos , adaptado do TAM.",
+  "anchor": "questionário de 24 itens em escala de Likert de 5 pontos"
+ },
+ {
+  "id": "ficha:D1:p4 «beta = 0,52; p < 0,001»#1:0",
+  "key": "D1:p4 «beta = 0,52; p < 0,001»#1",
+  "k": 0,
+  "claim": "A utilidade percebida explicou a maior parte da variância da intenção de uso, com beta = 0,52 e p < 0,001",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso ( beta = 0,52; p < 0,001 ).",
+  "anchor": "beta = 0,52; p < 0,001"
+ },
+ {
+  "id": "ficha:D1:p5 «a utilidade percebida é o fator decisivo»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "k": 0,
+  "claim": "Os autores concluem que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "ficha:D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "k": 0,
+  "claim": "O estudo cobre apenas o Norte de Portugal",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "ficha:D1:p4 «A utilidade percebida explicou a maior parte»; D1:p5 «é o fator decisivo para a adoção»#1:0",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte»; D1:p5 «é o fator decisivo para a adoção»#1",
+  "k": 0,
+  "claim": "O estudo mostra que a utilidade percebida é o principal fator associado à intenção de uso de chatbots em bibliotecas universitárias portuguesas",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "anchor": "A utilidade percebida explicou a maior parte"
+ },
+ {
+  "id": "lacunas:D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#2:0",
+  "key": "D1:p5 «Limitações: a amostra de conveniência e o desenho transversal»#2",
+  "k": 0,
+  "claim": "Silva et al., 2021",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "Limitações: a amostra de conveniência e o desenho transversal"
+ },
+ {
+  "id": "lacunas:D1:p5 «o desenho transversal não permitem inferir causalidade»#2:0",
+  "key": "D1:p5 «o desenho transversal não permitem inferir causalidade»#2",
+  "k": 0,
+  "claim": "Silva et al., 2021",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "o desenho transversal não permitem inferir causalidade"
+ },
+ {
+  "id": "lacunas:D1:p5 «o estudo cobre apenas o Norte de Portugal»#3:0",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#3",
+  "k": 0,
+  "claim": "1 documento, porque apenas Silva et al., 2021 refere esta limitação nos documentos analisados.",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "lacunas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#3:0",
+  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#3",
+  "k": 0,
+  "claim": "1 documento, porque apenas Silva et al., 2021 refere este trabalho futuro nos documentos analisados.",
+  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões.",
+  "anchor": "estudos longitudinais após a implementação real de um chatbot"
+ },
+ {
+  "id": "lacunas:D1:p5 «implementação real de um chatbot e comparação com outras regiões»#3:0",
+  "key": "D1:p5 «implementação real de um chatbot e comparação com outras regiões»#3",
+  "k": 0,
+  "claim": "1 documento, porque apenas Silva et al., 2021 refere este trabalho futuro nos documentos analisados.",
+  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões .",
+  "anchor": "implementação real de um chatbot e comparação com outras regiões"
+ },
+ {
+  "id": "lacunas:D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2:0",
+  "key": "D1:p1 «três universidades do Norte de Portugal entre março e maio»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#2",
+  "k": 0,
+  "claim": "Silva et al., 2021",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021.",
+  "anchor": "três universidades do Norte de Portugal entre março e maio"
+ },
+ {
+  "id": "lacunas:D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p3 «Amostra de conveniência: 412 respostas válidas»#2:1",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p3 «Amostra de conveniência: 412 respostas válidas»#2",
+  "k": 1,
+  "claim": "Silva et al., 2021",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "lacunas:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1:0",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "Falta evidência longitudinal e causal, porque o desenho é transversal e os autores afirmam que não permite inferir causalidade.",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.",
+  "anchor": "Desenho transversal, com questionário de 24 itens"
+ },
+ {
+  "id": "lacunas:D1:p5 «estudos longitudinais após a implementação real de um chatbot»#4:0",
+  "key": "D1:p5 «estudos longitudinais após a implementação real de um chatbot»#4",
+  "k": 0,
+  "claim": "Falta avaliar o uso depois da implementação real de um chatbot, porque os autores propõem esse trabalho futuro.",
+  "passage": "Trabalho futuro: estudos longitudinais após a implementação real de um chatbot e comparação com outras regiões.",
+  "anchor": "estudos longitudinais após a implementação real de um chatbot"
+ },
+ {
+  "id": "lacunas:D1:p1 «entre março e maio de 2021»#1:0",
+  "key": "D1:p1 «entre março e maio de 2021»#1",
+  "k": 0,
+  "claim": "Falta evidência posterior ao período de recolha reportado, porque os dados foram recolhidos entre março e maio de 2021.",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021 .",
+  "anchor": "entre março e maio de 2021"
+ },
+ {
+  "id": "mapa:D1:p2 «procura crescente de apoio fora do horário de atendimento»#1:0",
+  "key": "D1:p2 «procura crescente de apoio fora do horário de atendimento»#1",
+  "k": 0,
+  "claim": "Procura fora do horário de atendimento",
+  "passage": "Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento .",
+  "anchor": "procura crescente de apoio fora do horário de atendimento"
+ },
+ {
+  "id": "mapa:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "k": 0,
+  "claim": "Usar o Modelo de Aceitação de Tecnologia",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "mapa:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1:0",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "k": 0,
+  "claim": "Amostra de conveniência com 412 respostas válidas",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "mapa:D1:p4 «A facilidade de uso teve um efeito menor»#1:0",
+  "key": "D1:p4 «A facilidade de uso teve um efeito menor»#1",
+  "k": 0,
+  "claim": "Facilidade de uso teve efeito menor",
+  "passage": "A facilidade de uso teve um efeito menor (beta = 0,21; p = 0,003).",
+  "anchor": "A facilidade de uso teve um efeito menor"
+ },
+ {
+  "id": "mapa:D1:p5 «a utilidade percebida é o fator decisivo»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»#1",
+  "k": 0,
+  "claim": "Utilidade percebida foi o fator decisivo",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "mapa:D1:p5 «não permitem inferir causalidade»#1:0",
+  "key": "D1:p5 «não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "Amostra e desenho não permitem causalidade",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "não permitem inferir causalidade"
+ },
+ {
+  "id": "metodos:D1:p3 «Desenho transversal, com questionário de 24 itens em escala»#1:0",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens em escala»#1",
+  "k": 0,
+  "claim": "Silva et al., 2021 realizaram um estudo com desenho transversal e questionário, orientado pelo Modelo de Aceitação de Tecnologia, TAM",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM.",
+  "anchor": "Desenho transversal, com questionário de 24 itens em escala"
+ },
+ {
+  "id": "metodos:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1:0",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "k": 0,
+  "claim": "A amostra incluiu 412 respostas válidas",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "metodos:D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1:0",
+  "key": "D1:p1 «Assistentes conversacionais em bibliotecas universitárias portuguesas»#1",
+  "k": 0,
+  "claim": "O estudo incidiu sobre a aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas : um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.",
+  "anchor": "Assistentes conversacionais em bibliotecas universitárias portuguesas"
+ },
+ {
+  "id": "metodos:D1:p2 «a intenção de uso de um chatbot de biblioteca pelos estudantes»#1:0",
+  "key": "D1:p2 «a intenção de uso de um chatbot de biblioteca pelos estudantes»#1",
+  "k": 0,
+  "claim": "A variável dependente foi a intenção de uso de um chatbot de biblioteca, formulada na pergunta de investigação",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes ?",
+  "anchor": "a intenção de uso de um chatbot de biblioteca pelos estudantes"
+ },
+ {
+  "id": "metodos:D1:p3 «escala de Likert de 5 pontos, adaptado do TAM»#1:0",
+  "key": "D1:p3 «escala de Likert de 5 pontos, adaptado do TAM»#1",
+  "k": 0,
+  "claim": "O questionário foi adaptado do TAM",
+  "passage": "Método Desenho transversal, com questionário de 24 itens em escala de Likert de 5 pontos, adaptado do TAM .",
+  "anchor": "escala de Likert de 5 pontos, adaptado do TAM"
+ },
+ {
+  "id": "perguntas:D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»#1:0",
+  "key": "D1:p1 «68% dos estudantes usariam um chatbot para questões de horário»#1",
+  "k": 0,
+  "claim": "Silva et al., 2021 reportam que 68% dos estudantes usariam um chatbot para horários e empréstimos, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica.",
+  "anchor": "68% dos estudantes usariam um chatbot para questões de horário"
+ },
+ {
+  "id": "perguntas:D1:p5 «como horários, renovações e reservas»#1:0",
+  "key": "D1:p5 «como horários, renovações e reservas»#1",
+  "k": 0,
+  "claim": "No entanto, o estudo não hierarquiza esses serviços em termos de intenção de uso",
+  "passage": "As bibliotecas devem começar por serviços simples e de alto valor, como horários, renovações e reservas .",
+  "anchor": "como horários, renovações e reservas"
+ },
+ {
+  "id": "perguntas:D1:p5 «o desenho transversal não permitem inferir causalidade»#1:0",
+  "key": "D1:p5 «o desenho transversal não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "Silva et al., 2021 referem como limitação que o desenho transversal não permite inferir causalidade",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "o desenho transversal não permitem inferir causalidade"
+ },
+ {
+  "id": "perguntas:D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0",
+  "key": "D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "k": 0,
+  "claim": "Os autores indicam que o estudo cobre apenas o Norte de Portugal",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade; o estudo cobre apenas o Norte de Portugal .",
+  "anchor": "o estudo cobre apenas o Norte de Portugal"
+ },
+ {
+  "id": "referencias:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#1",
+  "k": 0,
+  "claim": "Teoria de base, porque o artigo declara usar o TAM",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "referencias:D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2:0",
+  "key": "D1:p2 «com base no Modelo de Aceitação de Tecnologia (TAM)»#2",
+  "k": 0,
+  "claim": "Não reportado no texto principal",
+  "passage": "O objetivo deste trabalho é medir a intenção de uso de chatbots e os fatores que a explicam, com base no Modelo de Aceitação de Tecnologia (TAM) ).",
+  "anchor": "com base no Modelo de Aceitação de Tecnologia (TAM)"
+ },
+ {
+  "id": "referencias:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1:1",
+  "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»; D1:p6 «Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech.»#1",
+  "k": 1,
+  "claim": "Contudo, Silva et al., 2021 não indicam no corpo do texto onde usam esta fonte, nem para que argumento específico a mobilizam. Não reportado",
+  "passage": "Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech. .",
+  "anchor": "Lee, K. (2019). Chatbots in academic libraries. Library Hi Tech."
+ },
+ {
+  "id": "relevancia:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#1:0",
+  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#1",
+  "k": 0,
+  "claim": "Silva et al., 2021 centra-se na aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.",
+  "anchor": "Este estudo analisa a aceitação de assistentes conversacionais"
+ },
+ {
+  "id": "relevancia:D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1:0",
+  "key": "D1:p1 «aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas»#1",
+  "k": 0,
+  "claim": "Define como foco a aceitação de assistentes conversacionais em bibliotecas universitárias portuguesas",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas .",
+  "anchor": "aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas"
+ },
+ {
+  "id": "relevancia:D1:p4 «A utilidade percebida explicou a maior parte da variância»#1:0",
+  "key": "D1:p4 «A utilidade percebida explicou a maior parte da variância»#1",
+  "k": 0,
+  "claim": "Identifica a utilidade percebida como principal fator associado à intenção de uso",
+  "passage": "Resultados A utilidade percebida explicou a maior parte da variância da intenção de uso (beta = 0,52; p < 0,001).",
+  "anchor": "A utilidade percebida explicou a maior parte da variância"
+ },
+ {
+  "id": "relevancia:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#2:0",
+  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»#2",
+  "k": 0,
+  "claim": "Resumo, página 1, para perceber o objetivo, a amostra e os principais resultados",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.",
+  "anchor": "Este estudo analisa a aceitação de assistentes conversacionais"
+ },
+ {
+  "id": "relevancia:D1:p4 «O modelo explicou 47% da variância»#1:0",
+  "key": "D1:p4 «O modelo explicou 47% da variância»#1",
+  "k": 0,
+  "claim": "Resultados, página 4, para consultar os efeitos da utilidade percebida, da facilidade de uso e o valor de R2",
+  "passage": "O modelo explicou 47% da variância (R2 = 0,47).",
+  "anchor": "O modelo explicou 47% da variância"
+ },
+ {
+  "id": "resumo:D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»; D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente de apoio»#1:0",
+  "key": "D1:p1 «Este estudo analisa a aceitação de assistentes conversacionais»; D1:p2 «As bibliotecas universitárias enfrentam uma procura crescente de apoio»#1",
+  "k": 0,
+  "claim": "O estudo parte da procura crescente de apoio fora do horário de atendimento nas bibliotecas universitárias",
+  "passage": "Assistentes conversacionais em bibliotecas universitárias portuguesas: um inquérito a estudantes Ana Silva, Rui Costa e Marta Reis Resumo Este estudo analisa a aceitação de assistentes conversacionais (chatbots) em bibliotecas universitárias portuguesas.",
+  "anchor": "Este estudo analisa a aceitação de assistentes conversacionais"
+ },
+ {
+  "id": "resumo:D1:p2 «medir a intenção de uso de chatbots e os fatores»; D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1:1",
+  "key": "D1:p2 «medir a intenção de uso de chatbots e os fatores»; D1:p2 «que fatores explicam a intenção de uso de um chatbot»#1",
+  "k": 1,
+  "claim": "A pergunta de investigação centra-se nos fatores que explicam a intenção de uso de um chatbot de biblioteca pelos estudantes",
+  "passage": "A pergunta de investigação é: que fatores explicam a intenção de uso de um chatbot de biblioteca pelos estudantes?",
+  "anchor": "que fatores explicam a intenção de uso de um chatbot"
+ },
+ {
+  "id": "resumo:D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p3 «A análise usou regressão linear múltipla»#1:2",
+  "key": "D1:p3 «Desenho transversal, com questionário de 24 itens»; D1:p3 «Amostra de conveniência: 412 respostas válidas»; D1:p3 «A análise usou regressão linear múltipla»#1",
+  "k": 2,
+  "claim": "A análise recorreu a regressão linear múltipla",
+  "passage": "A análise usou regressão linear múltipla .",
+  "anchor": "A análise usou regressão linear múltipla"
+ },
+ {
+  "id": "resumo:D1:p5 «a utilidade percebida é o fator decisivo»; D1:p5 «começar por serviços simples e de alto valor»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1:0",
+  "key": "D1:p5 «a utilidade percebida é o fator decisivo»; D1:p5 «começar por serviços simples e de alto valor»; D1:p5 «o estudo cobre apenas o Norte de Portugal»#1",
+  "k": 0,
+  "claim": "Assinalam como limitações a amostra de conveniência, o desenho transversal e a cobertura apenas do Norte de Portugal",
+  "passage": "Discussão e conclusão Concluímos que a utilidade percebida é o fator decisivo para a adoção de chatbots em bibliotecas.",
+  "anchor": "a utilidade percebida é o fator decisivo"
+ },
+ {
+  "id": "seguimento:D1:p3 «Amostra de conveniência: 412 respostas válidas»#1:0",
+  "key": "D1:p3 «Amostra de conveniência: 412 respostas válidas»#1",
+  "k": 0,
+  "claim": "A dimensão da amostra é 412 respostas válidas.",
+  "passage": "Amostra de conveniência: 412 respostas válidas (idade média 22,4 anos; 61% mulheres).",
+  "anchor": "Amostra de conveniência: 412 respostas válidas"
+ },
+ {
+  "id": "simples:D1:p2 «procura crescente de apoio fora do horário de atendimento»#1:0",
+  "key": "D1:p2 «procura crescente de apoio fora do horário de atendimento»#1",
+  "k": 0,
+  "claim": "O problema de partida é prático: as bibliotecas recebem mais pedidos de apoio fora do horário normal de atendimento",
+  "passage": "Introdução As bibliotecas universitárias enfrentam uma procura crescente de apoio fora do horário de atendimento .",
+  "anchor": "procura crescente de apoio fora do horário de atendimento"
+ },
+ {
+  "id": "simples:D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p1 «de três universidades do Norte de Portugal entre março e maio de 2021»#1:1",
+  "key": "D1:p1 «Aplicámos um inquérito online a 412 estudantes»; D1:p1 «de três universidades do Norte de Portugal entre março e maio de 2021»#1",
+  "k": 1,
+  "claim": "Para isso, aplicaram um inquérito online a 412 estudantes de três universidades do Norte de Portugal, entre março e maio de 2021",
+  "passage": "Aplicámos um inquérito online a 412 estudantes de três universidades do Norte de Portugal entre março e maio de 2021 .",
+  "anchor": "de três universidades do Norte de Portugal entre março e maio de 2021"
+ },
+ {
+  "id": "simples:D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1:0",
+  "key": "D1:p1 «apenas 31% confiariam nele para apoio à pesquisa bibliográfica»#1",
+  "k": 0,
+  "claim": "Mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica",
+  "passage": "Os resultados indicam que 68% dos estudantes usariam um chatbot para questões de horário e empréstimo, mas apenas 31% confiariam nele para apoio à pesquisa bibliográfica .",
+  "anchor": "apenas 31% confiariam nele para apoio à pesquisa bibliográfica"
+ },
+ {
+  "id": "simples:D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir causalidade»#1:0",
+  "key": "D1:p5 «a amostra de conveniência e o desenho transversal não permitem inferir causalidade»#1",
+  "k": 0,
+  "claim": "Os próprios autores assinalam limites: a amostra de conveniência e o desenho transversal não permitem inferir causalidade",
+  "passage": "Limitações: a amostra de conveniência e o desenho transversal não permitem inferir causalidade ; o estudo cobre apenas o Norte de Portugal.",
+  "anchor": "a amostra de conveniência e o desenho transversal não permitem inferir causalidade"
+ }
+]

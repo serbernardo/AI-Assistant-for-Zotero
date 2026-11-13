@@ -1,0 +1,4 @@
+(node:810) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  limite do IAEdu, pausa de 5 min (00:23)
+  limite do IAEdu, pausa de 5 min (00:28)

@@ -1751,16 +1751,42 @@ var ZIALib = (function () {
 	const STATE_RANK = { bad: 3, moved: 2, based: 1, ok: 0 };
 	function stateOf(st) {
 		if (["bad", "changed", "note", "otherDoc"].includes(st)) return "bad";
-		return st === "moved" ? "moved" : st === "based" ? "based" : st === "ok" ? "ok" : null;
+		// Transcrição igual ao PDF noutra página do mesmo artigo: a citação mostra a página certa e fica ✓
+		return st === "moved" ? "ok" : st === "based" ? "based" : st === "ok" ? "ok" : null;
+	}
+	/**
+	 * Paráfrase com frase de base: a frase está no PDF (na página citada ou noutra do mesmo artigo, que a citação
+	 * passa a mostrar) e, depois da verificação do sentido, fica ✓ (diz o mesmo) ou ✗ (generaliza, troca, contradiz).
+	 * Sem o sentido verificado fica ≈.
+	 */
+	function partState(p) {
+		if (!p) return null;
+		if (["based", "moved"].includes(p.status)) {
+			const v = p.meaning && p.meaning.verdict;
+			return v === "yes" ? "ok" : v === "partly" || v === "no" ? "bad" : "based";
+		}
+		return stateOf(p.status);
 	}
 	function citeState(item, k) {
 		if (!item) return null;
 		if (item.numbers && item.numbers.length) return "bad";
 		if (item.parts && !item.status) {
-			if (k != null) return item.parts[k] ? stateOf(item.parts[k].status) : null;
-			return item.parts.map(p => p && stateOf(p.status)).filter(Boolean).sort((a, b) => STATE_RANK[b] - STATE_RANK[a])[0] || null;
+			if (k != null) return partState(item.parts[k]);
+			return item.parts.map(partState).filter(Boolean).sort((a, b) => STATE_RANK[b] - STATE_RANK[a])[0] || null;
 		}
 		return stateOf(item.status);
+	}
+
+	/** Contas da linha do fim: confirmadas (✓), por confirmar (≈) e a rever (✗), uma por citação. */
+	function checkCounts(res) {
+		const n = { ok: 0, based: 0, bad: 0 };
+		for (const it of (res && res.items) || []) {
+			if (it.parts && !it.status && !(it.numbers && it.numbers.length)) {
+				for (const p of it.parts) { const s = partState(p); if (s === "moved") n.ok++; else if (s) n[s]++; }
+			}
+			else { const s = citeState(it); if (s === "moved") n.ok++; else if (s) n[s]++; }
+		}
+		return n;
 	}
 
 	/**
@@ -2341,7 +2367,8 @@ var ZIALib = (function () {
 						if (k > 0) parent.appendChild(doc.createTextNode(" "));
 						let label = citeLabel(c, ctx.docsMap);
 						const ev = part ? part.evidence : item && item.evidence;
-						if (state === "moved" && ev && ev.page && ev.doc === c.doc && ev.page !== c.page) label += " \u2192 " + pageLabel(ctx.docsMap && ctx.docsMap[c.doc], ev.page);
+						// A frase está noutra página do mesmo artigo: a citação mostra a página certa (o cartão diz o que a IA escreveu)
+						if (ev && ev.page && ev.doc === c.doc && ev.page !== c.page && ["moved", "based", "ok"].includes(state)) label = citeLabel(Object.assign({}, c, { page: ev.page, pageEnd: null }), ctx.docsMap);
 						const a = el(doc, "a", "zia-cite" + (state ? " zia-cite-" + state : ""), label);
 						a.setAttribute("href", "#");
 						if (state) a.appendChild(el(doc, "span", "zia-cite-mk", CITE_MARK[state]));
@@ -2528,6 +2555,78 @@ var ZIALib = (function () {
 		const v = m[1].toUpperCase();
 		const verdict = /^(SIM|YES)$/.test(v) ? "yes" : /^(EM PARTE|PARTLY)$/.test(v) ? "partly" : "no";
 		return { verdict, note: m[2].split("\n")[0].replace(/[*_]+/g, "").trim().slice(0, 300) };
+	}
+
+	// ---- Sentido de todas as paráfrases num só pedido (depois da resposta)
+
+	/** Texto limpo para comparar: sem citações, marcas da IA nem Markdown. */
+	function plainClaim(t) {
+		return String(t || "").replace(CITE_GROUP_RE, " ").replace(/\[(?:Inferência|Inferencia|Inference|Declarado|Stated)\]/gi, " ")
+			.replace(/[*_#`>]+/g, " ").replace(/^\s*(?:[-+]|\d+[.)])\s+/, "").replace(/\s+/g, " ").replace(/\s+([.,;:!?])/g, "$1").trim();
+	}
+
+	/**
+	 * Cada paráfrase com frase de base encontrada no PDF: a frase da resposta que a usa (claim) e o excerto do PDF
+	 * à volta da frase de base (passage). Chave = a mesma do item ("D1:p4#2") e k = posição da citação no grupo.
+	 */
+	function meaningClaims(text, res) {
+		const out = [];
+		if (!res || !res.items) return out;
+		const byKey = {};
+		for (const it of res.items) byKey[it.key] = it;
+		const seen = {};
+		const src = String(text || "");
+		for (const m of src.matchAll(CITE_GROUP_RE)) {
+			const nth = seen[m[1]] = (seen[m[1]] || 0) + 1;
+			const it = byKey[m[1] + "#" + nth];
+			if (!it || !it.parts || it.status) continue;
+			// A frase: do fim da frase anterior (ou da célula da tabela) até à citação
+			const lineStart = src.lastIndexOf("\n", m.index - 1) + 1;
+			let before = src.slice(lineStart, m.index);
+			const cell = before.lastIndexOf("|");
+			if (cell >= 0) before = before.slice(cell + 1);
+			let cut = 0;
+			const re = /[.!?]["»”)]?\s+(?=\S)|\]\s*[.;]\s+/g;
+			let x;
+			while ((x = re.exec(before))) if (plainClaim(before.slice(x.index + x[0].length)).split(" ").length >= 4) cut = x.index + x[0].length;
+			let claim = plainClaim(before.slice(cut));
+			if (claim.split(" ").length < 4) claim = plainClaim(before);
+			if (claim.split(" ").length < 3) continue;
+			it.parts.forEach((part, k) => {
+				if (!part || !["based", "moved"].includes(part.status) || !part.evidence || !part.evidence.match) return;
+				const ev = part.evidence;
+				const passage = [ev.before, ev.match, ev.after].filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+				out.push({ key: it.key, k, claim: claim.slice(0, 600), passage: passage.slice(0, 900), anchor: part.anchor });
+			});
+		}
+		return out;
+	}
+
+	function meaningBatchPrompt(pairs) {
+		const sys = "Comparas frases escritas por uma IA com os excertos de artigos científicos em que elas dizem basear-se. "
+			+ "Para cada número, respondes numa linha: o número, dois pontos, SIM, EM PARTE ou NÃO, dois pontos e uma frase curta. "
+			+ "SIM: o excerto suporta a frase, mesmo que por outras palavras ou noutra língua. "
+			+ "EM PARTE: a frase generaliza, exagera, troca quem ou quando, ou junta uma ideia que o excerto não diz. "
+			+ "NÃO: o excerto contradiz a frase ou não tem nada a ver com ela. "
+			+ "Uma frase pode juntar várias fontes: só avalias a parte que este excerto deveria suportar e não penalizas o resto. "
+			+ "Números, negações e quem fez o quê têm de bater certo. Só contas com o excerto, nunca com conhecimento geral. "
+			+ "Não escreves mais nada além das linhas. " + answerLanguageLine();
+		const prompt = pairs.map((p, i) => `${i + 1}.\nFrase da IA: «${String(p.claim).trim()}»\nExcerto do artigo: «${String(p.passage).trim()}»`).join("\n\n");
+		return { system: sys, prompt };
+	}
+
+	/** "3: EM PARTE: generaliza" → [{ verdict, note }] pela ordem; o que faltar fica null. */
+	function parseMeaningBatch(text, n) {
+		const out = Array.from({ length: n }, () => null);
+		for (const line of String(text || "").split("\n")) {
+			const m = /^\s*[*_]*\s*(\d+)\s*[.):\-]?\s*[*_]*\s*[:.\-]?\s*(.*)$/.exec(line);
+			if (!m) continue;
+			const i = parseInt(m[1], 10) - 1;
+			if (i < 0 || i >= n || out[i]) continue;
+			const r = parseMeaning(m[2]);
+			if (r.verdict) out[i] = r;
+		}
+		return out;
 	}
 
 	function extractTables(md) {
@@ -3216,11 +3315,11 @@ var ZIALib = (function () {
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,
 		buildRequestParts, buildRequest, actionPrompt,
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
-		setFichaFields, fichaTemplate, answerToDocx, meaningPrompt, parseMeaning, foldText,
+		setFichaFields, fichaTemplate, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, meaningBatchPrompt, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
-		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
+		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};
 })();
 
