@@ -4117,9 +4117,10 @@ var ZIAChatView = class {
 				const p = pg((ev && ev.doc) || c.doc, (ev && ev.page) || c.page);
 				const mean = src.meaning;
 				const v = mean && mean.verdict;
-				title.textContent = this.T(v === "yes" ? "proof.confirmed" : v === "no" ? "proof.differs" : "proof.based", { p });
+				title.textContent = this.T(v === "yes" ? "proof.confirmed" : v === "inference" ? "proof.inference" : v === "no" ? "proof.differs" : "proof.based", { p });
 				passage(ev);
 				if (v === "yes") text(this.T("proof.confirmed.text"));
+				else if (v === "inference") text(this.T("proof.inference.text", { note: mean.note || "" }));
 				else if (v === "no" || v === "partly") text(this.T(v === "no" ? "proof.differs.text" : "proof.partly.text", { note: mean.note || "" }));
 				else text(this.T("proof.based.text"));
 				open((ev && ev.doc) || c.doc, (ev && ev.page) || c.page);
@@ -4136,9 +4137,9 @@ var ZIAChatView = class {
 				const mean = part ? src.meaning : null;
 				const v = mean && mean.verdict;
 				const p = pg(ev.doc, ev.page);
-				title.textContent = !part ? this.T("proof.ok", { p }) : this.T(v === "yes" ? "proof.confirmed" : v === "no" ? "proof.differs" : "proof.based", { p });
+				title.textContent = !part ? this.T("proof.ok", { p }) : this.T(v === "yes" ? "proof.confirmed" : v === "inference" ? "proof.inference" : v === "no" ? "proof.differs" : "proof.based", { p });
 				passage(ev);
-				if (part && v) text(this.T(v === "yes" ? "proof.confirmed.text" : v === "no" ? "proof.differs.text" : "proof.partly.text", { note: mean.note || "" }));
+				if (part && v) text(this.T(v === "yes" ? "proof.confirmed.text" : v === "inference" ? "proof.inference.text" : v === "no" ? "proof.differs.text" : "proof.partly.text", { note: mean.note || "" }));
 				text(this.T("proof.movedNote", { q: pg(c.doc, c.page), p }));
 				open(ev.doc, ev.page, this.T("proof.open"));
 				if (part && ev.match && !mean) card.appendChild(this._meaningEl(src, ev, chip, m));

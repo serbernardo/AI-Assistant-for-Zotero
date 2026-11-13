@@ -915,7 +915,7 @@ test("sentido das paráfrases: uma entrada por citação com todos os excertos, 
 	const { system, prompt } = L.meaningBatchPrompt(claims);
 	assert.match(system, /avalias a frase contra o conjunto/);
 	assert.match(prompt, /^1\.\nFrase da IA: «Em Silva/);
-	assert.deepEqual(L.parseMeaningBatch("1: SIM: diz o mesmo\n**2.** EM PARTE: acrescenta\n3 - NÃO: contradiz\nlixo", 4).map(r => r && r.verdict), ["yes", "partly", "no", null]);
+	assert.deepEqual(L.parseMeaningBatch("1: SIM: diz o mesmo\n**2.** EM PARTE: acrescenta\n3 - NÃO: contradiz\nlixo\n5: INTERPRETAÇÃO: decorre", 5).map(r => r && r.verdict), ["yes", "partly", "no", null, "inference"]);
 	const it = res.items[0];
 	assert.equal(L.citeState(it, 0), "based", "sem segunda leitura fica ≈");
 	it.parts[0].meaning = { verdict: "yes" }; it.parts[1].meaning = { verdict: "partly" };
@@ -923,4 +923,6 @@ test("sentido das paráfrases: uma entrada por citação com todos os excertos, 
 	it.parts[1].meaning = { verdict: "no" };
 	assert.equal(L.citeState(it, 1), "bad");
 	assert.deepEqual(L.checkCounts(res), { ok: 1, based: 0, bad: 1 });
+	it.parts[1].meaning = { verdict: "inference" };
+	assert.equal(L.citeState(it, 1), "ok", "interpretação que decorre do PDF fica ✓");
 });

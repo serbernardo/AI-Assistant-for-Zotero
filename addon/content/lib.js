@@ -1765,7 +1765,8 @@ var ZIALib = (function () {
 		if (["based", "moved"].includes(p.status)) {
 			const v = p.meaning && p.meaning.verdict;
 			// EM PARTE não é erro (quase sempre um pequeno acrescento): fica ≈ com a nota no cartão
-			return v === "yes" ? "ok" : v === "no" ? "bad" : "based";
+			// INTERPRETAÇÃO: conclusão que decorre diretamente do PDF, fica ✓ com a etiqueta "interpretação da IA"
+			return v === "yes" || v === "inference" ? "ok" : v === "no" ? "bad" : "based";
 		}
 		return stateOf(p.status);
 	}
@@ -2389,6 +2390,18 @@ var ZIALib = (function () {
 						if (!known) a.classList.add("zia-cite-unknown");
 						a.addEventListener("click", e => { e.preventDefault(); ctx.onCite && ctx.onCite(c, state ? { item, el: a, k } : null); });
 						parent.appendChild(a);
+						// Interpretação confirmada: etiqueta "interpretação da IA" a seguir, se a frase ainda não a tiver
+						if (part && part.meaning && part.meaning.verdict === "inference") {
+							let sib = a.previousSibling, has = false;
+							while (sib && !(sib.classList && sib.classList.contains("zia-cite"))) {
+								if (sib.classList && sib.classList.contains("zia-ia-badge")) { has = true; break; }
+								sib = sib.previousSibling;
+							}
+							if (!has) {
+								parent.appendChild(doc.createTextNode(" "));
+								parent.appendChild(el(doc, "span", "zia-ia-badge", t("cite.inference")));
+							}
+						}
 					});
 					break;
 				}

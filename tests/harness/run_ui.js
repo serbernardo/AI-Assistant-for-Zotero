@@ -1452,7 +1452,7 @@ async function main() {
 		await chips.nth(3).click();
 		assert.deepEqual(await page.evaluate(() => window.opened), [`${vk}#2`]);
 		// Segunda leitura: SIM passa a ✓ (confirmado), NÃO passa a ✗ com a nota
-		for (const [say, mk, cls, title] of [["SIM: diz o mesmo", "\u2713", "ok", "Confirmado no PDF · p. 1"], ["NÃO: o excerto fala de outra coisa", "\u2717", "bad", "O PDF diz outra coisa · p. 1"]]) {
+		for (const [say, mk, cls, title] of [["SIM: diz o mesmo", "\u2713", "ok", "Confirmado no PDF · p. 1"], ["INTERPRETAÇÃO: decorre do objetivo", "\u2713", "ok", "Interpretação apoiada no PDF · p. 1"], ["NÃO: o excerto fala de outra coisa", "\u2717", "bad", "O PDF diz outra coisa · p. 1"]]) {
 			await page.evaluate(s => { window.MOCK.meaning = (p, n) => Array.from({ length: n }, (_, i) => `${i + 1}: ${s}`).join("\n"); window.meaningCalls = []; }, say);
 			await page.evaluate(() => { const m = view.state.messages.find(x => x.role === "assistant"); for (const it of m.check.items) for (const p of it.parts || []) if (p) delete p.meaning; view._autoMeaning(m, "claude"); });
 			await page.waitForFunction(() => window.meaningCalls.length === 1 && !/a confirmar o sentido/.test(document.querySelector(".zia-check").textContent));
@@ -1462,6 +1462,8 @@ async function main() {
 			await last.click();
 			assert.equal(await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-proof .zia-proof-title").textContent(), title);
 			if (cls === "bad") assert.match(await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-proof").textContent(), /fala de outra coisa/);
+			// Interpretação: ✓ com a etiqueta "interpretação da IA" a seguir à citação
+			assert.equal(await last.evaluate(c => !!(c.nextElementSibling && c.nextElementSibling.classList.contains("zia-ia-badge"))), /INTERPRETA/.test(say), "etiqueta só na interpretação");
 			await last.click();
 		}
 		assert.match((await page.locator(".zia-msg-assistant >> nth=0").locator(".zia-check").textContent()), /^\u2713 confirmadas no PDF: 1 · 1 sem verificação · 3 a rever/);

@@ -224,6 +224,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   um excerto de cada vez, 44% de falsos alarmes (`out/sentido/v1`); 2.a volta, todos os excertos juntos: frases certas
   131 SIM, 25 EM PARTE, 0 NAO; estragadas 28 NAO, 1 EM PARTE, 1 SIM (uma negacao ambigua). Custo: mais 1 a 3 pedidos por
   resposta. Limite do IAEdu: uma chave ficou bloqueada mais de 1 hora depois de cerca de 37 pedidos seguidos.
+  INTERPRETACAO (a pedido: "se a IA interpreta e estiver correto pode ficar verde"): 4.a resposta da segunda leitura, uma
+  conclusao que decorre direta e necessariamente dos excertos, sem factos novos. Fica ✓ com a etiqueta "interpretacao da
+  IA" a seguir a citacao (se a frase ainda nao a tiver) e o cartao `proof.inference`. 3.a volta (`out/sentido/`, a 2.a em
+  `out/sentido/v2`): certas 123 SIM, 8 INTERPRETACAO, 24 EM PARTE, 1 NAO (um juizo da IA que cita a frase errada);
+  estragadas 28 NAO, 1 EM PARTE, 1 SIM, 0 INTERPRETACAO. "a confirmar" (≈) em vez de "por confirmar", a pedido.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"
