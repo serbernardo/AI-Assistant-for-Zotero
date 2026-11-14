@@ -283,6 +283,13 @@ var ZIALib = (function () {
 				+ "um índice dos temas principais, pela ordem do documento, com listas encaixadas: cada tema com as páginas "
 				+ "onde é tratado e uma frase sobre o que diz, com citação.",
 		},
+		// Figuras e tabelas: não é um pedido à IA, abre a galeria (chatview: _showFigures)
+		figuras: {
+			group: "compreender",
+			minDocs: 1,
+			local: true,
+			prompt: "",
+		},
 		mapa: {
 			group: "compreender",
 			minDocs: 1,
@@ -1630,8 +1637,10 @@ var ZIALib = (function () {
 	// passa a "interpretação da IA". As respostas antigas ainda as têm.
 	const STATED_RE = /\[(?:Declarado|Declared|Stated)\]\s*/g;
 	const INFER_RE = /\[(?:Inferência|Inferencia|Inference)\]/g;
+	const FIG_MARK_RE = /\[(?:Figura|Figure|Imagem|Image)\]/g;
 	function tidyMarkers(x, inferLabel) {
-		return String(x).replace(STATED_RE, "").replace(INFER_RE, inferLabel == null ? "(" + t("cite.inference") + ")" : inferLabel);
+		return String(x).replace(STATED_RE, "").replace(INFER_RE, inferLabel == null ? "(" + t("cite.inference") + ")" : inferLabel)
+			.replace(FIG_MARK_RE, inferLabel == null ? "(" + t("cite.figread") + ")" : inferLabel);
 	}
 
 	// ------------------------------------------------------------------
@@ -2391,12 +2400,16 @@ var ZIALib = (function () {
 
 	// Texto com a etiqueta "interpretação da IA" no lugar de [Inferência] (e sem [Declarado])
 	function textToDOM(doc, parent, text, noBadge) {
-		const parts = String(text).replace(STATED_RE, "").split(INFER_RE);
+		// [Inferência] passa a "interpretação da IA" e [Figura] a "lido na figura"
+		const parts = String(text).replace(STATED_RE, "").split(/(\[(?:Inferência|Inferencia|Inference|Figura|Figure|Imagem|Image)\])/);
 		parts.forEach((x, i) => {
-			if (i > 0 && !noBadge) {
-				const b = el(doc, "span", "zia-ia-badge", t("cite.inference"));
-				b.title = t("cite.inference.tip");
+			if (i % 2 === 1) {
+				const fig = /fig|ima/i.test(x);
+				if (noBadge && !fig) return;
+				const b = el(doc, "span", fig ? "zia-fig-badge" : "zia-ia-badge", t(fig ? "cite.figread" : "cite.inference"));
+				b.title = t(fig ? "cite.figread.tip" : "cite.inference.tip");
 				parent.appendChild(b);
+				return;
 			}
 			if (x) parent.appendChild(doc.createTextNode(x));
 		});
@@ -2750,7 +2763,13 @@ var ZIALib = (function () {
 		const tables = extractTables(md);
 		if (!tables.length) return null;
 		const chunks = tables.map(t => {
-			const rows = [t.header, ...t.rows].map((r, ri) => r.map(c => csvCell(inlinesToText(ri ? expandDocCell(c, ctx) : c, ctx).trim(), sep)).join(sep));
+			// ctx.cellCheck: valor de cada célula confirmado no PDF (tabelas de figuras); acrescenta uma coluna
+			const check = ctx && ctx.cellCheck;
+			const rows = [t.header, ...t.rows].map((r, ri) => {
+				const cells = r.map(c => csvCell(inlinesToText(ri ? expandDocCell(c, ctx) : c, ctx).trim(), sep));
+				if (check) cells.push(csvCell(ri ? check(r.map(c => inlinesToText(c, ctx))) : I.t("fig.csv.col"), sep));
+				return cells.join(sep);
+			});
 			return rows.join("\r\n");
 		});
 		return "﻿" + chunks.join("\r\n\r\n") + "\r\n";
@@ -3395,6 +3414,330 @@ var ZIALib = (function () {
 		};
 	}
 
+
+	// ------------------------------------------------------------------
+	// Figuras e tabelas: encontradas pelas legendas ("Figure 3", "Table 2"), com a região de cada uma
+	// (texto com posições do pdf.js e caixas das imagens e dos desenhos). Coordenadas de cima para baixo.
+	// page = { items: [{ str, x, top, w, h, rot }], images: [{ x0, y0, x1, y1 }], W, H }
+	// ------------------------------------------------------------------
+
+	const FIG_CAPTION = /^\s*(fig\.?|figure|figura|table|tabela|tab\.|quadro|chart|gráfico|grafico)\s*(\d+|[ivx]+)\b\s*([.:|\-–—]?)\s*(.*)$/i;
+
+	function figLines(items) {
+		const ls = [];
+		for (const it of items.filter(i => i.str.trim()).sort((a, b) => a.top - b.top || a.x - b.x)) {
+			const l = ls.find(l => Math.abs(l.top - it.top) < Math.max(2, it.h * 0.35) && it.x >= l.x0 - 2 && it.x - l.x1 < Math.max(6, it.h * 1.6));
+			if (l) { l.items.push(it); l.x0 = Math.min(l.x0, it.x); l.x1 = Math.max(l.x1, it.x + it.w); l.bottom = Math.max(l.bottom, it.top + it.h); l.h = Math.max(l.h, it.h); }
+			else ls.push({ items: [it], x0: it.x, x1: it.x + it.w, top: it.top, bottom: it.top + it.h, h: it.h });
+		}
+		for (const l of ls) {
+			l.items.sort((a, b) => a.x - b.x);
+			l.text = l.items.map(i => i.str).join(" ").replace(/\s+/g, " ").trim();
+			let gap = 0;
+			for (let k = 1; k < l.items.length; k++) gap = Math.max(gap, l.items[k].x - (l.items[k - 1].x + l.items[k - 1].w));
+			l.maxGap = gap;
+		}
+		return ls.sort((a, b) => a.top - b.top);
+	}
+
+	function figMedian(a) { const s = [...a].sort((x, y) => x - y); return s.length ? s[s.length >> 1] : 0; }
+
+	function detectFigures(page) {
+		const { items, images = [], W, H } = page;
+		const ls = figLines(items.filter(i => !i.rot && i.x < W * 0.94 && i.x + i.w > W * 0.03));
+		const body = figMedian(ls.filter(l => l.text.length > 40).map(l => Math.round(l.h * 2) / 2)) || 10;
+		const twoCols = ls.filter(l => l.text.length > 40 && l.x1 < W * 0.55).length >= 5 && ls.filter(l => l.text.length > 40 && l.x0 > W * 0.45).length >= 5;
+		// Linha de texto corrido: letra do corpo, comprida, sem buracos grandes (as tabelas têm)
+		// Onde começam as linhas de texto corrido (uma ou duas colunas)
+		const cnt = {};
+		for (const l of ls) if (l.text.length > 40) { const k = Math.round(l.x0 / 4) * 4; cnt[k] = (cnt[k] || 0) + 1; }
+		const starts = Object.entries(cnt).sort((a, b) => b[1] - a[1]).slice(0, 2).filter(e => e[1] >= 3).map(e => +e[0]);
+		const atStart = l => !starts.length || starts.some(x => Math.abs(l.x0 - x) < body * 2);
+		const isBody = (l, cx0, cx1) => atStart(l) && Math.abs(l.h - body) <= body * 0.08 && (l.x1 - l.x0) > (cx1 - cx0) * 0.7 && l.maxGap < body * 1.6 && /[a-z]{3,}.*\s.*[a-z]{3,}/.test(l.text);
+		// Linha que faz parte de uma fila de tabela: na mesma altura há um pedaço curto (célula)
+		for (const o of ls) o.inRow = ls.some(p => p !== o && Math.abs(p.top - o.top) < 2 && (p.x1 < o.x0 || p.x0 > o.x1) && (p.x1 - p.x0) < W * 0.2 && p.text.length < 40);
+		const out = [], blocks = [];
+		const caps = ls.filter(l => FIG_CAPTION.test(l.text)).sort((a, b) => (/^\s*(t|q)/i.test(b.text) ? 1 : 0) - (/^\s*(t|q)/i.test(a.text) ? 1 : 0));
+		for (const l of caps) {
+			const m = l.text.match(FIG_CAPTION);
+			if (!m) continue;
+			// Referência no meio do texto ("Figure 3 shows…"): linha de corpo sem pontuação depois do número
+			const kind = /^(t|q)/i.test(m[1]) ? "table" : "figure";
+			const restStarts = m[4] ? m[4][0] : "";
+			const looksRef = !m[3] && /^[a-z(]/.test(restStarts) && isBody(l, 0, W);
+			if (looksRef || /^[),;]/.test(m[4] || "") || /^[a-z(]/.test(restStarts)) continue;
+			// Coluna da legenda
+			let cx0 = 0, cx1 = W;
+			if (twoCols && l.x1 < W * 0.56) cx1 = W * 0.52;
+			else if (twoCols && l.x0 > W * 0.44) cx0 = W * 0.48;
+			const inCol = o => Math.min(o.x1, cx1) - Math.max(o.x0, cx0) > Math.max(2, (o.x1 - o.x0) * 0.5);
+			const prev = ls.filter(o => o !== l && inCol(o) && o.bottom <= l.top + 1).pop();
+			if (prev && l.top - prev.bottom < body * 0.6 && isBody(prev, cx0, cx1) && !/[.:]\s*$/.test(prev.text) && Math.abs(l.h - body) <= body * 0.12) continue;
+			const bw = cx1 - cx0; // largura da coluna: mede o texto corrido mesmo quando a região ocupa a página
+			const region = (cx0, cx1) => {
+				const inCol = o => Math.min(o.x1, cx1) - Math.max(o.x0, cx0) > Math.max(2, (o.x1 - o.x0) * 0.5);
+				const body2 = o => !o.inRow && isBody(o, 0, bw) && (o.x1 - o.x0) > bw * 0.7;
+				const others = ls.filter(o => o !== l && inCol(o));
+				let capBottom = l.bottom;
+				let extra = 0;
+				for (const o of others) { if (o.top >= capBottom - 1 && o.top - capBottom < l.h * 0.7 && Math.abs(o.h - l.h) <= l.h * 0.04 && extra < 4 && !FIG_CAPTION.test(o.text)) { capBottom = o.bottom; extra++; } else if (o.top > capBottom) break; }
+				const grow = dir => {
+					let last = dir < 0 ? l.top : capBottom;
+					const seq = dir < 0 ? others.filter(o => o.bottom <= l.top + 1).reverse() : others.filter(o => o.top >= capBottom - 1);
+					for (let k = 0; k < seq.length; k++) {
+						const o = seq[k];
+						if (FIG_CAPTION.test(o.text)) break;
+						if (body2(o)) {
+							const next = seq[k + 1];
+							if (!next || body2(next) || Math.abs(dir < 0 ? o.top - next.bottom : next.top - o.bottom) > body * 1.5) break;
+						}
+						last = dir < 0 ? Math.min(last, o.top) : Math.max(last, o.bottom);
+					}
+					for (const im of images.filter(inCol)) {
+						if (dir < 0 && im.y1 <= l.top + 2 && im.y1 >= last - 6) last = Math.min(last, im.y0);
+						if (dir > 0 && last - capBottom < 20 && im.y0 >= capBottom - 2 && im.y0 <= last + 40 && !caps.some(c => c !== l && c.top > capBottom && c.bottom <= im.y0 + 2 && inCol(c))) last = Math.max(last, im.y1);
+					}
+					return last;
+				};
+				let up = grow(-1), down = grow(1);
+				if (kind === "table") {
+					// Tabela desenhada (texto em curvas, sem texto no PDF): a região é o bloco de desenho logo por baixo
+					let bot = null, edge = capBottom;
+					for (const im of images.filter(inCol).sort((a, b) => a.y0 - b.y0)) {
+						if (im.y0 >= capBottom - 2 && im.y0 <= edge + 40 && !caps.some(c => c !== l && c.top > capBottom && c.bottom <= im.y0 + 2 && inCol(c))) { bot = Math.max(bot || 0, im.y1); edge = Math.max(edge, im.y1); }
+					}
+					if (bot !== null && !ls.some(o => o.top > capBottom && o.bottom < bot && inCol(o) && o !== l)) down = bot;
+				}
+				if (kind === "figure") {
+					// Imagens logo por cima da legenda: a figura é o grupo dessas imagens (mais os rótulos entre elas)
+					let top = null, edge = l.top;
+					for (const im of images.filter(inCol).sort((a, b) => b.y1 - a.y1)) {
+						if (im.y0 < l.top && im.y1 <= l.top + 4 && im.y1 >= edge - 40 && !caps.some(c => c !== l && c.top >= im.y1 - 2 && c.bottom <= edge + 2 && c.x1 > cx0 && c.x0 < cx1)) { top = top === null ? im.y0 : Math.min(top, im.y0); edge = Math.min(edge, im.y0); }
+					}
+					if (top !== null) up = top;
+					// Nunca por cima de uma tabela já encontrada
+					for (const t of blocks) if (t.y1 <= l.top + 2 && t.y1 > up && t.x1 > cx0 && t.x0 < cx1) up = t.y1;
+				}
+				const upSize = l.top - up, downSize = down - capBottom;
+				const useUp = kind === "figure" ? upSize > 20 || downSize < 20 : !(downSize > 20 || upSize < 20);
+				const y0 = useUp ? up : l.top, y1 = useUp ? capBottom : down;
+				if (y1 - y0 < 30) return null;
+				const inside = ls.filter(o => o.top >= y0 - 1 && o.bottom <= y1 + 1 && inCol(o));
+				const ims = images.filter(im => inCol(im) && im.y0 < y1 && im.y1 > y0);
+				let x0 = Math.min(...inside.map(o => o.x0), ...ims.map(im => im.x0)), x1 = Math.max(...inside.map(o => o.x1), ...ims.map(im => im.x1));
+				if (!isFinite(x0)) { x0 = cx0; x1 = cx1; }
+				return { y0, y1, x0: Math.max(cx0, Math.min(x0, l.x0)), x1: Math.min(cx1, Math.max(x1, l.x1)), inside, capBottom, cx0, cx1 };
+			};
+			let r = region(cx0, cx1);
+			// Legenda numa coluna, mas a figura ou tabela pode ocupar a página toda: se ao lado não há texto corrido, alarga
+			if (twoCols && (cx0 > 0 || cx1 < W)) {
+				const full = region(0, W);
+				const ox0 = cx0 > 0 ? 0 : W * 0.48, ox1 = cx0 > 0 ? W * 0.52 : W;
+				if (full && !ls.some(o => o.top >= full.y0 && o.bottom <= full.y1 && o.x0 >= ox0 - 2 && o.x1 <= ox1 + 2 && !o.inRow && isBody(o, ox0, ox1))
+					&& (ls.some(o => o.top >= full.y0 && o.bottom <= full.y1 && ((o.x0 >= ox0 - 2 && o.x1 <= ox1 + 2) || (o.x0 < W * 0.46 && o.x1 > W * 0.54))) || images.some(im => im.y0 < full.y1 && im.y1 > full.y0 && im.x1 > ox0 + 20 && im.x0 < ox1 - 20)))
+					r = full;
+			}
+			if (!r) continue;
+			const { x0, x1, y0, y1 } = r;
+			if (kind === "table") blocks.push({ x0, x1, y0, y1 });
+			// Legenda inteira (pode ter várias linhas) e o texto da tabela, fila a fila (células separadas por |)
+			const capLines = ls.filter(o => o.top >= l.top - 1 && o.bottom <= r.capBottom + 1 && Math.min(o.x1, r.cx1) - Math.max(o.x0, r.cx0) > 2);
+			const caption = capLines.map(o => o.text).join(" ").replace(/\s+/g, " ").trim().slice(0, 400);
+			const cells = r.inside.filter(o => !capLines.includes(o));
+			const rowsArr = [];
+			for (const o of cells.sort((a, b) => a.top - b.top || a.x0 - b.x0)) {
+				const row = rowsArr.find(rw => Math.abs(rw.top - o.top) < Math.max(2, o.h * 0.5));
+				if (row) row.cells.push(o); else rowsArr.push({ top: o.top, cells: [o] });
+			}
+			const rows = rowsArr.map(rw => rw.cells.sort((a, b) => a.x0 - b.x0).map(c => c.text).join(" | "));
+			out.push({ kind, num: m[2], label: m[1].replace(/\.$/, "") + " " + m[2], caption, box: { x0: Math.max(0, x0 - 4), y0: Math.max(0, y0 - 4), x1: Math.min(W, x1 + 4), y1: Math.min(H, y1 + 4) },
+				rows: kind === "table" ? rows : [], drawn: kind === "table" && rows.length < 2 });
+		}
+		// A mesma figura citada duas vezes na página: fica a maior
+		const best = {};
+		for (const f of out) { const k = f.kind + String(f.num).toLowerCase(); const a = f.box; if (!best[k] || (a.y1 - a.y0) > (best[k].box.y1 - best[k].box.y0)) best[k] = f; }
+		return Object.values(best);
+	}
+
+
+	// Códigos das operações do pdf.js (iguais desde a versão 2; o leitor do Zotero pode dar os seus)
+	const PDF_OPS = { save: 10, restore: 11, transform: 12, paintImageMaskXObject: 83, paintImageXObject: 85, paintInlineImageXObject: 86, constructPath: 91 };
+
+	/**
+	 * Lê uma página do pdf.js: texto com posições, caixas das imagens e blocos de desenho. Serve ao addon (leitor do
+	 * Zotero) e aos testes (pdf.js no Chromium). pg = página do pdf.js, ops = pdfjsLib.OPS (opcional).
+	 */
+	async function pageLayout(pg, ops, wrap) {
+		// wrap: no Zotero, os objetos passados ao pdf.js do leitor têm de ser criados do lado dele (Cu.cloneInto)
+		const w = x => (wrap ? wrap(x) : x);
+		const O = Object.assign({}, PDF_OPS);
+		for (const k of Object.keys(PDF_OPS)) if (ops && typeof ops[k] === "number") O[k] = ops[k];
+		const vp = pg.getViewport(w({ scale: 1 }));
+		const W = vp.width, H = vp.height;
+		const tc = await pg.getTextContent();
+		const items = [];
+		for (const i of tc.items) {
+			if (!i.str) continue;
+			const tr = i.transform;
+			const pt = vp.convertToViewportPoint(tr[4], tr[5]);
+			const h = Math.hypot(tr[2], tr[3]);
+			items.push({ str: String(i.str), x: pt[0], top: pt[1] - h, w: i.width, h, rot: Math.abs(tr[1]) > 0.01 });
+		}
+		const ol = await pg.getOperatorList();
+		const fns = ol.fnArray, args = ol.argsArray;
+		let ctm = [1, 0, 0, 1, 0, 0];
+		const stack = [], images = [], paths = [];
+		const mul = (m, n) => [m[0] * n[0] + m[2] * n[1], m[1] * n[0] + m[3] * n[1], m[0] * n[2] + m[2] * n[3], m[1] * n[2] + m[3] * n[3], m[0] * n[4] + m[2] * n[5] + m[4], m[1] * n[4] + m[3] * n[5] + m[5]];
+		const box = corners => {
+			const pts = corners.map(([u, v]) => vp.convertToViewportPoint(ctm[0] * u + ctm[2] * v + ctm[4], ctm[1] * u + ctm[3] * v + ctm[5]));
+			const xs = pts.map(q => q[0]), ys = pts.map(q => q[1]);
+			return { x0: Math.min(...xs), y0: Math.min(...ys), x1: Math.max(...xs), y1: Math.max(...ys) };
+		};
+		for (let k = 0; k < fns.length; k++) {
+			const fn = fns[k], a = args[k];
+			if (fn === O.save) stack.push(ctm);
+			else if (fn === O.restore) ctm = stack.pop() || ctm;
+			else if (fn === O.transform) ctm = mul(ctm, [...a]);
+			else if (fn === O.constructPath && a && a.length) {
+				// Caixa do traço: o último argumento ([x0, y0, x1, y1])
+				const mm = a[a.length - 1];
+				if (mm && mm.length === 4 && [...mm].every(Number.isFinite)) paths.push(box([[mm[0], mm[1]], [mm[2], mm[1]], [mm[0], mm[3]], [mm[2], mm[3]]]));
+			}
+			else if (fn === O.paintImageXObject || fn === O.paintInlineImageXObject || fn === O.paintImageMaskXObject) {
+				const b = box([[0, 0], [1, 0], [0, 1], [1, 1]]);
+				if ((b.x1 - b.x0) > 30 && (b.y1 - b.y0) > 30 && (b.x1 - b.x0) < W * 0.98) images.push(b);
+			}
+		}
+		return { items, images: images.concat(clusterBlocks(paths, W, H)), W, H };
+	}
+
+	/** Desenha só a região de uma figura, em alta resolução, e devolve a imagem (data URL JPEG). doc cria o canvas. */
+	async function renderRegion(pg, b, doc, scale, wrap) {
+		const w = x => (wrap ? wrap(x) : x);
+		scale = scale || 2;
+		const vp = pg.getViewport(w({ scale }));
+		const c = doc.createElement("canvas");
+		c.width = Math.max(1, Math.round((b.x1 - b.x0) * scale));
+		c.height = Math.max(1, Math.round((b.y1 - b.y0) * scale));
+		const ctx = c.getContext("2d");
+		ctx.fillStyle = "#ffffff";
+		ctx.fillRect(0, 0, c.width, c.height);
+		// Desloca a página para a região ficar na origem: só essa parte é desenhada
+		await pg.render(w({ canvasContext: ctx, viewport: vp, transform: [1, 0, 0, 1, -b.x0 * scale, -b.y0 * scale] })).promise;
+		return c.toDataURL("image/jpeg", 0.88);
+	}
+
+	/** Junta os traços vetoriais próximos em blocos (tabelas e gráficos desenhados); só os blocos grandes contam. */
+	function clusterBlocks(paths, W, H) {
+		const blocks = [];
+		for (const b of (paths || []).filter(b => (b.x1 - b.x0) < W * 0.98 && (b.y1 - b.y0) < H * 0.9)) {
+			let g = Object.assign({}, b), merged = true;
+			while (merged) {
+				merged = false;
+				for (let k = blocks.length - 1; k >= 0; k--) {
+					const o = blocks[k];
+					if (o.x0 <= g.x1 + 6 && o.x1 >= g.x0 - 6 && o.y0 <= g.y1 + 6 && o.y1 >= g.y0 - 6) {
+						g = { x0: Math.min(g.x0, o.x0), y0: Math.min(g.y0, o.y0), x1: Math.max(g.x1, o.x1), y1: Math.max(g.y1, o.y1) };
+						blocks.splice(k, 1);
+						merged = true;
+					}
+				}
+			}
+			blocks.push(g);
+		}
+		return blocks.filter(g => (g.x1 - g.x0) > 60 && (g.y1 - g.y0) > 30);
+	}
+
+	/** A tabela onde cai uma seleção do leitor do Zotero (rects [x0, y0, x1, y1] em pontos do PDF, de baixo para cima). */
+	function tableForSelection(figs, rects) {
+		const rs = (rects || []).filter(r => r && r.length === 4);
+		if (!rs.length) return null;
+		return (figs || []).find(f => f.kind === "table" && f.pageH && rs.every(r => {
+			const x0 = r[0], x1 = r[2], y0 = f.pageH - r[3], y1 = f.pageH - r[1];
+			return x0 >= f.box.x0 - 3 && x1 <= f.box.x1 + 3 && y0 >= f.box.y0 - 3 && y1 <= f.box.y1 + 3;
+		})) || null;
+	}
+
+	/** Nome da figura ou tabela na língua da app ("Tabela 5", "Figure 6"). */
+	function figureName(fig) {
+		return t(fig.kind === "table" ? "fig.table" : "fig.figure") + " " + fig.num;
+	}
+
+	/** Lê a imagem? Figuras e tabelas desenhadas (sem texto no PDF) precisam dela; as outras tabelas vão em texto. */
+	function figureNeedsImage(fig) {
+		return fig.kind === "figure" || !!fig.drawn;
+	}
+
+	/** Pedido para analisar uma figura ou tabela (vai depois dos documentos, como as ações). */
+	function figurePrompt(fig, docId) {
+		const where = `${docId}:p${fig.page}`;
+		const head = `Analisa ${fig.kind === "table" ? "a tabela" : "a figura"} «${fig.label}» da página ${fig.page} do documento ${docId}.\n`
+			+ `Legenda no PDF: «${fig.caption}»\n`;
+		const rule = "Regra das marcas: o que vem do texto do documento leva a citação habitual com a frase de base, "
+			+ `por exemplo [${where} «5 a 15 palavras exatas»]. O que leres só na imagem (valores, tendências, cores, setas) `
+			+ "e não estiver escrito no texto do documento leva no fim da frase a marca [Figura], sem citação. Nunca inventes valores: "
+			+ "se não conseguires ler um valor, escreve que não é legível.\n";
+		if (fig.kind === "table" && !fig.drawn) {
+			return head + "Conteúdo da tabela tirado do PDF, fila a fila (células separadas por |, e as células partidas em várias linhas "
+				+ "aparecem em filas seguidas):\n<tabela>\n" + fig.rows.join("\n").slice(0, 12000) + "\n</tabela>\n"
+				+ "1. Reproduz a tabela completa em Markdown, com os mesmos cabeçalhos e os valores exatamente como estão (mesmas casas "
+				+ "decimais e símbolos). Junta numa só célula o texto de uma célula partida. Não acrescentes nem calcules valores.\n"
+				+ "2. ## O que mostra: duas a quatro frases com o essencial, cada uma com citação.\n"
+				+ "3. ## Como os autores a usam: o que concluem da tabela, com a citação da página onde a discutem. "
+				+ "Se o documento não a discutir, diz isso.\n" + rule;
+		}
+		const img = "A imagem junta é o recorte desta " + (fig.kind === "table" ? "tabela" : "figura") + " no PDF.\n";
+		if (fig.kind === "table") {
+			return head + img + "Esta tabela é um desenho no PDF: os valores não existem como texto.\n"
+				+ "1. Reproduz a tabela em Markdown, lida na imagem, e escreve [Figura] na linha imediatamente antes da tabela.\n"
+				+ "2. ## O que mostra: duas a quatro frases.\n3. ## Como os autores a usam, com citação da página onde a discutem.\n" + rule;
+		}
+		return head + img
+			+ "1. ## O que mostra: o tipo de figura (gráfico, esquema, mapa, fotografia…), os eixos, as unidades e as séries ou partes.\n"
+			+ "2. ## Valores e tendências principais: o que se lê na figura.\n"
+			+ "3. ## O que os autores concluem dela, com a citação da página onde a discutem. Se o documento não a discutir, diz isso.\n" + rule;
+	}
+
+	// Marca dos valores lidos na imagem (não confirmados no texto do PDF)
+	const FIGREAD_RE = /\[(?:Figura|Figure|Imagem|Image)\]/g;
+
+	/** Texto para a verificação: tira as linhas lidas na imagem e, nas figuras e tabelas desenhadas, as tabelas (não há texto onde confirmar). */
+	function figureVerifyText(text, fig) {
+		const lines = String(text || "").split("\n");
+		let tableFromImage = false;
+		return lines.map((ln, i) => {
+			if (/^\s*\|/.test(ln)) {
+				if (i === 0 || !/^\s*\|/.test(lines[i - 1])) tableFromImage = figureNeedsImage(fig);
+				return tableFromImage ? "" : ln;
+			}
+			FIGREAD_RE.lastIndex = 0;
+			if (FIGREAD_RE.test(ln) && !CITE_GROUP_RE.test(ln)) { CITE_GROUP_RE.lastIndex = 0; return ""; }
+			CITE_GROUP_RE.lastIndex = 0;
+			return ln;
+		}).join("\n");
+	}
+
+	/** Um valor de uma célula está no texto da página? true, false, ou null se a célula não for um número. */
+	function cellNumberIn(cell, pageText) {
+		const c = String(cell || "").trim().replace(/[\u2212\u2013]/g, "-").replace(/\s+/g, "");
+		const m = c.match(/^[<>≤≥~±+-]?\(?(\d+(?:[.,]\d+)?|[.,]\d+)\)?(%|[a-zA-Z]{0,3})?\*{0,3}[a-z†‡§]?$/);
+		if (!m) return null;
+		const p = String(pageText || "");
+		const v = m[1];
+		if (/[.,]/.test(v)) return docDecimals(p).has((parseInt(v.split(/[.,]/)[0] || "0", 10)) + "," + v.split(/[.,]/)[1]);
+		return docIntegers(p).has(v.replace(/^0+(?=\d)/, ""));
+	}
+
+	/** Contagem das células com números nas tabelas da resposta: confirmadas no texto da página, ou não. */
+	function figureCells(text, pageText) {
+		const out = { ok: 0, missing: 0 };
+		for (const tb of extractTables(text)) for (const r of tb.rows) for (const c of r) {
+			const v = cellNumberIn(inlinesToText(c, {}), pageText);
+			if (v === true) out.ok++; else if (v === false) out.missing++;
+		}
+		return out;
+	}
+
 	return {
 		SYSTEM_PROMPT, LANGUAGES, languageInfo, buildSystemPrompt, answerReminder, ordinal,
 		ACTIONS, ACTION_ORDER, ACTION_GROUPS, FICHA_NOTE_PREFIX, FICHA_NOTE_PREFIXES, fichaPrefix, FICHA_TEMPLATE, I18N: I,
@@ -3407,7 +3750,7 @@ var ZIALib = (function () {
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
 		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, widePassage, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
-		extractTables, tablesToCSV,
+		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, figurePrompt, figureVerifyText, cellNumberIn, figureCells, FIGREAD_RE,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
 		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, fixCitePages, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};

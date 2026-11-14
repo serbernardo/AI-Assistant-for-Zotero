@@ -45,6 +45,9 @@ function sseResponse(events, status = 200) {
 	assert.equal(body.systemInstruction.parts[0].text, "SIS");
 	assert.equal(body.contents[0].role, "user");
 	assert.equal(body.contents[0].parts[0].text, "PEDIDO");
+	assert.equal(body.contents[0].parts.length, 1, "sem imagem, só o texto");
+	await core.runGemini({ system: "SIS", prompt: "PEDIDO", images: [{ mime: "image/jpeg", data: "QUJD" }], win });
+	assert.deepEqual(JSON.parse(captured.opts.body).contents[0].parts[1], { inlineData: { mimeType: "image/jpeg", data: "QUJD" } }, "a figura vai como imagem");
 	console.log("OK Gemini: pedido no formato oficial, chave no cabeçalho, fluxo lido, pensamentos ignorados");
 
 	// Erros

@@ -131,7 +131,7 @@ async function main() {
 		assert.equal(await page.locator('button[data-action="esquema"]').count(), 1, "as outras ações ficam no Avançado");
 		// Ler e extrair: os dois separadores juntaram-se (a pedido)
 		assert.deepEqual(await page.$$eval(".zia-action", bs => bs.map(b => b.dataset.action)),
-			["pontos", "esquema", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
+			["pontos", "esquema", "figuras", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
 		assert.deepEqual(await page.$$eval(".zia-tab", bs => bs.map(b => b.textContent)), ["Ler", "Avaliar", "Investigar", "Pers."]);
 		await page.screenshot({ path: path.join(OUT, "ui_painel_vazio.png") });
 		// as perguntas de exemplo estão em Pers.
@@ -1575,6 +1575,82 @@ async function main() {
 		await page.waitForFunction(() => view.state.docs.length === 121);
 		await page.close();
 		console.log("OK janela: artigos escolhidos substituem os anteriores, sem PDF avisa bem, muitos artigos pedem confirmação");
+	}
+
+	// Figuras e tabelas: galeria no separador Ler, tabela com os valores confirmados no PDF e Excel com a coluna,
+	// figura enviada como imagem com "lido na figura", IAEdu recusa figuras com um aviso claro
+	{
+		const page = await open("?mode=section", { width: 420, height: 1100 });
+		await page.evaluate(async () => {
+			const V = window.paper("Wind power forecasting", 2026, ["Li"], "WPDF", [
+				"Introduction. Wind power is variable. " + "Texto. ".repeat(30),
+				"Table 5 Comparison of prediction performance. Model MAE RMSE SVR 14.23 21.46 Ours 8.72 12.48. "
+					+ "From Figs 6 and 7, we can clearly see the performance differences between individual models. " + "Texto. ".repeat(20),
+			]);
+			await view.showItem(V);
+			const img = "data:image/jpeg;base64,QUJD";
+			window.figCalls = 0;
+			view.core.findFigures = async (id, o) => {
+				window.figCalls++;
+				if (o && o.onProgress) o.onProgress(1, 2);
+				return [
+					{ kind: "table", num: "5", label: "Table 5", caption: "Table 5 Comparison of prediction performance", page: 2, box: { x0: 0, y0: 0, x1: 100, y1: 50 }, rows: ["Model | MAE | RMSE", "SVR | 14.23 | 21.46", "Ours | 8.72 | 12.48"], drawn: false, thumb: img },
+					{ kind: "figure", num: "6", label: "Figure 6", caption: "Figure 6 Comparison of wind energy prediction results", page: 2, box: { x0: 0, y0: 60, x1: 100, y1: 160 }, rows: [], drawn: false, thumb: img },
+				];
+			};
+			view.core.renderFigure = async () => img;
+			window.opened.length = 0;
+		});
+		await tab(page, "compreender");
+		await page.click('.zia-action[data-action="figuras"]');
+		await page.waitForSelector(".zia-fig-card");
+		assert.equal(await page.textContent(".zia-figs-title"), "2 encontradas neste artigo");
+		assert.deepEqual(await page.$$eval(".zia-figs-chip", cs => cs.map(c => c.textContent)), ["Todas (2)", "Tabelas (1)", "Figuras (1)"]);
+		assert.deepEqual(await page.$$eval(".zia-fig-kind", cs => cs.map(c => c.textContent)), ["Tabela 5", "Figura 6"]);
+		await page.click('.zia-figs-chip[data-filter="figure"]');
+		assert.equal(await page.$$eval(".zia-fig-card", cs => cs.length), 1, "o filtro mostra só as figuras");
+		await page.click('.zia-figs-chip[data-filter="all"]');
+		// Tabela: vai em texto (sem imagem), os valores do PDF ficam ✓ e o inventado ✗
+		await page.evaluate(() => {
+			window.MOCK.answer = [
+				"| Modelo | MAE (MW) | RMSE (MW) |", "|---|---|---|", "| SVR | 14.23 | 21.46 |", "| Proposto | 8.72 | 99.99 |", "",
+				"## O que mostra", "O modelo proposto tem o erro mais baixo [D1:p2 «we can clearly see the performance differences»].",
+			].join("\n");
+		});
+		await page.click('.zia-fig-card[data-kind="table"]');
+		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && document.querySelector(".zia-fig-badge-box"));
+		assert.match(await page.evaluate(() => window.lastPrompt), /<tabela>\nModel \| MAE \| RMSE\nSVR \| 14\.23 \| 21\.46/, "a tabela vai em texto, fila a fila");
+		assert.equal(await page.evaluate(() => window.lastImages), null, "uma tabela com texto não leva imagem");
+		assert.deepEqual(await page.evaluate(() => window.opened), ["WPDF#2"], "o PDF abre na página da tabela");
+		const msg = page.locator(".zia-msg-assistant >> nth=0");
+		assert.equal(await msg.locator(".zia-fig-crop img").count(), 1, "o recorte aparece na resposta");
+		assert.deepEqual(await msg.locator("td.zia-num").evaluateAll(ts => ts.map(t => t.textContent + ":" + t.className.replace(/.*zia-num-/, ""))),
+			["14.23:ok", "21.46:ok", "8.72:ok", "99.99:no"]);
+		assert.equal(await msg.locator(".zia-fig-badge-box").textContent(), "✓ 3 de 4 valores confirmados no texto do PDF · fora do texto desta página: 1, confirma no PDF");
+		await page.screenshot({ path: path.join(OUT, "ui_figuras_tabela.png"), fullPage: true });
+		await msg.locator("button", { hasText: "Exportar para Excel" }).click();
+		const csv = await page.evaluate(() => window.lastCSV.csv);
+		assert.match(csv, /Modelo;MAE \(MW\);RMSE \(MW\);Verificado no PDF\r\nSVR;14\.23;21\.46;sim\r\nProposto;8\.72;99\.99;não está no texto do PDF/);
+		// Figura: vai a imagem, o que foi lido nela fica marcado e não conta como erro
+		await page.evaluate(() => {
+			window.MOCK.answer = "## O que mostra\nUm gráfico com a potência real e as previsões, com RMSE de 9,21 no BAS [Figura].\n\nOs autores comparam os modelos [D1:p2 «we can clearly see the performance differences»].";
+		});
+		await page.click('.zia-action[data-action="figuras"]');
+		if (!(await page.isVisible(".zia-fig-card"))) await page.click('.zia-action[data-action="figuras"]');
+		await page.click('.zia-fig-card[data-kind="figure"]');
+		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && /RMSE de 9,21/.test(document.querySelector(".zia-messages").textContent));
+		assert.deepEqual(await page.evaluate(() => window.lastImages), [{ mime: "image/jpeg", data: "QUJD" }], "a figura vai como imagem");
+		const fm = page.locator(".zia-msg-assistant >> nth=0");
+		assert.equal(await fm.locator(".zia-fig-badge").textContent(), "lido na figura");
+		assert.doesNotMatch(await fm.locator(".zia-check").textContent(), /rever/, "o valor lido na imagem não é um erro");
+		assert.equal(await page.evaluate(() => window.figCalls), 1, "a galeria só procura uma vez por PDF");
+		// IAEdu: figuras precisam de imagem, que o IAEdu não aceita
+		await page.evaluate(() => { view.engine = "iaedu"; view.core.isEngineReady = () => true; window.engineCalls = 0; });
+		await page.click('.zia-fig-card[data-kind="figure"]');
+		assert.match(await page.textContent(".zia-status"), /não aceita imagens/);
+		assert.equal(await page.evaluate(() => window.engineCalls), 0);
+		await page.close();
+		console.log("OK painel: figuras e tabelas (galeria, filtros, tabela em texto com valores confirmados, Excel com a coluna, figura em imagem, IAEdu)");
 	}
 
 	await browser.close();

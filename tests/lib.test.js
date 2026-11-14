@@ -190,7 +190,7 @@ test("classificação de erros", () => {
 
 test("todas as ações têm prompt e rótulo", () => {
 	for (const id of L.ACTION_ORDER) {
-		assert.ok(L.ACTIONS[id].label && L.ACTIONS[id].prompt, id);
+		assert.ok(L.ACTIONS[id].label && (L.ACTIONS[id].prompt || L.ACTIONS[id].local), id);
 	}
 	assert.match(L.actionPrompt("comparar", [{ id: "D1", ref: "A" }, { id: "D2", ref: "B" }]), /D1 \(A\), D2 \(B\)/);
 });
@@ -215,7 +215,7 @@ test("ações: todas completas e agrupadas", () => {
 	const groups = new Set(L.ACTION_GROUPS.map(g => g.id));
 	for (const id of L.ACTION_ORDER) {
 		const a = L.ACTIONS[id];
-		assert.ok(a.label && a.title && a.prompt && a.hint, id);
+		assert.ok(a.label && a.title && (a.prompt || a.local) && a.hint, id);
 		assert.ok(groups.has(a.group), id + " tem grupo válido");
 		assert.ok(a.minDocs >= 1);
 	}
@@ -957,4 +957,63 @@ test("frase de base com [...] no meio: a citação é reconhecida e fica o peda�
 	const m = [...t.matchAll(L.CITE_GROUP_RE)];
 	assert.equal(m.length, 1);
 	assert.equal(L.parseCiteGroup(m[0][1])[0].anchor, "Common polymer types, including polyethylene (PE),");
+});
+
+// ---------- Figuras e tabelas ----------
+
+test("figuras: legendas, referências no texto e região da tabela", () => {
+	// Página A4 de uma coluna: parágrafo, legenda da tabela, 3 filas e outro parágrafo
+	const W = 595, H = 842, it = (str, x, top, w, h = 10) => ({ str, x, top, w, h });
+	const body = top => [it("This paragraph of running text describes the method and the results of the study in detail.", 56, top, 480)];
+	const items = [
+		...body(80), ...body(94), ...body(108), ...body(122), ...body(136),
+		it("As shown in", 56, 150, 60), it("Table 2 shows the results of the regression analysis for all the groups studied.", 120, 150, 416),
+		it("Table 1. Comparison of the models", 56, 180, 200, 9),
+		it("Model", 56, 200, 40, 9), it("MAE", 250, 200, 30, 9), it("RMSE", 400, 200, 30, 9),
+		it("SVR", 56, 214, 30, 9), it("14.23", 250, 214, 30, 9), it("21.46", 400, 214, 30, 9),
+		it("Ours", 56, 228, 30, 9), it("8.72", 250, 228, 30, 9), it("12.48", 400, 228, 30, 9),
+		...body(260), ...body(274), ...body(288),
+	];
+	const figs = L.detectFigures({ items, images: [], W, H });
+	assert.equal(figs.length, 1, "a referência «Table 2 shows» não é uma legenda");
+	const t = figs[0];
+	assert.equal(t.kind, "table");
+	assert.equal(t.num, "1");
+	assert.match(t.caption, /^Table 1\. Comparison of the models/);
+	assert.deepEqual(t.rows, ["Model | MAE | RMSE", "SVR | 14.23 | 21.46", "Ours | 8.72 | 12.48"]);
+	assert.equal(t.drawn, false);
+	assert.ok(t.box.y0 < 185 && t.box.y1 > 237 && t.box.y1 < 260, "a região vai da legenda à última fila, sem o parágrafo");
+	// Seleção dentro da tabela (rects do Zotero: pontos do PDF de baixo para cima)
+	const f = Object.assign({}, t, { page: 1, pageH: H });
+	assert.equal(L.tableForSelection([f], [[250, H - 224, 280, H - 214]]), f);
+	assert.equal(L.tableForSelection([f], [[56, H - 100, 300, H - 90]]), null, "fora da tabela");
+});
+
+test("figuras: valores das células confirmados no texto da página", () => {
+	const page = "Model MAE RMSE SVR 14.23 21.46 Ours 8.72 12.48 p < .012 n = 1,234 MAPE 5.21%";
+	assert.equal(L.cellNumberIn("14.23", page), true);
+	assert.equal(L.cellNumberIn("14,23", page), true, "vírgula decimal");
+	assert.equal(L.cellNumberIn("99.99", page), false);
+	assert.equal(L.cellNumberIn(".012", page), true);
+	assert.equal(L.cellNumberIn("5.21%", page), true);
+	assert.equal(L.cellNumberIn("1234", page), true);
+	assert.equal(L.cellNumberIn("SVR", page), null, "texto não conta");
+	const md = "| M | MAE |\n|---|---|\n| SVR | 14.23 |\n| Ours | 9.99 |";
+	assert.deepEqual(L.figureCells(md, page), { ok: 1, missing: 1 });
+});
+
+test("figuras: o que foi lido na imagem não entra na verificação", () => {
+	const fig = { kind: "figure", num: "6", page: 2 };
+	const text = "Gráfico com RMSE de 9,21 [Figura].\n\n| A | B |\n|---|---|\n| 1,5 | 2,5 |\n\nOs autores comparam [D1:p2].";
+	const v = L.figureVerifyText(text, fig);
+	assert.doesNotMatch(v, /9,21|1,5/);
+	assert.match(v, /Os autores comparam \[D1:p2\]/);
+	// Tabela com texto: a tabela fica para ser verificada
+	assert.match(L.figureVerifyText(text, { kind: "table", drawn: false }), /\| 1,5 \| 2,5 \|/);
+	assert.equal(L.figureNeedsImage({ kind: "table", drawn: true }), true);
+	assert.equal(L.figureNeedsImage({ kind: "table", drawn: false }), false);
+	assert.match(L.tidyMarkers("RMSE de 9,21 [Figura]."), /\(lido na figura\)/);
+	const p = L.figurePrompt({ kind: "table", label: "Table 1", caption: "Table 1. X", page: 3, rows: ["A | B"], drawn: false }, "D1");
+	assert.match(p, /<tabela>\nA \| B\n<\/tabela>/);
+	assert.match(p, /\[D1:p3 «/);
 });

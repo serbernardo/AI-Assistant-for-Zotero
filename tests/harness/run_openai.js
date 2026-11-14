@@ -51,6 +51,12 @@ const errBody = (status, code, message, type) => new Response(JSON.stringify({ e
 	assert.ok(!("temperature" in c.body), "sem temperature");
 	assert.deepEqual(c.body.messages, [{ role: "developer", content: "SIS" }, { role: "user", content: "PEDIDO" }]);
 	assert.equal(L.formatUsage(r.usage, "openai"), "Tokens: 9000 de entrada (8000 da cache), 40 de saída");
+	// Figura: o texto e a imagem (data URL) na mesma mensagem
+	calls.length = 0;
+	await core.runOpenAI({ system: "SIS", prompt: "PEDIDO", model: "gpt-6-sol", images: [{ mime: "image/jpeg", data: "QUJD" }], win: mkWin(() => sse(OK)) });
+	assert.deepEqual(calls[0].body.messages[1].content, [{ type: "text", text: "PEDIDO" }, { type: "image_url", image_url: { url: "data:image/jpeg;base64,QUJD" } }]);
+	assert.ok(core.codexArgs("gpt-6", new Set(), ["/tmp/figura-1.jpg"]).includes("--image=/tmp/figura-1.jpg"), "Codex: a figura vai como ficheiro, num só argumento");
+	assert.ok(core.claudeArgs("sonnet", "/tmp/s.md", new Set()).includes("-p"));
 	console.log("OK ChatGPT API: pedido oficial, chave no cabeçalho, fluxo lido, consumo de tokens");
 
 	const expectKind = async (win, kind) => assert.rejects(core.runOpenAI({ system: "s", prompt: "p", win }), e => {

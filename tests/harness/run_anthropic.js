@@ -102,6 +102,11 @@ const errBody = (type, message) => JSON.stringify({ type: "error", error: { type
 	assert.ok(!("fallbacks" in calls[0].body) && !calls[0].opts.headers["anthropic-beta"]);
 	assert.deepEqual(calls[0].body.messages[0].content, [{ type: "text", text: "p" }]);
 
+	// Figura: a imagem vai num bloco próprio, depois do texto
+	calls.length = 0;
+	await core.runAnthropic({ system: "s", prompt: "p", model: "claude-sonnet-5", images: [{ mime: "image/jpeg", data: "QUJD" }], win: mkWin(() => sse(OK_EVENTS)) });
+	assert.deepEqual(calls[0].body.messages[0].content, [{ type: "text", text: "p" }, { type: "image", source: { type: "base64", media_type: "image/jpeg", data: "QUJD" } }]);
+
 	// Haiku 5.5: esforço médio, sem reserva (o Haiku não tem reserva no servidor)
 	calls.length = 0;
 	await core.runAnthropic({ system: "s", prompt: "p", model: "claude-haiku-5-5", win: mkWin(() => sse(OK_EVENTS)) });

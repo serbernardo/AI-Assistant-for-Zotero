@@ -626,7 +626,7 @@ var ZoteroIA = {
 		let active = Array.isArray(data) ? 0 : ((data && data.active) || 0);
 		try {
 			const keep = ["role", "display", "promptText", "text", "actionID", "actionLabel", "engine", "model",
-				"heading", "error", "errorKind", "errorDetail", "asked", "time", "docIDs", "usageNote", "noteID", "check", "stances", "warnings", "pageOffsets", "literalIds"];
+				"heading", "error", "errorKind", "errorDetail", "asked", "time", "docIDs", "usageNote", "noteID", "check", "stances", "warnings", "pageOffsets", "literalIds", "figure"];
 			const clean = msgs => msgs.filter(m => !m.pending).slice(-this.HISTORY_MAX)
 				.map(m => Object.fromEntries(keep.filter(k => m[k] != null).map(k => [k, m[k]])));
 			const conversations = [];
@@ -1028,7 +1028,7 @@ var ZoteroIA = {
 		return out;
 	},
 
-	async runClaude({ system, prompt, model, onDelta, onInfo, signal }) {
+	async runClaude({ system, prompt, model, onDelta, onInfo, signal, images }) {
 		const exe = await this.findClaudeExecutable();
 		const dir = await this.workDir();
 		// Nome único: o painel e a janela podem fazer pedidos ao mesmo tempo
@@ -1045,8 +1045,10 @@ var ZoteroIA = {
 			const dropped = new Set();
 			for (let attempt = 0; attempt < 4; attempt++) {
 				const parser = this.lib.createClaudeStreamParser((delta, all) => onDelta && onDelta(delta, all));
-				const res = await this.runProcess(exe, this.claudeArgs(model, sysPath, dropped), {
-					stdin: prompt,
+				const withImages = images && images.length;
+				const res = await this.runProcess(exe, this.claudeArgs(model, sysPath, dropped).concat(withImages ? ["--input-format", "stream-json"] : []), {
+					// Com imagens, o pedido vai como uma mensagem em JSON (texto e imagem)
+					stdin: withImages ? JSON.stringify({ type: "user", message: { role: "user", content: [{ type: "text", text: prompt }].concat(images.map(im => ({ type: "image", source: { type: "base64", media_type: im.mime, data: im.data } }))) } }) + "\n" : prompt,
 					env,
 					workdir: dir,
 					onStdout: chunk => parser.push(chunk),
@@ -1335,7 +1337,7 @@ var ZoteroIA = {
 			model = swap.to;
 			notify("chat.geminiAltQuota", { model, original });
 			try {
-				const r = await this.runGemini({ system, prompt, model, onDelta, onInfo, signal, win, noLite: opts0.noLite });
+				const r = await this.runGemini({ system, prompt, model, onDelta, onInfo, signal, win, noLite: opts0.noLite, images: opts0.images });
 				r.notice = r.notice || this.t("chat.geminiUsedAltQuota", { model, original });
 				return r;
 			}
@@ -1346,7 +1348,7 @@ var ZoteroIA = {
 			}
 		}
 		let streamed = false;
-		const opts = { system, prompt, signal, win, key, onDelta: (d, all) => { streamed = true; if (onDelta) onDelta(d, all); } };
+		const opts = { system, prompt, signal, win, key, images: opts0.images, onDelta: (d, all) => { streamed = true; if (onDelta) onDelta(d, all); } };
 		const aborted = () => !!(signal && signal.aborted);
 		const stop = () => { if (aborted()) throw this.error("aborted", this.t("err.aborted")); };
 		let firstErr;
@@ -1453,7 +1455,7 @@ var ZoteroIA = {
 		catch (e) { this.log("Modelos Gemini para análise: " + e); }
 		const notify = (k, vars) => { if (onInfo) onInfo({ notice: this.t(k, vars) }); };
 		let streamed = false;
-		const once = { system: opts.system, prompt: opts.prompt, signal, win, key, onDelta: (d, all) => { streamed = true; if (onDelta) onDelta(d, all); } };
+		const once = { system: opts.system, prompt: opts.prompt, images: opts.images, signal, win, key, onDelta: (d, all) => { streamed = true; if (onDelta) onDelta(d, all); } };
 		let skipped = null;
 		for (const m of cands) {
 			if (this._geminiAvoid(m)) { skipped = skipped || m; continue; }
@@ -1516,11 +1518,11 @@ var ZoteroIA = {
 		return Promise.all(models.map(probe));
 	},
 
-	async _geminiOnce(model, { system, prompt, onDelta, signal, win, key }) {
+	async _geminiOnce(model, { system, prompt, onDelta, signal, win, key, images }) {
 		const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:streamGenerateContent?alt=sse`;
 		const body = {
 			systemInstruction: { parts: [{ text: system }] },
-			contents: [{ role: "user", parts: [{ text: prompt }] }],
+			contents: [{ role: "user", parts: [{ text: prompt }].concat((images || []).map(im => ({ inlineData: { mimeType: im.mime, data: im.data } }))) }],
 			generationConfig: { temperature: 0.2 },
 		};
 		let res, cleanup;
@@ -1621,7 +1623,7 @@ var ZoteroIA = {
 		};
 	},
 
-	async runAnthropic({ system, prompt, promptParts, model, onDelta, signal, win }) {
+	async runAnthropic({ system, prompt, promptParts, model, onDelta, signal, win, images }) {
 		const key = await this.getSecret("anthropic");
 		if (!key) {
 			throw this.error("auth", this.t("err.noKey", { label: this.t("key.anthropic") }));
@@ -1635,6 +1637,7 @@ var ZoteroIA = {
 				{ type: "text", text: promptParts.rest },
 			]
 			: [{ type: "text", text: prompt }];
+		for (const im of images || []) content.push({ type: "image", source: { type: "base64", media_type: im.mime, data: im.data } });
 		const body = {
 			model,
 			max_tokens: 32000,
@@ -1745,7 +1748,7 @@ var ZoteroIA = {
 		return /^[a-z0-9][a-z0-9._:-]{1,80}$/i.test(m) ? m : "gpt-6-sol";
 	},
 
-	async runOpenAI({ system, prompt, model, onDelta, signal, win }) {
+	async runOpenAI({ system, prompt, model, onDelta, signal, win, images }) {
 		const key = await this.getSecret("openai");
 		if (!key) throw this.error("auth", this.t("err.noKey", { label: this.t("key.openai") }));
 		model = model || this.openaiModel();
@@ -1757,7 +1760,9 @@ var ZoteroIA = {
 			max_completion_tokens: 32000,
 			messages: [
 				{ role: "developer", content: system },
-				{ role: "user", content: prompt },
+				{ role: "user", content: images && images.length
+					? [{ type: "text", text: prompt }].concat(images.map(im => ({ type: "image_url", image_url: { url: `data:${im.mime};base64,${im.data}` } })))
+					: prompt },
 			],
 		};
 		let res, cleanup;
@@ -1856,7 +1861,8 @@ var ZoteroIA = {
 		return this.t(own ? "err.iaedu.auth" : "err.iaedu.authDefault");
 	},
 
-	async runIAEdu({ system, prompt, onDelta, signal, win }) {
+	async runIAEdu({ system, prompt, onDelta, signal, win, images }) {
+		if (images && images.length) throw this.error("noimages", this.t("err.noImages", { engine: this.engineLabel("iaedu") }));
 		const key = await this.getSecret("iaedu");
 		if (!key) throw this.error("auth", this.t("err.noKey", { label: this.t("key.iaedu") }));
 		const url = this.iaeduEndpoint();
@@ -1922,9 +1928,11 @@ var ZoteroIA = {
 		return this.findToolExecutable("codex");
 	},
 
-	codexArgs(model, dropped) {
+	codexArgs(model, dropped, imagePaths) {
 		const args = ["exec", "--json", "--skip-git-repo-check", "--ephemeral", "--sandbox", "read-only", "--color", "never"];
 		if (model) args.push("--model", model);
+		// "--image=<ficheiro>" num só argumento: a opção aceita vários valores e engoliria o que vem a seguir
+		for (const f of imagePaths || []) args.push("--image=" + f);
 		const out = [];
 		for (let i = 0; i < args.length; i++) {
 			const a = args[i];
@@ -1943,7 +1951,7 @@ var ZoteroIA = {
 		return /^[a-z0-9][a-z0-9._:-]{1,80}$/i.test(m) ? m : "";
 	},
 
-	async runCodex({ system, prompt, model, onDelta, signal }) {
+	async runCodex({ system, prompt, model, onDelta, signal, images }) {
 		const exe = await this.findCodexExecutable();
 		const dir = PathUtils.join(await this.workDir(), "codex-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8));
 		await IOUtils.makeDirectory(dir, { ignoreExisting: true, createAncestors: true });
@@ -1959,6 +1967,12 @@ var ZoteroIA = {
 		}
 		const optional = new Set(["--ephemeral", "--color"]);
 		const dropped = new Set();
+		const imagePaths = [];
+		for (const [k, im] of (images || []).entries()) {
+			const f = PathUtils.join(dir, `figura-${k + 1}.${/png/.test(im.mime) ? "png" : "jpg"}`);
+			await IOUtils.write(f, this._b64bytes(im.data));
+			imagePaths.push(f);
+		}
 		try {
 			for (let attempt = 0; attempt < 3; attempt++) {
 				const killRef = {};
@@ -1969,7 +1983,7 @@ var ZoteroIA = {
 						toolUsed = tool;
 						if (killRef.kill) killRef.kill();
 					});
-				const res = await this.runProcess(exe, this.codexArgs(model || this.codexModel(), dropped), {
+				const res = await this.runProcess(exe, this.codexArgs(model || this.codexModel(), dropped, imagePaths), {
 					stdin: input,
 					env,
 					workdir: dir,
@@ -2051,6 +2065,14 @@ var ZoteroIA = {
 		return Math.max(20000, parseInt(v, 10) || 400000);
 	},
 
+	/** base64 para bytes (escrever a imagem de uma figura num ficheiro) */
+	_b64bytes(b64) {
+		const bin = atob(b64);
+		const out = new Uint8Array(bin.length);
+		for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+		return out;
+	},
+
 	async runEngine(engine, opts) {
 		switch (engine) {
 			case "gemini": {
@@ -2069,6 +2091,90 @@ var ZoteroIA = {
 	// ------------------------------------------------------------------
 	// Notas, ligações e exportação
 	// ------------------------------------------------------------------
+
+	// ------------------------------------------------------------------
+	// Figuras e tabelas: lidas com o pdf.js do leitor do Zotero (o PDF tem de estar aberto)
+	// ------------------------------------------------------------------
+
+	_readerFor(attachmentID) {
+		try { return (Zotero.Reader._readers || []).find(r => r.itemID === attachmentID) || null; }
+		catch (e) { return null; }
+	},
+
+	/** O pdf.js do leitor aberto com este PDF (abre-o se open). null se não estiver aberto. */
+	async _pdfFor(attachmentID, open) {
+		let reader = this._readerFor(attachmentID);
+		if (!reader && open) {
+			await Zotero.Reader.open(attachmentID);
+			reader = this._readerFor(attachmentID);
+		}
+		if (!reader) return null;
+		for (let i = 0; i < 150; i++) {
+			try {
+				const ir = reader._internalReader;
+				const view = ir && (ir._primaryView || ir._lastView);
+				const win = view && view._iframeWindow;
+				const frame = win && (win.wrappedJSObject || win);
+				const app = frame && frame.PDFViewerApplication;
+				if (app && app.pdfDocument) {
+					const lib = frame.pdfjsLib;
+					return { reader, frame, doc: app.pdfDocument, ops: lib && lib.OPS, wrap: x => Components.utils.cloneInto(x, frame, { wrapReflectors: true }) };
+				}
+			}
+			catch (e) { /* ainda a abrir */ }
+			await Zotero.Promise.delay(100);
+		}
+		throw this.error("figures", this.t("fig.gallery.error", { e: "PDF.js" }));
+	},
+
+	/**
+	 * Procura as figuras e tabelas de um PDF aberto. Cada uma com a página, a região, a legenda, as filas de texto
+	 * (tabelas) e uma miniatura. null se o PDF não estiver aberto (e open for falso). Fica em cache por PDF.
+	 */
+	async findFigures(attachmentID, { open = false, onProgress = null } = {}) {
+		this._figCache = this._figCache || {};
+		if (this._figCache[attachmentID]) return this._figCache[attachmentID];
+		const pdf = await this._pdfFor(attachmentID, open);
+		if (!pdf) return null;
+		const n = pdf.doc.numPages;
+		const out = [];
+		for (let p = 1; p <= n; p++) {
+			if (onProgress) onProgress(p, n);
+			try {
+				const pg = await pdf.doc.getPage(p);
+				const lay = await this.lib.pageLayout(pg, pdf.ops, pdf.wrap);
+				for (const f of this.lib.detectFigures(lay)) {
+					f.page = p;
+					f.pageH = lay.H;
+					f.thumb = await this.lib.renderRegion(pg, f.box, pdf.frame.document, 0.9, pdf.wrap);
+					out.push(f);
+				}
+			}
+			catch (e) { this.log(`Figuras, página ${p}: ${e}`); }
+		}
+		this._figCache[attachmentID] = out;
+		return out;
+	},
+
+	/** Recorte da figura em alta resolução (para a IA e para a resposta). */
+	async renderFigure(attachmentID, fig) {
+		const pdf = await this._pdfFor(attachmentID, true);
+		const pg = await pdf.doc.getPage(fig.page);
+		return this.lib.renderRegion(pg, fig.box, pdf.frame.document, 2, pdf.wrap);
+	},
+
+	/** Tabela que contém a seleção feita no leitor (rects do Zotero, em pontos do PDF de baixo para cima). */
+	async tableAt(attachmentID, page, rects) {
+		let figs = this._figCache && this._figCache[attachmentID] ? this._figCache[attachmentID].filter(f => f.page === page) : null;
+		if (!figs) {
+			const pdf = await this._pdfFor(attachmentID, false);
+			if (!pdf) return null;
+			const pg = await pdf.doc.getPage(page);
+			const lay = await this.lib.pageLayout(pg, pdf.ops, pdf.wrap);
+			figs = this.lib.detectFigures(lay).map(f => Object.assign(f, { page, pageH: lay.H }));
+		}
+		return this.lib.tableForSelection(figs, rects) || null;
+	},
 
 	citeHref(doc, page) {
 		if (!doc || !doc.attachmentKey) return null;
@@ -2175,18 +2281,28 @@ var ZoteroIA = {
 			b.className = "toolbar-button wide-button";
 			b.textContent = "✦ " + this.t("reader.explain");
 			b.title = this.t("reader.explain.tip");
+			const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
+			let table = null;
 			b.addEventListener("click", async () => {
-				const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
-				const ok = await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel });
+				const ok = await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel, table });
 				if (!ok) b.textContent = this.t("reader.explain.noPanel");
 			});
 			append(b);
+			// Seleção dentro de uma tabela: o botão passa a analisar a tabela inteira
+			if (page && reader && reader.itemID && ann.position.rects) {
+				this.tableAt(reader.itemID, page, ann.position.rects).then(tb => {
+					if (!tb || !b.isConnected) return;
+					table = tb;
+					b.textContent = "▦ " + this.t("reader.analyseTable");
+					b.title = this.t("reader.analyseTable.tip");
+				}).catch(e => this.log("Tabela da seleção: " + e));
+			}
 		}
 		catch (e) { this.log("Explicar isto: " + e); }
 	},
 
 	/** Envia o excerto para o painel do artigo (o do lado direito do leitor). Falso se não houver painel aberto. */
-	async explainSelection({ itemID, text, page, pageLabel }) {
+	async explainSelection({ itemID, text, page, pageLabel, table }) {
 		const att = itemID && Zotero.Items.get(itemID);
 		if (!att) return false;
 		const owner = this.conversationItem ? await this.conversationItem(att) : att;
@@ -2203,7 +2319,8 @@ var ZoteroIA = {
 		}
 		if (!view) return false;
 		this.revealSection(view);
-		await view.explainExcerpt({ item: att, text, page, pageLabel });
+		if (table) await view.analyseFromReader({ item: att, fig: table });
+		else await view.explainExcerpt({ item: att, text, page, pageLabel });
 		return true;
 	},
 

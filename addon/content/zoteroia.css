@@ -1940,6 +1940,43 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-cite.zia-cite-moved { background: rgba(180, 83, 9, 0.10); color: var(--zia-orange); }
 .zia-cite.zia-cite-bad { background: rgba(198, 40, 40, 0.10); color: var(--zia-red); }
 .zia-cite.zia-cite-open { outline: 2px solid currentColor; outline-offset: 1px; }
+/* Figuras e tabelas: galeria no separador Ler, recorte na resposta e marcas nos valores das tabelas */
+.zia-figs { flex-basis: 100%; margin: 6px 0 2px; padding: 9px 10px 10px; border: 1px solid var(--zia-border); border-radius: 8px; background: var(--zia-bg); }
+.zia-figs-title { font-weight: 600; font-size: 12.5px; }
+.zia-figs-tip, .zia-figs-status { color: var(--zia-muted, var(--zia-fg2)); font-size: 11.5px; margin: 1px 0 7px; }
+.zia-figs-err { color: var(--zia-red); }
+.zia-figs-filters { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.zia-figs .zia-figs-chip { border: 1px solid var(--zia-border); border-radius: 999px; padding: 1px 9px; font-size: 11px; background: var(--zia-bg); color: var(--zia-fg); min-width: 0; cursor: pointer; }
+.zia-figs .zia-figs-chip.on { background: var(--zia-fg); color: var(--zia-bg); border-color: var(--zia-fg); }
+.zia-figs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 7px; }
+.zia-figs .zia-fig-card { display: flex; flex-direction: column; align-items: stretch; padding: 0; margin: 0; min-width: 0; text-align: left; overflow: hidden;
+	border: 1px solid var(--zia-border); border-radius: 7px; background: var(--zia-bg); color: var(--zia-fg); cursor: pointer; font: inherit; }
+.zia-figs .zia-fig-card:hover, .zia-figs .zia-fig-card:focus-visible { border-color: var(--zia-accent); box-shadow: 0 0 0 2px var(--zia-accent-soft); }
+.zia-fig-thumb { height: 80px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--zia-border); }
+.zia-fig-thumb img { max-width: 100%; max-height: 80px; display: block; }
+.zia-fig-meta { padding: 5px 7px 6px; font-size: 11px; line-height: 1.35; }
+.zia-fig-page { float: right; color: var(--zia-muted, var(--zia-fg2)); font-size: 10.5px; }
+.zia-fig-kind { font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.03em; }
+.zia-fig-table { color: var(--zia-accent); }
+.zia-fig-figure { color: var(--zia-orange); }
+.zia-fig-cap { color: var(--zia-muted, var(--zia-fg2)); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.zia-figs-more { margin-top: 7px; }
+.zia-action.zia-on { border-color: var(--zia-accent); background: var(--zia-accent-soft); }
+.zia-fig-answer { margin: 2px 0 8px; }
+.zia-fig-crop { border: 1px solid var(--zia-border); border-radius: 6px; background: #fff; padding: 4px; }
+.zia-fig-crop img { width: 100%; height: auto; display: block; }
+.zia-fig-crop-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; font-size: 11px; color: var(--zia-muted, var(--zia-fg2)); margin: 4px 1px 6px; }
+.zia-fig-badge-box { display: inline-block; font-size: 11.5px; border-radius: 6px; padding: 2px 8px; }
+.zia-fig-ok { background: color-mix(in srgb, var(--zia-green) 12%, transparent); color: var(--zia-green); }
+.zia-fig-warn { background: color-mix(in srgb, var(--zia-red) 10%, transparent); color: var(--zia-red); }
+.zia-fig-img { background: color-mix(in srgb, var(--zia-orange) 12%, transparent); color: var(--zia-orange); }
+.zia-fig-badge { display: inline-block; margin: 0 3px; padding: 0 6px; border-radius: 8px; font-size: 0.85em; white-space: nowrap; vertical-align: 1px;
+	background: color-mix(in srgb, var(--zia-orange) 12%, transparent); color: var(--zia-orange); }
+.zia-md td.zia-num { white-space: nowrap; }
+.zia-md td.zia-num-ok::after { content: " \2713"; color: var(--zia-green); font-size: 0.85em; }
+.zia-md td.zia-num-no::after { content: " \2717"; color: var(--zia-red); font-size: 0.85em; }
+.zia-md td.zia-num-no { background: color-mix(in srgb, var(--zia-red) 8%, transparent); }
+.zia-md td.zia-num-img::after { content: " \2248"; color: var(--zia-orange); font-size: 0.85em; }
 .zia-ia-badge { display: inline-block; margin: 0 3px; padding: 0 6px; border: 1px solid var(--zia-border); border-radius: 8px;
 	background: var(--zia-sand); color: var(--zia-muted, var(--zia-fg2)); font-size: 0.85em; white-space: nowrap; vertical-align: 1px; }
 .zia-proof { margin: 4px 0 10px; padding: 6px 10px 8px; border: 1px solid var(--zia-border); border-left: 3px solid var(--zia-green);

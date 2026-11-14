@@ -195,6 +195,7 @@ var ZIAChatView = class {
 			arrow: [["path", { d: "M4 12 12 4M6 4h6v6" }]],
 			star: [["path", { d: "M8 2.5 9.5 5.8l3.6.4-2.7 2.4.8 3.5L8 10.3l-3.2 1.8.8-3.5-2.7-2.4 3.6-.4Z" }]],
 			cols: [["rect", { x: 2, y: 2.5, width: 12, height: 11, rx: 1.6 }], ["path", { d: "M6 2.5v11M10 2.5v11M2 6h12" }]],
+			figure: [["rect", { x: 1.8, y: 2.5, width: 12.4, height: 11, rx: 1.6 }], ["circle", { cx: 5.6, cy: 6.2, r: 1.2 }], ["path", { d: "M2.2 12 6.5 8.4l2.6 2.2 2.2-1.8 2.8 2.6" }]],
 			chat: [["path", { d: "M2.5 4.2c0-1 .8-1.7 1.7-1.7h7.6c1 0 1.7.8 1.7 1.7v5.1c0 1-.8 1.7-1.7 1.7H7l-3 2.5V11h.2c-1 0-1.7-.8-1.7-1.7Z" }], ["path", { d: "M5.5 6.6h5" }]],
 			constellation: [["circle", { cx: 8, cy: 8, r: 2 }], ["circle", { cx: 3, cy: 3.5, r: 1.4 }], ["circle", { cx: 13, cy: 4, r: 1.4 }], ["circle", { cx: 3.5, cy: 12.5, r: 1.4 }], ["circle", { cx: 12.5, cy: 12.5, r: 1.4 }], ["path", { d: "M6.4 6.8 4.1 4.5M9.6 6.8l2.3-2M6.5 9.3l-2 2.2M9.5 9.3l2 2.2" }]],
 			review: [["path", { d: "M4 1.8h5.5L12.5 5v9.2H4Z" }], ["path", { d: "M9.5 1.8V5h3M6 8h4.5M6 10.5h4.5M6 13h2.5" }]],
@@ -215,7 +216,7 @@ var ZIAChatView = class {
 			estudo: ["quiz", "orange"], esquema: ["outline", "slate"], mapa: ["map", "green"], destaques: ["highlight", "yellow"],
 			relevancia: ["target", "teal"], critica: ["shield", "green"], metodos: ["flask", "violet"], conclusoes: ["scale", "amber"],
 			ficha: ["card", "blue"], excertos: ["quote", "rose"], etiquetas: ["tag", "orange"],
-			lacunas: ["search", "teal"], referencias: ["book", "violet"], perguntas: ["arrow", "amber"],
+			figuras: ["figure", "teal"], lacunas: ["search", "teal"], referencias: ["book", "violet"], perguntas: ["arrow", "amber"],
 			compare: ["cols", "blue"], pergunta: ["chat", "teal"], temas: ["constellation", "green"], cmp_sintese: ["review", "violet"],
 		};
 		const [icon, color] = MAP[id] || (String(id).startsWith("custom:") ? ["star", "slate"] : null) || [];
@@ -257,7 +258,215 @@ var ZIAChatView = class {
 		b.setAttribute("aria-label", tip);
 	}
 
+	// ---- Figuras e tabelas (painel): galeria, análise de uma figura e marcas nos valores
+
+	_toggleFigures() {
+		this._figOpen = !this._figOpen;
+		this._renderActions();
+		if (this._figOpen) this._loadFigures(false);
+	}
+
+	/** Procura as figuras e tabelas do PDF do painel (uma vez por PDF). open: abre o PDF no leitor se for preciso. */
+	async _loadFigures(open) {
+		const d = this.state.docs[0];
+		if (!d || !d.attachmentID) return;
+		const f0 = this._fig;
+		if (f0 && f0.id === d.attachmentID && (f0.status === "loading" || f0.status === "done")) return this._fillFigures();
+		const st = this._fig = { id: d.attachmentID, status: "loading", list: [], filter: "all", all: false, i: 0, n: 0 };
+		this._fillFigures();
+		try {
+			const list = await this.core.findFigures(d.attachmentID, { open, onProgress: (i, n) => { st.i = i; st.n = n; this._fillFigures(); } });
+			if (this._fig !== st) return;
+			if (!list) st.status = "needReader";
+			else { st.status = "done"; st.list = list; }
+		}
+		catch (e) {
+			if (this._fig !== st) return;
+			st.status = "error";
+			st.error = e.message || String(e);
+		}
+		this._fillFigures();
+	}
+
+	_figuresEl() {
+		const box = this._el("div", "zia-figs");
+		this._figBox = box;
+		// Outro artigo no painel: a galeria é do PDF que está à vista
+		const d = this.state.docs[0];
+		if (this._fig && d && this._fig.id !== d.attachmentID) this._loadFigures(false);
+		this._fillFigures();
+		return box;
+	}
+
+	_fillFigures() {
+		const box = this._figBox;
+		const st = this._fig;
+		if (!box || !st) return;
+		while (box.firstChild) box.removeChild(box.firstChild);
+		if (st.status === "loading") {
+			box.appendChild(this._el("div", "zia-figs-status", st.n ? this.T("fig.gallery.searching", { i: st.i, n: st.n }) : this.T("chat.preparing")));
+			return;
+		}
+		if (st.status === "needReader") {
+			box.appendChild(this._el("div", "zia-figs-status", this.T("fig.gallery.needReader")));
+			box.appendChild(this._button(this.T("fig.gallery.openPdf"), "zia-btn-small zia-btn-primary", () => { this._fig = null; this._loadFigures(true); }));
+			return;
+		}
+		if (st.status === "error") {
+			box.appendChild(this._el("div", "zia-figs-status zia-figs-err", this.T("fig.gallery.error", { e: st.error })));
+			return;
+		}
+		const list = st.list;
+		if (!list.length) {
+			box.appendChild(this._el("div", "zia-figs-status", this.T("fig.gallery.none")));
+			return;
+		}
+		const nT = list.filter(f => f.kind === "table").length;
+		box.appendChild(this._el("div", "zia-figs-title", this.T("fig.gallery.count", { n: list.length })));
+		box.appendChild(this._el("div", "zia-figs-tip", this.T("fig.gallery.tip")));
+		if (nT && nT < list.length) {
+			const chips = this._el("div", "zia-figs-filters");
+			for (const [k, key, n] of [["all", "fig.filter.all", list.length], ["table", "fig.filter.tables", nT], ["figure", "fig.filter.figures", list.length - nT]]) {
+				const c = this._button(this.T(key, { n }), "zia-figs-chip" + (st.filter === k ? " on" : ""), () => { st.filter = k; st.all = false; this._fillFigures(); });
+				c.dataset.filter = k;
+				c.setAttribute("aria-pressed", st.filter === k ? "true" : "false");
+				chips.appendChild(c);
+			}
+			box.appendChild(chips);
+		}
+		const shown = list.filter(f => st.filter === "all" || f.kind === st.filter);
+		const LIMIT = 6;
+		const grid = this._el("div", "zia-figs-grid");
+		for (const f of (st.all ? shown : shown.slice(0, LIMIT))) {
+			const card = this._button("", "zia-fig-card", () => this._analyseFigure(f), f.caption);
+			card.dataset.kind = f.kind;
+			const th = this._el("div", "zia-fig-thumb");
+			if (f.thumb) {
+				const img = this._el("img");
+				img.src = f.thumb;
+				img.alt = this.L.figureName(f);
+				th.appendChild(img);
+			}
+			card.appendChild(th);
+			const meta = this._el("div", "zia-fig-meta");
+			meta.appendChild(this._el("span", "zia-fig-page", "p. " + this._figPageLabel(f)));
+			meta.appendChild(this._el("div", "zia-fig-kind zia-fig-" + f.kind, this.L.figureName(f)));
+			meta.appendChild(this._el("div", "zia-fig-cap", String(f.caption || "").replace(/^\s*\S+\s*[\dIVXivx]+\s*[.:|]?\s*/, "")));
+			card.appendChild(meta);
+			grid.appendChild(card);
+		}
+		box.appendChild(grid);
+		if (shown.length > LIMIT) {
+			box.appendChild(this._button(this.T(st.all ? "fig.gallery.less" : "fig.gallery.more", { n: shown.length }), "zia-btn-small zia-btn-quiet zia-figs-more", () => { st.all = !st.all; this._fillFigures(); }));
+		}
+	}
+
+	/** Número impresso da página (como nas citações). */
+	_figPageLabel(f) {
+		const d = this.state.docs[0];
+		const off = d && typeof d.pageOffset === "number" ? d.pageOffset : 0;
+		return String(f.page + off);
+	}
+
+	async _analyseFigure(f) {
+		if (this.busy) return;
+		const d = this.state.docs[0];
+		if (!d) return;
+		if (!this._engineReady()) {
+			this._showSetupInline();
+			return;
+		}
+		if (this.L.figureNeedsImage(f) && this.engine === "iaedu") {
+			this._setStatus(this.T("err.noImages", { engine: this.core.engineLabel("iaedu") }), "warn");
+			return;
+		}
+		let image = null;
+		try { image = await this.core.renderFigure(d.attachmentID, f); }
+		catch (e) {
+			this.core.log("Recorte da figura: " + e);
+			if (this.L.figureNeedsImage(f)) {
+				this._setStatus(this.T("fig.gallery.error", { e: e.message || e }), "error");
+				return;
+			}
+		}
+		// O PDF vai para a página da figura: a pessoa vê o que está a ser analisado
+		Promise.resolve(this.core.openAtPage(d, f.page)).catch(e => this.core.log("Abrir na página: " + e));
+		const name = this.L.figureName(f);
+		const p = this._figPageLabel(f);
+		const figure = { kind: f.kind, num: f.num, label: f.label, caption: f.caption, page: f.page, pageLabel: p, rows: f.rows || [], drawn: !!f.drawn, image, docId: d.id };
+		await this._ask({
+			promptText: this.L.figurePrompt(figure, d.id),
+			display: this.T("fig.display", { name, p }),
+			heading: this.T("fig.heading", { name, p }),
+			actionID: "figuras",
+			docs: [d],
+			figure,
+		});
+	}
+
+	/** Recorte da figura por cima da resposta, com a legenda e o aviso sobre o que foi confirmado. */
+	_figureHeadEl(m) {
+		const f = m.figure;
+		const box = this._el("div", "zia-fig-answer");
+		if (f.image) {
+			const crop = this._el("div", "zia-fig-crop");
+			const img = this._el("img");
+			img.src = f.image;
+			img.alt = this.T("fig.imageAlt", { name: this.L.figureName(f) });
+			crop.appendChild(img);
+			box.appendChild(crop);
+		}
+		const cap = this._el("div", "zia-fig-crop-cap");
+		cap.appendChild(this._el("span", null, f.caption));
+		const d = this.state.allDocs[f.docId];
+		if (d) cap.appendChild(this._button(this.T("proof.open"), "zia-link-btn", () => this.core.openAtPage(d, f.page)));
+		box.appendChild(cap);
+		if (m.pending) return box;
+		let badge = null;
+		if (f.kind === "table" && f.drawn) badge = this._el("div", "zia-fig-badge-box zia-fig-img", this.T("fig.badge.drawn"));
+		else if (f.kind === "figure") badge = this._el("div", "zia-fig-badge-box zia-fig-img", this.T("fig.badge.img"));
+		else if (f.cells && (f.cells.ok + f.cells.missing)) {
+			const n = f.cells.ok + f.cells.missing;
+			badge = this._el("div", "zia-fig-badge-box " + (f.cells.missing ? "zia-fig-warn" : "zia-fig-ok"),
+				this.T("fig.badge.ok", { ok: f.cells.ok, n }) + (f.cells.missing ? " · " + this.T("fig.badge.missing", { n: f.cells.missing }) : ""));
+		}
+		if (badge) box.appendChild(badge);
+		return box;
+	}
+
+	/** Marca cada célula com um número: ✓ está no texto da página, ✗ não está, ≈ lido na imagem. */
+	_markFigureCells(body, f) {
+		const fromImage = this.L.figureNeedsImage(f);
+		for (const td of body.querySelectorAll("td")) {
+			const v = this.L.cellNumberIn(td.textContent, f.pageText || "");
+			if (v === null) continue;
+			const st = fromImage && !v ? "img" : v ? "ok" : "no";
+			td.classList.add("zia-num", "zia-num-" + st);
+			td.title = this.T("fig.cell." + st);
+		}
+	}
+
+	/** Coluna "Verificado no PDF" do Excel, por linha. */
+	_figureRowCheck(f, cells) {
+		const vals = cells.map(c => this.L.cellNumberIn(c, f.pageText || "")).filter(v => v !== null);
+		if (!vals.length) return this.T("fig.csv.none");
+		if (vals.every(Boolean)) return this.T("fig.csv.yes");
+		return this.T(this.L.figureNeedsImage(f) ? "fig.csv.img" : "fig.csv.no");
+	}
+
 	// ---- "Explicar isto" a partir do leitor de PDF
+
+	/** "Analisar esta tabela" no leitor: a seleção caiu dentro de uma tabela. */
+	async analyseFromReader({ item, fig }) {
+		if (this.busy) {
+			this._setStatus(this.T("reader.explain.busy"), "warn");
+			return;
+		}
+		const owner = this.core.conversationItem ? await this.core.conversationItem(item) : item;
+		if (this.sessionKey !== `item:${owner.id}`) await this.showItem(item);
+		if (!this.state.docs.length) return;
+		await this._analyseFigure(fig);
+	}
 
 	async explainExcerpt({ item, text, page, pageLabel }) {
 		if (this.busy) {
@@ -658,6 +867,7 @@ var ZIAChatView = class {
 			const b = this._button(a.button || a.label, "zia-action" + (custom && this._editCustom ? " zia-editing" : ""),
 				() => (custom && this._editCustom ? this._openCustomForm(a) : this._isAdv() ? this._runAdvanced(a.id) : this.selectAction(a.id)), a.hint);
 			b.dataset.action = a.id;
+			if (a.local) { b.classList.toggle("zia-on", !!this._figOpen); b.setAttribute("aria-expanded", this._figOpen ? "true" : "false"); }
 			const ic = this._actionIcon(a.id);
 			if (ic) { b.insertBefore(ic, b.firstChild); b.classList.add("zia-has-ic"); }
 			if (!(custom && this._editCustom)) this.actionButtons[a.id] = b;
@@ -678,6 +888,7 @@ var ZIAChatView = class {
 			if (fl) box.appendChild(fl);
 		}
 		if (this.group === "compreender") {
+			if (this._figOpen && this.mode === "section") box.appendChild(this._figuresEl());
 			if (this._fichaInfoOpen) box.appendChild(this._fichaInfoEl());
 			const fl = this._fichasListEl();
 			if (fl) box.appendChild(fl);
@@ -1888,6 +2099,7 @@ var ZIAChatView = class {
 		if (this.busy) return;
 		const a = this._action(id);
 		if (!a) return;
+		if (a.local) return this._toggleFigures();
 		const extra = this.hintsInput && this._hintsFor === id ? this.hintsInput.value.trim() : "";
 		if (a.needsCriteria && !extra) {
 			this._hintsFor = id;
@@ -1949,6 +2161,8 @@ var ZIAChatView = class {
 
 	/** Escolhe uma ação (não a corre): o pedido segue com Enviar ou Enter. */
 	selectAction(actionID) {
+		const la = this._action(actionID);
+		if (la && la.local) return this._toggleFigures();
 		if (this.busy) return;
 		this.selectedAction = this.selectedAction === actionID ? null : actionID;
 		const a = this.selectedAction && this._action(this.selectedAction);
@@ -2648,7 +2862,7 @@ var ZIAChatView = class {
 	 * Envia um pedido e mostra a resposta em fluxo.
 	 * Devolve true/false (ou a mensagem, se returnMessage).
 	 */
-	async _ask({ promptText, display, heading, actionID, docs, noHistory, returnMessage, engine, stay, warnings }) {
+	async _ask({ promptText, display, heading, actionID, docs, noHistory, returnMessage, engine, stay, warnings, figure }) {
 		if (this.busy) return false;
 		engine = engine || this.engine;
 		if (!this.core.isEngineReady(engine)) {
@@ -2669,9 +2883,11 @@ var ZIAChatView = class {
 		const botMsg = {
 			role: "assistant", text: "", pending: true, heading, actionID, engine,
 			actionLabel: action ? action.label : null,
-			docIDs: docs.map(d => d.id), request: { promptText, display, heading, actionID, docs, noHistory },
+			docIDs: docs.map(d => d.id), request: { promptText, display, heading, actionID, docs, noHistory, figure },
 			asked: display, time: Date.now(),
 		};
+		// Figura ou tabela: o recorte fica na resposta (e no histórico), com a página e a legenda
+		if (figure) botMsg.figure = Object.assign({}, figure);
 		// Pergunta e resposta entram juntas na conversa
 		this.state.messages.push(userMsg, botMsg);
 		this._appendMessage(userMsg);
@@ -2738,6 +2954,7 @@ var ZIAChatView = class {
 				system: this.L.buildSystemPrompt("ui"),
 				prompt,
 				promptParts,
+				images: figure && figure.image && this.L.figureNeedsImage(figure) ? [{ mime: "image/jpeg", data: String(figure.image).split(",")[1] }] : null,
 				heavy: this.L.isHeavyTask({ actionID: actionID && String(actionID).split(":")[0] === "custom" ? null : actionID, docCount: docs.length }),
 				// Comparar exige um modelo completo: nunca os "lite"
 				noLite: !!(actionID && this.L.ACTIONS[actionID] && this.L.ACTIONS[actionID].group === "comparar"),
@@ -2786,7 +3003,14 @@ var ZIAChatView = class {
 				if (Object.keys(offs).length) botMsg.pageOffsets = offs;
 				const lit = this.L.literalDocIds(Object.values(pool), Object.keys(this.state.allDocs));
 				if (lit.length) botMsg.literalIds = lit;
-				botMsg.check = this.L.verifyAnswer(botMsg.text, pool);
+				// Figura: o que foi lido na imagem (marca [Figura]) e as tabelas lidas na imagem não se verificam no texto
+				botMsg.check = this.L.verifyAnswer(figure ? this.L.figureVerifyText(botMsg.text, figure) : botMsg.text, pool);
+				if (figure) {
+					const d0 = docs.find(d => d.id === figure.docId) || docs[0];
+					const src = d0 && (d0.pages ? d0 : this.state.allDocs[d0.id]);
+					botMsg.figure.pageText = (src && src.pages && src.pages[figure.page - 1]) || "";
+					botMsg.figure.cells = this.L.figureCells(botMsg.text, botMsg.figure.pageText);
+				}
 			}
 			catch (e) { this.core.log("Verificação: " + e); }
 			botMsg.pending = false;
@@ -3175,7 +3399,7 @@ var ZIAChatView = class {
 		const head = this._el("div", "zia-msg-head");
 		// Painel Avançado com separadores de conversa visíveis: o nome já está no separador, não se repete aqui
 		const nameInTab = this.mode === "section" && !this.simple && (this.state.convs || []).length > 1;
-		if (!nameInTab) head.appendChild(this._el("span", "zia-action-tag", this._actionTitle(m) || this.T("chat.question")));
+		if (!nameInTab || m.figure) head.appendChild(this._el("span", "zia-action-tag", (m.figure && m.heading) || this._actionTitle(m) || this.T("chat.question")));
 		// Indicações ou artigo do pedido ("Resumir · foca a metodologia", "Ficha: Silva 2021")
 		const asked = String(m.asked || "");
 		if (m.actionLabel && asked.startsWith(m.actionLabel) && asked.length > m.actionLabel.length) {
@@ -3201,6 +3425,7 @@ var ZIAChatView = class {
 			for (const t of m.warnings) w.appendChild(this._el("div", null, t));
 			el.appendChild(w);
 		}
+		if (m.figure) el.appendChild(this._figureHeadEl(m));
 		// O mapa mental desenha a lista encaixada como uma árvore com ramos
 		if (m.stances && Object.keys(m.stances).length && !m.pending) el.appendChild(this._stanceMeter(m.stances));
 		const isMap = m.actionID === "mapa" || m.actionID === "temas";
@@ -3255,6 +3480,7 @@ var ZIAChatView = class {
 			// Textos longos (revisão tema a tema): índice que salta para cada parte
 			const toc = m.actionID === "cmp_sintese" ? this._tocRow(body) : null;
 			if (toc) el.appendChild(toc);
+			if (m.figure) this._markFigureCells(body, m.figure);
 			this._enhanceTables(body);
 		}
 		el.appendChild(body);
@@ -3914,7 +4140,7 @@ var ZIAChatView = class {
 		}
 		if (this.L.extractTables(m.text).length) {
 			row.appendChild(this._button(this.T("chat.exportCsv"), "zia-btn-small", async () => {
-				const csv = this.L.tablesToCSV(this._outText(m), { docsMap: this._docsMap(m) });
+				const csv = this.L.tablesToCSV(this._outText(m), { docsMap: this._docsMap(m), cellCheck: m.figure ? cells => this._figureRowCheck(m.figure, cells) : null });
 				try {
 					const path = await this.core.saveCSV(this.win, csv, m.heading || "tabela");
 					if (path) this._setStatus(this.T("chat.exported", { path }));
