@@ -1149,5 +1149,833 @@
   "passage": "… hool of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece * Corresponding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. In Glyfada, MPs were green, yellow, blue, and light blue in colour. Shapes included fragments, pellets, and fibres, and the item number ranged from 0 to 4 per kg dry weight. In Leros, MPs were mostly black, blue, and white in colour. Shapes included fibres, fragments, foams, films and pellets, and item numbers ranged from 20 to 163 per kg of dry weight, at Alinda Beach, and 164 to 543 items per kg of dry weight for Gourna Beach. …",
   "verdict": "yes",
   "note": "O excerto descreve a comparação de microplásticos em praias gregas com e sem estatuto Blue Flag."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p6 «training on earlier segments and validating on subsequent ones»#1",
+  "key": "D2:p6 «training on earlier segments and validating on subsequent ones»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto afirma que o método preserva a ordem temporal ao treinar em segmentos anteriores e validar em segmentos posteriores",
+  "passage": "… Based on the significance level of the correlations among input vari- ables, we identify candidate wind energy indicators. For instance, if the air pressure has P < .01, it indicates that the air pressure parameter is acceptable. Conversely, if the wind direction has P < .05, this suggests that this wind energy parameter can be assigned a neutral weight distribution. These parameters have a minor influence on the correlation with wind power, allowing for a reduction in their weight allocation in the model. To ensure the model’s reliability and mitigate overfitting, we employed a five-fold time-series cross-validation using TimeSeriesSplit, which preserves the temporal order of the data by training on earlier segments and validating on subsequent ones. This approach is suitable for wind power time-series to prevent future data leakage. Model comparisons were assessed using the Wilcoxon signed-rank test on paired differences in metrics such as MAE and root mean square error (RMSE). Additionally, prediction intervals were calcu- lated as the mean prediction ± 2 standard deviations, derived from the ensemble variance across folds, to quantify uncertainty and provide bounds on forecast reliability. 3.2 Training setting To ensure practical feasibility for large datasets and potential real- time applications, training was conducted on an Intel Core i7- 10700 CPU (2.9 GHz, 16 GB RAM) with an NVIDIA RTX 3060 GPU (6 GB VRAM). …",
+  "verdict": "yes",
+  "note": "O excerto diz que o TimeSeriesSplit treina em segmentos anteriores e valida em segmentos posteriores."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p1 «Samples of surface sand sampled at a maximum depth»#1",
+  "key": "D1:p1 «Samples of surface sand sampled at a maximum depth»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O estudo incide sobre sedimentos superficiais de praias em dois locais gregos",
+  "passage": "… ding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. In Glyfada, MPs were green, yellow, blue, and light blue in colour. Shapes included fragments, pellets, and fibres, and the item number ranged from 0 to 4 per kg dry weight. In Leros, MPs were mostly black, blue, and white in colour. Shapes included fibres, fragments, foams, films and pellets, and item numbers ranged from 20 to 163 per kg of dry weight, at Alinda Beach, and 164 to 543 items per kg of dry weight for Gourna Beach. …",
+  "verdict": "yes",
+  "note": "O excerto refere amostras de areia superficial em dois locais de praia na Grécia."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "comparar:D1:p1 «level of microplastic (MP) in beach samples»; D2:p1 «wind power forecasting tasks»#1",
+  "key": "D1:p1 «level of microplastic (MP) in beach samples»; D2:p1 «wind power forecasting tasks»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Não há resultados em conflito direto, porque os documentos estudam objetos diferentes. Sourri et al., 2026 analisam contaminação por microplásticos em praias, enquanto Li et al., 2026 analisa previsão de energia eólica",
+  "passage": "(1) … International Journal of Low-Carbon Technologies , 2026, 21 , 1–7, ctag042 https://doi.org/10.1093/ijlct/ctag042 Published: 20 April 2026 Rapid Communications Microplastic contamination and the benefits of blue flag beach status Theodora Sourri * , Eirini Arezina Machaira , Olga Cavoura Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece * Corresponding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. In Glyfada, MPs were green, yellow, blue, and light blue in colour. Shapes included fragments, pellets, and fibres, and the item number ranged from 0 to 4 per kg dry weight. … (2) … com To optimize the complex nonlinear temporal relationships in wind power forecasting, we proposed an improved BAS-BiLSTM- Attention model for enhancing the accuracy and robustness of wind power predictions. The Beetle Antennae Search algorithm was utilized for obtaining hidden features across different frequency bands. The Bidirectional Long Short-Term Memory algorithm captured the bidirectional temporal associations of hidden features. Finally, an Attention mechanism was added to ensure that the weight selection of the feature components remains unaffected. Results demonstrated that our method performed excellently in wind power forecasting tasks. Compared to individual models and other common algorithms, it exhibited higher prediction accuracy and robustness across multiple evaluation metrics. Keywords BiLSTM, attention, wind power prediction, BAS, wind power optimization Nomenclature Abbreviations Definition ARMA Autoregressive moving average BAS Beetle Antennae Search BiLSTM Bidirectional Long Short-Term Memory CNN Convolutional Neural Network EMD–LSTM Empirical Mode Decomposition–Long Short-Term Memory GRU Gated Recurrent Unit LSTM Long Short-Term Memory MAE Mean absolute error RMSE Root mean square error RNNs Recurrent neural net …",
+  "verdict": "inference",
+  "note": "Os excertos mostram que um artigo trata microplásticos em praias e o outro previsão de energia eólica."
+ },
+ {
+  "id": "metodos_D1:D1:p3 «random selection of an initial sampling point»#1:0~inverso",
+  "kind": "inverso",
+  "expect": "not-yes",
+  "claim": "Foi escolhido de propósito o ponto mais sujo de cada secção da praia",
+  "passage": "… 21, Issue 1 3 Figure 1 Location of Glyfada and Leros, Greece (Google Earth) bins are placed along the beaches only between 1 May until 30 October. Outside this period, waste disposal is managed through nearby municipal waste containers. Sampling at both locations was conducted during the winter season (January–February) and weather conditions were similar (sunny and not windy). 2.2. Sampling and microplastic separation determination A total of 12 sand samples were collected across the three Blue Flag beaches in the municipality of Glyfada ( Figs 1 and 2 ). Sam- pling involved delineation of the upper intertidal zone, followed by random selection of an initial sampling point at the start of each beach section. At each point, a 1 / 4 m 2 quadrat was placed, and surface sediment (0–3 cm depth) was collected using a metal scoop. Samples were sieved through a 5-mm mesh to remove large debris. Each sample weighed approximately 4.5 kg. Sam- pling points were spaced at ∼ 0.3 km intervals along the coastline. From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. …",
+  "orig": "Depois foi seleccionado aleatoriamente um ponto inicial de amostragem no início de cada secção de praia",
+  "verdict": "no",
+  "note": "O excerto diz que o ponto inicial foi escolhido aleatoriamente, não o mais contaminado."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D2:D2:p6 «Adam optimizer (learning rate 0.001, batch size 64)»#1",
+  "key": "D2:p6 «Adam optimizer (learning rate 0.001, batch size 64)»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O optimizador Adam foi usado com taxa de aprendizagem 0.001 e batch size 64",
+  "passage": "… Additionally, prediction intervals were calcu- lated as the mean prediction ± 2 standard deviations, derived from the ensemble variance across folds, to quantify uncertainty and provide bounds on forecast reliability. 3.2 Training setting To ensure practical feasibility for large datasets and potential real- time applications, training was conducted on an Intel Core i7- 10700 CPU (2.9 GHz, 16 GB RAM) with an NVIDIA RTX 3060 GPU (6 GB VRAM). The model, with approximately 500 000 parameters, required about 4 GB GPU memory during training. For the dataset of ∼ 17 520 hourly samples, training over 100 epochs took approx- imately 15 minutes using PyTorch framework and Adam optimizer (learning rate 0.001, batch size 64). Convergence behavior showed stable loss reduction, reaching minimal MSE after ∼ 50 epochs, aided by BAS’s efficient feature decomposition reducing input Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctaf146/8487605 by guest on 01 October 2026",
+  "verdict": "yes",
+  "note": "O excerto indica Adam com taxa de aprendizagem 0.001 e batch size 64."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "comparar:D2:p9 «MAE and RMSE are 8.72 and 12.48 MW»; D2:p10 «mean absolute percentage error (MAPE) is 5.21%»#1",
+  "key": "D2:p9 «MAE and RMSE are 8.72 and 12.48 MW»; D2:p10 «mean absolute percentage error (MAPE) is 5.21%»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Os valores reportados foram MAE de 8.72 MW, RMSE de 12.48 MW, R² de 0.93 e MAPE de 5.21%",
+  "passage": "(1) … Therefore, the introduction of decomposition techniques not only is an important means to improve the accuracy of wind power forecasting but also further highlights the advantages of enhanced model structures. To verify the differences between the proposed model and individual models, we conducted ablation experiments and selected representative individual models for comparison of wind power forecasting results, such as Support Vector Regression (SVR), LSTM, GRU, BAS, CNN-Transformer, EMD–LSTM and WOA– GRU. The final comparison results are shown in Table 5 . From the results in Table 5 , it is evident that the proposed method outperforms individual models across all performance indicators. In terms of error performance, the composite model’s MAE and RMSE are 8.72 and 12.48 MW, respectively, significantly lower than the errors of individual models. This indicates that the composite model has smaller errors in wind power forecasting. Regarding goodness of fit, the composite model achieves an R 2 Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctaf146/8487605 by guest on 01 October 2026 (2) 10 International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 Figure 6 Comparison of wind energy prediction results between single model and our model. Figure 7 Comparison of wind prediction errors between single model and our model. value of 0.93, which is significantly higher than that of individual models. This suggests that the composite model can better capture the changing patterns of the data. In terms of the overall prediction accuracy of wind power, the composite model’s mean absolute percentage error (MAPE) is 5.21%, which is much lower than the MAPE of all individual models, with the best individual model, CNN-Transformer, at 7.97%. This reflects the higher accuracy of the composite model in practical predictions. Also, the time-series cross-validation confirmed the model’s stability, with Wilcoxon tests showing significant superiority over baseline models ( P < .05 for all comparisons), confirming its higher accuracy and robustness in wind power forecasting. Thus, by combining BAS with BiLSTM and Attention, the composite model effectively reduces prediction errors, improves goodness of fit, and enhances prediction accuracy. …",
+  "verdict": "yes",
+  "note": "Os valores MAE, RMSE, R² e MAPE coincidem com os reportados."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D2:D2:p9 «Model MAE (MW) RMSE (MW) R 2 MAPE»#1",
+  "key": "D2:p9 «Model MAE (MW) RMSE (MW) R 2 MAPE»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O artigo apresenta métricas de desempenho quantitativas, incluindo MAE, RMSE, R² e MAPE",
+  "passage": "International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 9 Table 5 Comparison of prediction performance between single model and composite model Model MAE (MW) RMSE (MW) R 2 MAPE (%) P (vs. Ours) SVR [ 41 ] 14.23 21.46 0.81 8.97 .012 LSTM [ 11 ] 12.45 18.32 0.85 7.64 .031 GRU [ 42 ] 13.02 19.15 0.83 8.12 .008 BAS [ 43 ] 15.67 22.58 0.78 9.34 .024 CNN-Transformer [ 30 ] 11.34 21.35 0.91 7.97 .019 EMD–LSTM [ 31 ] 12.87 15.97 0.84 6.49 .038 WOA–GRU [ 32 ] 10.23 18.13 0.89 6.13 .041 Ours 8.72 12.48 0.93 5.21 – Figure 5 Single model prediction performance on wind power. predictive models for complex time-series data. Moreover, the BiLSTM-Attention model, combined with the decomposition tech- nique, performed optimally, demonstrating the lowest prediction errors and the highest fitting capabilities across all decomposition methods. …",
+  "verdict": "yes",
+  "note": "A tabela apresenta MAE, RMSE, R² e MAPE como métricas de desempenho."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D2:D2:p6 «representative of northern China’s continental climate»#1",
+  "key": "D2:p6 «representative of northern China’s continental climate»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os autores descrevem esta região como representativa do clima continental do norte da China",
+  "passage": "… Ethical considerations include algorithmic accountability, where model decisions are traceable through attention mechanisms and bidirectional processing, reducing bias in predictions for renewable energy systems [ 36 – 38 ]. To align with current standards, we avoided sensitive personal data, focusing on environmental indicators, and conducted statistical validations for fair comparisons [ 39 , 40 ]. The dataset used in this study consists of 2 years of histor- ical wind power data (from January 1, 2022, to December 31, 2023) collected from a cooperating onshore wind station oper- ated by the co-author’s power company. This region experiences significant seasonal variations, with strong winds in winter and milder conditions in summer, making it representative of northern China’s continental climate. The entire data usage process strictly adheres to relevant laws and regulations, maintaining a high level of emphasis on data confidentiality. The dataset includes six key influencing indicators: wind speed (m/s), wind direction (degrees), temperature ( ◦ C), air pressure (hPa), humidity (%), and actual wind power output (MW), as shown in Table 1 . Data resolution is hourly, resulting in approximately 17 520 samples per indicator. The temporal granularity allows for capturing short-term fluctua- tions critical for grid dispatching. In addition to the commonly con- sidered facto …",
+  "verdict": "yes",
+  "note": "O excerto descreve a região como representativa do clima continental do norte da China."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p11 «distributed training on cloud platforms could handle multisite data»#1",
+  "key": "D2:p11 «distributed training on cloud platforms could handle multisite data»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto não mostra benchmark de clusters GPU, rede regional ou parques nacionais que sustente a generalização operacional",
+  "passage": "… After comprehensive experimental testing, our model not only is suitable for offline prediction but can also be applied to real-time applications by combining streaming data input and edge computing. For instance, BAS decomposition could process incoming sensor data in batches, with BiLSTM-Attention updating predictions every 15–30 minutes, suitable for ultra-short-term grid dispatching. Integration into grid management systems, such as Supervisory Control and Data Acquisition (SCADA) or EMS, would involve API endpoints for seamless data exchange, enabling dynamic load balancing and reducing curtailment in renewable-heavy grids. For scalability across national or regional wind farm networks, distributed training on cloud platforms could handle multisite data, with federated learning preserving privacy across provinces. This approach, inspired by recent hybrid deep learning (DL) frameworks, would support thousands of turbines, maintaining low latency ( < 1-second inference) on GPU clusters. Future work could explore quantization for edge devices to further enhance deployment in remote farms. 5 Conclusion This paper proposes an improved BAS-BiLSTM-Attention model for wind power forecasting. By combining the BAS algorithm with BiLSTM and the Attention mechanism, the model effectively captures the complex nonlinear relationships in the time-series data of wind power and enhances prediction accuracy. …",
+  "verdict": "inference",
+  "note": "O excerto apresenta possibilidades de aplicação, mas não benchmarks operacionais desses cenários."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "ficha_D2:D2:p8 «Two decompositions 45.12 65.24 0.954»#1",
+  "key": "D2:p8 «Two decompositions 45.12 65.24 0.954»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Com duas decomposições, a BiLSTM teve MAE de 45.12 MW, RMSE de 65.24 MW e R² de 0.954",
+  "passage": "… 21, Issue 1 Table 3 Network layer parameter settings Network layer Parameter Number Value BAS Filters 2 4 Kernel size 2 3 Dilations 2 1, 2, 4 BiLSTM Filters 3 11 Kernel size 3 7 Dilations 3 1, 2, 4, 8, 16 Hidden layer 4 12 Attention Filters 3 10 Kernel size 3 6 Dilations 3 1, 2, 4 Hidden layer 6 12 Figure 4 Wind power data decomposition and wind energy output correlation. Table 4 Wind power impact of data decomposition times at different network layers Network layer Data decomposition mode MAE (MW) RMSE (MW) R 2 BAS Original 85.32 110.45 0.821 One decomposition 62.14 85.23 0.905 Two decompositions 48.76 68.34 0.942 BiLSTM Original 81.51 105.25 0.834 One decomposition 58.76 82.31 0.912 Two decompositions 45.12 65.24 0.954 Attention Original 86.45 115.23 0.798 One decomposition 67.15 91.87 0.890 Two decompositions 51.24 71.34 0.937 number of decomposition levels and improve the accuracy of the wind power forecasting model through optimized decomposition choices, we tested the sensitivity of different network layers to the number of data decompositions. The results are presented in Table 4 . From the data in Table 4 , it is evident that wind power data decomposition significantly enhances the predictive performance of each model. In the data that were not decom- posed, the presence of noise and nonstationary components resulted in larger prediction errors and weaker fitting capabilities. …",
+  "verdict": "yes",
+  "note": "A tabela atribui à BiLSTM com duas decomposições esses valores de MAE, RMSE e R²."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D1:D1:p5 «Blue Flag certification is associated with measurably decreased MP pollu»; D1:p5 «systematic environmental management, rather than remoteness, may play»#1",
+  "key": "D1:p5 «Blue Flag certification is associated with measurably decreased MP pollu»; D1:p5 «systematic environmental management, rather than remoteness, may play»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "O risco de enviesamento de análise existe porque a conclusão associa menor contaminação ao estatuto Blue Flag, mas o documento não reporta testes estatísticos ou controlo formal de fatores de confusão",
+  "passage": "(1) … 21, Issue 1 5 Figure 4 Sampling points in Gourna Beach, Leros, Greece. (Google Earth) wastewater discharge monitoring, visitor education, vehicle- access restrictions, and the overarching environmental man- agement protocol enforced under Blue Flag criteria [ 34 ]. Winter sampling—both campaigns were conducted during winter— further strengthens these conclusions: even outside the peak tourist season, non-Blue Flag sites maintained substantially higher contamination, indicating persistent inputs from fishing, domestic wastewater, and stormwater runoff—all common MP pathways during colder months [ 47 ]. Overall, the dataset supports the interpretation that Blue Flag certification is associated with measurably decreased MP pollu- tion, and that extending similar management practices to addi- tional coastal areas may substantially mitigate MP exposure risks to ecosystems and human populations. 4. Conclusion There were certain limitations in the study such as the relatively small number of samples and lack of seasonal sampling. Additionally, the density separation approach may underestimate certain particle types or polymer compositions, and polymer identification techniques (e.g. FT-IR or Raman spectroscopy) would provide a more comprehensive assessment of MP con- tamination patterns. Despite these, the study clearly highlighted pronounced differences in MP contamination between Blue Flag- certified beaches in Glyfada and non-certified beaches on the island of Leros. … (2) … Although Leros is a relatively remote island with lower permanent population density as mentioned, MPs were detected in every sample, demonstrating that geographical isolation does not safeguard coastal ecosystems from plastic pollution. The diversity of shapes reflects the multiplicity of MP sources, including potential sources such as wastewater effluent, textile-related inputs, litter degradation, fishing activity and maritime transport [ 48 ]. By contrast, the Blue Flag beaches of Glyfada exhibited particularly low MP loads, despite being situated in a highly urbanized region with intense tourism and year-round human presence. This contrast suggests that systematic environmental management, rather than remoteness, may play an important role in influencing MP accumulation. The findings are consistent with emerging evidence indicating that enhanced waste management, active monitoring and visitor- regulation frameworks may help reduce environmental degra- dation [ 49 ] and consequently lead to a reduction to shoreline MP pollution. 5. Discussion Routine beach cleaning, restrictions on wastewater discharge, adequate waste-bin infrastructure, prohibition of vehicle access and continuous environmental monitoring—as required under the Blue Flag programme—appear to yield measurable reductions in MP contamination. …",
+  "verdict": "partly",
+  "note": "A associação ao estatuto Blue Flag é suportada, mas o risco de enviesamento é uma avaliação não demonstrada diretamente."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D1:D1:p3 «The sampling procedure followed the same protocol as in Glyfada»#1",
+  "key": "D1:p3 «The sampling procedure followed the same protocol as in Glyfada»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A comparabilidade operacional é reforçada porque os autores indicam que Leros seguiu o mesmo protocolo de amostragem e separação usado em Glyfada",
+  "passage": "… Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. …",
+  "verdict": "inference",
+  "note": "O mesmo protocolo e separação em Leros e Glyfada sustentam maior comparabilidade."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "comparar:D1:p3 «A total of 12 sand samples were collected»; D1:p3 «Ten samples were collected from Alinda Beach»; D1:p3 «11 samples were collected from Gourna Beach»#1",
+  "key": "D1:p3 «A total of 12 sand samples were collected»; D1:p3 «Ten samples were collected from Alinda Beach»; D1:p3 «11 samples were collected from Gourna Beach»#1",
+  "parts": [
+   0,
+   1,
+   2
+  ],
+  "claim": "Incluiu 12 amostras em Glyfada, 10 em Alinda e 11 em Gourna",
+  "passage": "(1) International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 3 Figure 1 Location of Glyfada and Leros, Greece (Google Earth) bins are placed along the beaches only between 1 May until 30 October. Outside this period, waste disposal is managed through nearby municipal waste containers. Sampling at both locations was conducted during the winter season (January–February) and weather conditions were similar (sunny and not windy). 2.2. Sampling and microplastic separation determination A total of 12 sand samples were collected across the three Blue Flag beaches in the municipality of Glyfada ( Figs 1 and 2 ). Sam- pling involved delineation of the upper intertidal zone, followed by random selection of an initial sampling point at the start of each beach section. At each point, a 1 / 4 m 2 quadrat was placed, and surface sediment (0–3 cm depth) was collected using a metal scoop. Samples were sieved through a 5-mm mesh to remove large debris. Each sample weighed approximately 4.5 kg. Sam- pling points were spaced at ∼ 0.3 km intervals along the coastline. From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. … (2) … Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. … (3) … Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. …",
+  "verdict": "yes",
+  "note": "Os excertos indicam 12 amostras em Glyfada, 10 em Alinda e 11 em Gourna."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p3 «ranging from 0 to 4 items/kg dry sediment»#1",
+  "key": "D1:p3 «ranging from 0 to 4 items/kg dry sediment»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A variável principal foi a abundância de microplásticos por quilograma de sedimento seco",
+  "passage": "… This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. The total number of MPs was 6 items. Although Glyfada is located within the highly urbanized Athens metropolitan area, the total MP load was low, ranging from 0 to 4 items/kg dry sediment. These values were lower than concentrations reported for Mediterranean urban coasts, where typical levels range from 141-461 items/kg [ 41 ]. Particles were found primarily at the perimeters of the sampling transects suggesting special distribution consistent with localized sources, likely related to swimming activity, anglers, and sporadic litter deposition. Recovered particles displayed a range of shapes (fragments, pellets, fibres). Blue fragments were the predominant MP type possibly derived from weathered packaging materials, while pellets probably originated from industrial resin loss, occasionally reported around Attica. …",
+  "verdict": "partly",
+  "note": "A abundância por quilograma seco é reportada, mas o excerto não mostra que fosse a variável principal."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p3 «Ten samples were collected from Alinda Beach»; D1:p3 «11 samples were collected from Gourna Beach»#1",
+  "key": "D1:p3 «Ten samples were collected from Alinda Beach»; D1:p3 «11 samples were collected from Gourna Beach»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Em Leros, foram recolhidas 10 amostras na praia de Alinda e 11 amostras na praia de Gourna",
+  "passage": "(1) … Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. … (2) … Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. …",
+  "verdict": "yes",
+  "note": "O excerto diz que foram recolhidas 10 amostras em Alinda e 11 em Gourna."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p3 «at room temperature to avoid potential alterations»#1",
+  "key": "D1:p3 «at room temperature to avoid potential alterations»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Em Leros, a oxidação com H₂O₂ decorreu à temperatura ambiente para evitar alterações na morfologia dos microplásticos",
+  "passage": "This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room temperature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ].",
+  "verdict": "yes",
+  "note": "O excerto diz que foi usado H₂O₂ à temperatura ambiente para evitar alterações na morfologia dos microplásticos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p5 «relatively small number of samples and lack of seasonal sampling»#1",
+  "key": "D1:p5 «relatively small number of samples and lack of seasonal sampling»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O suporte principal é a comparação entre Glyfada e Leros, mas o desenho inclui poucos locais e os próprios autores referem limitações.",
+  "passage": "… Winter sampling—both campaigns were conducted during winter— further strengthens these conclusions: even outside the peak tourist season, non-Blue Flag sites maintained substantially higher contamination, indicating persistent inputs from fishing, domestic wastewater, and stormwater runoff—all common MP pathways during colder months [ 47 ]. Overall, the dataset supports the interpretation that Blue Flag certification is associated with measurably decreased MP pollu- tion, and that extending similar management practices to addi- tional coastal areas may substantially mitigate MP exposure risks to ecosystems and human populations. 4. Conclusion There were certain limitations in the study such as the relatively small number of samples and lack of seasonal sampling. Additionally, the density separation approach may underestimate certain particle types or polymer compositions, and polymer identification techniques (e.g. FT-IR or Raman spectroscopy) would provide a more comprehensive assessment of MP con- tamination patterns. Despite these, the study clearly highlighted pronounced differences in MP contamination between Blue Flag- certified beaches in Glyfada and non-certified beaches on the island of Leros. Although Leros is a relatively remote island with lower permanent population density as mentioned, MPs were detected in every sample, demonstrating that geographical isolation does not safeguard coastal ecosystems from plastic pollution. …",
+  "verdict": "partly",
+  "note": "A comparação e as limitações são referidas, mas “suporte principal” e “poucos locais” vão além do excerto."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p3 «ranging from 0 to 4 items/kg dry sediment»#1",
+  "key": "D1:p3 «ranging from 0 to 4 items/kg dry sediment»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto dá o total de itens e o intervalo por kg de sedimento seco.",
+  "passage": "… This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. The total number of MPs was 6 items. Although Glyfada is located within the highly urbanized Athens metropolitan area, the total MP load was low, ranging from 0 to 4 items/kg dry sediment. These values were lower than concentrations reported for Mediterranean urban coasts, where typical levels range from 141-461 items/kg [ 41 ]. Particles were found primarily at the perimeters of the sampling transects suggesting special distribution consistent with localized sources, likely related to swimming activity, anglers, and sporadic litter deposition. Recovered particles displayed a range of shapes (fragments, pellets, fibres). Blue fragments were the predominant MP type possibly derived from weathered packaging materials, while pellets probably originated from industrial resin loss, occasionally reported around Attica. …",
+  "verdict": "yes",
+  "note": "O excerto apresenta o total de 6 itens e o intervalo de 0 a 4 itens/kg de sedimento seco."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "ficha_D1:D1:p3 «MPs were identified by visual inspection»; D1:p3 «at 5 × magnification to improve identification reliability»#1",
+  "key": "D1:p3 «MPs were identified by visual inspection»; D1:p3 «at 5 × magnification to improve identification reliability»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "A identificação foi feita por inspeção visual e, em Leros, com estereomicroscópio STEMI 305 a 5 vezes de ampliação",
+  "passage": "(1) … From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. … (2) … 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. The total number of MPs was 6 items. Although Glyfada is located within the highly urbanized Athens metropolitan area, the total MP load was low, ranging from 0 to 4 items/kg dry sediment. These values were lower than concentrations reported for Mediterranean urban coasts, where typical levels range from 141-461 items/kg [ 41 ]. Particles were found primarily at the perimeters of the sampling transects suggesting special distribution consistent with localized sources, likely related to swimming activity, anglers, and sporadic litter deposition. …",
+  "verdict": "yes",
+  "note": "O excerto refere inspeção visual e, depois, exame com estereomicroscópio STEMI 305 a 5 vezes."
+ },
+ {
+  "id": "critica_D2:D2:p3 «this study proposes a wind power prediction method based on an improved»; D2:p6 «The dataset used in this study consists of 2 years»#1:0~exagero",
+  "kind": "exagero",
+  "expect": "not-yes",
+  "claim": "O estudo inclui descrição completa, código aberto, dados públicos e validação em 50 países",
+  "passage": "(1) … This structural optimization has shown considerable performance improvements compared to traditional LSTM models [ 34 ]. Furthermore, other researchers have introduced a dual-channel mechanism, supplemented by CNNs, to assist the attention mechanism in capturing higher frequency wind power features. This combination has significantly outperformed multiple linear regression models in testing results [ 35 ]. Collectively, these studies underscore the substantial potential of attention mechanisms in optimizing the reliability and efficacy of wind power forecasting. To address the issues identified in the aforementioned literature and improve the effectiveness of wind power forecasting, this study proposes a wind power prediction method based on an improved BAS-optimized BiLSTM- Attention model. The objective is to construct a high-performance forecasting model through the amalgamation of multiple models. 2 Method 2.1 Overall model structure To effectively improve the accuracy and efficiency of wind power forecasting, we propose a multicomposite model that begins with a hierarchical approach at the input end of the wind power data, consisting of a data decomposition network layer and a power prediction layer. The overall construction of the model structure is illustrated in Fig. 1 . In the data decomposition network layer, the BAS is employed for preprocessing the raw wind power data. … (2) … 3 Experiment results and discussion 3.1 Dataset In this study, the dataset, sourced from a cooperating wind station, complies with State Grid confidentiality regulations and has been anonymized to remove any identifiable information, mitigating privacy risks associated with meteorological data. Ethical considerations include algorithmic accountability, where model decisions are traceable through attention mechanisms and bidirectional processing, reducing bias in predictions for renewable energy systems [ 36 – 38 ]. To align with current standards, we avoided sensitive personal data, focusing on environmental indicators, and conducted statistical validations for fair comparisons [ 39 , 40 ]. The dataset used in this study consists of 2 years of histor- ical wind power data (from January 1, 2022, to December 31, 2023) collected from a cooperating onshore wind station oper- ated by the co-author’s power company. This region experiences significant seasonal variations, with strong winds in winter and milder conditions in summer, making it representative of northern China’s continental climate. The entire data usage process strictly adheres to relevant laws and regulations, maintaining a high level of emphasis on data confidentiality. The dataset includes six key influencing indicators: wind speed (m/s), wind direction (degrees), temperature ( ◦ C), air pressure (hPa), humidity (%), and actual wind power output (MW), as shown in Table 1 . …",
+  "orig": "O estudo inclui descrição metodológica, conjunto de dados, pré-processamento, treino, avaliação e comparação com outros modelos",
+  "verdict": "no",
+  "note": "O excerto fala em dados confidenciais anonimizados, não em código aberto, dados públicos ou validação em 50 países."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D2:D2:p6 «six key influencing indicators: wind speed»#1",
+  "key": "D2:p6 «six key influencing indicators: wind speed»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O artigo explicita seis indicadores usados no conjunto de dados: velocidade do vento, direção do vento, temperatura, pressão atmosférica, humidade e potência eólica real",
+  "passage": "… To align with current standards, we avoided sensitive personal data, focusing on environmental indicators, and conducted statistical validations for fair comparisons [ 39 , 40 ]. The dataset used in this study consists of 2 years of histor- ical wind power data (from January 1, 2022, to December 31, 2023) collected from a cooperating onshore wind station oper- ated by the co-author’s power company. This region experiences significant seasonal variations, with strong winds in winter and milder conditions in summer, making it representative of northern China’s continental climate. The entire data usage process strictly adheres to relevant laws and regulations, maintaining a high level of emphasis on data confidentiality. The dataset includes six key influencing indicators: wind speed (m/s), wind direction (degrees), temperature ( ◦ C), air pressure (hPa), humidity (%), and actual wind power output (MW), as shown in Table 1 . Data resolution is hourly, resulting in approximately 17 520 samples per indicator. The temporal granularity allows for capturing short-term fluctua- tions critical for grid dispatching. In addition to the commonly con- sidered factors such as wind speed, wind direction, and terrain, we incorporate several additional variables to effectively address the volatility and uncertainty inherent in wind power generation, such as temperature, atmospheric pressure, historical power output, seasonal factors, geospatial data, turbine specifications, and fore- casted weather data. …",
+  "verdict": "yes",
+  "note": "O excerto enumera exatamente esses seis indicadores do conjunto de dados."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p6 «Wilcoxon signed-rank test on paired differences»#1",
+  "key": "D2:p6 «Wilcoxon signed-rank test on paired differences»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto refere o teste de Wilcoxon e a Tabela 5 inclui valores P contra o modelo proposto",
+  "passage": "… Conversely, if the wind direction has P < .05, this suggests that this wind energy parameter can be assigned a neutral weight distribution. These parameters have a minor influence on the correlation with wind power, allowing for a reduction in their weight allocation in the model. To ensure the model’s reliability and mitigate overfitting, we employed a five-fold time-series cross-validation using TimeSeriesSplit, which preserves the temporal order of the data by training on earlier segments and validating on subsequent ones. This approach is suitable for wind power time-series to prevent future data leakage. Model comparisons were assessed using the Wilcoxon signed-rank test on paired differences in metrics such as MAE and root mean square error (RMSE). Additionally, prediction intervals were calcu- lated as the mean prediction ± 2 standard deviations, derived from the ensemble variance across folds, to quantify uncertainty and provide bounds on forecast reliability. 3.2 Training setting To ensure practical feasibility for large datasets and potential real- time applications, training was conducted on an Intel Core i7- 10700 CPU (2.9 GHz, 16 GB RAM) with an NVIDIA RTX 3060 GPU (6 GB VRAM). The model, with approximately 500 000 parameters, required about 4 GB GPU memory during training. …",
+  "verdict": "partly",
+  "note": "O teste de Wilcoxon é referido, mas o excerto não mostra a Tabela 5 nem valores P contra o modelo proposto."
+ },
+ {
+  "id": "metodos_D2:D2:p7 «maximum number of epochs for each iteration is set to 200»#1:0~numero",
+  "kind": "numero",
+  "expect": "not-yes",
+  "claim": "O número máximo de épocas por iteração foi 2000, com dropout de 0.3",
+  "passage": "… Computational complexity is dominated by BiLSTM, where T = 24 time steps, h = 128, and Attention, d = 64 embed- ding dim, making it suitable for hourly forecasts but potentially scalable with distributed computing for ultra-short-term real-time scenarios. The influencing factors of wind power generation are primarily composed of weather, terrain, wind speed, and wind direction, all of which share significant commonality in terms of volatility and uncertainty. To fully capture the trends of power sequence varia- tions among various features, we have meticulously planned the parameter settings for the deep neural network layers, as detailed in Table 3 . The entire training process sets the dimensions of the input wind power data to three channels and one channel. The maximum number of epochs for each iteration is set to 200, with a dropout rate of 0.3. During the iteration process, the time step lengths for wind power testing are structured in a stepped manner, following patterns such as 3, 5, and 7. After every 100 iterations, white noise is added to optimize the network’s bias rate. 3.3 Evaluation In the model evaluation process, the zero points within the wind power sequence are designated as the boundary, while the MAE serves as the sampling point to assess the discrepancies between the experimentally predicted values and the actual wind power factors. To accurately quantify the performance disparities among various models, we employ both the MAE and the RMSE as metrics of evaluation. …",
+  "orig": "Noutra secção, os autores também indicam que o número máximo de épocas por iteração foi 200, com dropout de 0.3",
+  "verdict": "no",
+  "note": "O excerto indica 200 épocas, não 2000, embora confirme dropout de 0,3."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "resumo_D1:D1:p3-4 «MPs were detected in all samples from»; D1:p4 «ranged from 20 to 163 items/kg dry sediment»; D1:p4 «ranging from 164 to 543 items/kg dry sediment»#1",
+  "key": "D1:p3-4 «MPs were detected in all samples from»; D1:p4 «ranged from 20 to 163 items/kg dry sediment»; D1:p4 «ranging from 164 to 543 items/kg dry sediment»#1",
+  "parts": [
+   0,
+   1,
+   2
+  ],
+  "claim": "Em Leros, os microplásticos apareceram em todas as amostras, com 20 a 163 itens/kg em Alinda e 164 a 543 itens/kg em Gourna",
+  "passage": "(1) … Particles were found primarily at the perimeters of the sampling transects suggesting special distribution consistent with localized sources, likely related to swimming activity, anglers, and sporadic litter deposition. Recovered particles displayed a range of shapes (fragments, pellets, fibres). Blue fragments were the predominant MP type possibly derived from weathered packaging materials, while pellets probably originated from industrial resin loss, occasionally reported around Attica. Fibres were fewer in number. These are typically associated with synthetic textiles and can be transported through treated or untreated wastewater discharges [ 42 ]. 3.2. Microplastic contamination on Leros island In contrast to Glyfada, MPs were detected in all samples from the two non-Blue Flag beaches in Leros at substantially higher Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctag042/8670222 by guest on 29 September 2026 (2) 4 International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 Figure 2 Sampling points in Glyfada Beach, Attica Greece (Google Earth) Figure 3 Sampling points in Alinda Beach, Leros, Greece. (Google Earth) concentrations, reflecting lower management intensity, tourism- driven pressure, and the island’s characteristic semi-enclosed bays, that can promote particle retention [ 43 ]. At Alinda Beach, MP abundance ranged from 20 to 163 items/kg dry sediment, a concentration considerably higher than in Glyfada. Shape distribution was primarily fibres (72%), followed by fragments (17%), films (6%), pellets (5%), and foams (1%). In Gourna Beach, MP contamination was higher than at Alinda, ranging from 164 to 543 items/kg dry sediment. Shape distribution was predominantly fibres (60%), followed by fragments (35%), pellets (4%), films (2%), and one foam particle. The higher pro- portion of fragments in Gourna relative to Alinda suggests greater influence of local litter breakdown, possibly related to shoreline activities [ 44 ]. The predominance of blue fibres observed at both beaches has been consistently associated with synthetic clothing and laundry effluent, increasingly recognized as a dominant MP source in the Mediterranean [ 45 ]. … (3) … 21, Issue 1 Figure 2 Sampling points in Glyfada Beach, Attica Greece (Google Earth) Figure 3 Sampling points in Alinda Beach, Leros, Greece. (Google Earth) concentrations, reflecting lower management intensity, tourism- driven pressure, and the island’s characteristic semi-enclosed bays, that can promote particle retention [ 43 ]. At Alinda Beach, MP abundance ranged from 20 to 163 items/kg dry sediment, a concentration considerably higher than in Glyfada. Shape distribution was primarily fibres (72%), followed by fragments (17%), films (6%), pellets (5%), and foams (1%). In Gourna Beach, MP contamination was higher than at Alinda, ranging from 164 to 543 items/kg dry sediment. Shape distribution was predominantly fibres (60%), followed by fragments (35%), pellets (4%), films (2%), and one foam particle. The higher pro- portion of fragments in Gourna relative to Alinda suggests greater influence of local litter breakdown, possibly related to shoreline activities [ 44 ]. The predominance of blue fibres observed at both beaches has been consistently associated with synthetic clothing and laundry effluent, increasingly recognized as a dominant MP source in the Mediterranean [ 45 ]. Additionally, a high proportion of fibres is common of coastal regions without tertiary wastew- ater filtration systems treatment that are capable of removing microfibers [ 46 ] such as that in Leros. …",
+  "verdict": "yes",
+  "note": "O excerto diz que houve microplásticos em todas as amostras de Leros e dá esses intervalos para Alinda e Gourna."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "ficha_D2:D2:p11 «there is still room for improvement»#1",
+  "key": "D2:p11 «there is still room for improvement»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os autores afirmam ainda que o modelo tem margem para melhoria",
+  "passage": "… Compared to individual models and other common algorithms, the BAS-optimized BiLSTM-Attention model shows higher prediction accuracy and robustness across multiple evaluation metrics, particularly under conditions of long time-series predictions and high data noise, thereby enhancing the model’s predictive performance. Moreover, the introduction of the Attention module focused on important moment information, further improving its predictive capability in complex environments. Through comparative experiments, this paper validates the synergistic effect of BAS optimization and the Attention mechanism, proving the effectiveness of their combination in wind power forecasting. Although the model has achieved good results in the experi- ment, there is still room for improvement. For example, in the future, we can consider introducing more external characteristic variables to further improve the accuracy of the prediction in view of the seasonal fluctuations and extreme weather factors in wind power data. In addition, as the amount of data in the wind power field continues to grow, how to improve the computational effi- ciency and real-time performance of the model will be an impor- tant direction for future research. Author contributions Baoju Li (Conceptualization [equal], Data curation [equal], Formal analysis [equal], Funding acquisition [equal], Investigation [e …",
+  "verdict": "yes",
+  "note": "O excerto afirma explicitamente que ainda há margem para melhoria."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p9 «Comparison of prediction performance between single model and composite model»#1",
+  "key": "D2:p9 «Comparison of prediction performance between single model and composite model»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A comparação inclui SVR, LSTM, GRU, BAS, CNN Transformer, EMD LSTM, WOA GRU e o modelo proposto",
+  "passage": "International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 9 Table 5 Comparison of prediction performance between single model and composite model Model MAE (MW) RMSE (MW) R 2 MAPE (%) P (vs. Ours) SVR [ 41 ] 14.23 21.46 0.81 8.97 .012 LSTM [ 11 ] 12.45 18.32 0.85 7.64 .031 GRU [ 42 ] 13.02 19.15 0.83 8.12 .008 BAS [ 43 ] 15.67 22.58 0.78 9.34 .024 CNN-Transformer [ 30 ] 11.34 21.35 0.91 7.97 .019 EMD–LSTM [ 31 ] 12.87 15.97 0.84 6.49 .038 WOA–GRU [ 32 ] 10.23 18.13 0.89 6.13 .041 Ours 8.72 12.48 0.93 5.21 – Figure 5 Single model prediction performance on wind power. predictive models for complex time-series data. Moreover, the BiLSTM-Attention model, combined with the decomposition tech- nique, performed optimally, demonstrating the lowest prediction errors and the highest fitting capabilities across all decomposition methods. …",
+  "verdict": "yes",
+  "note": "A tabela inclui SVR, LSTM, GRU, BAS, CNN-Transformer, EMD-LSTM, WOA-GRU e Ours."
+ },
+ {
+  "id": "critica_D2:D2:p9 «Model MAE (MW) RMSE (MW) R 2 MAPE»#1:0~inventado",
+  "kind": "inventado",
+  "expect": "not-yes",
+  "claim": "O artigo apresenta MAE, RMSE, R², MAPE e o índice de Nash-Sutcliffe",
+  "passage": "International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 9 Table 5 Comparison of prediction performance between single model and composite model Model MAE (MW) RMSE (MW) R 2 MAPE (%) P (vs. Ours) SVR [ 41 ] 14.23 21.46 0.81 8.97 .012 LSTM [ 11 ] 12.45 18.32 0.85 7.64 .031 GRU [ 42 ] 13.02 19.15 0.83 8.12 .008 BAS [ 43 ] 15.67 22.58 0.78 9.34 .024 CNN-Transformer [ 30 ] 11.34 21.35 0.91 7.97 .019 EMD–LSTM [ 31 ] 12.87 15.97 0.84 6.49 .038 WOA–GRU [ 32 ] 10.23 18.13 0.89 6.13 .041 Ours 8.72 12.48 0.93 5.21 – Figure 5 Single model prediction performance on wind power. predictive models for complex time-series data. Moreover, the BiLSTM-Attention model, combined with the decomposition tech- nique, performed optimally, demonstrating the lowest prediction errors and the highest fitting capabilities across all decomposition methods. …",
+  "orig": "O artigo apresenta métricas de desempenho quantitativas, incluindo MAE, RMSE, R² e MAPE",
+  "verdict": "partly",
+  "note": "O excerto apresenta MAE, RMSE, R² e MAPE, mas não o índice de Nash-Sutcliffe."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p3 «wet peroxide oxidation due to high organic matter content»; D1:p3 «addition of 30% H 2 O 2»#1",
+  "key": "D1:p3 «wet peroxide oxidation due to high organic matter content»; D1:p3 «addition of 30% H 2 O 2»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Em Leros, foi aplicada oxidação húmida com 30% H₂O₂ devido ao elevado teor de matéria orgânica",
+  "passage": "(1) … The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. … (2) … The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. The total number of MPs was 6 items. …",
+  "verdict": "yes",
+  "note": "O excerto diz que em Leros foi aplicada oxidação húmida com H₂O₂ a 30% devido ao elevado teor de matéria orgânica."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D2:D2:p6 «collected from a cooperating onshore wind station operated by»#1",
+  "key": "D2:p6 «collected from a cooperating onshore wind station operated by»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os dados foram recolhidos numa estação eólica terrestre cooperante, operada pela empresa de energia de um co-autor",
+  "passage": "… 3 Experiment results and discussion 3.1 Dataset In this study, the dataset, sourced from a cooperating wind station, complies with State Grid confidentiality regulations and has been anonymized to remove any identifiable information, mitigating privacy risks associated with meteorological data. Ethical considerations include algorithmic accountability, where model decisions are traceable through attention mechanisms and bidirectional processing, reducing bias in predictions for renewable energy systems [ 36 – 38 ]. To align with current standards, we avoided sensitive personal data, focusing on environmental indicators, and conducted statistical validations for fair comparisons [ 39 , 40 ]. The dataset used in this study consists of 2 years of histor- ical wind power data (from January 1, 2022, to December 31, 2023) collected from a cooperating onshore wind station oper- ated by the co-author’s power company. This region experiences significant seasonal variations, with strong winds in winter and milder conditions in summer, making it representative of northern China’s continental climate. The entire data usage process strictly adheres to relevant laws and regulations, maintaining a high level of emphasis on data confidentiality. The dataset includes six key influencing indicators: wind speed (m/s), wind direction (degrees), temperature ( ◦ C), air pressure (hPa), humidity (%), and actual wind power output (MW), as shown in Table 1 . Data resolution is hourly, resulting in approximately 17 520 samples per indicator. …",
+  "verdict": "yes",
+  "note": "O excerto diz que os dados vieram de uma estação eólica terrestre cooperante operada pela empresa de energia de um co-autor."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p4 «reflecting lower management intensity, tourism-driven pressure»#2",
+  "key": "D1:p4 «reflecting lower management intensity, tourism-driven pressure»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Em parte. A diferença de contaminação está medida, mas os mecanismos propostos dependem de interpretação e de referência externa.",
+  "passage": "4 International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 Figure 2 Sampling points in Glyfada Beach, Attica Greece (Google Earth) Figure 3 Sampling points in Alinda Beach, Leros, Greece. (Google Earth) concentrations, reflecting lower management intensity, tourism- driven pressure, and the island’s characteristic semi-enclosed bays, that can promote particle retention [ 43 ]. At Alinda Beach, MP abundance ranged from 20 to 163 items/kg dry sediment, a concentration considerably higher than in Glyfada. Shape distribution was primarily fibres (72%), followed by fragments (17%), films (6%), pellets (5%), and foams (1%). In Gourna Beach, MP contamination was higher than at Alinda, ranging from 164 to 543 items/kg dry sediment. Shape distribution was predominantly fibres (60%), followed by fragments (35%), pellets (4%), films (2%), and one foam particle. …",
+  "verdict": "inference",
+  "note": "A diferença está quantificada e os mecanismos aparecem como explicação interpretativa apoiada por citação externa."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D1:D1:p1 «This study aimed to determine the effect of “Blue Flag” status»#1",
+  "key": "D1:p1 «This study aimed to determine the effect of “Blue Flag” status»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O objetivo é claro, pois o estudo pretende avaliar o efeito do estatuto Blue Flag no nível de microplásticos em amostras de praia",
+  "passage": "… International Journal of Low-Carbon Technologies , 2026, 21 , 1–7, ctag042 https://doi.org/10.1093/ijlct/ctag042 Published: 20 April 2026 Rapid Communications Microplastic contamination and the benefits of blue flag beach status Theodora Sourri * , Eirini Arezina Machaira , Olga Cavoura Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece * Corresponding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. …",
+  "verdict": "yes",
+  "note": "O excerto diz que o estudo pretende determinar o efeito do estatuto Blue Flag no nível de microplásticos em amostras de praia."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p3-4 «the two non-Blue Flag beaches in Leros»#1",
+  "key": "D1:p3-4 «the two non-Blue Flag beaches in Leros»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto apresenta esta deteção total e caracteriza as duas praias como sem Blue Flag.",
+  "passage": "… Particles were found primarily at the perimeters of the sampling transects suggesting special distribution consistent with localized sources, likely related to swimming activity, anglers, and sporadic litter deposition. Recovered particles displayed a range of shapes (fragments, pellets, fibres). Blue fragments were the predominant MP type possibly derived from weathered packaging materials, while pellets probably originated from industrial resin loss, occasionally reported around Attica. Fibres were fewer in number. These are typically associated with synthetic textiles and can be transported through treated or untreated wastewater discharges [ 42 ]. 3.2. Microplastic contamination on Leros island In contrast to Glyfada, MPs were detected in all samples from the two non-Blue Flag beaches in Leros at substantially higher Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctag042/8670222 by guest on 29 September 2026",
+  "verdict": "yes",
+  "note": "O excerto afirma que foram detectados microplásticos em todas as amostras das duas praias sem Blue Flag em Leros."
+ },
+ {
+  "id": "conclusoes_D2:D2:p7 «Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation»#1:0~numero",
+  "kind": "numero",
+  "expect": "not-yes",
+  "claim": "Falhas curtas até 12 horas foram preenchidas por interpolação linear",
+  "passage": "… s , 2026, Vol. 21, Issue 1 7 Table 1 Classification of wind power prediction datasets Dataset Air pressure Humidity Wind direction Wind power Wind speed Temperature Maximum (MW) Train 96.16 96.29 88.94 89.34 94.68 92.75 Test 32.34 56.33 62.43 51.22 62.78 68.19 Minimum (MW) Train 0 0 0 0 0 0 Test 0 0 0 0 0 0 Average (MW) Train 65.44 78.61 76.15 76.95 74.68 79.68 Test 26.32 35.94 48.91 38.36 49.58 51.23 Table 2 The dataset preprocessing steps Steps Preprocessing method Details 1 Missing data handling Missing values accounted for less than 1% of the dataset, primarily due to sensor malfunctions. Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation between adjacent points; isolated misses used forward-fill. No advanced imputation was employed to minimize potential bias. 2 Outlier detection and removal Outliers were identified using Z -score thresholding (| Z | > 3) and replaced with interpolated values if valid, or removed if extreme (affecting < 0.5% of data). 3 Normalization All features were scaled to [0,1] using min–max normalization to stabilize model training. 4 Feature selection criteria Features were selected based on Pearson correlation analysis, retaining those with coefficients > 0.5 relative to wind power output (e.g. …",
+  "orig": "A Tabela 2 indica que falhas curtas até 3 horas foram preenchidas por interpolação linear e falhas isoladas por forward fill",
+  "verdict": "no",
+  "note": "O excerto refere lacunas curtas até 3 horas, não até 12 horas."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "ficha_D2:D2:p11 «This paper proposes an improved BAS-BiLSTM-Attention model for wind power forecasting»#1",
+  "key": "D2:p11 «This paper proposes an improved BAS-BiLSTM-Attention model for wind power forecasting»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O contributo principal é a proposta de um modelo BAS-BiLSTM-Attention melhorado para previsão de energia eólica",
+  "passage": "… Integration into grid management systems, such as Supervisory Control and Data Acquisition (SCADA) or EMS, would involve API endpoints for seamless data exchange, enabling dynamic load balancing and reducing curtailment in renewable-heavy grids. For scalability across national or regional wind farm networks, distributed training on cloud platforms could handle multisite data, with federated learning preserving privacy across provinces. This approach, inspired by recent hybrid deep learning (DL) frameworks, would support thousands of turbines, maintaining low latency ( < 1-second inference) on GPU clusters. Future work could explore quantization for edge devices to further enhance deployment in remote farms. 5 Conclusion This paper proposes an improved BAS-BiLSTM-Attention model for wind power forecasting. By combining the BAS algorithm with BiLSTM and the Attention mechanism, the model effectively captures the complex nonlinear relationships in the time-series data of wind power and enhances prediction accuracy. We first utilize the BAS algorithm for feature search and decomposition of wind power data, obtaining hidden features across different frequency bands. Next, the BiLSTM algorithm is employed to capture the bidirectional temporal associations of hidden wind power features and generate mappings between time instances and historical states. Finally, the Attention mechanism is added to ensure that wind power features can selectively focus on specified highly relevant features during the dynamic allocation of weights. …",
+  "verdict": "yes",
+  "note": "O excerto afirma que o artigo propõe um modelo BAS-BiLSTM-Attention melhorado para previsão de energia eólica."
+ },
+ {
+  "id": "comparar:D1:p1 «aimed to determine the effect of “Blue Flag” status»#1:0~exagero",
+  "kind": "exagero",
+  "expect": "not-yes",
+  "claim": "Provar que o estatuto “Blue Flag” elimina os microplásticos em todas as praias da Europa",
+  "passage": "… International Journal of Low-Carbon Technologies , 2026, 21 , 1–7, ctag042 https://doi.org/10.1093/ijlct/ctag042 Published: 20 April 2026 Rapid Communications Microplastic contamination and the benefits of blue flag beach status Theodora Sourri * , Eirini Arezina Machaira , Olga Cavoura Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece * Corresponding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. …",
+  "orig": "Avaliar o efeito do estatuto “Blue Flag” nos níveis de microplásticos em amostras de praia",
+  "verdict": "no",
+  "note": "O excerto não fala em provar eliminação dos microplásticos nem em todas as praias da Europa."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D1:D1:p1 «the benefits of Blue Flag status extend not only»; D1:p5 «systematic environmental management, rather than remoteness, may play»#1",
+  "key": "D1:p1 «the benefits of Blue Flag status extend not only»; D1:p5 «systematic environmental management, rather than remoteness, may play»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "O construto “benefícios do estatuto Blue Flag” é plausível, mas é medido de forma indireta, através da comparação entre praias certificadas e não certificadas, sem isolar o estatuto Blue Flag de outras características locais",
+  "passage": "(1) … Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. In Glyfada, MPs were green, yellow, blue, and light blue in colour. Shapes included fragments, pellets, and fibres, and the item number ranged from 0 to 4 per kg dry weight. In Leros, MPs were mostly black, blue, and white in colour. Shapes included fibres, fragments, foams, films and pellets, and item numbers ranged from 20 to 163 per kg of dry weight, at Alinda Beach, and 164 to 543 items per kg of dry weight for Gourna Beach. The results indicated that the benefits of Blue Flag status extend not only to improved microbial and chemical status of beaches but also to the mitigation of MP contamination. Keywords beach, blue flag, microplastics, sustainability Nomenclature Symbols ∼ Approximately x Magnification % Percentage Units Unit in text Meaning Unit SI o C Celsius K = T o C + 273.15 cm Centimetre 10 − 2 m g ml − 1 Grams per millilitre 1 ∗ Kgm − 3 g Gram 1 ∗ 10 − 3 kg kg Kilogram kg Km 2 Square kilometre 1 ∗ 10 6 m 2 Km Kilometre 1 ∗ 10 3 m 2 m Meter m mm Millimetre 1 ∗ 10 − 3 m Abbreviations BFA Blue Flag Award H 2 O 2 Hydrogen peroxide HCMR Hellenic Centre for Marine Research MP Microplastic MPs Microplastics NaCl Sodium chloride PE Polyethylene PET Polyethylene terephthalate PP Polypropylene PS Polystyrene PVC Polyvinyl chloride 1. … (2) … Although Leros is a relatively remote island with lower permanent population density as mentioned, MPs were detected in every sample, demonstrating that geographical isolation does not safeguard coastal ecosystems from plastic pollution. The diversity of shapes reflects the multiplicity of MP sources, including potential sources such as wastewater effluent, textile-related inputs, litter degradation, fishing activity and maritime transport [ 48 ]. By contrast, the Blue Flag beaches of Glyfada exhibited particularly low MP loads, despite being situated in a highly urbanized region with intense tourism and year-round human presence. This contrast suggests that systematic environmental management, rather than remoteness, may play an important role in influencing MP accumulation. The findings are consistent with emerging evidence indicating that enhanced waste management, active monitoring and visitor- regulation frameworks may help reduce environmental degra- dation [ 49 ] and consequently lead to a reduction to shoreline MP pollution. 5. Discussion Routine beach cleaning, restrictions on wastewater discharge, adequate waste-bin infrastructure, prohibition of vehicle access and continuous environmental monitoring—as required under the Blue Flag programme—appear to yield measurable reductions in MP contamination. …",
+  "verdict": "inference",
+  "note": "A frase decorre da comparação entre praias certificadas e não certificadas com características locais diferentes."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D2:D2:p8 «One decomposition 67.15 91.87 0.890»#2",
+  "key": "D2:p8 «One decomposition 67.15 91.87 0.890»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Attention, uma decomposição",
+  "passage": "… 21, Issue 1 Table 3 Network layer parameter settings Network layer Parameter Number Value BAS Filters 2 4 Kernel size 2 3 Dilations 2 1, 2, 4 BiLSTM Filters 3 11 Kernel size 3 7 Dilations 3 1, 2, 4, 8, 16 Hidden layer 4 12 Attention Filters 3 10 Kernel size 3 6 Dilations 3 1, 2, 4 Hidden layer 6 12 Figure 4 Wind power data decomposition and wind energy output correlation. Table 4 Wind power impact of data decomposition times at different network layers Network layer Data decomposition mode MAE (MW) RMSE (MW) R 2 BAS Original 85.32 110.45 0.821 One decomposition 62.14 85.23 0.905 Two decompositions 48.76 68.34 0.942 BiLSTM Original 81.51 105.25 0.834 One decomposition 58.76 82.31 0.912 Two decompositions 45.12 65.24 0.954 Attention Original 86.45 115.23 0.798 One decomposition 67.15 91.87 0.890 Two decompositions 51.24 71.34 0.937 number of decomposition levels and improve the accuracy of the wind power forecasting model through optimized decomposition choices, we tested the sensitivity of different network layers to the number of data decompositions. The results are presented in Table 4 . From the data in Table 4 , it is evident that wind power data decomposition significantly enhances the predictive performance of each model. In the data that were not decom- posed, the presence of noise and nonstationary components resulted in larger prediction errors and weaker fitting capabilities. …",
+  "verdict": "yes",
+  "note": "A tabela inclui a camada Attention com o modo de uma decomposição."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p7 «affecting < 0.5% of data»#1",
+  "key": "D2:p7 «affecting < 0.5% of data»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A Tabela 2 indica o critério, a substituição por interpolação e a proporção afectada",
+  "passage": "… t 26.32 35.94 48.91 38.36 49.58 51.23 Table 2 The dataset preprocessing steps Steps Preprocessing method Details 1 Missing data handling Missing values accounted for less than 1% of the dataset, primarily due to sensor malfunctions. Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation between adjacent points; isolated misses used forward-fill. No advanced imputation was employed to minimize potential bias. 2 Outlier detection and removal Outliers were identified using Z -score thresholding (| Z | > 3) and replaced with interpolated values if valid, or removed if extreme (affecting < 0.5% of data). 3 Normalization All features were scaled to [0,1] using min–max normalization to stabilize model training. 4 Feature selection criteria Features were selected based on Pearson correlation analysis, retaining those with coefficients > 0.5 relative to wind power output (e.g. wind speed showed r = 0.85, direction r = 0.62). complexity. Computational complexity is dominated by BiLSTM, where T = 24 time steps, h = 128, and Attention, d = 64 embed- ding dim, making it suitable for hourly forecasts but potentially scalable with distributed computing for ultra-short-term real-time scenarios. The influencing factors of wind power generation are primarily composed of weather, terrain, wind speed, and wind direction, all of which share significant commonality in terms of volatility and uncertainty. …",
+  "verdict": "yes",
+  "note": "A Tabela 2 apresenta critérios, interpolação ou substituição, e proporções afectadas."
+ },
+ {
+  "id": "ficha_D2:D2:p3 «the BAS is employed for preprocessing the raw wind power data»#1:0~sujeito",
+  "kind": "sujeito",
+  "expect": "not-yes",
+  "claim": "A BiLSTM foi usada para pré-processar os dados brutos de energia eólica",
+  "passage": "… To address the issues identified in the aforementioned literature and improve the effectiveness of wind power forecasting, this study proposes a wind power prediction method based on an improved BAS-optimized BiLSTM- Attention model. The objective is to construct a high-performance forecasting model through the amalgamation of multiple models. 2 Method 2.1 Overall model structure To effectively improve the accuracy and efficiency of wind power forecasting, we propose a multicomposite model that begins with a hierarchical approach at the input end of the wind power data, consisting of a data decomposition network layer and a power prediction layer. The overall construction of the model structure is illustrated in Fig. 1 . In the data decomposition network layer, the BAS is employed for preprocessing the raw wind power data. This layer categorizes the data based on the smoothing degree of wind power characteristics, mapping and matching to modal compo- nents of varying complexity. Noise is eliminated from these com- ponents by leveraging their high-frequency and low-frequency characteristics, followed by a secondary data decomposition. In the wind power prediction network layer, the decomposed subse- quences of wind power factors are first directed into modal com- ponent streams based on matrix combinations of their vectors, such as wind speed feature streams and wind direction feature streams. …",
+  "orig": "O BAS foi usado para pré-processar os dados brutos de energia eólica",
+  "verdict": "no",
+  "note": "O excerto diz que o BAS, não a BiLSTM, foi usado para pré-processar os dados brutos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D2:D2:p6 «Wilcoxon signed-rank test on paired differences in metrics»; D2:p9 «Comparison of prediction performance between single model and composite model»#1",
+  "key": "D2:p6 «Wilcoxon signed-rank test on paired differences in metrics»; D2:p9 «Comparison of prediction performance between single model and composite model»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "A validade estatística é fortalecida pela comparação emparelhada e pela validação temporal, mas o artigo não reporta, no texto fornecido, intervalos de confiança completos para cada métrica nem distribuições detalhadas dos erros por dobra",
+  "passage": "(1) … Conversely, if the wind direction has P < .05, this suggests that this wind energy parameter can be assigned a neutral weight distribution. These parameters have a minor influence on the correlation with wind power, allowing for a reduction in their weight allocation in the model. To ensure the model’s reliability and mitigate overfitting, we employed a five-fold time-series cross-validation using TimeSeriesSplit, which preserves the temporal order of the data by training on earlier segments and validating on subsequent ones. This approach is suitable for wind power time-series to prevent future data leakage. Model comparisons were assessed using the Wilcoxon signed-rank test on paired differences in metrics such as MAE and root mean square error (RMSE). Additionally, prediction intervals were calcu- lated as the mean prediction ± 2 standard deviations, derived from the ensemble variance across folds, to quantify uncertainty and provide bounds on forecast reliability. 3.2 Training setting To ensure practical feasibility for large datasets and potential real- time applications, training was conducted on an Intel Core i7- 10700 CPU (2.9 GHz, 16 GB RAM) with an NVIDIA RTX 3060 GPU (6 GB VRAM). The model, with approximately 500 000 parameters, required about 4 GB GPU memory during training. … (2) International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 9 Table 5 Comparison of prediction performance between single model and composite model Model MAE (MW) RMSE (MW) R 2 MAPE (%) P (vs. Ours) SVR [ 41 ] 14.23 21.46 0.81 8.97 .012 LSTM [ 11 ] 12.45 18.32 0.85 7.64 .031 GRU [ 42 ] 13.02 19.15 0.83 8.12 .008 BAS [ 43 ] 15.67 22.58 0.78 9.34 .024 CNN-Transformer [ 30 ] 11.34 21.35 0.91 7.97 .019 EMD–LSTM [ 31 ] 12.87 15.97 0.84 6.49 .038 WOA–GRU [ 32 ] 10.23 18.13 0.89 6.13 .041 Ours 8.72 12.48 0.93 5.21 – Figure 5 Single model prediction performance on wind power. predictive models for complex time-series data. Moreover, the BiLSTM-Attention model, combined with the decomposition tech- nique, performed optimally, demonstrating the lowest prediction errors and the highest fitting capabilities across all decomposition methods. …",
+  "verdict": "inference",
+  "note": "O excerto mostra validação temporal e teste emparelhado, mas não distribuições detalhadas por dobra nem intervalos completos por métrica."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "comparar:D1:p3-4 «Blue Flag beaches of Glyfada exhibited negligible MP levels»; D2:p9 «proposed method outperforms individual models across all performance indicators»#1",
+  "key": "D1:p3-4 «Blue Flag beaches of Glyfada exhibited negligible MP levels»; D2:p9 «proposed method outperforms individual models across all performance indicators»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Ambos usam comparação empírica para avaliar uma intervenção ou abordagem. Sourri et al., 2026 comparam praias Blue Flag e não Blue Flag, enquanto Li et al., 2026 comparam o modelo proposto com modelos individuais e algoritmos comuns",
+  "passage": "(1) … The higher pro- portion of fragments in Gourna relative to Alinda suggests greater influence of local litter breakdown, possibly related to shoreline activities [ 44 ]. The predominance of blue fibres observed at both beaches has been consistently associated with synthetic clothing and laundry effluent, increasingly recognized as a dominant MP source in the Mediterranean [ 45 ]. Additionally, a high proportion of fibres is common of coastal regions without tertiary wastew- ater filtration systems treatment that are capable of removing microfibers [ 46 ] such as that in Leros. 3.3. Comparative analysis: Blue Flag vs. non-Blue Flag beaches Despite being located near a densely populated capital, the Blue Flag beaches of Glyfada exhibited negligible MP levels compared to non-certified beaches on Leros. This contrast mirrors patterns documented in other Mediterranean regions where certified/co-managed beaches often show reduced MP accumulation, primarily due to regular litter removal and beach grooming, waste-bin availability and frequent emptying, strict Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctag042/8670222 by guest on 29 September 2026 (2) … Therefore, the introduction of decomposition techniques not only is an important means to improve the accuracy of wind power forecasting but also further highlights the advantages of enhanced model structures. To verify the differences between the proposed model and individual models, we conducted ablation experiments and selected representative individual models for comparison of wind power forecasting results, such as Support Vector Regression (SVR), LSTM, GRU, BAS, CNN-Transformer, EMD–LSTM and WOA– GRU. The final comparison results are shown in Table 5 . From the results in Table 5 , it is evident that the proposed method outperforms individual models across all performance indicators. In terms of error performance, the composite model’s MAE and RMSE are 8.72 and 12.48 MW, respectively, significantly lower than the errors of individual models. This indicates that the composite model has smaller errors in wind power forecasting. Regarding goodness of fit, the composite model achieves an R 2 Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctaf146/8487605 by guest on 01 October 2026",
+  "verdict": "yes",
+  "note": "Os excertos mostram comparação Blue Flag versus não Blue Flag e comparação do modelo proposto com outros modelos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p3 «was collected using a metal scoop»#1",
+  "key": "D1:p3 «was collected using a metal scoop»#1",
+  "parts": [
+   0
+  ],
+  "claim": "As amostras foram recolhidas com uma colher metálica",
+  "passage": "… Outside this period, waste disposal is managed through nearby municipal waste containers. Sampling at both locations was conducted during the winter season (January–February) and weather conditions were similar (sunny and not windy). 2.2. Sampling and microplastic separation determination A total of 12 sand samples were collected across the three Blue Flag beaches in the municipality of Glyfada ( Figs 1 and 2 ). Sam- pling involved delineation of the upper intertidal zone, followed by random selection of an initial sampling point at the start of each beach section. At each point, a 1 / 4 m 2 quadrat was placed, and surface sediment (0–3 cm depth) was collected using a metal scoop. Samples were sieved through a 5-mm mesh to remove large debris. Each sample weighed approximately 4.5 kg. Sam- pling points were spaced at ∼ 0.3 km intervals along the coastline. From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. …",
+  "verdict": "yes",
+  "note": "O excerto diz que o sedimento foi recolhido com uma colher metálica."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "comparar:D1:p1 «aimed to determine the effect of “Blue Flag” status»#1",
+  "key": "D1:p1 «aimed to determine the effect of “Blue Flag” status»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Avaliar o efeito do estatuto “Blue Flag” nos níveis de microplásticos em amostras de praia",
+  "passage": "… International Journal of Low-Carbon Technologies , 2026, 21 , 1–7, ctag042 https://doi.org/10.1093/ijlct/ctag042 Published: 20 April 2026 Rapid Communications Microplastic contamination and the benefits of blue flag beach status Theodora Sourri * , Eirini Arezina Machaira , Olga Cavoura Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece * Corresponding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. …",
+  "verdict": "yes",
+  "note": "O excerto afirma esse objectivo quase literalmente."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D2:D2:p7 «Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation»; D2:p7 «Outliers were identified using Z -score thresholding»#1",
+  "key": "D2:p7 «Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation»; D2:p7 «Outliers were identified using Z -score thresholding»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "O artigo descreve a imputação de lacunas curtas e a substituição ou remoção de outliers, mas não apresenta uma análise detalhada de sensibilidade para comparar diferentes estratégias de imputação",
+  "passage": "(1) … s , 2026, Vol. 21, Issue 1 7 Table 1 Classification of wind power prediction datasets Dataset Air pressure Humidity Wind direction Wind power Wind speed Temperature Maximum (MW) Train 96.16 96.29 88.94 89.34 94.68 92.75 Test 32.34 56.33 62.43 51.22 62.78 68.19 Minimum (MW) Train 0 0 0 0 0 0 Test 0 0 0 0 0 0 Average (MW) Train 65.44 78.61 76.15 76.95 74.68 79.68 Test 26.32 35.94 48.91 38.36 49.58 51.23 Table 2 The dataset preprocessing steps Steps Preprocessing method Details 1 Missing data handling Missing values accounted for less than 1% of the dataset, primarily due to sensor malfunctions. Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation between adjacent points; isolated misses used forward-fill. No advanced imputation was employed to minimize potential bias. 2 Outlier detection and removal Outliers were identified using Z -score thresholding (| Z | > 3) and replaced with interpolated values if valid, or removed if extreme (affecting < 0.5% of data). 3 Normalization All features were scaled to [0,1] using min–max normalization to stabilize model training. 4 Feature selection criteria Features were selected based on Pearson correlation analysis, retaining those with coefficients > 0.5 relative to wind power output (e.g. … (2) … 21, Issue 1 7 Table 1 Classification of wind power prediction datasets Dataset Air pressure Humidity Wind direction Wind power Wind speed Temperature Maximum (MW) Train 96.16 96.29 88.94 89.34 94.68 92.75 Test 32.34 56.33 62.43 51.22 62.78 68.19 Minimum (MW) Train 0 0 0 0 0 0 Test 0 0 0 0 0 0 Average (MW) Train 65.44 78.61 76.15 76.95 74.68 79.68 Test 26.32 35.94 48.91 38.36 49.58 51.23 Table 2 The dataset preprocessing steps Steps Preprocessing method Details 1 Missing data handling Missing values accounted for less than 1% of the dataset, primarily due to sensor malfunctions. Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation between adjacent points; isolated misses used forward-fill. No advanced imputation was employed to minimize potential bias. 2 Outlier detection and removal Outliers were identified using Z -score thresholding (| Z | > 3) and replaced with interpolated values if valid, or removed if extreme (affecting < 0.5% of data). 3 Normalization All features were scaled to [0,1] using min–max normalization to stabilize model training. 4 Feature selection criteria Features were selected based on Pearson correlation analysis, retaining those with coefficients > 0.5 relative to wind power output (e.g. wind speed showed r = 0.85, direction r = 0.62). complexity. Computational complexity is dominated by BiLSTM, where T = 24 time steps, h = 128, and Attention, d = 64 embed- ding dim, making it suitable for hourly forecasts but potentially scalable with distributed computing for ultra-short-term real-time scenarios. …",
+  "verdict": "partly",
+  "note": "A imputação e os outliers são descritos, mas a ausência de uma análise de sensibilidade no artigo não fica demonstrada pelos excertos."
+ },
+ {
+  "id": "ficha_D2:D2:p8 «Two decompositions 45.12 65.24 0.954»#1:0~numero",
+  "kind": "numero",
+  "expect": "not-yes",
+  "claim": "Com duas decomposições, a BiLSTM teve MAE de 54.12 MW, RMSE de 65.24 MW e R² de 0.954",
+  "passage": "… 21, Issue 1 Table 3 Network layer parameter settings Network layer Parameter Number Value BAS Filters 2 4 Kernel size 2 3 Dilations 2 1, 2, 4 BiLSTM Filters 3 11 Kernel size 3 7 Dilations 3 1, 2, 4, 8, 16 Hidden layer 4 12 Attention Filters 3 10 Kernel size 3 6 Dilations 3 1, 2, 4 Hidden layer 6 12 Figure 4 Wind power data decomposition and wind energy output correlation. Table 4 Wind power impact of data decomposition times at different network layers Network layer Data decomposition mode MAE (MW) RMSE (MW) R 2 BAS Original 85.32 110.45 0.821 One decomposition 62.14 85.23 0.905 Two decompositions 48.76 68.34 0.942 BiLSTM Original 81.51 105.25 0.834 One decomposition 58.76 82.31 0.912 Two decompositions 45.12 65.24 0.954 Attention Original 86.45 115.23 0.798 One decomposition 67.15 91.87 0.890 Two decompositions 51.24 71.34 0.937 number of decomposition levels and improve the accuracy of the wind power forecasting model through optimized decomposition choices, we tested the sensitivity of different network layers to the number of data decompositions. The results are presented in Table 4 . From the data in Table 4 , it is evident that wind power data decomposition significantly enhances the predictive performance of each model. In the data that were not decom- posed, the presence of noise and nonstationary components resulted in larger prediction errors and weaker fitting capabilities. …",
+  "orig": "Com duas decomposições, a BiLSTM teve MAE de 45.12 MW, RMSE de 65.24 MW e R² de 0.954",
+  "verdict": "no",
+  "note": "Para BiLSTM com duas decomposições, o MAE indicado é 45.12 MW, não 54.12 MW."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "pontos_D2:D2:p9 «MAE and RMSE are 8.72 and 12.48 MW»#1",
+  "key": "D2:p9 «MAE and RMSE are 8.72 and 12.48 MW»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os resultados indicam que o modelo composto supera modelos individuais em erro e ajustamento, com MAE de 8.72, RMSE de 12.48 MW e R² de 0.93 na comparação apresentada",
+  "passage": "… Therefore, the introduction of decomposition techniques not only is an important means to improve the accuracy of wind power forecasting but also further highlights the advantages of enhanced model structures. To verify the differences between the proposed model and individual models, we conducted ablation experiments and selected representative individual models for comparison of wind power forecasting results, such as Support Vector Regression (SVR), LSTM, GRU, BAS, CNN-Transformer, EMD–LSTM and WOA– GRU. The final comparison results are shown in Table 5 . From the results in Table 5 , it is evident that the proposed method outperforms individual models across all performance indicators. In terms of error performance, the composite model’s MAE and RMSE are 8.72 and 12.48 MW, respectively, significantly lower than the errors of individual models. This indicates that the composite model has smaller errors in wind power forecasting. Regarding goodness of fit, the composite model achieves an R 2 Downloaded from academic.oup.com/ijlct/article/doi/10.1093/ijlct/ctaf146/8487605 by guest on 01 October 2026",
+  "verdict": "partly",
+  "note": "O excerto sustenta a superioridade e os valores de MAE e RMSE, mas não mostra o valor de R² 0,93."
+ },
+ {
+  "id": "critica_D1:D1:p3 «The sampling procedure followed the same protocol as in Glyfada»#1:0~inverso",
+  "kind": "inverso",
+  "expect": "not-yes",
+  "claim": "Leros seguiu um protocolo de amostragem diferente do usado em Glyfada",
+  "passage": "… Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. Following visual sorting, MP were examined under a stereomicro- scope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability. 3. Results 3.1. Microplastic abundance and characteristics in Glyfada (Blue Flag beaches) MPs were detected in 6 out of 12 sand samples collected from the three Blue Flag–certified beaches in Glyfada. …",
+  "orig": "A comparabilidade operacional é reforçada porque os autores indicam que Leros seguiu o mesmo protocolo de amostragem e separação usado em Glyfada",
+  "verdict": "no",
+  "note": "O excerto diz que Leros seguiu o mesmo protocolo de amostragem que Glyfada."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p5 «Expanding the principles of the Blue Flag scheme»#2",
+  "key": "D1:p5 «Expanding the principles of the Blue Flag scheme»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Em parte. A recomendação é plausível dentro da lógica do artigo, mas não foi testada por uma intervenção no estudo.",
+  "passage": "… The findings are consistent with emerging evidence indicating that enhanced waste management, active monitoring and visitor- regulation frameworks may help reduce environmental degra- dation [ 49 ] and consequently lead to a reduction to shoreline MP pollution. 5. Discussion Routine beach cleaning, restrictions on wastewater discharge, adequate waste-bin infrastructure, prohibition of vehicle access and continuous environmental monitoring—as required under the Blue Flag programme—appear to yield measurable reductions in MP contamination. Holistic coastal management initiatives of this type have been shown to strengthen environmental stewardship, public awareness, climate-change resilience and sustainable tourism practices [ 36 ]. Expanding the principles of the Blue Flag scheme to non-certified beaches could substantially mitigate MP deposition across the Aegean. Given the documented human- health implications of MPs [ 50 ], implementing such strategies is increasingly important not only for ecological protection but also for safeguarding public health. Continued monitoring, improved wastewater management and community engagement should be prioritized to minimize MP exposure and support sustainable coastal development in Greece and beyond. Author contributions Theodora Sourri (Methodology [equal], Writing—original draft [equal]), Eirini A Machaira (Methodology [equal]), and Olga Cavoura (Supervision [equal]) Conflicts of interest None declared. …",
+  "verdict": "inference",
+  "note": "A recomendação decorre do texto, mas o excerto apresenta-a como inferência, não como intervenção testada."
+ },
+ {
+  "id": "critica_D1:D1:p3 «MPs were identified by visual inspection»; D1:p3 «MP were examined under a stereomicroscope»#1:0~inverso",
+  "kind": "inverso",
+  "expect": "not-yes",
+  "claim": "A identificação em Glyfada usou espectroscopia FTIR e em Leros só inspeção visual",
+  "passage": "(1) … From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. … (2) Following visual sorting, MP were examined under a stereomicroscope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability.",
+  "orig": "Há risco de enviesamento de medição, porque a identificação em Glyfada é descrita como inspeção visual, enquanto em Leros houve também observação ao estereomicroscópio após triagem visual",
+  "verdict": "no",
+  "note": "O excerto não refere FTIR em Glyfada e indica identificação visual e microscópio."
+ },
+ {
+  "id": "ficha_D1:D1:p1 «two beach locations in Greece, a Blue Flag beach in Glyfada»#1:0~troca",
+  "kind": "troca",
+  "expect": "not-yes",
+  "claim": "O contexto foi Chipre, com duas localizações costeiras, Glyfada e Leros",
+  "passage": "… International Journal of Low-Carbon Technologies , 2026, 21 , 1–7, ctag042 https://doi.org/10.1093/ijlct/ctag042 Published: 20 April 2026 Rapid Communications Microplastic contamination and the benefits of blue flag beach status Theodora Sourri * , Eirini Arezina Machaira , Olga Cavoura Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece * Corresponding author. Department of Public Health Policy, School of Public Health, University of West Attica, 196 Alexandras Avenue, 115 21 Athens, Greece. E-mail: tsourri@uniwa. gr Abstract This study aimed to determine the effect of “Blue Flag” status, an award that reflects a strong dedication to the sustainable management and protection of coastal resources, on the level of microplastic (MP) in beach samples. Quantitative determina- tion of MPs was carried out at two beach locations in Greece, a Blue Flag beach in Glyfada, Attica, and beaches of the remote island of Leros without Blue Flag status. Samples of surface sand sampled at a maximum depth of 3 cm were taken along the wrack line at 100 m intervals, following which MPs were separated using density floatation, quantified, and optically identified based on shape and colour. In Glyfada, MPs were green, yellow, blue, and light blue in colour. Shapes included fragments, pellets, and fibres, and the item number ranged from 0 to 4 per kg dry weight. In Leros, MPs were mostly black, blue, and white in colour. Shapes included fibres, fragments, foams, films and pellets, and item numbers ranged from 20 to ",
+  "orig": "O contexto foi a Grécia, com duas localizações costeiras, Glyfada e Leros",
+  "verdict": "no",
+  "note": "O excerto situa o estudo na Grécia, não em Chipre."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p2 «approximately 3 km of accessible shoreline»#1",
+  "key": "D1:p2 «approximately 3 km of accessible shoreline»#1",
+  "parts": [
+   0
+  ],
+  "claim": "As praias de Glyfada analisadas pertencem a uma frente costeira com cerca de 3 km de linha de costa acessível",
+  "passage": "The coastal front includes the Glyfada Marina and approximately 3 km of accessible shoreline .",
+  "verdict": "yes",
+  "note": "O excerto afirma que a frente costeira inclui cerca de 3 km de linha de costa acessível."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p2 «researchers have proposed the Bidirectional Long Short-Term Memory»#1",
+  "key": "D2:p2 «researchers have proposed the Bidirectional Long Short-Term Memory»#1",
+  "parts": [
+   0
+  ],
+  "claim": "No texto analisado, este valor não vem de experiência dos autores, mas de literatura citada",
+  "passage": "… The decision to not implement the multivariate receptive field approach was based on our objective to investigate the synergistic effects of the Beetle Antennae Search (BAS) algorithm and Attention mechanism, which we believe provides a complementary advantage in capturing complex nonlinear relationships in wind power data. Furthermore, our approach allows for a more direct analysis of temporal dependencies and feature relevance, which may have been overshadowed in a multivariate context. Due to the traditional LSTM model’s pre- dominant focus on forward temporal information, it often lacks sufficient monitoring of backward information, resulting in the loss of subsequent temporal wind characteristics [ 18 ]. To address this limitation, researchers have proposed the Bidirectional Long Short-Term Memory (BiLSTM) framework, which employs bidirectional LSTM to compensate for the missing subsequent wind characteristics. This approach also captures bidirectional time-series information, facilitating sequence feature calibration, with experimental results indicating a 23% improvement in predictive accuracy [ 19 ]. Nonetheless, a singular neural network framework still possesses limited capacity for processing data sequence information [ 20 ]. To enhance the model’s feature extraction capabilities, researchers have introduced a dual hybrid neural network model that integrates LSTM and TCN, where TCN is responsible for extracting weather-related features, while LSTM focuses on wind power characteristics. …",
+  "verdict": "yes",
+  "note": "O valor de 23% é atribuído a resultados experimentais citados na literatura, não aos autores."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D2:D2:p7 «maximum number of epochs for each iteration is set to 200»#1",
+  "key": "D2:p7 «maximum number of epochs for each iteration is set to 200»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Noutra secção, os autores também indicam que o número máximo de épocas por iteração foi 200, com dropout de 0.3",
+  "passage": "… Computational complexity is dominated by BiLSTM, where T = 24 time steps, h = 128, and Attention, d = 64 embed- ding dim, making it suitable for hourly forecasts but potentially scalable with distributed computing for ultra-short-term real-time scenarios. The influencing factors of wind power generation are primarily composed of weather, terrain, wind speed, and wind direction, all of which share significant commonality in terms of volatility and uncertainty. To fully capture the trends of power sequence varia- tions among various features, we have meticulously planned the parameter settings for the deep neural network layers, as detailed in Table 3 . The entire training process sets the dimensions of the input wind power data to three channels and one channel. The maximum number of epochs for each iteration is set to 200, with a dropout rate of 0.3. During the iteration process, the time step lengths for wind power testing are structured in a stepped manner, following patterns such as 3, 5, and 7. After every 100 iterations, white noise is added to optimize the network’s bias rate. 3.3 Evaluation In the model evaluation process, the zero points within the wind power sequence are designated as the boundary, while the MAE serves as the sampling point to assess the discrepancies between the experimentally predicted values and the actual wind power factors. To accurately quantify the performance disparities among various models, we employ both the MAE and the RMSE as metrics of evaluation. …",
+  "verdict": "yes",
+  "note": "O excerto diz que o número máximo de épocas por iteração foi 200 e o dropout 0,3."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "ficha_D1:D1:p2 «a voluntary certification system established in France in 1985»#1",
+  "key": "D1:p2 «a voluntary certification system established in France in 1985»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Também apresenta a certificação Blue Flag como um sistema voluntário associado a turismo sustentável e padrões ambientais elevados",
+  "passage": "… Emerging studies have further associated MP exposure with oxidative stress, inflam- matory responses, endocrine disruption, and heightened risks of chronic diseases including infertility [ 29 ], neurodegenerative dis- orders such as Parkinson’s disease and Alzheimer’s disease [ 30 , 31 ], and cardiometabolic conditions [ 32 – 35 ]. Efforts to mitigate MP contamination increasingly focus on both upstream plastic-waste production and localized environmental management strategies. Policy measures range from restrictions on single-use plastics and improvements in waste treatment to community-level initiatives that support responsible tourism and coastal stewardship [ 36 ]. One such initiative is the International Blue Flag Program, a voluntary certification system established in France in 1985, which promotes sustainable tourism and high environmental standards on beaches and marinas. To receive Blue Flag status, sites must comply with strict criteria involving water quality, environmental management, waste disposal, safety, edu- cational activities, and the prohibition of untreated wastewater discharge. The Blue Flag Award (BFA) has led to the implemen- tation a number of effective initiatives and measures to monitor, reduce, and control litter entering the Blue Flag area or immediate buffer zone/surrounding area. Initially, the BFA restricts indus- trial, urban wastewater, or sewage-related discharges, as well as dumping on/near the beach, allowing the beach and surrounding areas, including paths, parking areas, and access paths, to be clean. …",
+  "verdict": "yes",
+  "note": "O excerto descreve a Blue Flag como certificação voluntária ligada a turismo sustentável e padrões ambientais elevados."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D2:D2:p9 «Ours 8.72 12.48 0.93 5.21»#2",
+  "key": "D2:p9 «Ours 8.72 12.48 0.93 5.21»#2",
+  "parts": [
+   0
+  ],
+  "claim": "Os resultados comparativos indicam que o modelo proposto teve melhor desempenho do que os modelos listados na tabela, com MAE de 8.72, RMSE de 12.48, R² de 0.93 e MAPE de 5.21",
+  "passage": "International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 9 Table 5 Comparison of prediction performance between single model and composite model Model MAE (MW) RMSE (MW) R 2 MAPE (%) P (vs. Ours) SVR [ 41 ] 14.23 21.46 0.81 8.97 .012 LSTM [ 11 ] 12.45 18.32 0.85 7.64 .031 GRU [ 42 ] 13.02 19.15 0.83 8.12 .008 BAS [ 43 ] 15.67 22.58 0.78 9.34 .024 CNN-Transformer [ 30 ] 11.34 21.35 0.91 7.97 .019 EMD–LSTM [ 31 ] 12.87 15.97 0.84 6.49 .038 WOA–GRU [ 32 ] 10.23 18.13 0.89 6.13 .041 Ours 8.72 12.48 0.93 5.21 – Figure 5 Single model prediction performance on wind power. predictive models for complex time-series data. Moreover, the BiLSTM-Attention model, combined with the decomposition tech- nique, performed optimally, demonstrating the lowest prediction errors and the highest fitting capabilities across all decomposition methods. This validates its strong modeling capability and excellent predictive performance for the decomposed features. Therefore, the introduction of decomposition techniques not only is an important means to improve the accuracy of wind power forecasting but also further highlights the advantages of enhanced model structures. …",
+  "verdict": "yes",
+  "note": "A tabela mostra que o modelo proposto teve os melhores valores indicados."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p5 «persistent inputs from fishing, domestic wastewater, and stormwater runoff»#1",
+  "key": "D1:p5 «persistent inputs from fishing, domestic wastewater, and stormwater runoff»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Em parte. A comparação de inverno sustenta a persistência da diferença, mas as fontes persistentes não foram medidas diretamente.",
+  "passage": "International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 5 Figure 4 Sampling points in Gourna Beach, Leros, Greece. (Google Earth) wastewater discharge monitoring, visitor education, vehicle- access restrictions, and the overarching environmental man- agement protocol enforced under Blue Flag criteria [ 34 ]. Winter sampling—both campaigns were conducted during winter— further strengthens these conclusions: even outside the peak tourist season, non-Blue Flag sites maintained substantially higher contamination, indicating persistent inputs from fishing, domestic wastewater, and stormwater runoff—all common MP pathways during colder months [ 47 ]. Overall, the dataset supports the interpretation that Blue Flag certification is associated with measurably decreased MP pollu- tion, and that extending similar management practices to addi- tional coastal areas may substantially mitigate MP exposure risks to ecosystems and human populations. 4. Conclusion There were certain limitations in the study such as the relatively small number of samples and lack of seasonal sampling. Additionally, the density separation approach may underestimate certain particle types or polymer compositions, and polymer identification techniques (e.g. …",
+  "verdict": "inference",
+  "note": "O excerto sustenta a persistência da diferença no inverno e apresenta as fontes como inferidas."
+ },
+ {
+  "id": "conclusoes_D1:D1:p5 «relatively small number of samples and lack of seasonal sampling»#1:0~negacao",
+  "kind": "negacao",
+  "expect": "not-yes",
+  "claim": "O desenho inclui muitos locais e os autores não referem limitações.",
+  "passage": "… Winter sampling—both campaigns were conducted during winter— further strengthens these conclusions: even outside the peak tourist season, non-Blue Flag sites maintained substantially higher contamination, indicating persistent inputs from fishing, domestic wastewater, and stormwater runoff—all common MP pathways during colder months [ 47 ]. Overall, the dataset supports the interpretation that Blue Flag certification is associated with measurably decreased MP pollu- tion, and that extending similar management practices to addi- tional coastal areas may substantially mitigate MP exposure risks to ecosystems and human populations. 4. Conclusion There were certain limitations in the study such as the relatively small number of samples and lack of seasonal sampling. Additionally, the density separation approach may underestimate certain particle types or polymer compositions, and polymer identification techniques (e.g. FT-IR or Raman spectroscopy) would provide a more comprehensive assessment of MP con- tamination patterns. Despite these, the study clearly highlighted pronounced differences in MP contamination between Blue Flag- certified beaches in Glyfada and non-certified beaches on the island of Leros. Although Leros is a relatively remote island with lower permanent population density as mentioned, MPs were detected in every sample, demonstrating that geographical isolation does not safeguard coastal ecosystems from plastic pollution. …",
+  "orig": "O suporte principal é a comparação entre Glyfada e Leros, mas o desenho inclui poucos locais e os próprios autores referem limitações.",
+  "verdict": "no",
+  "note": "O excerto refere limitações e uma amostra relativamente pequena."
+ },
+ {
+  "id": "conclusoes_D2:D2:p11 «distributed training on cloud platforms could handle multisite data»#1:0~inventado",
+  "kind": "inventado",
+  "expect": "not-yes",
+  "claim": "O texto mostra benchmarks em clusters GPU de parques nacionais que provam a escala operacional",
+  "passage": "… After comprehensive experimental testing, our model not only is suitable for offline prediction but can also be applied to real-time applications by combining streaming data input and edge computing. For instance, BAS decomposition could process incoming sensor data in batches, with BiLSTM-Attention updating predictions every 15–30 minutes, suitable for ultra-short-term grid dispatching. Integration into grid management systems, such as Supervisory Control and Data Acquisition (SCADA) or EMS, would involve API endpoints for seamless data exchange, enabling dynamic load balancing and reducing curtailment in renewable-heavy grids. For scalability across national or regional wind farm networks, distributed training on cloud platforms could handle multisite data, with federated learning preserving privacy across provinces. This approach, inspired by recent hybrid deep learning (DL) frameworks, would support thousands of turbines, maintaining low latency ( < 1-second inference) on GPU clusters. Future work could explore quantization for edge devices to further enhance deployment in remote farms. 5 Conclusion This paper proposes an improved BAS-BiLSTM-Attention model for wind power forecasting. By combining the BAS algorithm with BiLSTM and the Attention mechanism, the model effectively captures the complex nonlinear relationships in the time-series data of wind power and enhances prediction accuracy. …",
+  "orig": "O texto não mostra benchmark de clusters GPU, rede regional ou parques nacionais que sustente a generalização operacional",
+  "verdict": "no",
+  "note": "O excerto fala de possibilidades futuras e GPU clusters, não de benchmarks nem de parques nacionais."
+ },
+ {
+  "id": "conclusoes_D1:D1:p5 «density separation approach may underestimate certain particle types»#2:0~inverso",
+  "kind": "inverso",
+  "expect": "not-yes",
+  "claim": "A afirmação é cautelosa: o método pode sobrestimar todos os tipos de partículas",
+  "passage": "… Winter sampling—both campaigns were conducted during winter— further strengthens these conclusions: even outside the peak tourist season, non-Blue Flag sites maintained substantially higher contamination, indicating persistent inputs from fishing, domestic wastewater, and stormwater runoff—all common MP pathways during colder months [ 47 ]. Overall, the dataset supports the interpretation that Blue Flag certification is associated with measurably decreased MP pollu- tion, and that extending similar management practices to addi- tional coastal areas may substantially mitigate MP exposure risks to ecosystems and human populations. 4. Conclusion There were certain limitations in the study such as the relatively small number of samples and lack of seasonal sampling. Additionally, the density separation approach may underestimate certain particle types or polymer compositions, and polymer identification techniques (e.g. FT-IR or Raman spectroscopy) would provide a more comprehensive assessment of MP con- tamination patterns. Despite these, the study clearly highlighted pronounced differences in MP contamination between Blue Flag- certified beaches in Glyfada and non-certified beaches on the island of Leros. Although Leros is a relatively remote island with lower permanent population density as mentioned, MPs were detected in every sample, demonstrating that geographical isolation does not safeguard coastal ecosystems from plastic pollution. …",
+  "orig": "Sim. A afirmação é cautelosa e é apresentada como limitação do próprio método usado.",
+  "verdict": "no",
+  "note": "O excerto diz que o método pode subestimar certos tipos, não sobrestimar todos."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p7 «wind speed showed r = 0.85, direction r = 0.62»#1",
+  "key": "D2:p7 «wind speed showed r = 0.85, direction r = 0.62»#1",
+  "parts": [
+   0
+  ],
+  "claim": "A Tabela 2 dá exemplos de coeficientes, incluindo velocidade do vento com r = 0.85 e direcção com r = 0.62",
+  "passage": "… Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation between adjacent points; isolated misses used forward-fill. No advanced imputation was employed to minimize potential bias. 2 Outlier detection and removal Outliers were identified using Z -score thresholding (| Z | > 3) and replaced with interpolated values if valid, or removed if extreme (affecting < 0.5% of data). 3 Normalization All features were scaled to [0,1] using min–max normalization to stabilize model training. 4 Feature selection criteria Features were selected based on Pearson correlation analysis, retaining those with coefficients > 0.5 relative to wind power output (e.g. wind speed showed r = 0.85, direction r = 0.62). complexity. Computational complexity is dominated by BiLSTM, where T = 24 time steps, h = 128, and Attention, d = 64 embed- ding dim, making it suitable for hourly forecasts but potentially scalable with distributed computing for ultra-short-term real-time scenarios. The influencing factors of wind power generation are primarily composed of weather, terrain, wind speed, and wind direction, all of which share significant commonality in terms of volatility and uncertainty. To fully capture the trends of power sequence varia- tions among various features, we have meticulously planned the parameter settings for the deep neural network layers, as detailed in Table 3 . …",
+  "verdict": "partly",
+  "note": "Os coeficientes estão no excerto, mas este aponta para a Tabela 3, não para a Tabela 2."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D2:D2:p6 «temperature, atmospheric pressure, historical power output, seasonal factors»#1",
+  "key": "D2:p6 «temperature, atmospheric pressure, historical power output, seasonal factors»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Os autores também indicam variáveis adicionais consideradas para lidar com volatilidade e incerteza, incluindo temperatura, pressão atmosférica, produção histórica, factores sazonais, dados geoespaciais, especificações das turbinas e previsões meteorológicas",
+  "passage": "… The dataset includes six key influencing indicators: wind speed (m/s), wind direction (degrees), temperature ( ◦ C), air pressure (hPa), humidity (%), and actual wind power output (MW), as shown in Table 1 . Data resolution is hourly, resulting in approximately 17 520 samples per indicator. The temporal granularity allows for capturing short-term fluctua- tions critical for grid dispatching. In addition to the commonly con- sidered factors such as wind speed, wind direction, and terrain, we incorporate several additional variables to effectively address the volatility and uncertainty inherent in wind power generation, such as temperature, atmospheric pressure, historical power output, seasonal factors, geospatial data, turbine specifications, and fore- casted weather data. Dataset preprocessing steps were applied to ensure data quality ( Table 2 ). While this dataset provides a robust basis for model validation in a continental onshore environment, its origin from a single station limits generalization to other regions, such as offshore sites or tropical climates, where wind patterns may differ significantly. Future work could involve multistation datasets to assess cross- regional adaptability. We initially validate the data using Pearson correlation. Based on the significance level of the correlations among input vari- ables, we identify candidate wind energy indicators. …",
+  "verdict": "yes",
+  "note": "A lista de variáveis adicionais corresponde ao excerto."
+ },
+ {
+  "id": "resumo_D1:D1:p2 «Glyfada, the beaches of which have Blue Flag status»; D1:p2 «Leros Island, the beaches of which do not have Blue Flag status»#1:0~inverso",
+  "kind": "inverso",
+  "expect": "not-yes",
+  "claim": "Foram selecionados Glyfada, sem Blue Flag, e Leros, com esse estatuto",
+  "passage": "(1) … Finally, it includes a beach litter measuring system that is performed on a regular basis over a defined area of 100 m 2 to monitor and record counts for bulky ( > 10 cm) and fine litter ( > 10 cm) [ 16 ]. Today more than 50 countries participate in the program, with numbers growing annually [ 36 ]. Given that several Blue Flag criteria directly and indirectly target the sources and accumulation of plastic litter, Blue Flag certification may con- tribute to lowering MP densities in coastal environments. The aim of this study was to investigate whether beaches operating under the Blue Flag sustainability framework exhibited reduced levels of MP pollution compared with non-certified sites. 2. Methodology 2.1. Site description Two sites were selected for the study, Glyfada, the beaches of which have Blue Flag status and Leros Island, the beaches of which do not have Blue Flag status. Glyfada is a coastal municipality in the South Athens regional unit, located along the Athens Riviera on the Saronic Gulf, Greece. It extends from the western foothills of Mount Hymettus down to the shoreline and covers an area of 25.366 km 2 . Its population according to the 2021 census is 89 597 [ 37 ]. The coastal front includes the Glyfada Marina and approx- imately 3 km of accessible shoreline. Three beaches—Glyfada, Glyfada A, and Glyfada B are certified under the Blue Flag envi- ronmental quality programme [ 37 ]. … (2) … Today more than 50 countries participate in the program, with numbers growing annually [ 36 ]. Given that several Blue Flag criteria directly and indirectly target the sources and accumulation of plastic litter, Blue Flag certification may con- tribute to lowering MP densities in coastal environments. The aim of this study was to investigate whether beaches operating under the Blue Flag sustainability framework exhibited reduced levels of MP pollution compared with non-certified sites. 2. Methodology 2.1. Site description Two sites were selected for the study, Glyfada, the beaches of which have Blue Flag status and Leros Island, the beaches of which do not have Blue Flag status. Glyfada is a coastal municipality in the South Athens regional unit, located along the Athens Riviera on the Saronic Gulf, Greece. It extends from the western foothills of Mount Hymettus down to the shoreline and covers an area of 25.366 km 2 . Its population according to the 2021 census is 89 597 [ 37 ]. The coastal front includes the Glyfada Marina and approx- imately 3 km of accessible shoreline. Three beaches—Glyfada, Glyfada A, and Glyfada B are certified under the Blue Flag envi- ronmental quality programme [ 37 ]. The number of tourists visiting the Attica region is estimated at 7000 [ 38 ]. …",
+  "orig": "Método: Foram selecionados dois locais na Grécia: Glyfada, com praias Blue Flag, e Leros, sem esse estatuto",
+  "verdict": "no",
+  "note": "O excerto diz o contrário, Glyfada tem Blue Flag e Leros não."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "critica_D1:D1:p3 «MPs were identified by visual inspection»; D1:p3 «MP were examined under a stereomicroscope»#1",
+  "key": "D1:p3 «MPs were identified by visual inspection»; D1:p3 «MP were examined under a stereomicroscope»#1",
+  "parts": [
+   0,
+   1
+  ],
+  "claim": "Há risco de enviesamento de medição, porque a identificação em Glyfada é descrita como inspeção visual, enquanto em Leros houve também observação ao estereomicroscópio após triagem visual",
+  "passage": "(1) … From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. Samples were stirred using a magnetic stirrer for 3 min and allowed to settle for 24 h. The supernatant was collected and passed through a 0.208-mm sieve. The separation process was repeated at least twice to ensure complete recovery of floating MPs. The retained material was oven-dried (24 h, 90 ◦ C) and weighed. MPs were identified by visual inspection. The sampling sites in Leros represented distinct coastal orien- tations ( Fig. 1 ). Ten samples were collected from Alinda Beach ( Fig. 3 ) on the East coast, and 11 samples were collected from Gourna Beach on the West coast ( Fig. 4 ). The sampling procedure followed the same protocol as in Glyfada, as did the separation. This was followed by a wet peroxide oxidation due to high organic matter content that involved addition of 30% H 2 O 2 at room tem- perature to avoid potential alterations in MP morphology that may occur at elevated temperatures [ 39 , 40 ]. Oxidation proceeded until effervescence ceased, indicating oxidation of organic matter. … (2) Following visual sorting, MP were examined under a stereomicroscope (STEMI 305, Zeiss, Germany) at 5 × magnification to improve identification reliability.",
+  "verdict": "inference",
+  "note": "A diferença entre inspeção visual e uso de estereomicroscópio permite inferir risco de enviesamento de medição."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D1:D1:p4 «MP contamination was higher than at Alinda»#1",
+  "key": "D1:p4 «MP contamination was higher than at Alinda»#1",
+  "parts": [
+   0
+  ],
+  "claim": "O texto compara Gourna com Alinda e dá o intervalo de contaminação.",
+  "passage": "… ol. 21, Issue 1 Figure 2 Sampling points in Glyfada Beach, Attica Greece (Google Earth) Figure 3 Sampling points in Alinda Beach, Leros, Greece. (Google Earth) concentrations, reflecting lower management intensity, tourism- driven pressure, and the island’s characteristic semi-enclosed bays, that can promote particle retention [ 43 ]. At Alinda Beach, MP abundance ranged from 20 to 163 items/kg dry sediment, a concentration considerably higher than in Glyfada. Shape distribution was primarily fibres (72%), followed by fragments (17%), films (6%), pellets (5%), and foams (1%). In Gourna Beach, MP contamination was higher than at Alinda, ranging from 164 to 543 items/kg dry sediment. Shape distribution was predominantly fibres (60%), followed by fragments (35%), pellets (4%), films (2%), and one foam particle. The higher pro- portion of fragments in Gourna relative to Alinda suggests greater influence of local litter breakdown, possibly related to shoreline activities [ 44 ]. The predominance of blue fibres observed at both beaches has been consistently associated with synthetic clothing and laundry effluent, increasingly recognized as a dominant MP source in the Mediterranean [ 45 ]. Additionally, a high proportion of fibres is common of coastal regions without tertiary wastew- ater filtration systems treatment that are capable of removing microfibers [ 46 ] such as that in Leros. …",
+  "verdict": "yes",
+  "note": "O excerto compara Gourna com Alinda e apresenta intervalos de contaminação."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "conclusoes_D2:D2:p9 «Ours 8.72 12.48 0.93 5.21»#3",
+  "key": "D2:p9 «Ours 8.72 12.48 0.93 5.21»#3",
+  "parts": [
+   0
+  ],
+  "claim": "A Tabela 5 mostra valores mais baixos de MAE, RMSE e MAPE para “Ours”, e R² superior ao dos modelos listados",
+  "passage": "International Journal of Low-Carbon Technologies , 2026, Vol. 21, Issue 1 9 Table 5 Comparison of prediction performance between single model and composite model Model MAE (MW) RMSE (MW) R 2 MAPE (%) P (vs. Ours) SVR [ 41 ] 14.23 21.46 0.81 8.97 .012 LSTM [ 11 ] 12.45 18.32 0.85 7.64 .031 GRU [ 42 ] 13.02 19.15 0.83 8.12 .008 BAS [ 43 ] 15.67 22.58 0.78 9.34 .024 CNN-Transformer [ 30 ] 11.34 21.35 0.91 7.97 .019 EMD–LSTM [ 31 ] 12.87 15.97 0.84 6.49 .038 WOA–GRU [ 32 ] 10.23 18.13 0.89 6.13 .041 Ours 8.72 12.48 0.93 5.21 – Figure 5 Single model prediction performance on wind power. predictive models for complex time-series data. Moreover, the BiLSTM-Attention model, combined with the decomposition tech- nique, performed optimally, demonstrating the lowest prediction errors and the highest fitting capabilities across all decomposition methods. This validates its strong modeling capability and excellent predictive performance for the decomposed features. Therefore, the introduction of decomposition techniques not only is an important means to improve the accuracy of wind power forecasting but also further highlights the advantages of enhanced model structures. …",
+  "verdict": "yes",
+  "note": "A tabela mostra “Ours” com menores MAE, RMSE e MAPE e maior R²."
+ },
+ {
+  "expect": "yes",
+  "kind": "certa",
+  "id": "metodos_D1:D1:p3 «random selection of an initial sampling point»#1",
+  "key": "D1:p3 «random selection of an initial sampling point»#1",
+  "parts": [
+   0
+  ],
+  "claim": "Depois foi seleccionado aleatoriamente um ponto inicial de amostragem no início de cada secção de praia",
+  "passage": "… 21, Issue 1 3 Figure 1 Location of Glyfada and Leros, Greece (Google Earth) bins are placed along the beaches only between 1 May until 30 October. Outside this period, waste disposal is managed through nearby municipal waste containers. Sampling at both locations was conducted during the winter season (January–February) and weather conditions were similar (sunny and not windy). 2.2. Sampling and microplastic separation determination A total of 12 sand samples were collected across the three Blue Flag beaches in the municipality of Glyfada ( Figs 1 and 2 ). Sam- pling involved delineation of the upper intertidal zone, followed by random selection of an initial sampling point at the start of each beach section. At each point, a 1 / 4 m 2 quadrat was placed, and surface sediment (0–3 cm depth) was collected using a metal scoop. Samples were sieved through a 5-mm mesh to remove large debris. Each sample weighed approximately 4.5 kg. Sam- pling points were spaced at ∼ 0.3 km intervals along the coastline. From each composite sample, ∼ 500 g of homogenized sedi- ment was oven-dried for 24 h at 90 ◦ C to remove moisture, and dry weights were recorded. Peroxide digestion was not performed due to the minimal presence of organic matter. Density separation was carried out by adding 0.3 g ml − 1 NaCl solution at a 2:1 (solution: sand) ratio [ 39 ]. …",
+  "verdict": "yes",
+  "note": "O excerto diz que foi escolhido aleatoriamente um ponto inicial no início de cada secção de praia."
  }
 ]

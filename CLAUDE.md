@@ -234,6 +234,9 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   continuaram NAO; resultados em `out/sentido/`, a 3.a em `out/sentido/v3`). Para ligar: passar `pagesOf` em
   `_autoMeaning` e medir com `run_meaning.js` (`NARROW=1` volta a so a frase). No IAEdu a segunda leitura faz no maximo
   1 pedido por resposta (15 citacoes): a chave bloqueia depois de 30 a 40 pedidos seguidos, durante mais de 1 hora.
+  Artigos reais do utilizador (`MEDIR=artigos`, `out/sentido_artigos/`, paragrafo a volta ligado, 2 artigos de 2026,
+  126 certas e 30 estragadas): certas 92 SIM, 14 INTERPRETACAO, 19 EM PARTE, 1 NAO; estragadas 26 NAO, 3 EM PARTE, 1 SIM
+  (um facto plantado que o PDF quase diz). 11 lotes, 170 s.
   O teste real (`run_ai_real.js`) manda tema, colunas, pergunta (`EXTRA`) e destaques (`ANNOTATIONS`). A frase de base
   nunca vem da linha "Referencia:" (regra 1). Copiar, notas, Word, CSV e Anki usam `fixCitePages` (pagina certa).
   Ficha a medida: `localFichaFields`/`fichaFieldIn` passam os campos dos modelos para a lingua atual pela posicao
