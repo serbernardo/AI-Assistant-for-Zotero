@@ -2833,11 +2833,11 @@ var ZIAChatView = class {
 	async _autoMeaning(m, engine) {
 		if (this.core.pref("verify.meaning") === false) return;
 		const items = Object.fromEntries((m.check.items || []).map(it => [it.key, it]));
-		// Só a frase do PDF (o que foi medido). O parágrafo à volta (meaningClaims com pagesOf) fica por medir:
-		// o IAEdu bloqueou a chave a meio da 4.a medição
+		// Com o parágrafo à volta da frase do PDF (medido em 2 artigos reais: 106 de 126 certas a verde, 1 de 30 estragadas)
+		const pagesOf = id => { const d = this.state.allDocs && this.state.allDocs[id]; return (d && d.pages) || null; };
 		// IAEdu: no máximo um pedido por resposta (a chave bloqueia depois de 30 a 40 pedidos seguidos)
 		const max = engine === "iaedu" ? this.L.MEANING_BATCH : this.L.MEANING_MAX;
-		const todo = this.L.meaningClaims(m.text, m.check)
+		const todo = this.L.meaningClaims(m.text, m.check, pagesOf)
 			.filter(p => items[p.key] && p.parts.some(k => items[p.key].parts[k] && !items[p.key].parts[k].meaning))
 			.slice(0, max);
 		if (!todo.length) return;

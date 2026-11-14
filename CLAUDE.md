@@ -229,7 +229,8 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   IA" a seguir a citacao (se a frase ainda nao a tiver) e o cartao `proof.inference`. 3.a volta (`out/sentido/`, a 2.a em
   `out/sentido/v2`): certas 123 SIM, 8 INTERPRETACAO, 24 EM PARTE, 1 NAO (um juizo da IA que cita a frase errada);
   estragadas 28 NAO, 1 EM PARTE, 1 SIM, 0 INTERPRETACAO. "a confirmar" (≈) em vez de "por confirmar", a pedido.
-  Paragrafo a volta (`widePassage`, `meaningClaims(text, res, pagesOf)`, `MEANING_SPAN` = 600): pronto mas DESLIGADO no
+  Paragrafo a volta (`widePassage`, `meaningClaims(text, res, pagesOf)`, `MEANING_SPAN` = 600): LIGADO na 1.0.27 (`_autoMeaning`
+  passa `pagesOf` com `state.allDocs`; sem paginas lidas fica so a frase). Antes estava desligado no
   painel, porque a 4.a medicao parou no limite do IAEdu depois de 1 lote (15 pares: 1 EM PARTE passou a SIM, os 3 erros
   continuaram NAO; resultados em `out/sentido/`, a 3.a em `out/sentido/v3`). Para ligar: passar `pagesOf` em
   `_autoMeaning` e medir com `run_meaning.js` (`NARROW=1` volta a so a frase). No IAEdu a segunda leitura faz no maximo
@@ -762,7 +763,7 @@ contra servidores e programas simulados).
 python build.py
 ```
 
-Gera `dist/assistente-ia-1.0.26.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
+Gera `dist/assistente-ia-1.0.27.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
 **Ferramentas -> Plugins -> Install Plugin From File...**
 
 ## Licenca e documentacao publica
