@@ -7,14 +7,33 @@ const path = require("path");
 const fs = require("fs");
 const { createEnv } = require("./mockzotero");
 
-const OUT = path.join(__dirname, "out", "sentido");
-const SRC = path.join(__dirname, "out", "ia_real_iaedu");
+// MEDIR=artigos: os artigos do utilizador (PDFS="a.pdf;b.pdf", respostas em out/ia_real_iaedu_artigos, resultados em
+// out/sentido_artigos). Sem MEDIR: os dois PDFs de teste.
+const ARTIGOS = process.env.MEDIR === "artigos";
+const OUT = path.join(__dirname, "out", ARTIGOS ? "sentido_artigos" : "sentido");
+const SRC = path.join(__dirname, "out", ARTIGOS ? "ia_real_iaedu_artigos" : "ia_real_iaedu");
+const PDFS = (process.env.PDFS || "").split(";").map(x => x.trim()).filter(Boolean);
 const KEY = (process.env.IAEDU_API_KEY || "").trim();
 const BATCH = parseInt(process.env.BATCH, 10) || 15;
 
 async function setup() {
 	const env = createEnv({ prefs: { "ui.lang": "pt-PT", engine: "iaedu" } });
 	const { core } = env;
+	if (ARTIGOS) {
+		const docs = [];
+		for (const [i, file] of PDFS.entries()) {
+			const base = path.basename(file).replace(/\.pdf$/i, "");
+			const m = /^(.+?) - (\d{4}) - (.+)$/.exec(base) || [null, base, "", base];
+			const creators = m[1].replace(/\s+et al\.?$/i, "").split(/\s+(?:and|e|&)\s+/).map(lastName => ({ lastName }));
+			while (/et al/.test(m[1]) && creators.length < 3) creators.push({ lastName: "et al." });
+			const pp = env.addPaper({ title: m[3], date: m[2], key: "PDF" + (i + 1), creators, pdf: file });
+			const d = await core.describeItem(pp.parent);
+			d.id = "D" + (i + 1);
+			await core.loadText(d);
+			docs.push(d);
+		}
+		return { env, core, L: core.lib, docs };
+	}
 	const silva = env.addPaper({ title: "Assistentes conversacionais em bibliotecas universitárias portuguesas", date: "2021-06-01", key: "SILVAPDF",
 		creators: [{ lastName: "Silva", firstName: "Ana" }, { lastName: "Costa", firstName: "Rui" }, { lastName: "Reis", firstName: "Marta" }],
 		pdf: path.join(__dirname, "silva2021.pdf") });
