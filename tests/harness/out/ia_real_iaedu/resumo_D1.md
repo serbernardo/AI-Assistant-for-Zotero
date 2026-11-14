@@ -1,0 +1,11 @@
+## Sourri et al., 2026
+
+**Contexto:** O estudo enquadra a certificação Blue Flag como um estatuto ligado à gestão sustentável e à proteção de recursos costeiros, descrito como “a strong dedication to the sustainable management and protection of coastal resources” [D1:p1 «a strong dedication to the sustainable management and protection of coastal resources»]. O artigo situa o problema nos microplásticos em praias, definidos como partículas com menos de 5 mm [D1:p2 «Those particles measuring < 5 mm are classified as microplastics»].
+
+**Objetivo:** O objetivo foi avaliar se praias com certificação Blue Flag apresentavam níveis mais baixos de microplásticos do que praias sem essa certificação [D1:p2 «The aim of this study was to investigate whether beaches»].
+
+**Método:** Foram selecionados dois locais na Grécia: Glyfada, com praias Blue Flag, e Leros, sem esse estatuto [D1:p2 «Glyfada, the beaches of which have Blue Flag status»; D1:p2 «Leros Island, the beaches of which do not have Blue Flag status»]. Recolheram-se 12 amostras de areia em Glyfada, 10 em Alinda Beach e 11 em Gourna Beach [D1:p3 «A total of 12 sand samples were collected across»; D1:p3 «Ten samples were collected from Alinda Beach»].
+
+**Resultados:** Em Glyfada, foram detetados microplásticos em 6 de 12 amostras, com 6 itens no total e valores entre 0 e 4 itens/kg de sedimento seco [D1:p3 «MPs were detected in 6 out of 12 sand samples»; D1:p3 «ranging from 0 to 4 items/kg dry sediment»]. Em Leros, os microplásticos apareceram em todas as amostras, com 20 a 163 itens/kg em Alinda e 164 a 543 itens/kg em Gourna [D1:p3-4 «MPs were detected in all samples from»; D1:p4 «ranged from 20 to 163 items/kg dry sediment»; D1:p4 «ranging from 164 to 543 items/kg dry sediment»].
+
+**Conclusão:** Os autores concluem que a certificação Blue Flag se associa a níveis mais baixos de contaminação por microplásticos, embora reconheçam limitações como o número reduzido de amostras e a ausência de amostragem sazonal [D1:p5 «Blue Flag certification is associated with measurably decreased MP pollution»; D1:p5 «relatively small number of samples and lack of seasonal sampling»].

@@ -1,0 +1,11 @@
+## Li et al., 2026
+
+**Contexto.** Li et al. (2026) situam o estudo na previsão de energia eólica, destacando relações temporais não lineares complexas e a necessidade de maior robustez preditiva [D2:p1 «complex nonlinear temporal relationships in wind power forecasting»]. O artigo refere que a previsão precisa pode apoiar o planeamento da rede e reduzir a rejeição de produção eólica [D2:p2 «provide essential planning for grid dispatch and can significantly reduce curtailment rates»].
+
+**Objetivo.** O objetivo é propor um modelo BAS-BiLSTM-Attention melhorado para previsão de energia eólica [D2:p3 «proposes a wind power prediction method based on an improved BAS-optimized BiLSTM-Attention model»]. O modelo procura melhorar a precisão e a robustez das previsões [D2:p1 «enhancing the accuracy and robustness of wind power predictions»].
+
+**Método.** O estudo usa dados históricos de 2 anos, de 1 de janeiro de 2022 a 31 de dezembro de 2023, recolhidos numa estação eólica terrestre cooperante [D2:p6 «2 years of historical wind power data (from January 1, 2022, to December 31, 2023)»]. O conjunto inclui seis indicadores: velocidade do vento, direção do vento, temperatura, pressão atmosférica, humidade e produção real [D2:p6 «six key influencing indicators: wind speed (m/s), wind direction (degrees)»]. A validação inclui TimeSeriesSplit em cinco partes [D2:p6 «five-fold time-series cross-validation using TimeSeriesSplit»].
+
+**Resultados.** O modelo proposto supera os modelos individuais em todos os indicadores de desempenho [D2:p9 «proposed method outperforms individual models across all performance indicators»]. Reporta MAE de 8.72 MW e RMSE de 12.48 MW [D2:p9 «MAE and RMSE are 8.72 and 12.48 MW»]. Os testes de Wilcoxon indicam superioridade significativa face aos modelos de base [D2:p10 «Wilcoxon tests showing significant superiority over baseline models»].
+
+**Conclusão.** Os autores concluem que o modelo capta relações não lineares complexas em séries temporais de energia eólica [D2:p11 «model effectively captures the complex nonlinear relationships in the time-series data»]. Também reconhecem margem para melhoria futura [D2:p11 «there is still room for improvement»].
