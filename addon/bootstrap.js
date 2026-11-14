@@ -51,6 +51,8 @@ async function startup({ id, version, rootURI }) {
 	}
 
 	registerSection(id, rootURI);
+	// "Explicar isto" no leitor abre o painel e desliza até à secção do assistente
+	try { if (typeof ZoteroIA !== "undefined" && ZoteroIA) ZoteroIA.sectionPaneID = sectionID; } catch (e) { /* sem o núcleo */ }
 	placeAfterInfo(sectionID);
 	undoClosedByDefault(sectionID);
 	simpleModeOnce();

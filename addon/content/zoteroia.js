@@ -2190,11 +2190,41 @@ var ZoteroIA = {
 		const att = itemID && Zotero.Items.get(itemID);
 		if (!att) return false;
 		const owner = this.conversationItem ? await this.conversationItem(att) : att;
-		const views = [...(this.views || [])].filter(v => v.mode === "section" && v.root && v.root.isConnected);
-		const view = views.find(v => v.sessionKey === `item:${owner.id}`) || views.find(v => v.root.offsetParent) || views[0];
+		const find = () => {
+			const views = [...(this.views || [])].filter(v => v.mode === "section" && v.root && v.root.isConnected);
+			return views.find(v => v.sessionKey === `item:${owner.id}`) || views.find(v => v.root.offsetParent) || views[0];
+		};
+		// Painel fechado: abre o painel da direita do leitor e espera que o assistente apareça (até 5 s)
+		let view = find();
+		this.revealSection(view);
+		for (let i = 0; !view && i < 25; i++) {
+			await Zotero.Promise.delay(200);
+			view = find();
+		}
 		if (!view) return false;
+		this.revealSection(view);
 		await view.explainExcerpt({ item: att, text, page, pageLabel });
 		return true;
+	},
+
+	/**
+	 * Mostra o Assistente IA no painel da direita do leitor: abre o painel se estiver fechado, passa às
+	 * informações do item (não às notas), abre a secção se estiver recolhida e desliza até ela.
+	 */
+	revealSection(view) {
+		try {
+			const win = Zotero.getMainWindow();
+			const cp = win && win.ZoteroContextPane;
+			if (!cp) return;
+			if (cp.collapsed) cp.collapsed = false;
+			const inner = win.document.getElementById("zotero-context-pane-inner");
+			if (inner && inner.mode && inner.mode !== "item") inner.mode = "item";
+			const sec = view && view.root && view.root.closest ? view.root.closest("collapsible-section") : null;
+			if (sec && sec.open === false) sec.open = true;
+			const container = cp.sidenav && cp.sidenav.container;
+			if (container && container.scrollToPane && this.sectionPaneID) container.scrollToPane(this.sectionPaneID, "smooth");
+		}
+		catch (e) { this.log("Mostrar o painel: " + e); }
 	},
 
 	// ------------------------------------------------------------------

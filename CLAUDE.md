@@ -244,6 +244,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   investigacao: sem a marca [Inferencia] em cada linha (`ctx.noInferBadge`, e o pedido ja nao a pede), porque tudo e
   proposta da IA. Frase de base com "[...]" (`ANCHOR` aceita "[...]"/"[…]", `parseCiteGroup` fica com o pedaco mais
   longo): antes a citacao aparecia como texto tecnico "[Sourri et al., 2026:p1 «…»]".
+  "Explicar isto" (leitor de PDF) abre o Assistente IA sozinho (`revealSection`): abre o painel da direita do leitor
+  (`ZoteroContextPane.collapsed = false`), passa ao modo item (`#zotero-context-pane-inner`.mode), abre a secção se
+  estiver recolhida e desliza ate ela (`sidenav.container.scrollToPane(sectionPaneID)`, o paneID completo vem do
+  bootstrap). Espera ate 5 s que a vista apareca. Antes so dizia "Abre o Assistente IA no painel da direita".
+  Confirmado contra o codigo fonte do Zotero (reader.js, contextPane.js, itemPaneContainerBase.mjs), nao num Zotero a correr.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"
