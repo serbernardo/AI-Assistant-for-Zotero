@@ -2315,7 +2315,7 @@ var ZoteroIA = {
 			});
 			append(b);
 			// Seleção dentro de uma tabela: o botão passa a analisar a tabela inteira
-			if (page && reader && reader.itemID && ann.position.rects) {
+			if (this.pref("figures.enabled") === true && page && reader && reader.itemID && ann.position.rects) {
 				this.tableAt(reader.itemID, page, ann.position.rects).then(tb => {
 					if (!tb || !b.isConnected) return;
 					table = tb;

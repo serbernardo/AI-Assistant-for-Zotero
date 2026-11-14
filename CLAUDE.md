@@ -253,7 +253,12 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   estiver recolhida e desliza ate ela (`sidenav.container.scrollToPane(sectionPaneID)`, o paneID completo vem do
   bootstrap). Espera ate 5 s que a vista apareca. Antes so dizia "Abre o Assistente IA no painel da direita".
   Confirmado contra o codigo fonte do Zotero (reader.js, contextPane.js, itemPaneContainerBase.mjs), nao num Zotero a correr.
-- **Figuras e tabelas (a pedido, depois da maquete):** acao `figuras` (grupo `compreender`, `local: true`: nao e um pedido a IA,
+- **Figuras e tabelas (EM PAUSA, a pedido: "ainda nao esta bem"):** escondidas pela pref `figures.enabled` (por omissao desligada:
+  sem a acao no separador Ler e sem "Analisar esta tabela" no leitor). Ligar no Config Editor para testar. Por resolver: com o Zotero a
+  abrir com o PDF ja aberto num separador, o separador vem "reader-unloaded" (tabs.js, so carrega quando e escolhido) e `_readerFor`
+  nao o encontra, por isso a galeria diz que o PDF tem de estar aberto (`Zotero_Tabs.getTabIDByItemID` ve o separador).
+  Testado no Zotero do utilizador ate a 1.0.27.5: a Tabela 2 de Papadoudis et al. foi encontrada e os 6 valores confirmados.
+  Historia: acao `figuras` (grupo `compreender`, `local: true`: nao e um pedido a IA,
   abre a galeria `_figuresEl`/`_fillFigures` no separador Ler do Avancado; so no painel). A deteccao corre no pdf.js do leitor do
   Zotero (`core.findFigures`, `_pdfFor`: `reader._internalReader._primaryView._iframeWindow.wrappedJSObject.PDFViewerApplication.pdfDocument`,
   o codigo das figuras corre DENTRO do leitor numa sandbox com a janela dele como prototipo, `figureSandboxSource`, `Cu.Sandbox(win, { sandboxPrototype: win, wantXrays: false })`, e so devolve JSON e data URLs: na 1.0.27.1 e .2 os objetos do pdf.js chegavam ao addon sem os metodos, "pg.getViewport is not a function", e a galeria dizia que nao havia figuras), por isso o PDF tem de estar aberto (botao "Abrir o PDF"). Logica pura em

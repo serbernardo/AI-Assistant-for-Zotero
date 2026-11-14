@@ -874,6 +874,8 @@ var ZIAChatView = class {
 		// O Avançado mostra só o que o Simples não tem (a pedido): sem as 6 ações repetidas
 		const list = this._actionsOfGroup(this.group)
 			.filter(a => !a.needsHighlights || this._hasHighlights())
+			// Figuras e tabelas: em pausa (pref escondida figures.enabled, desligada por omissão)
+			.filter(a => !a.local || this.core.pref("figures.enabled") === true)
 			.filter(a => !this._isAdv() || !this.L.SIMPLE_ACTIONS.includes(a.id));
 		const custom = this.group === "meus";
 		if (custom && !list.length && !this._customForm) {

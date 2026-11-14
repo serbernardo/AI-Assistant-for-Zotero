@@ -131,7 +131,7 @@ async function main() {
 		assert.equal(await page.locator('button[data-action="esquema"]').count(), 1, "as outras ações ficam no Avançado");
 		// Ler e extrair: os dois separadores juntaram-se (a pedido)
 		assert.deepEqual(await page.$$eval(".zia-action", bs => bs.map(b => b.dataset.action)),
-			["pontos", "esquema", "figuras", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
+			["pontos", "esquema", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
 		assert.deepEqual(await page.$$eval(".zia-tab", bs => bs.map(b => b.textContent)), ["Ler", "Avaliar", "Investigar", "Pers."]);
 		await page.screenshot({ path: path.join(OUT, "ui_painel_vazio.png") });
 		// as perguntas de exemplo estão em Pers.
@@ -1601,6 +1601,7 @@ async function main() {
 			view.core.renderFigure = async () => img;
 			window.opened.length = 0;
 		});
+		await page.evaluate(() => { view.core.setPref("figures.enabled", true); view._renderActions(); });
 		await tab(page, "compreender");
 		await page.click('.zia-action[data-action="figuras"]');
 		await page.waitForSelector(".zia-fig-card");
