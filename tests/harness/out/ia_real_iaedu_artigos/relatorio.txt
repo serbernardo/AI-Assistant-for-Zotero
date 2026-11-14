@@ -1,0 +1,26 @@
+Motor iaedu, agente https://api.iaedu.pt/agent-chat//api/v1/agent/cmor5objoex9gfp01vm7p95jh/stream, modelo o do agente, app em pt-PT
+Documentos:
+  D1 Sourri et al., 2026: 7 páginas, 33003 caracteres, desvio das páginas 0
+  D2 Li et al., 2026: 13 páginas, 65304 caracteres, desvio das páginas 0
+
+OK  resumo_D1                  8 citações  excertos 1/1   bases 13/13 sem marca 0    15 s  gpt-5.5                  
+OK  resumo_D2                 12 citações  excertos 0/0   bases 12/12 sem marca 0    14 s  gpt-5.5                  
+OK  pontos_D1                  8 citações  excertos 7/7   bases 1/1   sem marca 0    13 s  gpt-5.5                  
+OK  pontos_D2                  8 citações  excertos 7/7   bases 1/1   sem marca 0    15 s  gpt-5.5                  
+OK  critica_D1                32 citações  excertos 3/3   bases 51/51 sem marca 0    79 s  gpt-5.5                  
+OK  critica_D2                42 citações  excertos 0/0   bases 61/61 sem marca 0    58 s  gpt-5.5                  
+OK  metodos_D1                77 citações  excertos 0/0   bases 88/88 sem marca 0    40 s  gpt-5.5                  
+OK  metodos_D2               184 citações  excertos 1/1   bases 184/184 sem marca 0    65 s  gpt-5.5                  
+OK  conclusoes_D1             42 citações  excertos 0/0   bases 53/53 sem marca 0    49 s  gpt-5.5                  
+OK  conclusoes_D2             59 citações  excertos 1/1   bases 62/62 sem marca 1    77 s  gpt-5.5                  
+OK  ficha_D1                  25 citações  excertos 0/0   bases 30/30 sem marca 1    42 s  gpt-5.5                  
+OK  ficha_D2                  31 citações  excertos 0/0   bases 32/32 sem marca 1    38 s  gpt-5.5                  
+OK  comparar                  35 citações  excertos 0/0   bases 58/58 sem marca 6    48 s  gpt-5.5                  
+FALHOU lacunas_D1                 0 citações  excertos       bases       sem marca       ? s                           erro: Limite de pedidos de IAEdu atingido. Espera um pouco e tenta de novo, ou analisa menos PDFs de cada vez.
+Detalhe: Rate limit reached (429)
+FALHOU lacunas_D2                 0 citações  excertos       bases       sem marca       ? s                           erro: Limite de pedidos de IAEdu atingido. Espera um pouco e tenta de novo, ou analisa menos PDFs de cada vez.
+Detalhe: Rate limit reached (429)
+FALHOU perguntas_D1               0 citações  excertos       bases       sem marca       ? s                           erro: Limite de pedidos de IAEdu atingido. Espera um pouco e tenta de novo, ou analisa menos PDFs de cada vez.
+Detalhe: Rate limit reached (429)
+FALHOU perguntas_D2               0 citações  excertos       bases       sem marca       ? s                           erro: Limite de pedidos de IAEdu atingido. Espera um pouco e tenta de novo, ou analisa menos PDFs de cada vez.
+Detalhe: Rate limit reached (429)

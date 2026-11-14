@@ -1,0 +1,152 @@
+[
+ {
+  "id": "comparar:D1:p1 «aimed to determine the effect of “Blue Flag” status»#1:0",
+  "kind": "exagero",
+  "claim": "Provar que o estatuto “Blue Flag” elimina os microplásticos em todas as praias da Europa"
+ },
+ {
+  "id": "comparar:D2:p9 «MAE and RMSE are 8.72 and 12.48 MW»; D2:p10 «mean absolute percentage error (MAPE) is 5.21%»#1:0",
+  "kind": "numero",
+  "claim": "Os valores reportados foram MAE de 18.72 MW, RMSE de 22.48 MW, R² de 0.93 e MAPE de 5.21%"
+ },
+ {
+  "id": "conclusoes_D1:D1:p4 «At Alinda Beach, MP abundance ranged from 20»#1:0",
+  "kind": "sujeito",
+  "claim": "O texto identifica Alinda como praia com certificação Blue Flag e apresenta o intervalo medido."
+ },
+ {
+  "id": "conclusoes_D1:D1:p5 «relatively small number of samples and lack of seasonal sampling»#1:0",
+  "kind": "negacao",
+  "claim": "O desenho inclui muitos locais e os autores não referem limitações."
+ },
+ {
+  "id": "conclusoes_D2:D2:p7 «Short gaps ( ≤ 3 consecutive hours) were filled using linear interpolation»#1:0",
+  "kind": "numero",
+  "claim": "Falhas curtas até 12 horas foram preenchidas por interpolação linear"
+ },
+ {
+  "id": "conclusoes_D2:D2:p8 «all models exhibited further reductions in prediction errors»#1:0",
+  "kind": "inverso",
+  "claim": "A Tabela 4 mostra que os erros aumentaram após duas decomposições em BAS, BiLSTM e Attention"
+ },
+ {
+  "id": "conclusoes_D2:D2:p6 «multistation datasets to assess cross-regional adaptability»#1:0",
+  "kind": "negacao",
+  "claim": "O texto afasta o uso de dados de várias estações em trabalho futuro"
+ },
+ {
+  "id": "critica_D1:D1:p3 «The sampling procedure followed the same protocol as in Glyfada»#1:0",
+  "kind": "inverso",
+  "claim": "Leros seguiu um protocolo de amostragem diferente do usado em Glyfada"
+ },
+ {
+  "id": "critica_D2:D2:p9 «Model MAE (MW) RMSE (MW) R 2 MAPE»#1:0",
+  "kind": "inventado",
+  "claim": "O artigo apresenta MAE, RMSE, R², MAPE e o índice de Nash-Sutcliffe"
+ },
+ {
+  "id": "critica_D2:D2:p6 «its origin from a single station limits generalization to other regions»#2:0",
+  "kind": "negacao",
+  "claim": "O artigo afirma que os resultados se generalizam a todas as regiões e climas"
+ },
+ {
+  "id": "ficha_D1:D1:p1 «two beach locations in Greece, a Blue Flag beach in Glyfada»#1:0",
+  "kind": "troca",
+  "claim": "O contexto foi Chipre, com duas localizações costeiras, Glyfada e Leros"
+ },
+ {
+  "id": "conclusoes_D1:D1:p5 «relatively small number of samples and lack of seasonal sampling»#1:0",
+  "kind": "inventado",
+  "claim": "Os autores declaram como limitação a falta de análise por espectroscopia Raman"
+ },
+ {
+  "id": "ficha_D2:D2:p3 «the BAS is employed for preprocessing the raw wind power data»#1:0",
+  "kind": "sujeito",
+  "claim": "A BiLSTM foi usada para pré-processar os dados brutos de energia eólica"
+ },
+ {
+  "id": "ficha_D2:D2:p8 «Two decompositions 45.12 65.24 0.954»#1:0",
+  "kind": "numero",
+  "claim": "Com duas decomposições, a BiLSTM teve MAE de 54.12 MW, RMSE de 65.24 MW e R² de 0.954"
+ },
+ {
+  "id": "metodos_D1:D1:p2 «it has a population of 7992»; D1:p2 «an area of 54 km 2»; D1:p2 «coastline of approximately 71 km»#1:0",
+  "kind": "numero",
+  "claim": "Leros tem população de 89 597 habitantes, área de 54 km² e linha de costa de cerca de 71 km"
+ },
+ {
+  "id": "metodos_D1:D1:p3 «was collected using a metal scoop»#1:0",
+  "kind": "troca",
+  "claim": "As amostras foram recolhidas com uma pá de plástico"
+ },
+ {
+  "id": "metodos_D1:D1:p3 «random selection of an initial sampling point»#1:0",
+  "kind": "inverso",
+  "claim": "Foi escolhido de propósito o ponto mais sujo de cada secção da praia"
+ },
+ {
+  "id": "critica_D2:D2:p6 «representative of northern China’s continental climate»; D2:p6 «its origin from a single station limits generalization to other regions»#1:0",
+  "kind": "troca",
+  "claim": "Os autores descrevem esta região como representativa do clima tropical do sul da China"
+ },
+ {
+  "id": "metodos_D2:D2:p7 «maximum number of epochs for each iteration is set to 200»#1:0",
+  "kind": "numero",
+  "claim": "O número máximo de épocas por iteração foi 2000, com dropout de 0.3"
+ },
+ {
+  "id": "resumo_D1:D1:p2 «Glyfada, the beaches of which have Blue Flag status»; D1:p2 «Leros Island, the beaches of which do not have Blue Flag status»#1:0",
+  "kind": "inverso",
+  "claim": "Foram selecionados Glyfada, sem Blue Flag, e Leros, com esse estatuto"
+ },
+ {
+  "id": "comparar:D1:p3-4 «Blue Flag beaches of Glyfada exhibited negligible MP levels»; D2:p9 «proposed method outperforms individual models across all performance indicators»#1:0",
+  "kind": "exagero",
+  "claim": "O modelo proposto supera todos os modelos publicados até hoje em qualquer parque eólico"
+ },
+ {
+  "id": "metodos_D1:D1:p4 «MP abundance ranged from 20 to 163 items/kg»; D1:p4 «Shape distribution was primarily fibres (72%)»#1:0",
+  "kind": "inventado",
+  "claim": "Os autores apresentam abundâncias por litro de água do mar recolhida a 10 m de profundidade"
+ },
+ {
+  "id": "critica_D1:D1:p3 «MPs were identified by visual inspection»; D1:p3 «MP were examined under a stereomicroscope»#1:0",
+  "kind": "inverso",
+  "claim": "A identificação em Glyfada usou espectroscopia FTIR e em Leros só inspeção visual"
+ },
+ {
+  "id": "conclusoes_D2:D2:p6 «Wilcoxon signed-rank test on paired differences»#1:0",
+  "kind": "troca",
+  "claim": "A validade estatística assenta num teste t de Student para amostras independentes"
+ },
+ {
+  "id": "metodos_D2:D2:p8 «One decomposition 62.14 85.23 0.905»#2:0",
+  "kind": "numero",
+  "claim": "BAS, três decomposições"
+ },
+ {
+  "id": "metodos_D2:D2:p9 «R 2 MAPE (%) P (vs. Ours)»#1:0",
+  "kind": "negacao",
+  "claim": "Não foram reportados R², MAPE nem valores de p"
+ },
+ {
+  "id": "conclusoes_D2:D2:p11 «distributed training on cloud platforms could handle multisite data»#1:0",
+  "kind": "inventado",
+  "claim": "O texto mostra benchmarks em clusters GPU de parques nacionais que provam a escala operacional"
+ },
+ {
+  "id": "conclusoes_D2:D2:p1 «The Beetle Antennae Search algorithm was utilized for obtaining hidden features»#1:0",
+  "kind": "troca",
+  "claim": "O texto usa algoritmos genéticos para obter as características escondidas"
+ },
+ {
+  "id": "critica_D2:D2:p3 «this study proposes a wind power prediction method based on an improved»; D2:p6 «The dataset used in this study consists of 2 years»#1:0",
+  "kind": "exagero",
+  "claim": "O estudo inclui descrição completa, código aberto, dados públicos e validação em 50 países"
+ },
+ {
+  "id": "conclusoes_D1:D1:p5 «density separation approach may underestimate certain particle types»#2:0",
+  "kind": "inverso",
+  "claim": "A afirmação é cautelosa: o método pode sobrestimar todos os tipos de partículas"
+ }
+]
