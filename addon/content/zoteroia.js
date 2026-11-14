@@ -2118,7 +2118,16 @@ var ZoteroIA = {
 				const app = frame && frame.PDFViewerApplication;
 				if (app && app.pdfDocument) {
 					const lib = frame.pdfjsLib;
-					return { reader, frame, doc: app.pdfDocument, ops: lib && lib.OPS, wrap: x => Components.utils.cloneInto(x, frame, { wrapReflectors: true }) };
+					// Objetos para o pdf.js do leitor: criados do lado dele (os objetos do addon não se leem lá dentro)
+					const wrap = x => {
+						const o = new frame.Object();
+						for (const k of Object.keys(x)) {
+							const v = x[k];
+							o[k] = Array.isArray(v) ? Components.utils.cloneInto(v, frame) : v;
+						}
+						return o;
+					};
+					return { reader, frame, doc: app.pdfDocument, ops: lib && lib.OPS, wrap };
 				}
 			}
 			catch (e) { /* ainda a abrir */ }
@@ -2138,21 +2147,31 @@ var ZoteroIA = {
 		if (!pdf) return null;
 		const n = pdf.doc.numPages;
 		const out = [];
+		let firstErr = null, failed = 0;
 		for (let p = 1; p <= n; p++) {
 			if (onProgress) onProgress(p, n);
+			let pg, figs;
 			try {
-				const pg = await pdf.doc.getPage(p);
+				pg = await pdf.doc.getPage(p);
 				const lay = await this.lib.pageLayout(pg, pdf.ops, pdf.wrap);
-				for (const f of this.lib.detectFigures(lay)) {
-					f.page = p;
-					f.pageH = lay.H;
-					f.thumb = await this.lib.renderRegion(pg, f.box, pdf.frame.document, 0.9, pdf.wrap);
-					out.push(f);
-				}
+				figs = this.lib.detectFigures(lay).map(f => Object.assign(f, { page: p, pageH: lay.H }));
 			}
-			catch (e) { this.log(`Figuras, página ${p}: ${e}`); }
+			catch (e) {
+				failed++;
+				firstErr = firstErr || e;
+				this.log(`Figuras, página ${p}: ${e}\n${e && e.stack}`);
+				continue;
+			}
+			for (const f of figs) {
+				// A miniatura é um extra: se não se conseguir desenhar, a figura aparece na mesma
+				try { f.thumb = await this.lib.renderRegion(pg, f.box, pdf.frame.document, 0.9, pdf.wrap); }
+				catch (e) { this.log(`Miniatura, página ${p}: ${e}`); }
+				out.push(f);
+			}
 		}
-		this._figCache[attachmentID] = out;
+		// Nenhuma página lida: é um erro (com a causa), não "sem figuras"; e não fica em cache
+		if (failed === n && firstErr) throw this.error("figures", this.t("fig.gallery.error", { e: firstErr.message || String(firstErr) }));
+		if (!failed) this._figCache[attachmentID] = out;
 		return out;
 	},
 

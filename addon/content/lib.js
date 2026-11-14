@@ -3576,8 +3576,10 @@ var ZIALib = (function () {
 		const W = vp.width, H = vp.height;
 		const tc = await pg.getTextContent();
 		const items = [];
-		for (const i of tc.items) {
-			if (!i.str) continue;
+		const its = tc.items;
+		for (let n = 0; n < its.length; n++) {
+			const i = its[n];
+			if (!i || !i.str) continue;
 			const tr = i.transform;
 			const pt = vp.convertToViewportPoint(tr[4], tr[5]);
 			const h = Math.hypot(tr[2], tr[3]);
@@ -3597,11 +3599,11 @@ var ZIALib = (function () {
 			const fn = fns[k], a = args[k];
 			if (fn === O.save) stack.push(ctm);
 			else if (fn === O.restore) ctm = stack.pop() || ctm;
-			else if (fn === O.transform) ctm = mul(ctm, [...a]);
+			else if (fn === O.transform) ctm = mul(ctm, [a[0], a[1], a[2], a[3], a[4], a[5]]);
 			else if (fn === O.constructPath && a && a.length) {
 				// Caixa do traço: o último argumento ([x0, y0, x1, y1])
 				const mm = a[a.length - 1];
-				if (mm && mm.length === 4 && [...mm].every(Number.isFinite)) paths.push(box([[mm[0], mm[1]], [mm[2], mm[1]], [mm[0], mm[3]], [mm[2], mm[3]]]));
+				if (mm && mm.length === 4 && Number.isFinite(mm[0]) && Number.isFinite(mm[1]) && Number.isFinite(mm[2]) && Number.isFinite(mm[3])) paths.push(box([[mm[0], mm[1]], [mm[2], mm[1]], [mm[0], mm[3]], [mm[2], mm[3]]]));
 			}
 			else if (fn === O.paintImageXObject || fn === O.paintInlineImageXObject || fn === O.paintImageMaskXObject) {
 				const b = box([[0, 0], [1, 0], [0, 1], [1, 1]]);
