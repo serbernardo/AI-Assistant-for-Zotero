@@ -3712,7 +3712,8 @@ var ZIALib = (function () {
 			return head + "Conteúdo da tabela tirado do PDF, fila a fila (células separadas por |, e as células partidas em várias linhas "
 				+ "aparecem em filas seguidas):\n<tabela>\n" + fig.rows.join("\n").slice(0, 12000) + "\n</tabela>\n"
 				+ "1. Reproduz a tabela completa em Markdown, com os mesmos cabeçalhos e os valores exatamente como estão (mesmas casas "
-				+ "decimais e símbolos). Junta numa só célula o texto de uma célula partida. Não acrescentes nem calcules valores.\n"
+				+ "decimais e símbolos). Junta numa só célula o texto de uma célula partida. Não acrescentes nem calcules valores. "
+				+ "Não ponhas citações dentro da tabela: o assistente confirma cada valor no PDF.\n"
 				+ "2. ## O que mostra: duas a quatro frases com o essencial, cada uma com citação.\n"
 				+ "3. ## Como os autores a usam: o que concluem da tabela, com a citação da página onde a discutem. "
 				+ "Se o documento não a discutir, diz isso.\n" + rule;
@@ -3750,13 +3751,28 @@ var ZIALib = (function () {
 
 	/** Um valor de uma célula está no texto da página? true, false, ou null se a célula não for um número. */
 	function cellNumberIn(cell, pageText) {
-		const c = String(cell || "").trim().replace(/[\u2212\u2013]/g, "-").replace(/\s+/g, "");
+		const c = String(cell || "").trim().replace(/[\u2212\u2013\u2014]/g, "-").replace(/\s+/g, "");
+		// Intervalo ("53.2–64.1", "[20.0-30.2]", "(1.2; 3.4)"): conta se os dois extremos estiverem na página
+		const rg = c.match(/^[[(]?(-?\d+(?:[.,]\d+)?)(?:-|;|,(?=\d+[.,]\d)|to|a)(-?\d+(?:[.,]\d+)?)[\])]?%?$/);
+		if (rg) {
+			const a = cellNumberIn(rg[1].replace(/^-/, ""), pageText), b = cellNumberIn(rg[2].replace(/^-/, ""), pageText);
+			return a === null || b === null ? null : a && b;
+		}
 		const m = c.match(/^[<>≤≥~±+-]?\(?(\d+(?:[.,]\d+)?|[.,]\d+)\)?(%|[a-zA-Z]{0,3})?\*{0,3}[a-z†‡§]?$/);
 		if (!m) return null;
 		const p = String(pageText || "");
 		const v = m[1];
 		if (/[.,]/.test(v)) return docDecimals(p).has((parseInt(v.split(/[.,]/)[0] || "0", 10)) + "," + v.split(/[.,]/)[1]);
 		return docIntegers(p).has(v.replace(/^0+(?=\d)/, ""));
+	}
+
+	/** Tira as citações das células das tabelas (resposta de uma figura): os valores já são confirmados na página. */
+	function stripTableCites(text) {
+		return String(text || "").split("\n").map(ln => {
+			if (!/^\s*\|/.test(ln)) return ln;
+			// [D1:p4 «…»] ou [Autor, 2026:p4 «…»], também com [ ] dentro das aspas
+			return ln.replace(/\s*\[[^\[\]«»|]{1,120}?:\s?p\.?\s?\d+[^«\]|]*«[^»|]*»\]/g, "").replace(/\s*\[D\d+:p\d+(?:[-–]\d+)?\]/g, "");
+		}).join("\n");
 	}
 
 	/** Contagem das células com números nas tabelas da resposta: confirmadas no texto da página, ou não. */
@@ -3781,7 +3797,7 @@ var ZIALib = (function () {
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
 		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, widePassage, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
-		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, unwrapPdf, figureSandboxSource, figurePrompt, figureVerifyText, cellNumberIn, figureCells, FIGREAD_RE,
+		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, unwrapPdf, figureSandboxSource, figurePrompt, figureVerifyText, cellNumberIn, figureCells, stripTableCites, FIGREAD_RE,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
 		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, fixCitePages, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};

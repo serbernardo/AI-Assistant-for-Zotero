@@ -1621,9 +1621,16 @@ async function main() {
 		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && document.querySelector(".zia-fig-badge-box"));
 		assert.match(await page.evaluate(() => window.lastPrompt), /<tabela>\nModel \| MAE \| RMSE\nSVR \| 14\.23 \| 21\.46/, "a tabela vai em texto, fila a fila");
 		assert.equal(await page.evaluate(() => window.lastImages), null, "uma tabela com texto não leva imagem");
-		assert.deepEqual(await page.evaluate(() => window.opened), ["WPDF#2"], "o PDF abre na página da tabela");
+		assert.deepEqual(await page.evaluate(() => window.opened), [], "clicar na tabela só a analisa, o PDF não muda de página");
+		await page.locator(".zia-fig-crop-cap .zia-link-btn", { hasText: "Abrir o PDF" }).first().click();
+		assert.deepEqual(await page.evaluate(() => window.opened), ["WPDF#2"], "\"Abrir o PDF nesta página\" abre na página da tabela");
 		const msg = page.locator(".zia-msg-assistant >> nth=0");
 		assert.equal(await msg.locator(".zia-fig-crop img").count(), 1, "o recorte aparece na resposta");
+		await msg.locator(".zia-fig-zoom").click();
+		assert.equal(await msg.locator(".zia-fig-crop.zia-zoomed").count(), 1, "Ampliar mostra o recorte maior");
+		assert.equal(await msg.locator(".zia-fig-zoom").textContent(), "Encaixar");
+		await msg.locator(".zia-fig-crop img").click();
+		assert.equal(await msg.locator(".zia-fig-crop.zia-zoomed").count(), 0, "clicar na imagem volta a encaixar");
 		assert.deepEqual(await msg.locator("td.zia-num").evaluateAll(ts => ts.map(t => t.textContent + ":" + t.className.replace(/.*zia-num-/, ""))),
 			["14.23:ok", "21.46:ok", "8.72:ok", "99.99:no"]);
 		assert.equal(await msg.locator(".zia-fig-badge-box").textContent(), "✓ 3 de 4 valores confirmados no texto do PDF · fora do texto desta página: 1, confirma no PDF");

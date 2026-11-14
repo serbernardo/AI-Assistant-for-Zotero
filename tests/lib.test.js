@@ -1017,3 +1017,13 @@ test("figuras: o que foi lido na imagem não entra na verificação", () => {
 	assert.match(p, /<tabela>\nA \| B\n<\/tabela>/);
 	assert.match(p, /\[D1:p3 «/);
 });
+
+test("figuras: intervalos nas células e citações tiradas das tabelas", () => {
+	const p = "Aegean 58.7 [53.2–64.1] Crete 25.1 [20.0–30.2]";
+	assert.equal(L.cellNumberIn("[53.2–64.1]", p), true);
+	assert.equal(L.cellNumberIn("20.0-30.2", p), true);
+	assert.equal(L.cellNumberIn("[20.0–30.9]", p), false, "um extremo errado");
+	assert.equal(L.stripTableCites("| A | [53.2–64.1] [Papadoudis et al., 2026:p4 «Aegean 58.7 [53.2–64.1]»] |\nFora [D1:p3 «a b c»]."),
+		"| A | [53.2–64.1] |\nFora [D1:p3 «a b c»].");
+	assert.match(L.figurePrompt({ kind: "table", label: "T", caption: "c", page: 1, rows: ["a"], drawn: false }, "D1"), /Não ponhas citações dentro da tabela/);
+});

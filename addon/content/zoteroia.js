@@ -2173,7 +2173,7 @@ var ZoteroIA = {
 			}
 			for (const f of figs) {
 				// A miniatura é um extra: se não se conseguir desenhar, a figura aparece na mesma
-				try { f.thumb = await pdf.render(p, f.box, 0.9); }
+				try { f.thumb = await pdf.render(p, f.box, 1.4); }
 				catch (e) { this.log(`Miniatura, página ${p}: ${e}`); }
 				out.push(f);
 			}
@@ -2187,7 +2187,7 @@ var ZoteroIA = {
 	/** Recorte da figura em alta resolução (para a IA e para a resposta). */
 	async renderFigure(attachmentID, fig) {
 		const pdf = await this._pdfFor(attachmentID, true);
-		return pdf.render(fig.page, fig.box, 2);
+		return pdf.render(fig.page, fig.box, 3);
 	},
 
 	/** Tabela que contém a seleção feita no leitor (rects do Zotero, em pontos do PDF de baixo para cima). */

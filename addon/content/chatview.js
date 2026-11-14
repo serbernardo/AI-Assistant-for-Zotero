@@ -389,8 +389,7 @@ var ZIAChatView = class {
 				return;
 			}
 		}
-		// O PDF vai para a página da figura: a pessoa vê o que está a ser analisado
-		Promise.resolve(this.core.openAtPage(d, f.page)).catch(e => this.core.log("Abrir na página: " + e));
+		// Só analisa: o PDF não muda de página (a resposta tem "Abrir o PDF nesta página")
 		const name = this.L.figureName(f);
 		const p = this._figPageLabel(f);
 		const figure = { kind: f.kind, num: f.num, label: f.label, caption: f.caption, page: f.page, pageLabel: p, rows: f.rows || [], drawn: !!f.drawn, image, docId: d.id };
@@ -408,18 +407,35 @@ var ZIAChatView = class {
 	_figureHeadEl(m) {
 		const f = m.figure;
 		const box = this._el("div", "zia-fig-answer");
+		let zoomBtn = null;
 		if (f.image) {
-			const crop = this._el("div", "zia-fig-crop");
+			// Clicar amplia para o tamanho real (desliza dentro da caixa); outro clique volta a encaixar
+			const crop = this._el("div", "zia-fig-crop" + (m.figZoom ? " zia-zoomed" : ""));
 			const img = this._el("img");
 			img.src = f.image;
 			img.alt = this.T("fig.imageAlt", { name: this.L.figureName(f) });
 			crop.appendChild(img);
+			// Ampliado: 1,5 vezes o tamanho no PDF (o recorte é desenhado a 3x)
+			const fit = () => { img.style.width = m.figZoom && img.naturalWidth ? Math.round(img.naturalWidth / 2) + "px" : ""; };
+			img.addEventListener("load", fit);
+			const toggle = () => {
+				m.figZoom = !m.figZoom;
+				crop.classList.toggle("zia-zoomed", m.figZoom);
+				fit();
+				zoomBtn.textContent = this.T(m.figZoom ? "fig.zoom.out" : "fig.zoom.in");
+			};
+			img.addEventListener("click", toggle);
+			img.title = this.T("fig.zoom.tip");
 			box.appendChild(crop);
+			zoomBtn = this._button(this.T(m.figZoom ? "fig.zoom.out" : "fig.zoom.in"), "zia-link-btn zia-fig-zoom", toggle);
 		}
 		const cap = this._el("div", "zia-fig-crop-cap");
 		cap.appendChild(this._el("span", null, f.caption));
+		const links = this._el("span", "zia-fig-links");
+		if (zoomBtn) links.appendChild(zoomBtn);
 		const d = this.state.allDocs[f.docId];
-		if (d) cap.appendChild(this._button(this.T("proof.open"), "zia-link-btn", () => this.core.openAtPage(d, f.page)));
+		if (d) links.appendChild(this._button(this.T("proof.open"), "zia-link-btn", () => this.core.openAtPage(d, f.page)));
+		cap.appendChild(links);
 		box.appendChild(cap);
 		if (m.pending) return box;
 		let badge = null;
@@ -2977,6 +2993,7 @@ var ZIAChatView = class {
 				},
 			});
 			botMsg.text = res.text || botMsg.text;
+			if (figure) botMsg.text = this.L.stripTableCites(botMsg.text);
 			botMsg.model = res.model || null;
 			if (res.rateLimit) botMsg.usageNote = this.L.formatRateLimit(res.rateLimit) || botMsg.usageNote;
 			if (res.notice) botMsg.usageNote = res.notice;

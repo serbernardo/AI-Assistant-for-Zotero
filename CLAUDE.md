@@ -260,14 +260,14 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   `lib.js`: `pageLayout` (texto com posicoes, caixas das imagens e blocos de desenho `clusterBlocks`), `detectFigures` (legendas "Figure 3",
   "TABLE 2.", "Fig. 4", referencias no texto excluidas, figuras e tabelas nas duas colunas, tabelas desenhadas sem texto `drawn`, filas de
   texto `rows`), `renderRegion` (so a regiao, escala 2, JPEG). Medido em 3 artigos (Oxford e IEEE, `tests/harness/figuras/run_figuras.js`):
-  37 de 37, 0 falsas. Clicar numa miniatura (`_analyseFigure`) abre o PDF na pagina e faz `_ask` com `figure`: tabela com texto vai so em
+  37 de 37, 0 falsas. Clicar numa miniatura (`_analyseFigure`) so analisa (a pedido: abrir o PDF ao mesmo tempo era estranho; a resposta tem "Abrir o PDF nesta pagina") e faz `_ask` com `figure`: tabela com texto vai so em
   texto (`figurePrompt`, `<tabela>` fila a fila, funciona no IAEdu); figuras e tabelas desenhadas levam a imagem (`images` em `runEngine`:
   Gemini `inlineData`, Claude API bloco image, ChatGPT API image_url, Codex `--image=`, Claude Code `--input-format stream-json`; IAEdu
   recusa com `err.noImages`). Marca `[Figura]` = "lido na figura" (`.zia-fig-badge`, `tidyMarkers`): essas linhas e as tabelas lidas na
   imagem nao entram no `verifyAnswer` (`figureVerifyText`). Cada celula numerica e procurada no texto da pagina (`cellNumberIn`): ✓, ✗ ou ≈
   lido na imagem (`_markFigureCells`), contagem em `m.figure.cells`. Excel com a coluna "Verificado no PDF" (`tablesToCSV` com
   `cellCheck`). No leitor, uma selecao dentro de uma tabela muda "Explicar isto" para "Analisar esta tabela" (`tableAt`,
-  `tableForSelection`, `analyseFromReader`). `m.figure` (com o recorte e o texto da pagina) fica no historico. Ainda nao testado num Zotero
+  `tableForSelection`, `analyseFromReader`). `m.figure` (com o recorte e o texto da pagina) fica no historico. Recorte desenhado a 3x, "Ampliar" (ou clicar na imagem) mostra-o a 1,5x o PDF a deslizar (`m.figZoom`), miniaturas a 1,4x. Intervalos nas celulas ("[53.2–64.1]") contam se os dois extremos estiverem na pagina. A IA punha citacoes com "[...]" dentro das celulas, que ficavam em texto tecnico: o pedido proibe-as e `stripTableCites` tira-as. Ainda nao testado num Zotero
   real: so com pdf.js no Chromium e o painel simulado.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
