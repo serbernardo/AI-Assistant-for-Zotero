@@ -3567,14 +3567,18 @@ var ZIALib = (function () {
 	 * Lê uma página do pdf.js: texto com posições, caixas das imagens e blocos de desenho. Serve ao addon (leitor do
 	 * Zotero) e aos testes (pdf.js no Chromium). pg = página do pdf.js, ops = pdfjsLib.OPS (opcional).
 	 */
+	// No Zotero, o que vem de uma promessa do pdf.js do leitor chega sem os métodos (outro compartimento): tira-se o filtro
+	const unwrapPdf = x => (x && x.wrappedJSObject) || x;
+
 	async function pageLayout(pg, ops, wrap) {
+		pg = unwrapPdf(pg);
 		// wrap: no Zotero, os objetos passados ao pdf.js do leitor têm de ser criados do lado dele (Cu.cloneInto)
 		const w = x => (wrap ? wrap(x) : x);
 		const O = Object.assign({}, PDF_OPS);
 		for (const k of Object.keys(PDF_OPS)) if (ops && typeof ops[k] === "number") O[k] = ops[k];
-		const vp = pg.getViewport(w({ scale: 1 }));
+		const vp = unwrapPdf(pg.getViewport(w({ scale: 1 })));
 		const W = vp.width, H = vp.height;
-		const tc = await pg.getTextContent();
+		const tc = unwrapPdf(await pg.getTextContent());
 		const items = [];
 		const its = tc.items;
 		for (let n = 0; n < its.length; n++) {
@@ -3585,7 +3589,7 @@ var ZIALib = (function () {
 			const h = Math.hypot(tr[2], tr[3]);
 			items.push({ str: String(i.str), x: pt[0], top: pt[1] - h, w: i.width, h, rot: Math.abs(tr[1]) > 0.01 });
 		}
-		const ol = await pg.getOperatorList();
+		const ol = unwrapPdf(await pg.getOperatorList());
 		const fns = ol.fnArray, args = ol.argsArray;
 		let ctm = [1, 0, 0, 1, 0, 0];
 		const stack = [], images = [], paths = [];
@@ -3615,9 +3619,10 @@ var ZIALib = (function () {
 
 	/** Desenha só a região de uma figura, em alta resolução, e devolve a imagem (data URL JPEG). doc cria o canvas. */
 	async function renderRegion(pg, b, doc, scale, wrap) {
+		pg = unwrapPdf(pg);
 		const w = x => (wrap ? wrap(x) : x);
 		scale = scale || 2;
-		const vp = pg.getViewport(w({ scale }));
+		const vp = unwrapPdf(pg.getViewport(w({ scale })));
 		const c = doc.createElement("canvas");
 		c.width = Math.max(1, Math.round((b.x1 - b.x0) * scale));
 		c.height = Math.max(1, Math.round((b.y1 - b.y0) * scale));
@@ -3627,6 +3632,30 @@ var ZIALib = (function () {
 		// Desloca a página para a região ficar na origem: só essa parte é desenhada
 		await pg.render(w({ canvasContext: ctx, viewport: vp, transform: [1, 0, 0, 1, -b.x0 * scale, -b.y0 * scale] })).promise;
 		return c.toDataURL("image/jpeg", 0.88);
+	}
+
+	/**
+	 * Código que corre DENTRO do leitor de PDF do Zotero (sandbox com a janela do leitor como protótipo): lê as páginas e
+	 * desenha os recortes com o pdf.js de lá, e só devolve texto (JSON) e imagens (data URL). Assim nenhum objeto do pdf.js
+	 * passa para o addon, onde chegaria sem os métodos (outro compartimento). Também serve aos testes.
+	 */
+	function figureSandboxSource() {
+		return [
+			"\"use strict\";",
+			"const PDF_OPS = " + JSON.stringify(PDF_OPS) + ";",
+			"const unwrapPdf = x => x;",
+			"const clusterBlocks = " + clusterBlocks.toString() + ";",
+			"const pageLayout = " + pageLayout.toString() + ";",
+			"const renderRegion = " + renderRegion.toString() + ";",
+			"const ziaPdf = () => globalThis.PDFViewerApplication && globalThis.PDFViewerApplication.pdfDocument;",
+			"const ziaOps = () => (globalThis.pdfjsLib && globalThis.pdfjsLib.OPS) || null;",
+			"globalThis.ZIAFig = {",
+			"\tready() { return !!ziaPdf(); },",
+			"\tpages() { return ziaPdf().numPages; },",
+			"\tasync layout(p) { const pg = await ziaPdf().getPage(p); return JSON.stringify(await pageLayout(pg, ziaOps())); },",
+			"\tasync render(p, box, scale) { const pg = await ziaPdf().getPage(p); return renderRegion(pg, JSON.parse(box), globalThis.document, scale); },",
+			"};",
+		].join("\n");
 	}
 
 	/** Junta os traços vetoriais próximos em blocos (tabelas e gráficos desenhados); só os blocos grandes contam. */
@@ -3752,7 +3781,7 @@ var ZIALib = (function () {
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
 		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, widePassage, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
-		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, figurePrompt, figureVerifyText, cellNumberIn, figureCells, FIGREAD_RE,
+		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, unwrapPdf, figureSandboxSource, figurePrompt, figureVerifyText, cellNumberIn, figureCells, FIGREAD_RE,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
 		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, fixCitePages, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};

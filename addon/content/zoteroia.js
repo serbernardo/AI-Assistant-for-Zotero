@@ -2101,7 +2101,11 @@ var ZoteroIA = {
 		catch (e) { return null; }
 	},
 
-	/** O pdf.js do leitor aberto com este PDF (abre-o se open). null se não estiver aberto. */
+	/**
+	 * O leitor aberto com este PDF (abre-o se open), com o código das figuras a correr dentro dele (sandbox com a janela
+	 * do leitor como protótipo, sem filtros). Devolve { reader, layout(p), render(p, box, scale), pages() }, que só trocam
+	 * texto e imagens com o addon. null se o PDF não estiver aberto.
+	 */
 	async _pdfFor(attachmentID, open) {
 		let reader = this._readerFor(attachmentID);
 		if (!reader && open) {
@@ -2109,31 +2113,37 @@ var ZoteroIA = {
 			reader = this._readerFor(attachmentID);
 		}
 		if (!reader) return null;
+		const Cu = Components.utils;
+		let lastErr = null;
 		for (let i = 0; i < 150; i++) {
 			try {
 				const ir = reader._internalReader;
 				const view = ir && (ir._primaryView || ir._lastView);
 				const win = view && view._iframeWindow;
-				const frame = win && (win.wrappedJSObject || win);
-				const app = frame && frame.PDFViewerApplication;
-				if (app && app.pdfDocument) {
-					const lib = frame.pdfjsLib;
-					// Objetos para o pdf.js do leitor: criados do lado dele (os objetos do addon não se leem lá dentro)
-					const wrap = x => {
-						const o = new frame.Object();
-						for (const k of Object.keys(x)) {
-							const v = x[k];
-							o[k] = Array.isArray(v) ? Components.utils.cloneInto(v, frame) : v;
-						}
-						return o;
-					};
-					return { reader, frame, doc: app.pdfDocument, ops: lib && lib.OPS, wrap };
+				if (win) {
+					// Uma sandbox por janela do leitor (fica guardada na própria janela)
+					this._figSandboxes = this._figSandboxes || new WeakMap();
+					let sb = this._figSandboxes.get(win);
+					if (!sb) {
+						sb = Cu.Sandbox(win, { sandboxPrototype: win, wantXrays: false, sameZoneAs: win, sandboxName: "Assistente IA: figuras" });
+						Cu.evalInSandbox(this.lib.figureSandboxSource(), sb);
+						this._figSandboxes.set(win, sb);
+					}
+					const api = Cu.waiveXrays(sb).ZIAFig;
+					if (api && api.ready()) {
+						return {
+							reader,
+							pages: () => Number(api.pages()),
+							layout: async p => JSON.parse(String(await api.layout(p))),
+							render: async (p, box, scale) => String(await api.render(p, JSON.stringify(box), scale)),
+						};
+					}
 				}
 			}
-			catch (e) { /* ainda a abrir */ }
+			catch (e) { lastErr = e; }
 			await Zotero.Promise.delay(100);
 		}
-		throw this.error("figures", this.t("fig.gallery.error", { e: "PDF.js" }));
+		throw this.error("figures", lastErr ? (lastErr.message || String(lastErr)) : "PDF.js");
 	},
 
 	/**
@@ -2145,15 +2155,14 @@ var ZoteroIA = {
 		if (this._figCache[attachmentID]) return this._figCache[attachmentID];
 		const pdf = await this._pdfFor(attachmentID, open);
 		if (!pdf) return null;
-		const n = pdf.doc.numPages;
+		const n = pdf.pages();
 		const out = [];
 		let firstErr = null, failed = 0;
 		for (let p = 1; p <= n; p++) {
 			if (onProgress) onProgress(p, n);
-			let pg, figs;
+			let figs;
 			try {
-				pg = await pdf.doc.getPage(p);
-				const lay = await this.lib.pageLayout(pg, pdf.ops, pdf.wrap);
+				const lay = await pdf.layout(p);
 				figs = this.lib.detectFigures(lay).map(f => Object.assign(f, { page: p, pageH: lay.H }));
 			}
 			catch (e) {
@@ -2164,13 +2173,13 @@ var ZoteroIA = {
 			}
 			for (const f of figs) {
 				// A miniatura é um extra: se não se conseguir desenhar, a figura aparece na mesma
-				try { f.thumb = await this.lib.renderRegion(pg, f.box, pdf.frame.document, 0.9, pdf.wrap); }
+				try { f.thumb = await pdf.render(p, f.box, 0.9); }
 				catch (e) { this.log(`Miniatura, página ${p}: ${e}`); }
 				out.push(f);
 			}
 		}
 		// Nenhuma página lida: é um erro (com a causa), não "sem figuras"; e não fica em cache
-		if (failed === n && firstErr) throw this.error("figures", this.t("fig.gallery.error", { e: firstErr.message || String(firstErr) }));
+		if (failed === n && firstErr) throw this.error("figures", firstErr.message || String(firstErr));
 		if (!failed) this._figCache[attachmentID] = out;
 		return out;
 	},
@@ -2178,8 +2187,7 @@ var ZoteroIA = {
 	/** Recorte da figura em alta resolução (para a IA e para a resposta). */
 	async renderFigure(attachmentID, fig) {
 		const pdf = await this._pdfFor(attachmentID, true);
-		const pg = await pdf.doc.getPage(fig.page);
-		return this.lib.renderRegion(pg, fig.box, pdf.frame.document, 2, pdf.wrap);
+		return pdf.render(fig.page, fig.box, 2);
 	},
 
 	/** Tabela que contém a seleção feita no leitor (rects do Zotero, em pontos do PDF de baixo para cima). */
@@ -2188,8 +2196,7 @@ var ZoteroIA = {
 		if (!figs) {
 			const pdf = await this._pdfFor(attachmentID, false);
 			if (!pdf) return null;
-			const pg = await pdf.doc.getPage(page);
-			const lay = await this.lib.pageLayout(pg, pdf.ops, pdf.wrap);
+			const lay = await pdf.layout(page);
 			figs = this.lib.detectFigures(lay).map(f => Object.assign(f, { page, pageH: lay.H }));
 		}
 		return this.lib.tableForSelection(figs, rects) || null;
