@@ -46,7 +46,7 @@
 			const kind = /^(t|q)/i.test(m[1]) ? "table" : "figure";
 			const restStarts = m[4] ? m[4][0] : "";
 			const looksRef = !m[3] && /^[a-z(]/.test(restStarts) && isBody(l, 0, W);
-			if (looksRef || /^[),;]/.test(m[4] || "") || (m[3] === "." && /^[a-z(]/.test(restStarts))) continue;
+			if (looksRef || /^[),;]/.test(m[4] || "") || /^[a-z(]/.test(restStarts)) continue;
 			// Coluna da legenda
 			let cx0 = 0, cx1 = W;
 			if (twoCols && l.x1 < W * 0.56) cx1 = W * 0.52;
@@ -76,11 +76,19 @@
 					}
 					for (const im of images.filter(inCol)) {
 						if (dir < 0 && im.y1 <= l.top + 2 && im.y1 >= last - 6) last = Math.min(last, im.y0);
-						if (dir > 0 && im.y0 >= capBottom - 2 && im.y0 <= last + 6) last = Math.max(last, im.y1);
+						if (dir > 0 && last - capBottom < 20 && im.y0 >= capBottom - 2 && im.y0 <= last + 40 && !caps.some(c => c !== l && c.top > capBottom && c.bottom <= im.y0 + 2 && inCol(c))) last = Math.max(last, im.y1);
 					}
 					return last;
 				};
 				let up = grow(-1), down = grow(1);
+				if (kind === "table") {
+					// Tabela desenhada (texto em curvas, sem texto no PDF): a região é o bloco de desenho logo por baixo
+					let bot = null, edge = capBottom;
+					for (const im of images.filter(inCol).sort((a, b) => a.y0 - b.y0)) {
+						if (im.y0 >= capBottom - 2 && im.y0 <= edge + 40 && !caps.some(c => c !== l && c.top > capBottom && c.bottom <= im.y0 + 2 && inCol(c))) { bot = Math.max(bot || 0, im.y1); edge = Math.max(edge, im.y1); }
+					}
+					if (bot !== null && !ls.some(o => o.top > capBottom && o.bottom < bot && inCol(o) && o !== l)) down = bot;
+				}
 				if (kind === "figure") {
 					// Imagens logo por cima da legenda: a figura é o grupo dessas imagens (mais os rótulos entre elas)
 					let top = null, edge = l.top;

@@ -30,12 +30,21 @@ const srv = http.createServer((q, r) => {
 				const items = tc.items.filter(i => i.str).map(i => { const [x, y] = vp.convertToViewportPoint(i.transform[4], i.transform[5]); const h = Math.hypot(i.transform[2], i.transform[3]); return { str: i.str, x, top: y - h, w: i.width, h, rot: Math.abs(i.transform[1]) > 0.01 }; });
 				// Caixas das imagens: segue a matriz (save/restore/transform)
 				const ops = await pg.getOperatorList(); const O = pdfjs.OPS;
-				let ctm = [1, 0, 0, 1, 0, 0]; const stack = []; const images = [];
+				let ctm = [1, 0, 0, 1, 0, 0]; const stack = []; const images = [], paths = [];
 				const mul = (m, n) => [m[0] * n[0] + m[2] * n[1], m[1] * n[0] + m[3] * n[1], m[0] * n[2] + m[2] * n[3], m[1] * n[2] + m[3] * n[3], m[0] * n[4] + m[2] * n[5] + m[4], m[1] * n[4] + m[3] * n[5] + m[5]];
 				for (let k = 0; k < ops.fnArray.length; k++) {
 					const fn = ops.fnArray[k], a = ops.argsArray[k];
 					if (fn === O.save) stack.push(ctm); else if (fn === O.restore) ctm = stack.pop() || ctm;
 					else if (fn === O.transform) ctm = mul(ctm, a);
+					else if (fn === O.constructPath && a[2]) {
+						// Desenhos vetoriais (tabelas e gráficos com o texto em curvas): caixa de cada traço
+						const [mx0, my0, mx1, my1] = a[2];
+						if (isFinite(mx0)) {
+							const pts = [[mx0, my0], [mx1, my0], [mx0, my1], [mx1, my1]].map(([u, v]) => vp.convertToViewportPoint(ctm[0] * u + ctm[2] * v + ctm[4], ctm[1] * u + ctm[3] * v + ctm[5]));
+							const xs = pts.map(q => q[0]), ys = pts.map(q => q[1]);
+							paths.push({ x0: Math.min(...xs), y0: Math.min(...ys), x1: Math.max(...xs), y1: Math.max(...ys) });
+						}
+					}
 					else if (fn === O.paintImageXObject || fn === O.paintInlineImageXObject || fn === O.paintImageMaskXObject) {
 						const pts = [[0, 0], [1, 0], [0, 1], [1, 1]].map(([u, v]) => vp.convertToViewportPoint(ctm[0] * u + ctm[2] * v + ctm[4], ctm[1] * u + ctm[3] * v + ctm[5]));
 						const xs = pts.map(q => q[0]), ys = pts.map(q => q[1]);
@@ -43,6 +52,15 @@ const srv = http.createServer((q, r) => {
 						if ((box.x1 - box.x0) > 30 && (box.y1 - box.y0) > 30 && (box.x1 - box.x0) < W * 0.98) images.push(box);
 					}
 				}
+				// Junta os traços próximos em blocos; os blocos grandes contam como imagens
+				const P = paths.filter(b => (b.x1 - b.x0) < W * 0.98 && (b.y1 - b.y0) < H * 0.9);
+				const blocks = [];
+				for (const b of P) {
+					let g = { ...b }, merged = true;
+					while (merged) { merged = false; for (let k = blocks.length - 1; k >= 0; k--) { const o = blocks[k]; if (o.x0 <= g.x1 + 6 && o.x1 >= g.x0 - 6 && o.y0 <= g.y1 + 6 && o.y1 >= g.y0 - 6) { g = { x0: Math.min(g.x0, o.x0), y0: Math.min(g.y0, o.y0), x1: Math.max(g.x1, o.x1), y1: Math.max(g.y1, o.y1) }; blocks.splice(k, 1); merged = true; } } }
+					blocks.push(g);
+				}
+				for (const g of blocks) if ((g.x1 - g.x0) > 60 && (g.y1 - g.y0) > 30) images.push(g);
 				const figs = ZIAFigures.detect({ items, images, W, H });
 				if (!figs.length && !images.length) continue;
 				const S = 2, cv = document.createElement("canvas"); const v2 = pg.getViewport({ scale: S });
