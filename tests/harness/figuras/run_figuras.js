@@ -26,7 +26,13 @@ const srv = http.createServer((q, r) => {
 			for (let p = 1; p <= doc.numPages; p++) {
 				const pg = await doc.getPage(p);
 				const L = ZIALib;
-				const lay = await L.pageLayout(pg, pdfjs.OPS);
+				// O mesmo caminho do addon: o código das figuras corre "dentro do leitor" e só devolve texto e imagens
+				if (!globalThis.ZIAFig || globalThis.PDFViewerApplication.pdfDocument !== doc) {
+					globalThis.PDFViewerApplication = { pdfDocument: doc };
+					globalThis.pdfjsLib = pdfjs;
+					(0, eval)(L.figureSandboxSource());
+				}
+				const lay = JSON.parse(await ZIAFig.layout(p));
 				const { items, images, W, H } = lay;
 				const vp = pg.getViewport({ scale: 1 });
 				const figs = L.detectFigures({ items, images, W, H });
@@ -34,7 +40,7 @@ const srv = http.createServer((q, r) => {
 				const S = 2, cv = document.createElement("canvas"); const v2 = pg.getViewport({ scale: S });
 				cv.width = v2.width; cv.height = v2.height;
 				await pg.render({ canvasContext: cv.getContext("2d"), viewport: v2 }).promise;
-				for (const f of figs) { f.rr = await L.renderRegion(pg, f.box, document, 2); }
+				for (const f of figs) { f.rr = await ZIAFig.render(p, JSON.stringify(f.box), 2); }
 				const crops = figs.map(f => { const b = f.box, c = document.createElement("canvas"); c.width = (b.x1 - b.x0) * S; c.height = (b.y1 - b.y0) * S; c.getContext("2d").drawImage(cv, -b.x0 * S, -b.y0 * S); return Object.assign({ png: c.toDataURL("image/png") }, f); });
 				// Vista da página com as caixas (para rever)
 				const g = cv.getContext("2d"); g.lineWidth = 4;

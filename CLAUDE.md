@@ -256,7 +256,7 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
 - **Figuras e tabelas (a pedido, depois da maquete):** acao `figuras` (grupo `compreender`, `local: true`: nao e um pedido a IA,
   abre a galeria `_figuresEl`/`_fillFigures` no separador Ler do Avancado; so no painel). A deteccao corre no pdf.js do leitor do
   Zotero (`core.findFigures`, `_pdfFor`: `reader._internalReader._primaryView._iframeWindow.wrappedJSObject.PDFViewerApplication.pdfDocument`,
-  objetos passados ao pdf.js com `Components.utils.cloneInto`), por isso o PDF tem de estar aberto (botao "Abrir o PDF"). Logica pura em
+  o codigo das figuras corre DENTRO do leitor numa sandbox com a janela dele como prototipo, `figureSandboxSource`, `Cu.Sandbox(win, { sandboxPrototype: win, wantXrays: false })`, e so devolve JSON e data URLs: na 1.0.27.1 e .2 os objetos do pdf.js chegavam ao addon sem os metodos, "pg.getViewport is not a function", e a galeria dizia que nao havia figuras), por isso o PDF tem de estar aberto (botao "Abrir o PDF"). Logica pura em
   `lib.js`: `pageLayout` (texto com posicoes, caixas das imagens e blocos de desenho `clusterBlocks`), `detectFigures` (legendas "Figure 3",
   "TABLE 2.", "Fig. 4", referencias no texto excluidas, figuras e tabelas nas duas colunas, tabelas desenhadas sem texto `drawn`, filas de
   texto `rows`), `renderRegion` (so a regiao, escala 2, JPEG). Medido em 3 artigos (Oxford e IEEE, `tests/harness/figuras/run_figuras.js`):
