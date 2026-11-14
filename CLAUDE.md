@@ -257,6 +257,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   sem a acao no separador Ler e sem "Analisar esta tabela" no leitor). Ligar no Config Editor para testar. Por resolver: com o Zotero a
   abrir com o PDF ja aberto num separador, o separador vem "reader-unloaded" (tabs.js, so carrega quando e escolhido) e `_readerFor`
   nao o encontra, por isso a galeria diz que o PDF tem de estar aberto (`Zotero_Tabs.getTabIDByItemID` ve o separador).
+  Estrategia em estudo (nada implementado): o Zotero 10 traz um extrator proprio, `Zotero.PDFWorker.getStructuredDocumentText(itemID)`
+  (repositorios zotero/document-worker e zotero/structured-document-text: blocos table, image e caption com posicao, sem abrir o PDF;
+  o worker tambem tem a acao `pdf.renderArea`, sem funcao publica no manager). Confirmado nas etiquetas do Zotero: nao existe na 8.0.4
+  nem na 9.0.6, existe na 10.0.9. Fraqueza conhecida do que esta feito: o ✓ das celulas so confirma que o numero existe algures na
+  pagina, nao que esta naquela linha (dois valores trocados entre linhas ficam ambos a verde).
   Testado no Zotero do utilizador ate a 1.0.27.5: a Tabela 2 de Papadoudis et al. foi encontrada e os 6 valores confirmados.
   Historia: acao `figuras` (grupo `compreender`, `local: true`: nao e um pedido a IA,
   abre a galeria `_figuresEl`/`_fillFigures` no separador Ler do Avancado; so no painel). A deteccao corre no pdf.js do leitor do
