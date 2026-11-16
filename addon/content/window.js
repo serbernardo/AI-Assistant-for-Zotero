@@ -64,6 +64,8 @@ var ZIAWindow = {
 		if (args.pickCollection) this.view._openCollectionPicker();
 		// Vindo do clique direito "Perguntar a estes artigos": a ação fica escolhida, falta escrever a pergunta
 		if (args.chooseAction && this.view.state.docs.length) this.view.selectAction(args.chooseAction);
+		// Vindo de "Explicar isto" no leitor, sem o painel do assistente à vista
+		if (args.explain && this.view.state.docs.length) await this.view.explainExcerpt(Object.assign({ item: args.items[0] }, args.explain));
 		if (args.autoAction) {
 			const a = Zotero.ZoteroIA.lib.ACTIONS[args.autoAction];
 			if (a && this.view.state.docs.length >= a.minDocs) {

@@ -398,8 +398,11 @@ var ZIAChatView = class {
 			this._setStatus(this.T("reader.explain.busy"), "warn");
 			return;
 		}
-		const owner = this.core.conversationItem ? await this.core.conversationItem(item) : item;
-		if (this.sessionKey !== `item:${owner.id}`) await this.showItem(item);
+		// No painel, passa ao artigo do PDF (na janela os artigos ja vieram com o pedido)
+		if (this.mode === "section") {
+			const owner = this.core.conversationItem ? await this.core.conversationItem(item) : item;
+			if (this.sessionKey !== `item:${owner.id}`) await this.showItem(item);
+		}
 		if (!this.state.docs.length) return;
 		if (!this._engineReady()) {
 			this._showSetupInline();
@@ -3348,7 +3351,7 @@ var ZIAChatView = class {
 			head.appendChild(del);
 		}
 		// Só o x: fica no canto, sem ocupar uma linha própria
-		if (nameInTab && !head.querySelector(".zia-action-extra")) head.classList.add("zia-head-x");
+		if (nameInTab && !head.querySelector(".zia-action-extra, .zia-action-tag")) head.classList.add("zia-head-x");
 		if (head.firstChild) el.appendChild(head);
 		if (m.confirmDel) el.appendChild(this._confirmDelEl(m));
 		if (m.warnings && m.warnings.length) {

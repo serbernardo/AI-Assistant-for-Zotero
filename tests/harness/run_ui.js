@@ -1653,6 +1653,17 @@ async function main() {
 		assert.equal(await msg.locator(".zia-fig-badge-box").textContent(), "✓ Tabela lida do PDF, valor a valor");
 		assert.deepEqual(await msg.locator(".zia-tab-pdf td").evaluateAll(ts => ts.map(t => t.textContent)), ["SVR", "14.23", "0.81", "Ours", "8.72", "0.93"]);
 		assert.equal(await page.evaluate(() => window.sdtCalls), 1, "lê a estrutura uma só vez por PDF");
+		// Com separadores de conversa: o título da tabela não fica por cima da legenda nem de "Abrir o PDF"
+		await page.evaluate(() => {
+			view.state.convs.push([]);
+			const m = view.state.messages.find(x => x.table);
+			view._renderMessage(m);
+		});
+		const boxes = await msg.evaluate(el => {
+			const r = s => { const n = el.querySelector(s); return n && n.getBoundingClientRect(); };
+			return { head: r(".zia-msg-head"), cap: r(".zia-fig-crop-cap"), tabs: document.querySelectorAll(".zia-conv-tab, .zia-convtab").length };
+		});
+		assert.ok(boxes.head && boxes.cap && boxes.head.bottom <= boxes.cap.top + 1, "título da tabela por cima da legenda: " + JSON.stringify(boxes));
 		// Excel: a tabela do PDF, não o que a IA escreveu
 		await msg.locator("button", { hasText: "Exportar para Excel" }).click();
 		assert.match(await page.evaluate(() => window.lastCSV.csv), /Model;MAE \(MW\);R2\r\nSVR;14\.23;0\.81\r\nOurs;8\.72;0\.93/);

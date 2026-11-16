@@ -2226,10 +2226,27 @@ var ZoteroIA = {
 			b.textContent = "✦ " + this.t("reader.explain");
 			b.title = this.t("reader.explain.tip");
 			const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
-			b.addEventListener("click", async () => {
-				const ok = await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel });
-				if (!ok) b.textContent = this.t("reader.explain.noPanel");
-			});
+			// "pointerup" e "click": o leitor pode fechar a caixa antes de o clique chegar. Um so pedido por clique.
+			let started = false;
+			const go = async ev => {
+				if (started || (ev && ev.button > 0)) return;
+				started = true;
+				if (ev) { ev.preventDefault(); ev.stopPropagation(); }
+				b.textContent = this.t("reader.explain.opening");
+				b.disabled = true;
+				try {
+					await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel });
+				}
+				catch (e) {
+					this.log("Explicar isto: " + (e && e.stack || e));
+					b.textContent = this.t("reader.explain.failed", { e: (e && e.message) || String(e) });
+					b.disabled = false;
+					started = false;
+				}
+			};
+			b.addEventListener("pointerdown", ev => ev.stopPropagation());
+			b.addEventListener("pointerup", go);
+			b.addEventListener("click", go);
 			append(b);
 		}
 		catch (e) { this.log("Explicar isto: " + e); }
@@ -2251,7 +2268,11 @@ var ZoteroIA = {
 			await Zotero.Promise.delay(200);
 			view = find();
 		}
-		if (!view) return false;
+		// Sem o painel do assistente (painel da direita fechado ou noutro separador): explica na janela do assistente
+		if (!view) {
+			this.openWindow({ items: [owner], explain: { text, page, pageLabel } });
+			return true;
+		}
 		this.revealSection(view);
 		await view.explainExcerpt({ item: att, text, page, pageLabel });
 		return true;
@@ -2336,9 +2357,9 @@ var ZoteroIA = {
 	// Janela do assistente (várias fontes, comparação)
 	// ------------------------------------------------------------------
 
-	openWindow({ items = [], collectionIDs = [], autoAction = null, chooseAction = null, pickCollection = false, collectionName = null, group = null } = {}) {
+	openWindow({ items = [], collectionIDs = [], autoAction = null, chooseAction = null, pickCollection = false, collectionName = null, group = null, explain = null } = {}) {
 		const win = Zotero.getMainWindow();
-		const args = { items, collectionIDs, autoAction, chooseAction, pickCollection, collectionName, group };
+		const args = { items, collectionIDs, autoAction, chooseAction, pickCollection, collectionName, group, explain };
 		args.wrappedJSObject = args;
 		// Reutiliza a janela aberta, se existir
 		const existing = Services.wm.getMostRecentWindow(this.WINDOW_TYPE);
