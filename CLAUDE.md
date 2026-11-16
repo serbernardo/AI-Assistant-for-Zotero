@@ -257,11 +257,28 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   sem a acao no separador Ler e sem "Analisar esta tabela" no leitor). Ligar no Config Editor para testar. Por resolver: com o Zotero a
   abrir com o PDF ja aberto num separador, o separador vem "reader-unloaded" (tabs.js, so carrega quando e escolhido) e `_readerFor`
   nao o encontra, por isso a galeria diz que o PDF tem de estar aberto (`Zotero_Tabs.getTabIDByItemID` ve o separador).
-  Estrategia em estudo (nada implementado): o Zotero 10 traz um extrator proprio, `Zotero.PDFWorker.getStructuredDocumentText(itemID)`
-  (repositorios zotero/document-worker e zotero/structured-document-text: blocos table, image e caption com posicao, sem abrir o PDF;
-  o worker tambem tem a acao `pdf.renderArea`, sem funcao publica no manager). Confirmado nas etiquetas do Zotero: nao existe na 8.0.4
-  nem na 9.0.6, existe na 10.0.9. Fraqueza conhecida do que esta feito: o ✓ das celulas so confirma que o numero existe algures na
-  pagina, nao que esta naquela linha (dois valores trocados entre linhas ficam ambos a verde).
+  **Estrategia decidida (a pedido, ainda por implementar): so tabelas, so no Zotero 10 ou mais recente, sobre o extrator do proprio Zotero.**
+  `Zotero.SDT.getReader(itemID)` (chrome/content/zotero/xpcom/sdt.js, com cache em disco) devolve o pack ja lido, com `materialize()`,
+  `getBlocksForPage(p)` e `getBlocks(a, b)`: blocos `table`, `image`, `caption`, `paragraph`... cada um com `anchor.pageRects`
+  ([pageIndex, x0, y0, x1, y1]) e, nos nos de texto, `anchor.textMap`. NAO precisa do PDF aberto (foi a causa de todas as falhas
+  das versoes 1.0.27.1 a .5). Confirmado nas etiquetas do Zotero: nao existe na 8.0.4 nem na 9.0.6, existe na 10.0.9.
+  Medido aqui com o document-worker real (`tests/harness/figuras/run_sdt.mjs`), 3 artigos, 1 a 3 s por artigo:
+  - Regioes e legendas: fiaveis. Li et al. 6 tabelas + 7 imagens + 13 legendas; Sourri 4 imagens + 6 legendas; IEEE 21 imagens + 21 legendas.
+  - O bloco `table` NAO e uma grelha: e texto corrido com as posicoes dos caracteres. A grelha tem de ser reconstruida (logica pura).
+    `parseTextMap` + `reconstructCharPositions` (structured-document-text/src/pdf/decode.js) dao a posicao de cada caractere.
+    REGRA: as posicoes correspondem aos caracteres SEM espacos (os espacos sao postos pelo extrator). Em 708 de 749 nos bateu certo,
+    nos outros 41 a diferenca era de 1. Com essa correcao, agrupar por y e cortar nos intervalos > 0,9 do corpo da letra da a Tabela 5
+    de Li et al. certa, valor a valor, com as colunas alinhadas por x e as filas de continuacao juntas a de cima.
+  - As tabelas DESENHADAS vem como `image` (as 9 do artigo da IEEE): nessas nao ha texto nenhum para verificar. Dos 14 tabelas reais
+    dos 3 artigos, 9 sao desenhadas. A promessa "valores confirmados no PDF" so vale em parte dos artigos: dize-lo na interface.
+  - O extrator parte listas de nomenclatura em muitos blocos `table` (17 no Sourri, um por linha) e nao numera nada: a lista para o
+    utilizador tem de vir das legendas (`caption` com /^(Table|Tabela|Figure|Fig)\s*\d+/), nao dos blocos `table`.
+  - Emparelhar legenda e bloco pela ordem do `content` (lista linear), nao pela pagina: ao emparelhar pela pagina saiu FIGURE 10 duas
+    vezes e FIGURE 11 nenhuma.
+  Passos: (1) reconstrucao da grelha em `lib.js` com testes sobre blocos SDT guardados; (2) lista das tabelas pelas legendas, no painel;
+  (3) a tabela vem do PDF e a IA so explica, com o ✓ a dizer "este valor esta nesta linha da tabela"; (4) so entao voltar as figuras.
+  Fraqueza do que esta feito e que motivou a mudanca: o ✓ das celulas so confirma que o numero existe algures na pagina, nao que esta
+  naquela linha (dois valores trocados entre linhas ficam ambos a verde).
   Testado no Zotero do utilizador ate a 1.0.27.5: a Tabela 2 de Papadoudis et al. foi encontrada e os 6 valores confirmados.
   Historia: acao `figuras` (grupo `compreender`, `local: true`: nao e um pedido a IA,
   abre a galeria `_figuresEl`/`_fillFigures` no separador Ler do Avancado; so no painel). A deteccao corre no pdf.js do leitor do
