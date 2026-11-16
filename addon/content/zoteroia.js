@@ -2223,7 +2223,8 @@ var ZoteroIA = {
 			if (!text) return;
 			const b = doc.createElement("button");
 			b.className = "toolbar-button wide-button";
-			b.textContent = "✦ " + this.t("reader.explain");
+			const label = "✦ " + this.t("reader.explain");
+			b.textContent = label;
 			b.title = this.t("reader.explain.tip");
 			const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
 			// "pointerup" e "click": o leitor pode fechar a caixa antes de o clique chegar. Um so pedido por clique.
@@ -2233,16 +2234,22 @@ var ZoteroIA = {
 				started = true;
 				if (ev) { ev.preventDefault(); ev.stopPropagation(); }
 				b.textContent = this.t("reader.explain.opening");
-				b.disabled = true;
+				let failed = false;
 				try {
-					await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel });
+					// O texto selecionado no momento do clique (o leitor pode reutilizar a mesma caixa)
+					const cur = (params && params.annotation) || ann;
+					const t = String(cur.text || text).trim() || text;
+					const pg = cur.position && cur.position.pageIndex != null ? cur.position.pageIndex + 1 : page;
+					await this.explainSelection({ itemID: reader && reader.itemID, text: t, page: pg, pageLabel: cur.pageLabel || ann.pageLabel });
 				}
 				catch (e) {
+					failed = true;
 					this.log("Explicar isto: " + (e && e.stack || e));
 					b.textContent = this.t("reader.explain.failed", { e: (e && e.message) || String(e) });
-					b.disabled = false;
-					started = false;
 				}
+				// O botao volta a funcionar: pode usar-se outra vez, tambem depois de apagar a resposta
+				if (!failed) b.textContent = label;
+				started = false;
 			};
 			b.addEventListener("pointerdown", ev => ev.stopPropagation());
 			b.addEventListener("pointerup", go);
