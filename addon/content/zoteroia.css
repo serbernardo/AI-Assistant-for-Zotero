@@ -1948,6 +1948,20 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-figs-filters { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
 .zia-figs .zia-figs-chip { border: 1px solid var(--zia-border); border-radius: 999px; padding: 1px 9px; font-size: 11px; background: var(--zia-bg); color: var(--zia-fg); min-width: 0; cursor: pointer; }
 .zia-figs .zia-figs-chip.on { background: var(--zia-fg); color: var(--zia-bg); border-color: var(--zia-fg); }
+.zia-figs-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 7px; }
+.zia-beta { display: inline-block; margin-left: 5px; padding: 0 5px; border-radius: 6px; font-size: 9.5px; font-weight: 700;
+	letter-spacing: 0.04em; text-transform: uppercase; background: color-mix(in srgb, var(--zia-orange) 16%, transparent); color: var(--zia-orange); vertical-align: 1px; }
+.zia-figs-beta-note { font-size: 11px; color: var(--zia-muted, var(--zia-fg2)); }
+.zia-tab-list { display: flex; flex-direction: column; gap: 5px; }
+.zia-figs .zia-tab-row { display: block; width: 100%; text-align: left; margin: 0; padding: 6px 8px 7px; min-width: 0;
+	border: 1px solid var(--zia-border); border-radius: 7px; background: var(--zia-bg); color: var(--zia-fg); cursor: pointer; font: inherit; }
+.zia-figs .zia-tab-row:hover, .zia-figs .zia-tab-row:focus-visible { border-color: var(--zia-accent); box-shadow: 0 0 0 2px var(--zia-accent-soft); }
+.zia-tab-top { display: flex; justify-content: space-between; gap: 8px; }
+.zia-tab-name { font-weight: 700; font-size: 11.5px; color: var(--zia-accent); }
+.zia-tab-size { font-size: 10.5px; color: var(--zia-muted, var(--zia-fg2)); margin-top: 2px; }
+.zia-figs .zia-tab-drawn { opacity: 0.72; }
+.zia-figs .zia-tab-drawn .zia-tab-name { color: var(--zia-muted, var(--zia-fg2)); }
+.zia-tab-pdf { margin-top: 6px; }
 .zia-figs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 7px; }
 .zia-figs .zia-fig-card { display: flex; flex-direction: column; align-items: stretch; padding: 0; margin: 0; min-width: 0; text-align: left; overflow: hidden;
 	border: 1px solid var(--zia-border); border-radius: 7px; background: var(--zia-bg); color: var(--zia-fg); cursor: pointer; font: inherit; }

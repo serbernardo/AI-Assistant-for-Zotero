@@ -3560,6 +3560,219 @@ var ZIALib = (function () {
 	}
 
 
+	// ------------------------------------------------------------------
+	// Tabelas pela estrutura do documento lida pelo proprio Zotero (SDT, Zotero 10 ou mais recente):
+	// Zotero.SDT.getReader(itemID) da blocos caption, table, image e paragraph, cada um com a sua
+	// posicao, sem abrir o PDF. A tabela vem como texto corrido com a posicao de cada caractere
+	// (anchor.textMap): as filas e as colunas sao reconstruidas aqui.
+	// ------------------------------------------------------------------
+
+	const SDT_CAPTION = /^\s*(fig\.?|figs?\.?|figure|figura|table|tabela|tab\.|quadro)\s*(\d+|[ivxIVX]+)\b\s*([.:|\-]?)\s*(.*)$/i;
+
+	/** Texto de um bloco ou no da SDT. */
+	function sdtText(node) {
+		if (!node) return "";
+		if (typeof node === "string") return node;
+		if (Array.isArray(node)) return node.map(sdtText).join("");
+		if (node.text != null) return String(node.text);
+		return sdtText(node.content || []);
+	}
+
+	/** Pagina (1, 2, 3...) e regiao de um bloco. pageRects: [[pageIndex, x0, y0, x1, y1], ...] */
+	function sdtRect(node) {
+		const r = node && node.anchor && node.anchor.pageRects && node.anchor.pageRects[0];
+		if (!r || r.length < 5) return null;
+		return { page: r[0] + 1, x0: r[1], y0: r[2], x1: r[3], y1: r[4] };
+	}
+
+	/**
+	 * Posicoes dos caracteres de um textMap. Formato: [cabecalho, pagina, minX, minY, maxX, maxY, ...larguras],
+	 * cada largura um numero ou [espaco antes, largura]. As posicoes correspondem aos caracteres SEM espacos
+	 * (os espacos sao postos pelo extrator ao juntar o texto).
+	 */
+	function sdtRun(run) {
+		if (!Array.isArray(run) || run.length < 6) return null;
+		const [, pageIndex, minX, minY, maxX, maxY] = run;
+		const widths = run.slice(6);
+		const out = [];
+		if (!widths.length) out.push({ x1: minX, x2: maxX });
+		let pos = minX;
+		for (const w of widths) {
+			if (Array.isArray(w)) { pos += w[0]; out.push({ x1: pos, x2: pos + w[1] }); pos += w[1]; }
+			else { out.push({ x1: pos, x2: pos + w }); pos += w; }
+		}
+		return { page: pageIndex + 1, y: (minY + maxY) / 2, h: Math.max(1, maxY - minY), chars: out };
+	}
+
+	/** Caracteres de um bloco, com posicao: [{ ch, x1, x2, y, h, page }]. */
+	function sdtChars(block) {
+		const out = [];
+		for (const node of (block && block.content) || []) {
+			const map = node && node.anchor && node.anchor.textMap;
+			if (!map) continue;
+			let runs;
+			try { runs = JSON.parse(map); }
+			catch (e) { continue; }
+			if (!Array.isArray(runs)) continue;
+			const glyphs = [...String(node.text || "")].filter(c => !/\s/.test(c));
+			let i = 0;
+			for (const raw of runs) {
+				const run = sdtRun(raw);
+				if (!run) continue;
+				for (const p of run.chars) {
+					out.push({ ch: glyphs[i] != null ? glyphs[i] : " ", x1: p.x1, x2: p.x2, y: run.y, h: run.h, page: run.page });
+					i++;
+				}
+			}
+		}
+		return out;
+	}
+
+	/**
+	 * Filas e colunas de uma tabela, a partir das posicoes dos caracteres: agrupa por linha (y), corta as
+	 * celulas nos intervalos largos, alinha as colunas pelo inicio de cada celula e junta a fila de cima as
+	 * linhas de continuacao (celula partida em duas linhas).
+	 */
+	function sdtGrid(chars) {
+		if (!chars || !chars.length) return { rows: [], cols: 0 };
+		const sizes = chars.map(c => c.h).sort((a, b) => a - b);
+		const h = sizes[sizes.length >> 1] || 8;
+		// 1. Linhas: mesmo y (de cima para baixo: no PDF o y cresce para cima)
+		const lines = [];
+		for (const c of chars.slice().sort((a, b) => a.page - b.page || b.y - a.y || a.x1 - b.x1)) {
+			const l = lines.find(l => l.page === c.page && Math.abs(l.y - c.y) < Math.max(1.5, c.h * 0.4));
+			if (l) { l.chars.push(c); l.y = (l.y * (l.chars.length - 1) + c.y) / l.chars.length; }
+			else lines.push({ y: c.y, page: c.page, chars: [c] });
+		}
+		// 2. Celulas: um intervalo grande corta, um pequeno e so o espaco entre palavras
+		const GAP = h * 0.9, SPACE = h * 0.18;
+		const rows = [];
+		for (const l of lines) {
+			l.chars.sort((a, b) => a.x1 - b.x1);
+			const cells = [];
+			let cur = "", from = null, prev = null;
+			for (const c of l.chars) {
+				if (prev) {
+					const d = c.x1 - prev.x2;
+					if (d > GAP) { cells.push({ text: cur.trim(), x: from }); cur = ""; from = null; }
+					else if (d > SPACE) cur += " ";
+				}
+				if (from === null) from = c.x1;
+				cur += c.ch;
+				prev = c;
+			}
+			if (cur.trim()) cells.push({ text: cur.trim(), x: from });
+			if (cells.length) rows.push(cells);
+		}
+		// 3. Colunas: junta os inicios de celula parecidos
+		const starts = [];
+		for (const r of rows) for (const c of r) {
+			const s = starts.find(s => Math.abs(s.x - c.x) < h * 1.5);
+			if (s) { s.n++; s.x = (s.x * (s.n - 1) + c.x) / s.n; }
+			else starts.push({ x: c.x, n: 1 });
+		}
+		starts.sort((a, b) => a.x - b.x);
+		const colOf = c => {
+			let k = 0;
+			for (let i = 1; i < starts.length; i++) if (Math.abs(starts[i].x - c.x) < Math.abs(starts[k].x - c.x)) k = i;
+			return k;
+		};
+		const table = rows.map(r => {
+			const out = new Array(starts.length).fill("");
+			for (const c of r) { const k = colOf(c); out[k] = out[k] ? out[k] + " " + c.text : c.text; }
+			return out;
+		});
+		// 4. Linha de continuacao (poucas celulas, sem numeros): junta a de cima
+		const merged = [];
+		for (const r of table) {
+			const filled = r.filter(Boolean).length;
+			const prev = merged[merged.length - 1];
+			if (prev && filled <= Math.max(1, Math.ceil(r.length / 4)) && !r.some(c => /\d/.test(c))) {
+				r.forEach((c, i) => { if (c) prev[i] = (prev[i] ? prev[i] + " " : "") + c; });
+				continue;
+			}
+			merged.push(r.slice());
+		}
+		return { rows: merged, cols: starts.length };
+	}
+
+	/** Tabela em Markdown (a primeira fila e o cabecalho). */
+	function gridToMarkdown(rows) {
+		if (!rows || !rows.length) return "";
+		const n = Math.max(...rows.map(r => r.length));
+		const line = r => "| " + Array.from({ length: n }, (_, i) => String(r[i] || "").replace(/\|/g, "\\|")).join(" | ") + " |";
+		return [line(rows[0]), "|" + " --- |".repeat(n), ...rows.slice(1).map(line)].join("\n");
+	}
+
+	/**
+	 * Tabelas e figuras numeradas de um documento, pela legenda. content = blocos da SDT, pela ordem do
+	 * documento. Cada legenda ("Table 5", "Figure 6") fica com o bloco vizinho (table ou image) que lhe
+	 * pertence. Uma tabela desenhada no PDF vem como image: sem texto, marcada com `drawn`.
+	 */
+	function sdtItems(content) {
+		const list = Array.isArray(content) ? content : [];
+		const out = [];
+		list.forEach((node, i) => {
+			if (!node || node.type !== "caption") return;
+			const text = sdtText(node).replace(/\s+/g, " ").trim();
+			const m = text.match(SDT_CAPTION);
+			if (!m) return;
+			const rect = sdtRect(node);
+			if (!rect) return;
+			const kind = /^(t|q)/i.test(m[1]) ? "table" : "figure";
+			// O bloco da legenda: logo a seguir, ou logo antes (as figuras costumam ter a legenda por baixo)
+			let block = null;
+			for (const k of [i + 1, i - 1, i + 2, i - 2]) {
+				const b = list[k];
+				if (!b || (b.type !== "table" && b.type !== "image")) continue;
+				const r = sdtRect(b);
+				if (!r || r.page !== rect.page) continue;
+				// Nunca o bloco de outra legenda mais perto
+				const other = list.findIndex((c, j) => c && c.type === "caption" && j !== i && Math.abs(j - k) < Math.abs(i - k));
+				if (other >= 0) continue;
+				block = b;
+				break;
+			}
+			const chars = block && block.type === "table" ? sdtChars(block) : [];
+			const g = chars.length ? sdtGrid(chars) : { rows: [], cols: 0 };
+			out.push({
+				kind,
+				num: m[2],
+				label: m[1].replace(/\.$/, "") + " " + m[2],
+				caption: text.slice(0, 400),
+				page: rect.page,
+				box: block ? sdtRect(block) : rect,
+				rows: g.rows,
+				cols: g.cols,
+				// Sem texto para ler: tabela desenhada no PDF, ou figura
+				drawn: kind === "table" && g.rows.length < 2,
+			});
+		});
+		// A mesma tabela citada duas vezes: fica a que tem mais filas
+		const best = {};
+		for (const it of out) {
+			const k = it.kind + String(it.num).toLowerCase();
+			if (!best[k] || it.rows.length > best[k].rows.length) best[k] = it;
+		}
+		return Object.values(best);
+	}
+
+	/** Pedido para explicar uma tabela que ja vem do PDF (a IA nao a reescreve). */
+	function sdtTablePrompt(item, docId) {
+		const where = `${docId}:p${item.page}`;
+		return `A tabela «${item.label}» da pagina ${item.page} do documento ${docId} foi lida diretamente do PDF pelo assistente.\n`
+			+ `Legenda no PDF: «${item.caption}»\n`
+			+ "<tabela>\n" + gridToMarkdown(item.rows).slice(0, 12000) + "\n</tabela>\n"
+			+ "NAO voltes a escrever a tabela nem repitas as linhas todas: quem le ja a tem a vista.\n"
+			+ "1. ## O que mostra: duas a quatro frases com o essencial (o que esta a ser comparado, as unidades, "
+			+ "os valores que se destacam). Podes citar valores da tabela.\n"
+			+ `2. ## Como os autores a usam: o que concluem dela, com a citacao da pagina onde a discutem, por exemplo [${where} «5 a 15 palavras exatas»]. `
+			+ "Se o documento nao a discutir, escreve que o texto nao a comenta.\n"
+			+ "3. ## A ter em conta: uma frase sobre limites de leitura da tabela (unidades, amostra, o que nao mostra), so se o documento os referir.\n"
+			+ "Regra das marcas: o que vem do texto do documento leva citacao com a frase de base. Os valores que leres na tabela "
+			+ "acima nao precisam de citacao: ja vieram do PDF. Nunca inventes valores.";
+	}
+
 	// Códigos das operações do pdf.js (iguais desde a versão 2; o leitor do Zotero pode dar os seus)
 	const PDF_OPS = { save: 10, restore: 11, transform: 12, paintImageMaskXObject: 83, paintImageXObject: 85, paintInlineImageXObject: 86, constructPath: 91 };
 
@@ -3797,7 +4010,8 @@ var ZIALib = (function () {
 		parseCiteGroup, citeLabel, citesToText, CITE_GROUP_RE, SIMPLE_ACTIONS,
 		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, widePassage, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
-		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, unwrapPdf, figureSandboxSource, figurePrompt, figureVerifyText, cellNumberIn, figureCells, stripTableCites, FIGREAD_RE,
+		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, unwrapPdf, figureSandboxSource,
+		sdtText, sdtRect, sdtChars, sdtGrid, sdtItems, gridToMarkdown, sdtTablePrompt, SDT_CAPTION, figurePrompt, figureVerifyText, cellNumberIn, figureCells, stripTableCites, FIGREAD_RE,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
 		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, fixCitePages, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};

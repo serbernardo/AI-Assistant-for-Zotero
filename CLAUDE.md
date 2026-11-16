@@ -253,49 +253,28 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   estiver recolhida e desliza ate ela (`sidenav.container.scrollToPane(sectionPaneID)`, o paneID completo vem do
   bootstrap). Espera ate 5 s que a vista apareca. Antes so dizia "Abre o Assistente IA no painel da direita".
   Confirmado contra o codigo fonte do Zotero (reader.js, contextPane.js, itemPaneContainerBase.mjs), nao num Zotero a correr.
-- **Figuras e tabelas (EM PAUSA, a pedido: "ainda nao esta bem"):** escondidas pela pref `figures.enabled` (por omissao desligada:
-  sem a acao no separador Ler e sem "Analisar esta tabela" no leitor). Ligar no Config Editor para testar. Por resolver: com o Zotero a
-  abrir com o PDF ja aberto num separador, o separador vem "reader-unloaded" (tabs.js, so carrega quando e escolhido) e `_readerFor`
-  nao o encontra, por isso a galeria diz que o PDF tem de estar aberto (`Zotero_Tabs.getTabIDByItemID` ve o separador).
-  **Estrategia decidida (a pedido, ainda por implementar): so tabelas, so no Zotero 10 ou mais recente, sobre o extrator do proprio Zotero.**
-  `Zotero.SDT.getReader(itemID)` (chrome/content/zotero/xpcom/sdt.js, com cache em disco) devolve o pack ja lido, com `materialize()`,
-  `getBlocksForPage(p)` e `getBlocks(a, b)`: blocos `table`, `image`, `caption`, `paragraph`... cada um com `anchor.pageRects`
-  ([pageIndex, x0, y0, x1, y1]) e, nos nos de texto, `anchor.textMap`. NAO precisa do PDF aberto (foi a causa de todas as falhas
-  das versoes 1.0.27.1 a .5). Confirmado nas etiquetas do Zotero: nao existe na 8.0.4 nem na 9.0.6, existe na 10.0.9.
-  Medido aqui com o document-worker real (`tests/harness/figuras/run_sdt.mjs`), 3 artigos, 1 a 3 s por artigo:
-  - Regioes e legendas: fiaveis. Li et al. 6 tabelas + 7 imagens + 13 legendas; Sourri 4 imagens + 6 legendas; IEEE 21 imagens + 21 legendas.
-  - O bloco `table` NAO e uma grelha: e texto corrido com as posicoes dos caracteres. A grelha tem de ser reconstruida (logica pura).
-    `parseTextMap` + `reconstructCharPositions` (structured-document-text/src/pdf/decode.js) dao a posicao de cada caractere.
-    REGRA: as posicoes correspondem aos caracteres SEM espacos (os espacos sao postos pelo extrator). Em 708 de 749 nos bateu certo,
-    nos outros 41 a diferenca era de 1. Com essa correcao, agrupar por y e cortar nos intervalos > 0,9 do corpo da letra da a Tabela 5
-    de Li et al. certa, valor a valor, com as colunas alinhadas por x e as filas de continuacao juntas a de cima.
-  - As tabelas DESENHADAS vem como `image` (as 9 do artigo da IEEE): nessas nao ha texto nenhum para verificar. Dos 14 tabelas reais
-    dos 3 artigos, 9 sao desenhadas. A promessa "valores confirmados no PDF" so vale em parte dos artigos: dize-lo na interface.
-  - O extrator parte listas de nomenclatura em muitos blocos `table` (17 no Sourri, um por linha) e nao numera nada: a lista para o
-    utilizador tem de vir das legendas (`caption` com /^(Table|Tabela|Figure|Fig)\s*\d+/), nao dos blocos `table`.
-  - Emparelhar legenda e bloco pela ordem do `content` (lista linear), nao pela pagina: ao emparelhar pela pagina saiu FIGURE 10 duas
-    vezes e FIGURE 11 nenhuma.
-  Passos: (1) reconstrucao da grelha em `lib.js` com testes sobre blocos SDT guardados; (2) lista das tabelas pelas legendas, no painel;
-  (3) a tabela vem do PDF e a IA so explica, com o ✓ a dizer "este valor esta nesta linha da tabela"; (4) so entao voltar as figuras.
-  Fraqueza do que esta feito e que motivou a mudanca: o ✓ das celulas so confirma que o numero existe algures na pagina, nao que esta
-  naquela linha (dois valores trocados entre linhas ficam ambos a verde).
-  Testado no Zotero do utilizador ate a 1.0.27.5: a Tabela 2 de Papadoudis et al. foi encontrada e os 6 valores confirmados.
-  Historia: acao `figuras` (grupo `compreender`, `local: true`: nao e um pedido a IA,
-  abre a galeria `_figuresEl`/`_fillFigures` no separador Ler do Avancado; so no painel). A deteccao corre no pdf.js do leitor do
-  Zotero (`core.findFigures`, `_pdfFor`: `reader._internalReader._primaryView._iframeWindow.wrappedJSObject.PDFViewerApplication.pdfDocument`,
-  o codigo das figuras corre DENTRO do leitor numa sandbox com a janela dele como prototipo, `figureSandboxSource`, `Cu.Sandbox(win, { sandboxPrototype: win, wantXrays: false })`, e so devolve JSON e data URLs: na 1.0.27.1 e .2 os objetos do pdf.js chegavam ao addon sem os metodos, "pg.getViewport is not a function", e a galeria dizia que nao havia figuras), por isso o PDF tem de estar aberto (botao "Abrir o PDF"). Logica pura em
-  `lib.js`: `pageLayout` (texto com posicoes, caixas das imagens e blocos de desenho `clusterBlocks`), `detectFigures` (legendas "Figure 3",
-  "TABLE 2.", "Fig. 4", referencias no texto excluidas, figuras e tabelas nas duas colunas, tabelas desenhadas sem texto `drawn`, filas de
-  texto `rows`), `renderRegion` (so a regiao, escala 2, JPEG). Medido em 3 artigos (Oxford e IEEE, `tests/harness/figuras/run_figuras.js`):
-  37 de 37, 0 falsas. Clicar numa miniatura (`_analyseFigure`) so analisa (a pedido: abrir o PDF ao mesmo tempo era estranho; a resposta tem "Abrir o PDF nesta pagina") e faz `_ask` com `figure`: tabela com texto vai so em
-  texto (`figurePrompt`, `<tabela>` fila a fila, funciona no IAEdu); figuras e tabelas desenhadas levam a imagem (`images` em `runEngine`:
-  Gemini `inlineData`, Claude API bloco image, ChatGPT API image_url, Codex `--image=`, Claude Code `--input-format stream-json`; IAEdu
-  recusa com `err.noImages`). Marca `[Figura]` = "lido na figura" (`.zia-fig-badge`, `tidyMarkers`): essas linhas e as tabelas lidas na
-  imagem nao entram no `verifyAnswer` (`figureVerifyText`). Cada celula numerica e procurada no texto da pagina (`cellNumberIn`): ✓, ✗ ou ≈
-  lido na imagem (`_markFigureCells`), contagem em `m.figure.cells`. Excel com a coluna "Verificado no PDF" (`tablesToCSV` com
-  `cellCheck`). No leitor, uma selecao dentro de uma tabela muda "Explicar isto" para "Analisar esta tabela" (`tableAt`,
-  `tableForSelection`, `analyseFromReader`). `m.figure` (com o recorte e o texto da pagina) fica no historico. Recorte desenhado a 3x, "Ampliar" (ou clicar na imagem) mostra-o a 1,5x o PDF a deslizar (`m.figZoom`), miniaturas a 1,4x. Intervalos nas celulas ("[53.2–64.1]") contam se os dois extremos estiverem na pagina. A IA punha citacoes com "[...]" dentro das celulas, que ficavam em texto tecnico: o pedido proibe-as e `stripTableCites` tira-as. Ainda nao testado num Zotero
-  real: so com pdf.js no Chromium e o painel simulado.
+- **Tabelas (1.0.28, Beta):** acao `figuras` (nome "Tabelas"/"Tables", grupo `compreender`, `local: true`: nao e um pedido a IA,
+  abre a lista `_tablesEl`/`_fillTables` no separador Ler do Avancado, so no painel). Aparece onde o Zotero sabe ler a estrutura dos
+  documentos (`core.hasSDT()`, Zotero 10 ou mais recente; a pref `figures.enabled` = false esconde-a). Marca Beta no botao e na lista
+  (`.zia-beta`, `tab.beta`, `tab.beta.note`).
+  **A tabela vem do PDF, a IA so explica** (a pedido). `core.sdtItems` usa `Zotero.SDT.getReader(itemID).materialize()` (Zotero
+  guarda em cache, nao precisa do PDF aberto): blocos `caption`, `table`, `image` com `anchor.pageRects` ([pageIndex, x0, y0, x1, y1])
+  e, nos nos de texto, `anchor.textMap`. Em `lib.js`: `sdtItems` (legendas /^(Table|Tabela|Figure|Fig)\s*N/, emparelhadas com o bloco
+  vizinho pela ordem do documento, nunca pela pagina), `sdtChars` (posicao de cada caractere; REGRA: as posicoes correspondem aos
+  caracteres SEM espacos, os espacos sao postos pelo extrator) e `sdtGrid` (filas por y, celulas nos intervalos > 0,9 do corpo da
+  letra, colunas alinhadas pelo inicio, filas de continuacao juntas a de cima). `sdtTablePrompt` manda explicar e proibe reescrever a
+  tabela. A resposta mostra a tabela do addon (`_tableHeadEl`, "✓ Tabela lida do PDF, valor a valor") e o Excel exporta essa, nao o que
+  a IA escreveu. `m.table` fica no historico.
+  Medido com o document-worker real (`tests/harness/figuras/run_sdt.mjs`, 3 artigos, 1 a 3 s cada): Tabela 3 e Tabela 5 de Li et al.
+  saem exatas, valor a valor (testes unitarios contra `tests/harness/figuras/sdt_amostra.json`, blocos SDT reais).
+  **Tabelas desenhadas** (sem texto no PDF) vem como `image`: marcadas `drawn`, aparecem na lista com "desenho no PDF" e clicar explica
+  que nao ha valores para ler, sem gastar pedido. No artigo da IEEE as 9 tabelas sao assim (9 de 14 tabelas dos 3 artigos medidos).
+  Figuras ficam para depois (fase 2): o envio de imagens aos motores ja esta feito e testado (`images` em `runEngine`: Gemini
+  `inlineData`, Claude API bloco image, ChatGPT API image_url, Codex `--image=`, Claude Code `--input-format stream-json`; IAEdu
+  recusa com `err.noImages`), e `detectFigures`/`pageLayout`/`renderRegion`/`figureSandboxSource` continuam em `lib.js` para essa fase.
+  **Historia (1.0.27.1 a .5, retirado):** a primeira versao lia o pdf.js do leitor do Zotero e exigia o PDF aberto. Falhou 5 vezes
+  seguidas no Zotero real ("pg.getViewport is not a function", separadores "reader-unloaded" que so carregam quando escolhidos) e o ✓
+  das celulas so confirmava que o numero existia algures na pagina, nao naquela linha. Dai a mudanca para o extrator do proprio Zotero.
 - **[Declarado] saiu, [Inferencia] e uma etiqueta:** o que os autores escrevem leva so a citacao. A
   IA marca com [Inferencia] as ligacoes que ela faz, e o painel mostra a etiqueta cinzenta
   "interpretacao da IA" (`textToDOM`, `.zia-ia-badge`). Notas e copia: "(interpretacao da IA)"
@@ -806,7 +785,7 @@ contra servidores e programas simulados).
 python build.py
 ```
 
-Gera `dist/assistente-ia-1.0.27.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
+Gera `dist/assistente-ia-1.0.28.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
 **Ferramentas -> Plugins -> Install Plugin From File...**
 
 ## Licenca e documentacao publica

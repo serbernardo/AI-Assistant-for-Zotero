@@ -626,7 +626,7 @@ var ZoteroIA = {
 		let active = Array.isArray(data) ? 0 : ((data && data.active) || 0);
 		try {
 			const keep = ["role", "display", "promptText", "text", "actionID", "actionLabel", "engine", "model",
-				"heading", "error", "errorKind", "errorDetail", "asked", "time", "docIDs", "usageNote", "noteID", "check", "stances", "warnings", "pageOffsets", "literalIds", "figure"];
+				"heading", "error", "errorKind", "errorDetail", "asked", "time", "docIDs", "usageNote", "noteID", "check", "stances", "warnings", "pageOffsets", "literalIds", "table"];
 			const clean = msgs => msgs.filter(m => !m.pending).slice(-this.HISTORY_MAX)
 				.map(m => Object.fromEntries(keep.filter(k => m[k] != null).map(k => [k, m[k]])));
 			const conversations = [];
@@ -2093,113 +2093,31 @@ var ZoteroIA = {
 	// ------------------------------------------------------------------
 
 	// ------------------------------------------------------------------
-	// Figuras e tabelas: lidas com o pdf.js do leitor do Zotero (o PDF tem de estar aberto)
+	// Tabelas: pela estrutura do documento que o proprio Zotero extrai (Zotero 10 ou mais recente).
+	// Nao precisa do PDF aberto e o Zotero guarda o resultado em cache.
 	// ------------------------------------------------------------------
 
-	_readerFor(attachmentID) {
-		try { return (Zotero.Reader._readers || []).find(r => r.itemID === attachmentID) || null; }
-		catch (e) { return null; }
+	/** O Zotero desta versao sabe ler a estrutura dos documentos? */
+	hasSDT() {
+		return !!(typeof Zotero !== "undefined" && Zotero.SDT && typeof Zotero.SDT.getReader === "function");
 	},
 
 	/**
-	 * O leitor aberto com este PDF (abre-o se open), com o código das figuras a correr dentro dele (sandbox com a janela
-	 * do leitor como protótipo, sem filtros). Devolve { reader, layout(p), render(p, box, scale), pages() }, que só trocam
-	 * texto e imagens com o addon. null se o PDF não estiver aberto.
+	 * Tabelas e figuras numeradas de um PDF, pela legenda, com as filas e colunas das tabelas lidas do
+	 * proprio PDF. Fica em cache por anexo. null quando o Zotero nao conseguiu ler a estrutura.
 	 */
-	async _pdfFor(attachmentID, open) {
-		let reader = this._readerFor(attachmentID);
-		if (!reader && open) {
-			await Zotero.Reader.open(attachmentID);
-			reader = this._readerFor(attachmentID);
-		}
+	async sdtItems(attachmentID, { onProgress = null } = {}) {
+		this._sdtCache = this._sdtCache || {};
+		if (this._sdtCache[attachmentID]) return this._sdtCache[attachmentID];
+		if (!this.hasSDT()) throw this.error("sdt", this.t("tab.needZotero10"));
+		let reader;
+		try { reader = await Zotero.SDT.getReader(attachmentID, { isPriority: true, onProgress }); }
+		catch (e) { throw this.error("sdt", e.message || String(e)); }
 		if (!reader) return null;
-		const Cu = Components.utils;
-		let lastErr = null;
-		for (let i = 0; i < 150; i++) {
-			try {
-				const ir = reader._internalReader;
-				const view = ir && (ir._primaryView || ir._lastView);
-				const win = view && view._iframeWindow;
-				if (win) {
-					// Uma sandbox por janela do leitor (fica guardada na própria janela)
-					this._figSandboxes = this._figSandboxes || new WeakMap();
-					let sb = this._figSandboxes.get(win);
-					if (!sb) {
-						sb = Cu.Sandbox(win, { sandboxPrototype: win, wantXrays: false, sameZoneAs: win, sandboxName: "Assistente IA: figuras" });
-						Cu.evalInSandbox(this.lib.figureSandboxSource(), sb);
-						this._figSandboxes.set(win, sb);
-					}
-					const api = Cu.waiveXrays(sb).ZIAFig;
-					if (api && api.ready()) {
-						return {
-							reader,
-							pages: () => Number(api.pages()),
-							layout: async p => JSON.parse(String(await api.layout(p))),
-							render: async (p, box, scale) => String(await api.render(p, JSON.stringify(box), scale)),
-						};
-					}
-				}
-			}
-			catch (e) { lastErr = e; }
-			await Zotero.Promise.delay(100);
-		}
-		throw this.error("figures", lastErr ? (lastErr.message || String(lastErr)) : "PDF.js");
-	},
-
-	/**
-	 * Procura as figuras e tabelas de um PDF aberto. Cada uma com a página, a região, a legenda, as filas de texto
-	 * (tabelas) e uma miniatura. null se o PDF não estiver aberto (e open for falso). Fica em cache por PDF.
-	 */
-	async findFigures(attachmentID, { open = false, onProgress = null } = {}) {
-		this._figCache = this._figCache || {};
-		if (this._figCache[attachmentID]) return this._figCache[attachmentID];
-		const pdf = await this._pdfFor(attachmentID, open);
-		if (!pdf) return null;
-		const n = pdf.pages();
-		const out = [];
-		let firstErr = null, failed = 0;
-		for (let p = 1; p <= n; p++) {
-			if (onProgress) onProgress(p, n);
-			let figs;
-			try {
-				const lay = await pdf.layout(p);
-				figs = this.lib.detectFigures(lay).map(f => Object.assign(f, { page: p, pageH: lay.H }));
-			}
-			catch (e) {
-				failed++;
-				firstErr = firstErr || e;
-				this.log(`Figuras, página ${p}: ${e}\n${e && e.stack}`);
-				continue;
-			}
-			for (const f of figs) {
-				// A miniatura é um extra: se não se conseguir desenhar, a figura aparece na mesma
-				try { f.thumb = await pdf.render(p, f.box, 1.4); }
-				catch (e) { this.log(`Miniatura, página ${p}: ${e}`); }
-				out.push(f);
-			}
-		}
-		// Nenhuma página lida: é um erro (com a causa), não "sem figuras"; e não fica em cache
-		if (failed === n && firstErr) throw this.error("figures", firstErr.message || String(firstErr));
-		if (!failed) this._figCache[attachmentID] = out;
-		return out;
-	},
-
-	/** Recorte da figura em alta resolução (para a IA e para a resposta). */
-	async renderFigure(attachmentID, fig) {
-		const pdf = await this._pdfFor(attachmentID, true);
-		return pdf.render(fig.page, fig.box, 3);
-	},
-
-	/** Tabela que contém a seleção feita no leitor (rects do Zotero, em pontos do PDF de baixo para cima). */
-	async tableAt(attachmentID, page, rects) {
-		let figs = this._figCache && this._figCache[attachmentID] ? this._figCache[attachmentID].filter(f => f.page === page) : null;
-		if (!figs) {
-			const pdf = await this._pdfFor(attachmentID, false);
-			if (!pdf) return null;
-			const lay = await pdf.layout(page);
-			figs = this.lib.detectFigures(lay).map(f => Object.assign(f, { page, pageH: lay.H }));
-		}
-		return this.lib.tableForSelection(figs, rects) || null;
+		const doc = await reader.materialize();
+		const items = this.lib.sdtItems((doc && doc.content) || []);
+		this._sdtCache[attachmentID] = items;
+		return items;
 	},
 
 	citeHref(doc, page) {
@@ -2308,27 +2226,17 @@ var ZoteroIA = {
 			b.textContent = "✦ " + this.t("reader.explain");
 			b.title = this.t("reader.explain.tip");
 			const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
-			let table = null;
 			b.addEventListener("click", async () => {
-				const ok = await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel, table });
+				const ok = await this.explainSelection({ itemID: reader && reader.itemID, text, page, pageLabel: ann.pageLabel });
 				if (!ok) b.textContent = this.t("reader.explain.noPanel");
 			});
 			append(b);
-			// Seleção dentro de uma tabela: o botão passa a analisar a tabela inteira
-			if (this.pref("figures.enabled") === true && page && reader && reader.itemID && ann.position.rects) {
-				this.tableAt(reader.itemID, page, ann.position.rects).then(tb => {
-					if (!tb || !b.isConnected) return;
-					table = tb;
-					b.textContent = "▦ " + this.t("reader.analyseTable");
-					b.title = this.t("reader.analyseTable.tip");
-				}).catch(e => this.log("Tabela da seleção: " + e));
-			}
 		}
 		catch (e) { this.log("Explicar isto: " + e); }
 	},
 
 	/** Envia o excerto para o painel do artigo (o do lado direito do leitor). Falso se não houver painel aberto. */
-	async explainSelection({ itemID, text, page, pageLabel, table }) {
+	async explainSelection({ itemID, text, page, pageLabel }) {
 		const att = itemID && Zotero.Items.get(itemID);
 		if (!att) return false;
 		const owner = this.conversationItem ? await this.conversationItem(att) : att;
@@ -2345,8 +2253,7 @@ var ZoteroIA = {
 		}
 		if (!view) return false;
 		this.revealSection(view);
-		if (table) await view.analyseFromReader({ item: att, fig: table });
-		else await view.explainExcerpt({ item: att, text, page, pageLabel });
+		await view.explainExcerpt({ item: att, text, page, pageLabel });
 		return true;
 	},
 

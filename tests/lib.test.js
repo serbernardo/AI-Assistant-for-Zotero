@@ -1027,3 +1027,45 @@ test("figuras: intervalos nas células e citações tiradas das tabelas", () => 
 		"| A | [53.2–64.1] |\nFora [D1:p3 «a b c»].");
 	assert.match(L.figurePrompt({ kind: "table", label: "T", caption: "c", page: 1, rows: ["a"], drawn: false }, "D1"), /Não ponhas citações dentro da tabela/);
 });
+
+// ---------- Tabelas pela estrutura do Zotero (SDT) ----------
+
+const SDT = require("./harness/figuras/sdt_amostra.json");
+
+test("SDT: tabelas e figuras pela legenda, com a página certa", () => {
+	const li = L.sdtItems(SDT.li);
+	assert.deepEqual(li.map(x => `${x.kind} ${x.label} p${x.page}`), ["table Table 3 p8", "table Table 5 p9"]);
+	assert.deepEqual(L.sdtItems(SDT.sourri).map(x => `${x.kind} ${x.label} p${x.page}`), ["figure Figure 1 p3"]);
+	// Artigo com as tabelas desenhadas: vêm como imagem, sem texto para ler
+	const ieee = L.sdtItems(SDT.ieee);
+	assert.deepEqual(ieee.map(x => `${x.kind} ${x.label} ${x.drawn ? "desenhada" : "com texto"}`),
+		["figure FIGURE 1 com texto", "table TABLE 6 desenhada", "table TABLE 7 desenhada"]);
+	// Uma legenda sem número não entra (nomenclaturas, abreviaturas)
+	assert.equal(L.sdtItems([{ type: "caption", content: [{ text: "Abbreviations" }], anchor: { pageRects: [[0, 1, 2, 3, 4]] } }]).length, 0);
+	assert.equal(L.sdtItems(null).length, 0);
+});
+
+test("SDT: a tabela vem do PDF, valor a valor", () => {
+	const t5 = L.sdtItems(SDT.li).find(x => x.label === "Table 5");
+	assert.equal(t5.cols, 6);
+	assert.deepEqual(t5.rows[0], ["Model", "MAE (MW)", "RMSE (MW)", "R2", "MAPE (%)", "P (vs. Ours)"]);
+	assert.deepEqual(t5.rows[1], ["SVR [41]", "14.23", "21.46", "0.81", "8.97", ".012"]);
+	assert.deepEqual(t5.rows[8], ["Ours", "8.72", "12.48", "0.93", "5.21", "–"]);
+	assert.equal(t5.rows.length, 9, "cabeçalho e 8 modelos");
+	// Célula partida em duas linhas junta-se, e a coluna vazia fica vazia (não escorrega)
+	const t3 = L.sdtItems(SDT.li).find(x => x.label === "Table 3");
+	assert.deepEqual(t3.rows[0], ["Network layer", "Parameter", "Number", "Value"]);
+	assert.deepEqual(t3.rows[2], ["", "Kernel size", "2", "3"]);
+	assert.deepEqual(t3.rows[6], ["", "Dilations", "3", "1, 2, 4, 8, 16"]);
+	assert.match(L.gridToMarkdown(t5.rows), /^\| Model \| MAE \(MW\).*\n\| --- \|/);
+	assert.equal(L.gridToMarkdown([]), "");
+});
+
+test("SDT: o pedido manda explicar, não reescrever a tabela", () => {
+	const t5 = L.sdtItems(SDT.li).find(x => x.label === "Table 5");
+	const p = L.sdtTablePrompt(t5, "D1");
+	assert.match(p, /<tabela>\n\| Model \|/);
+	assert.match(p, /NAO voltes a escrever a tabela/);
+	assert.match(p, /\[D1:p9 «/);
+	assert.match(p, /nao precisam de citacao/);
+});
