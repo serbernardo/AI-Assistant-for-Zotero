@@ -1113,3 +1113,13 @@ test("SDT: tabela com listas dentro das células (RPA, Table 1)", () => {
 	// da moldura que marcam o fim da fila, por isso ficam separados. Daí a marca de leitura aproximada.
 	assert.deepEqual(g.rows.slice(2).map(r => r[0]), ["Scheduled", "Robots"]);
 });
+
+test("SDT: legendas de anexos e material suplementar (Table A1, Table S2, Tabela 2.1)", () => {
+	const re = L.SDT_CAPTION;
+	assert.equal("Table A1. Search strings".match(re)[2], "A1");
+	assert.equal("Table S2: Extra results".match(re)[2], "S2");
+	assert.equal("Tabela 2.1 - Amostra".match(re)[2], "2.1");
+	assert.equal("Table IV. Results".match(re)[2], "IV");
+	assert.equal("Table 3 Kernel sizes".match(re)[2], "3");
+	assert.equal("Table shows the results".match(re), null);
+});

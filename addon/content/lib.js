@@ -3582,7 +3582,8 @@ var ZIALib = (function () {
 	// Pontos de lista numa coluna propria (as tabelas com listas dentro das celulas)
 	const BULLET_RE = /^[\u2022\u25cf\u25aa\u25e6\u00b7\u2043\u2010-\u2015o*\-]$/;
 
-	const SDT_CAPTION = /^\s*(fig\.?|figs?\.?|figure|figura|table|tabela|tab\.|quadro)\s*(\d+|[ivxIVX]+)\b\s*([.:|\-]?)\s*(.*)$/i;
+	// Tambem anexos e material suplementar: "Table A1", "Table S2", "Tabela 2.1"
+	const SDT_CAPTION = /^\s*(fig\.?|figs?\.?|figure|figura|table|tabela|tab\.|quadro)\s*([A-Z]?\d+(?:\.\d+)?|[ivxIVX]+)\b\s*([.:|\-]?)\s*(.*)$/i;
 
 	/** Texto de um bloco ou no da SDT. */
 	function sdtText(node) {

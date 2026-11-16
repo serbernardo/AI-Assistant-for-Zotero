@@ -278,6 +278,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   da as linhas da moldura, por isso duas linhas que comecam as duas por maiuscula ("Scheduled" / "Robots") ficam separadas:
   nesses casos `sdtGrid` devolve `approx` e a marca passa de "✓ valor a valor" para "≈ leitura aproximada, confirma no PDF"
   (`tab.fromPdf.approx`), tambem na lista. Teste com a geometria de uma tabela com listas dentro das celulas.
+  **1.0.30:** legendas de anexos e suplementares ("Table A1", "Table S2", "Tabela 2.1") entram na lista; legenda sem bloco
+  junto dela fica "nao localizada" (`lost`, `tab.lost.*`) e nao "desenho no PDF"; a tabela pode estar na pagina ao lado da legenda
+  se o bloco vier logo antes ou depois. Segunda leitura do sentido: botao "parar" ao lado de "a confirmar o sentido…"
+  (`_meaningCtrls`, `check.stop`), e o resultado guarda-se na conversa onde a resposta nasceu mesmo que se mude de artigo.
+  Decisao: as filas das tabelas com molduras ficam com a marca "≈ leitura aproximada" (opcao A).
   **Historia (1.0.27.1 a .5, retirado):** a primeira versao lia o pdf.js do leitor do Zotero e exigia o PDF aberto. Falhou 5 vezes
   seguidas no Zotero real ("pg.getViewport is not a function", separadores "reader-unloaded" que so carregam quando escolhidos) e o ✓
   das celulas so confirmava que o numero existia algures na pagina, nao naquela linha. Dai a mudanca para o extrator do proprio Zotero.
@@ -796,7 +801,7 @@ contra servidores e programas simulados).
 python build.py
 ```
 
-Gera `dist/assistente-ia-1.0.29.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
+Gera `dist/assistente-ia-1.0.30.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
 **Ferramentas -> Plugins -> Install Plugin From File...**
 
 ## Licenca e documentacao publica

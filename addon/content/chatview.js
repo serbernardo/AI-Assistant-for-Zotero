@@ -327,7 +327,7 @@ var ZIAChatView = class {
 			top.appendChild(this._el("span", "zia-tab-name", this._tableName(it)));
 			top.appendChild(this._el("span", "zia-fig-page", "p. " + this._tablePage(it)));
 			row.appendChild(top);
-			row.appendChild(this._el("div", "zia-fig-cap", it.caption.replace(/^\s*\S+\s*[\dIVXivx]+\s*[.:|]?\s*/, "")));
+			row.appendChild(this._el("div", "zia-fig-cap", it.caption.replace(/^\s*\S+\s*(?:[A-Za-z]?\d+(?:\.\d+)?|[IVXivx]+)\s*[.:|]?\s*/, "")));
 			row.appendChild(this._el("div", "zia-tab-size", it.lost ? this.T("tab.lost.short") : it.drawn ? this.T("tab.drawn.short")
 				: this.T("tab.size", { r: it.rows.length - 1, c: it.cols }) + (it.approx ? " · " + this.T("tab.approx.short") : "")));
 			ul.appendChild(row);
@@ -2991,13 +2991,17 @@ var ZIAChatView = class {
 			.slice(0, max);
 		if (!todo.length) return;
 		const redraw = () => { try { if (m.el && m.el.isConnected) this._renderMessage(m); } catch (e) { this.core.log("Sentido: " + e); } };
+		// Pode ser parada com o botao ao lado de "a confirmar o sentido…" (nao com a mudanca de artigo)
+		const ctrl = new this.win.AbortController();
+		this._meaningCtrls = this._meaningCtrls || new WeakMap();
+		this._meaningCtrls.set(m, ctrl);
 		m.meaningRunning = true;
 		redraw();
 		try {
-			for (let i = 0; i < todo.length; i += this.L.MEANING_BATCH) {
+			for (let i = 0; i < todo.length && !ctrl.signal.aborted; i += this.L.MEANING_BATCH) {
 				const chunk = todo.slice(i, i + this.L.MEANING_BATCH);
 				const { system, prompt } = this.L.meaningBatchPrompt(chunk);
-				const r = await this.core.runEngine(engine, { system, prompt, win: this.win });
+				const r = await this.core.runEngine(engine, { system, prompt, win: this.win, signal: ctrl.signal });
 				const v = this.L.parseMeaningBatch(r.text, chunk.length);
 				chunk.forEach((p, j) => {
 					if (!v[j]) return;
@@ -3012,6 +3016,7 @@ var ZIAChatView = class {
 		catch (e) { this.core.log("Sentido: " + (e && e.message || e)); }
 		finally {
 			m.meaningRunning = false;
+			this._meaningCtrls.delete(m);
 			redraw();
 			if (home.state === this.state) this._persist();
 			else if (home.key && this.core.saveConversation) this.core.saveConversation(home.key, { convs: home.state.convs, active: home.state.active });
@@ -3858,6 +3863,8 @@ var ZIAChatView = class {
 		if (m.meaningRunning) {
 			if (bits.length) box.appendChild(this.doc.createTextNode(" · "));
 			box.appendChild(this._el("span", "zia-check-running", this.T("check.running")));
+			const ctrl = this._meaningCtrls && this._meaningCtrls.get(m);
+			if (ctrl) box.appendChild(this._button(this.T("check.stop"), "zia-check-go zia-check-stop", () => ctrl.abort(), this.T("check.stop.tip")));
 		}
 		let list = null;
 		if (review) {
