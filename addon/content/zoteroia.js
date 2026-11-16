@@ -627,7 +627,7 @@ var ZoteroIA = {
 		let active = Array.isArray(data) ? 0 : ((data && data.active) || 0);
 		try {
 			const keep = ["role", "display", "promptText", "text", "actionID", "actionLabel", "engine", "model",
-				"heading", "error", "errorKind", "errorDetail", "asked", "time", "docIDs", "usageNote", "noteID", "check", "stances", "warnings", "pageOffsets", "literalIds", "table"];
+				"heading", "error", "errorKind", "errorDetail", "asked", "time", "docIDs", "usageNote", "noteID", "check", "stances", "warnings", "pageOffsets", "literalIds"];
 			const clean = msgs => msgs.filter(m => !m.pending).slice(-this.HISTORY_MAX)
 				.map(m => Object.fromEntries(keep.filter(k => m[k] != null).map(k => [k, m[k]])));
 			const conversations = [];
@@ -2099,28 +2099,6 @@ var ZoteroIA = {
 	// ------------------------------------------------------------------
 
 	/** O Zotero desta versao sabe ler a estrutura dos documentos? */
-	hasSDT() {
-		return !!(typeof Zotero !== "undefined" && Zotero.SDT && typeof Zotero.SDT.getReader === "function");
-	},
-
-	/**
-	 * Tabelas e figuras numeradas de um PDF, pela legenda, com as filas e colunas das tabelas lidas do
-	 * proprio PDF. Fica em cache por anexo. null quando o Zotero nao conseguiu ler a estrutura.
-	 */
-	async sdtItems(attachmentID, { onProgress = null } = {}) {
-		this._sdtCache = this._sdtCache || {};
-		if (this._sdtCache[attachmentID]) return this._sdtCache[attachmentID];
-		if (!this.hasSDT()) throw this.error("sdt", this.t("tab.needZotero10"));
-		let reader;
-		try { reader = await Zotero.SDT.getReader(attachmentID, { isPriority: true, onProgress }); }
-		catch (e) { throw this.error("sdt", e.message || String(e)); }
-		if (!reader) return null;
-		const doc = await reader.materialize();
-		const items = this.lib.sdtItems((doc && doc.content) || []);
-		this._sdtCache[attachmentID] = items;
-		return items;
-	},
-
 	citeHref(doc, page) {
 		if (!doc || !doc.attachmentKey) return null;
 		let prefix = "library";

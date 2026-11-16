@@ -131,7 +131,7 @@ async function main() {
 		assert.equal(await page.locator('button[data-action="esquema"]').count(), 1, "as outras ações ficam no Avançado");
 		// Ler e extrair: os dois separadores juntaram-se (a pedido)
 		assert.deepEqual(await page.$$eval(".zia-action", bs => bs.map(b => b.dataset.action)),
-			["pontos", "esquema", "figuras", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
+			["pontos", "esquema", "ficha", "excertos", "etiquetas"], "um só separador para ler e extrair");
 		assert.deepEqual(await page.$$eval(".zia-tab", bs => bs.map(b => b.textContent)), ["Ler", "Avaliar", "Investigar", "Pers."]);
 		await page.screenshot({ path: path.join(OUT, "ui_painel_vazio.png") });
 		// as perguntas de exemplo estão em Pers.
@@ -1614,77 +1614,6 @@ async function main() {
 		console.log("OK painel: citação com autor institucional comprido cabe no painel");
 	}
 
-	// Tabelas (Beta): lista pelas legendas, tabela lida do PDF na resposta, Excel com a tabela do PDF,
-	// tabela desenhada avisa, e sem o Zotero 10 explica porquê
-	{
-		const page = await open("?mode=section", { width: 420, height: 1100 });
-		await page.evaluate(async () => {
-			const V = window.paper("Wind power forecasting", 2026, ["Li"], "WPDF", [
-				"Introduction. " + "Texto. ".repeat(30),
-				"Results. The proposed model performs best, as shown in Table 5. " + "Texto. ".repeat(20),
-			]);
-			await view.showItem(V);
-			window.sdtCalls = 0;
-			view.core.sdtItems = async (id, o) => {
-				window.sdtCalls++;
-				if (o && o.onProgress) o.onProgress(40);
-				return [
-					{ kind: "table", num: "5", label: "Table 5", caption: "Table 5 Comparison of prediction performance", page: 2, drawn: false, cols: 3,
-						rows: [["Model", "MAE (MW)", "R2"], ["SVR", "14.23", "0.81"], ["Ours", "8.72", "0.93"]] },
-					{ kind: "table", num: "6", label: "Table 6", caption: "Table 6 Drawn in the PDF", page: 2, drawn: true, cols: 0, rows: [] },
-				];
-			};
-			window.opened.length = 0;
-			window.MOCK.answer = "## O que mostra\nO modelo proposto tem o erro mais baixo e o R² mais alto.\n\n## Como os autores a usam\nOs autores concluem que o modelo combinado é melhor [D1:p2 «The proposed model performs best»].";
-		});
-		await tab(page, "compreender");
-		assert.equal(await page.textContent('.zia-action[data-action="figuras"]'), "TabelasBeta", "a ação diz que está em Beta");
-		await page.click('.zia-action[data-action="figuras"]');
-		await page.waitForSelector(".zia-tab-row");
-		assert.equal(await page.textContent(".zia-figs-title"), "2 tabelas neste artigo");
-		assert.deepEqual(await page.$$eval(".zia-tab-size", cs => cs.map(c => c.textContent)), ["2 linhas · 3 colunas", "desenho no PDF"]);
-		// Tabela desenhada: não gasta pedido, explica porquê
-		await page.evaluate(() => { window.engineCalls = 0; });
-		await page.click(".zia-tab-row >> nth=1");
-		assert.match(await page.textContent(".zia-status"), /é um desenho no PDF/);
-		assert.equal(await page.evaluate(() => window.engineCalls), 0);
-		// Tabela com texto: a tabela vai no pedido e a IA é mandada não a reescrever
-		await page.click(".zia-tab-row >> nth=0");
-		await page.waitForFunction(() => !document.querySelector(".zia-send.zia-stop") && document.querySelector(".zia-tab-pdf"));
-		const prompt = await page.evaluate(() => window.lastPrompt);
-		assert.match(prompt, /<tabela>\n\| Model \| MAE \(MW\) \| R2 \|/, "a tabela lida do PDF vai no pedido");
-		assert.match(prompt, /NAO voltes a escrever a tabela/);
-		assert.equal(await page.evaluate(() => window.lastImages), null, "sem imagens");
-		const msg = page.locator(".zia-msg-assistant >> nth=0");
-		assert.equal(await msg.locator(".zia-fig-badge-box").textContent(), "✓ Tabela lida do PDF, valor a valor");
-		assert.deepEqual(await msg.locator(".zia-tab-pdf td").evaluateAll(ts => ts.map(t => t.textContent)), ["SVR", "14.23", "0.81", "Ours", "8.72", "0.93"]);
-		assert.equal(await page.evaluate(() => window.sdtCalls), 1, "lê a estrutura uma só vez por PDF");
-		// Com separadores de conversa: o título da tabela não fica por cima da legenda nem de "Abrir o PDF"
-		await page.evaluate(() => {
-			view.state.convs.push([]);
-			const m = view.state.messages.find(x => x.table);
-			view._renderMessage(m);
-		});
-		const boxes = await msg.evaluate(el => {
-			const r = s => { const n = el.querySelector(s); return n && n.getBoundingClientRect(); };
-			return { head: r(".zia-msg-head"), cap: r(".zia-fig-crop-cap"), tabs: document.querySelectorAll(".zia-conv-tab, .zia-convtab").length };
-		});
-		assert.ok(boxes.head && boxes.cap && boxes.head.bottom <= boxes.cap.top + 1, "título da tabela por cima da legenda: " + JSON.stringify(boxes));
-		// Excel: a tabela do PDF, não o que a IA escreveu
-		await msg.locator("button", { hasText: "Exportar para Excel" }).click();
-		assert.match(await page.evaluate(() => window.lastCSV.csv), /Model;MAE \(MW\);R2\r\nSVR;14\.23;0\.81\r\nOurs;8\.72;0\.93/);
-		// Zotero antigo: diz o que falta, sem erro técnico
-		await page.evaluate(() => {
-			view._tab = null;
-			view.core.sdtItems = async () => { const e = new Error("As tabelas precisam do Zotero 10 ou mais recente. Em Ajuda, Acerca do Zotero, vês a tua versão."); e.kind = "sdt"; throw e; };
-		});
-		await page.click('.zia-action[data-action="figuras"]');
-		await page.click('.zia-action[data-action="figuras"]');
-		await page.waitForSelector(".zia-figs-err");
-		assert.match(await page.textContent(".zia-figs-err"), /precisam do Zotero 10/);
-		await page.close();
-		console.log("OK painel: tabelas (Beta, lista pelas legendas, tabela do PDF, Excel, desenhada, Zotero antigo)");
-	}
 
 
 	await browser.close();

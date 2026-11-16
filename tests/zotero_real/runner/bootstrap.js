@@ -50,7 +50,7 @@ async function run() {
 
 	await step("addon carregado", async () => {
 		IA = await until(() => Zotero.ZoteroIA, 20000, "Zotero.ZoteroIA");
-		return "Zotero " + Zotero.version + ", SDT " + (typeof Zotero.SDT);
+		return "Zotero " + Zotero.version + ";
 	});
 	if (!IA) return;
 
@@ -84,13 +84,6 @@ async function run() {
 		const pages = (r && r.pages) || doc.pages || [];
 		assert(pages.length >= 1, "sem páginas");
 		return pages.length + " páginas";
-	});
-
-	await step("tabelas pelo extrator do Zotero (SDT)", async () => {
-		if (!IA.hasSDT()) return "sem Zotero.SDT nesta versão";
-		const items = await IA.sdtItems(att.id);
-		assert(Array.isArray(items), "sdtItems não devolveu lista: " + items);
-		return items.length + " legendas";
 	});
 
 	await step("painel lateral aparece ao escolher o registo", async () => {

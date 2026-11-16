@@ -195,7 +195,6 @@ var ZIAChatView = class {
 			arrow: [["path", { d: "M4 12 12 4M6 4h6v6" }]],
 			star: [["path", { d: "M8 2.5 9.5 5.8l3.6.4-2.7 2.4.8 3.5L8 10.3l-3.2 1.8.8-3.5-2.7-2.4 3.6-.4Z" }]],
 			cols: [["rect", { x: 2, y: 2.5, width: 12, height: 11, rx: 1.6 }], ["path", { d: "M6 2.5v11M10 2.5v11M2 6h12" }]],
-			figure: [["rect", { x: 1.8, y: 2.5, width: 12.4, height: 11, rx: 1.6 }], ["circle", { cx: 5.6, cy: 6.2, r: 1.2 }], ["path", { d: "M2.2 12 6.5 8.4l2.6 2.2 2.2-1.8 2.8 2.6" }]],
 			chat: [["path", { d: "M2.5 4.2c0-1 .8-1.7 1.7-1.7h7.6c1 0 1.7.8 1.7 1.7v5.1c0 1-.8 1.7-1.7 1.7H7l-3 2.5V11h.2c-1 0-1.7-.8-1.7-1.7Z" }], ["path", { d: "M5.5 6.6h5" }]],
 			constellation: [["circle", { cx: 8, cy: 8, r: 2 }], ["circle", { cx: 3, cy: 3.5, r: 1.4 }], ["circle", { cx: 13, cy: 4, r: 1.4 }], ["circle", { cx: 3.5, cy: 12.5, r: 1.4 }], ["circle", { cx: 12.5, cy: 12.5, r: 1.4 }], ["path", { d: "M6.4 6.8 4.1 4.5M9.6 6.8l2.3-2M6.5 9.3l-2 2.2M9.5 9.3l2 2.2" }]],
 			review: [["path", { d: "M4 1.8h5.5L12.5 5v9.2H4Z" }], ["path", { d: "M9.5 1.8V5h3M6 8h4.5M6 10.5h4.5M6 13h2.5" }]],
@@ -216,7 +215,7 @@ var ZIAChatView = class {
 			estudo: ["quiz", "orange"], esquema: ["outline", "slate"], mapa: ["map", "green"], destaques: ["highlight", "yellow"],
 			relevancia: ["target", "teal"], critica: ["shield", "green"], metodos: ["flask", "violet"], conclusoes: ["scale", "amber"],
 			ficha: ["card", "blue"], excertos: ["quote", "rose"], etiquetas: ["tag", "orange"],
-			figuras: ["figure", "teal"], lacunas: ["search", "teal"], referencias: ["book", "violet"], perguntas: ["arrow", "amber"],
+			lacunas: ["search", "teal"], referencias: ["book", "violet"], perguntas: ["arrow", "amber"],
 			compare: ["cols", "blue"], pergunta: ["chat", "teal"], temas: ["constellation", "green"], cmp_sintese: ["review", "violet"],
 		};
 		const [icon, color] = MAP[id] || (String(id).startsWith("custom:") ? ["star", "slate"] : null) || [];
@@ -256,139 +255,6 @@ var ZIAChatView = class {
 		const tip = this.T("dot." + st, { engine: e ? this.core.engineLabel(e) : "" });
 		b.title = tip;
 		b.setAttribute("aria-label", tip);
-	}
-
-	// ---- Tabelas (painel): lista pelas legendas, tabela lida do PDF e explicação da IA
-
-	_toggleTables() {
-		this._tabOpen = !this._tabOpen;
-		this._renderActions();
-		if (this._tabOpen) this._loadTables();
-	}
-
-	/** Procura as tabelas do PDF (uma vez por PDF), pelo extrator do próprio Zotero. */
-	async _loadTables() {
-		const d = this.state.docs[0];
-		if (!d || !d.attachmentID) return;
-		const prev = this._tab;
-		if (prev && prev.id === d.attachmentID && (prev.status === "loading" || prev.status === "done")) return this._fillTables();
-		const st = this._tab = { id: d.attachmentID, status: "loading", list: [], pct: 0 };
-		this._fillTables();
-		try {
-			const items = await this.core.sdtItems(d.attachmentID, { onProgress: p => { st.pct = p; this._fillTables(); } });
-			if (this._tab !== st) return;
-			if (!items) st.status = "unreadable";
-			else { st.status = "done"; st.list = items.filter(it => it.kind === "table"); }
-		}
-		catch (e) {
-			if (this._tab !== st) return;
-			st.status = "error";
-			st.error = e.message || String(e);
-		}
-		this._fillTables();
-	}
-
-	_tablesEl() {
-		const box = this._el("div", "zia-figs");
-		this._tabBox = box;
-		const d = this.state.docs[0];
-		if (this._tab && d && this._tab.id !== d.attachmentID) this._loadTables();
-		this._fillTables();
-		return box;
-	}
-
-	_fillTables() {
-		const box = this._tabBox;
-		const st = this._tab;
-		if (!box || !st) return;
-		while (box.firstChild) box.removeChild(box.firstChild);
-		const head = this._el("div", "zia-figs-head");
-		head.appendChild(this._el("span", "zia-beta", this.T("tab.beta")));
-		head.appendChild(this._el("span", "zia-figs-beta-note", this.T("tab.beta.note")));
-		box.appendChild(head);
-		if (st.status === "loading") {
-			box.appendChild(this._el("div", "zia-figs-status", st.pct ? this.T("tab.reading.pct", { n: Math.round(st.pct) }) : this.T("tab.reading")));
-			return;
-		}
-		if (st.status === "error" || st.status === "unreadable") {
-			box.appendChild(this._el("div", "zia-figs-status zia-figs-err", st.status === "error" ? st.error : this.T("tab.unreadable")));
-			return;
-		}
-		const list = st.list;
-		if (!list.length) {
-			box.appendChild(this._el("div", "zia-figs-status", this.T("tab.none")));
-			return;
-		}
-		box.appendChild(this._el("div", "zia-figs-title", this.T("tab.count", { n: list.length })));
-		const ul = this._el("div", "zia-tab-list");
-		for (const it of list) {
-			const row = this._button("", "zia-tab-row" + (it.drawn ? " zia-tab-drawn" : ""), () => this._analyseTable(it), it.caption);
-			const top = this._el("div", "zia-tab-top");
-			top.appendChild(this._el("span", "zia-tab-name", this._tableName(it)));
-			top.appendChild(this._el("span", "zia-fig-page", "p. " + this._tablePage(it)));
-			row.appendChild(top);
-			row.appendChild(this._el("div", "zia-fig-cap", it.caption.replace(/^\s*\S+\s*(?:[A-Za-z]?\d+(?:\.\d+)?|[IVXivx]+)\s*[.:|]?\s*/, "")));
-			row.appendChild(this._el("div", "zia-tab-size", it.lost ? this.T("tab.lost.short") : it.drawn ? this.T("tab.drawn.short")
-				: this.T("tab.size", { r: it.rows.length - 1, c: it.cols }) + (it.approx ? " · " + this.T("tab.approx.short") : "")));
-			ul.appendChild(row);
-		}
-		box.appendChild(ul);
-	}
-
-	_tableName(it) {
-		return this.T("fig.table") + " " + it.num;
-	}
-
-	/** Número impresso da página (como nas citações). */
-	_tablePage(it) {
-		const d = this.state.docs[0];
-		const off = d && typeof d.pageOffset === "number" ? d.pageOffset : 0;
-		return String(it.page + off);
-	}
-
-	async _analyseTable(it) {
-		if (this.busy) return;
-		const d = this.state.docs[0];
-		if (!d) return;
-		const name = this._tableName(it);
-		const p = this._tablePage(it);
-		if (it.drawn) {
-			// Tabela desenhada no PDF: não há texto nenhum para ler
-			this._setStatus(this.T(it.lost ? "tab.lost.msg" : "tab.drawn.msg", { name }), "warn");
-			return;
-		}
-		if (!this._engineReady()) {
-			this._showSetupInline();
-			return;
-		}
-		const table = { num: it.num, label: it.label, caption: it.caption, page: it.page, pageLabel: p, rows: it.rows, cols: it.cols, approx: !!it.approx, docId: d.id };
-		await this._ask({
-			promptText: this.L.sdtTablePrompt(Object.assign({}, it, { page: it.page }), d.id),
-			display: this.T("tab.display", { name, p }),
-			heading: this.T("fig.heading", { name, p }),
-			actionID: "figuras",
-			docs: [d],
-			table,
-		});
-	}
-
-	/** A tabela lida do PDF, por cima da resposta, com a legenda e a marca de origem. */
-	_tableHeadEl(m) {
-		const t = m.table;
-		const box = this._el("div", "zia-fig-answer");
-		const cap = this._el("div", "zia-fig-crop-cap");
-		cap.appendChild(this._el("span", null, t.caption));
-		const d = this.state.allDocs[t.docId];
-		if (d) cap.appendChild(this._button(this.T("proof.open"), "zia-link-btn", () => this.core.openAtPage(d, t.page)));
-		box.appendChild(cap);
-		box.appendChild(this._el("div", "zia-fig-badge-box " + (t.approx ? "zia-fig-img" : "zia-fig-ok"),
-			this.T(t.approx ? "tab.fromPdf.approx" : "tab.fromPdf")));
-		const wrap = this._el("div", "zia-md zia-tab-pdf");
-		try { this.L.renderMarkdownInto(this.doc, wrap, this.L.gridToMarkdown(t.rows), { docsMap: this._docsMap(m) }); }
-		catch (e) { wrap.textContent = this.L.gridToMarkdown(t.rows); }
-		this._enhanceTables(wrap);
-		box.appendChild(wrap);
-		return box;
 	}
 
 	// ---- "Explicar isto" a partir do leitor de PDF
@@ -786,8 +652,6 @@ var ZIAChatView = class {
 		// O Avançado mostra só o que o Simples não tem (a pedido): sem as 6 ações repetidas
 		const list = this._actionsOfGroup(this.group)
 			.filter(a => !a.needsHighlights || this._hasHighlights())
-			// Tabelas (Beta): só onde o Zotero as sabe ler (10 ou mais recente); a pref esconde-as
-			.filter(a => !a.local || (this.core.hasSDT() && this.core.pref("figures.enabled") !== false))
 			.filter(a => !this._isAdv() || !this.L.SIMPLE_ACTIONS.includes(a.id));
 		const custom = this.group === "meus";
 		if (custom && !list.length && !this._customForm) {
@@ -797,11 +661,6 @@ var ZIAChatView = class {
 			const b = this._button(a.button || a.label, "zia-action" + (custom && this._editCustom ? " zia-editing" : ""),
 				() => (custom && this._editCustom ? this._openCustomForm(a) : this._isAdv() ? this._runAdvanced(a.id) : this.selectAction(a.id)), a.hint);
 			b.dataset.action = a.id;
-			if (a.local) {
-				b.classList.toggle("zia-on", !!this._tabOpen);
-				b.setAttribute("aria-expanded", this._tabOpen ? "true" : "false");
-				b.appendChild(this._el("span", "zia-beta", this.T("tab.beta")));
-			}
 			const ic = this._actionIcon(a.id);
 			if (ic) { b.insertBefore(ic, b.firstChild); b.classList.add("zia-has-ic"); }
 			if (!(custom && this._editCustom)) this.actionButtons[a.id] = b;
@@ -822,7 +681,6 @@ var ZIAChatView = class {
 			if (fl) box.appendChild(fl);
 		}
 		if (this.group === "compreender") {
-			if (this._tabOpen && this.mode === "section") box.appendChild(this._tablesEl());
 			if (this._fichaInfoOpen) box.appendChild(this._fichaInfoEl());
 			const fl = this._fichasListEl();
 			if (fl) box.appendChild(fl);
@@ -2033,7 +1891,6 @@ var ZIAChatView = class {
 		if (this.busy) return;
 		const a = this._action(id);
 		if (!a) return;
-		if (a.local) return this._toggleTables();
 		const extra = this.hintsInput && this._hintsFor === id ? this.hintsInput.value.trim() : "";
 		if (a.needsCriteria && !extra) {
 			this._hintsFor = id;
@@ -2095,8 +1952,6 @@ var ZIAChatView = class {
 
 	/** Escolhe uma ação (não a corre): o pedido segue com Enviar ou Enter. */
 	selectAction(actionID) {
-		const la = this._action(actionID);
-		if (la && la.local) return this._toggleTables();
 		if (this.busy) return;
 		this.selectedAction = this.selectedAction === actionID ? null : actionID;
 		const a = this.selectedAction && this._action(this.selectedAction);
@@ -2796,7 +2651,7 @@ var ZIAChatView = class {
 	 * Envia um pedido e mostra a resposta em fluxo.
 	 * Devolve true/false (ou a mensagem, se returnMessage).
 	 */
-	async _ask({ promptText, display, heading, actionID, docs, noHistory, returnMessage, engine, stay, warnings, table }) {
+	async _ask({ promptText, display, heading, actionID, docs, noHistory, returnMessage, engine, stay, warnings }) {
 		if (this.busy) return false;
 		engine = engine || this.engine;
 		if (!this.core.isEngineReady(engine)) {
@@ -2817,11 +2672,9 @@ var ZIAChatView = class {
 		const botMsg = {
 			role: "assistant", text: "", pending: true, heading, actionID, engine,
 			actionLabel: action ? action.label : null,
-			docIDs: docs.map(d => d.id), request: { promptText, display, heading, actionID, docs, noHistory, table },
+			docIDs: docs.map(d => d.id), request: { promptText, display, heading, actionID, docs, noHistory },
 			asked: display, time: Date.now(),
 		};
-		// A tabela lida do PDF fica na resposta (e no histórico), com a página e a legenda
-		if (table) botMsg.table = Object.assign({}, table);
 		// Pergunta e resposta entram juntas na conversa
 		this.state.messages.push(userMsg, botMsg);
 		this._appendMessage(userMsg);
@@ -3333,7 +3186,7 @@ var ZIAChatView = class {
 		const head = this._el("div", "zia-msg-head");
 		// Painel Avançado com separadores de conversa visíveis: o nome já está no separador, não se repete aqui
 		const nameInTab = this.mode === "section" && !this.simple && (this.state.convs || []).length > 1;
-		if (!nameInTab || m.table) head.appendChild(this._el("span", "zia-action-tag", (m.table && m.heading) || this._actionTitle(m) || this.T("chat.question")));
+		if (!nameInTab) head.appendChild(this._el("span", "zia-action-tag", this._actionTitle(m) || this.T("chat.question")));
 		// Indicações ou artigo do pedido ("Resumir · foca a metodologia", "Ficha: Silva 2021")
 		const asked = String(m.asked || "");
 		if (m.actionLabel && asked.startsWith(m.actionLabel) && asked.length > m.actionLabel.length) {
@@ -3359,7 +3212,6 @@ var ZIAChatView = class {
 			for (const t of m.warnings) w.appendChild(this._el("div", null, t));
 			el.appendChild(w);
 		}
-		if (m.table) el.appendChild(this._tableHeadEl(m));
 		// O mapa mental desenha a lista encaixada como uma árvore com ramos
 		if (m.stances && Object.keys(m.stances).length && !m.pending) el.appendChild(this._stanceMeter(m.stances));
 		const isMap = m.actionID === "mapa" || m.actionID === "temas";
@@ -4078,9 +3930,9 @@ var ZIAChatView = class {
 				}
 			}, this.T("chat.exportWord.tip")));
 		}
-		if (m.table || this.L.extractTables(m.text).length) {
+		if (this.L.extractTables(m.text).length) {
 			row.appendChild(this._button(this.T("chat.exportCsv"), "zia-btn-small", async () => {
-				const csv = m.table ? this.L.tablesToCSV(this.L.gridToMarkdown(m.table.rows), {}) : this.L.tablesToCSV(this._outText(m), { docsMap: this._docsMap(m) });
+				const csv = this.L.tablesToCSV(this._outText(m), { docsMap: this._docsMap(m) });
 				try {
 					const path = await this.core.saveCSV(this.win, csv, m.heading || "tabela");
 					if (path) this._setStatus(this.T("chat.exported", { path }));
