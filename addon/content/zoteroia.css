@@ -213,14 +213,6 @@
 .zia-msg-head {
 	margin-bottom: 2px;
 }
-
-.zia-engine-tag {
-	font-size: 10.5px;
-	color: var(--zia-muted);
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
-}
-
 .zia-md p {
 	margin: 0.35em 0;
 }
@@ -381,13 +373,6 @@
 	align-items: center;
 	margin-top: 6px;
 }
-
-.zia-usage {
-	font-size: 11px;
-	color: var(--zia-muted);
-	margin-left: auto;
-}
-
 /* Estado e entrada */
 .zia-status {
 	min-height: 1.3em;
@@ -591,13 +576,6 @@
 }
 
 /* Sugestões de perguntas */
-.zia-suggestions {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: 4px;
-	margin: 6px 0 8px;
-}
 
 .zia-suggestion {
 	font: inherit;
@@ -677,26 +655,6 @@
 }
 
 /* Preferências 0.2 */
-.zia-prefs-status {
-	font-size: 12px;
-	margin: 2px 0 6px;
-}
-
-.zia-prefs-status.ok { color: var(--accent-green, #2e8b3d); }
-.zia-prefs-status.bad { color: var(--accent-red, #d93f33); }
-
-.zia-prefs-textarea {
-	width: 100%;
-	max-width: 640px;
-	min-height: 110px;
-	font-family: inherit;
-	font-size: 12px;
-}
-
-.zia-prefs-sub {
-	font-weight: 600;
-	margin: 10px 0 2px;
-}
 
 .zia-option-btns {
 	display: flex;
@@ -756,15 +714,6 @@
 	margin: 14px 0 6px;
 }
 
-
-
-
-
-
-
-
-
-
 .zia-engine-sub {
 	font-size: 11.5px;
 	color: var(--zia-fg2);
@@ -823,9 +772,6 @@
 .zia-test-result.ok { border-color: var(--zia-green); background: rgba(46, 139, 61, 0.08); }
 .zia-test-result.fail { border-color: var(--zia-red); background: rgba(217, 63, 51, 0.08); }
 .zia-test-result.busy { border-color: var(--zia-accent); background: var(--zia-accent-soft); }
-
-.zia-hero-foot { margin-top: 10px; }
-
 .zia-mode-section {
 	padding: 2px 6px 8px;
 }
@@ -944,36 +890,11 @@
 
 /* ---------- Respostas recolhíveis ---------- */
 
-.zia-msg-head.zia-foldable {
-	cursor: pointer;
-	border-radius: 4px;
-	padding: 2px 2px;
-}
-
-.zia-msg-head.zia-foldable:hover { background: var(--zia-accent-soft); }
-
-.zia-msg-head.zia-foldable:focus-visible {
-	outline: 2px solid var(--zia-accent);
-	outline-offset: 1px;
-}
-
 .zia-fold {
 	color: var(--zia-accent);
 	font-size: 11px;
 	width: 10px;
 }
-
-.zia-preview {
-	font-size: 12px;
-	color: var(--zia-fg2);
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	padding-left: 16px;
-}
-
-.zia-preview-error { color: var(--zia-red); }
-
 .zia-msg[hidden] { display: none; }
 
 .zia-msg.zia-flash {
@@ -1030,13 +951,6 @@
 }
 
 .zia-etab-star { color: var(--zia-orange); }
-
-.zia-etab-sep {
-	font-size: 11px;
-	color: var(--zia-fg2);
-	padding: 0 2px 6px 10px;
-}
-
 .zia-dot {
 	width: 8px;
 	height: 8px;
@@ -1095,16 +1009,6 @@
 }
 
 /* Botão "Guardar nota" no título de uma resposta recolhida */
-.zia-head-save {
-	margin-inline-start: auto;
-	font-size: 10.5px;
-	padding: 0 6px;
-	border-color: transparent;
-	background: none;
-	color: var(--zia-accent);
-}
-
-.zia-head-save:hover { border-color: var(--zia-accent); }
 
 /* ---------- Personalizado: criar e editar ações no painel ---------- */
 
@@ -1153,27 +1057,7 @@
 .zia-custom-btns { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .zia-btn-danger { color: var(--zia-red); border-color: var(--zia-red); }
-
-.zia-steps-title {
-	font-size: 12.5px;
-	font-weight: 600;
-	margin-top: 6px;
-}
-
 /* ---------- Seletor de PDFs para juntar à conversa ---------- */
-
-.zia-chip-add {
-	display: inline-flex;
-	align-items: center;
-	border-radius: 10px;
-	font-size: 12px;
-	border: 1px dashed var(--zia-accent);
-	background: none;
-	color: var(--zia-accent);
-	font-weight: 600;
-	cursor: pointer;
-	padding: 1px 8px;
-}
 
 .zia-picker {
 	display: flex;
@@ -1225,7 +1109,7 @@
 .zia-picker-row input { margin-top: 2px; flex: none; }
 
 .zia-picker-sort { display: flex; align-items: center; gap: 6px; margin: 4px 0; }
-.zia-picker-sortsel, .zia-picker-srcsel { min-width: 0; flex: 1; }
+.zia-picker-sortsel { min-width: 0; flex: 1; }
 
 /* ==========================================================================
    Paleta (inspirada no Beaver): fundo creme quente, tinta azul-noite para o
@@ -1301,9 +1185,6 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 /* Barra de cima */
 .zia-chip { background: var(--zia-bg); border: 1px solid var(--zia-border); color: var(--zia-fg); }
 .zia-chip b { color: var(--zia-fg); font-weight: 700; }
-.zia-chip-add { border-color: var(--zia-fg2); color: var(--zia-fg); }
-.zia-chip-add:hover { background: var(--zia-sand); }
-
 /* Separadores em forma de pastilha: o escolhido a tinta cheia */
 .zia-tabs { border-bottom: none; gap: 4px; }
 .zia-tabs .zia-tab {
@@ -1359,11 +1240,7 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-msg-user,
 .zia-mode-section .zia-msg-user { background: var(--zia-sand); color: var(--zia-fg); }
 .zia-fold { color: var(--zia-fg2); }
-.zia-msg-head.zia-foldable:hover { background: var(--zia-accent-soft); }
 .zia-action-tag { color: var(--zia-fg); }
-.zia-head-save { color: var(--zia-link); }
-.zia-head-save:hover { border-color: var(--zia-link); }
-
 /* Citações e ligações: o único azul */
 .zia-cite { background: var(--zia-cite-bg); color: var(--zia-link); }
 .zia-link { color: var(--zia-link); }
@@ -1372,7 +1249,7 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 /* Seletor de PDFs e formulário de ações */
 .zia-picker, .zia-custom-form { border-color: var(--zia-border); }
 .zia-picker-row:hover { background: var(--zia-sand); }
-.zia-picker-sortsel, .zia-picker-srcsel { font: inherit; font-size: 12px; }
+.zia-picker-sortsel { font: inherit; font-size: 12px; }
 
 /* Definições */
 .zia-hero { border-color: var(--zia-border); border-top: 4px solid var(--zia-gold); background: var(--zia-panel); }
@@ -1478,7 +1355,6 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-info-panel p { margin: 4px 0; }
 .zia-info-title { font-weight: 700; font-size: 12.5px; }
 .zia-info-sub { font-weight: 600; margin-top: 6px; }
-.zia-info-fields { margin: 2px 0 4px; padding-inline-start: 18px; columns: 2 160px; column-gap: 16px; }
 .zia-info-close, .zia-msg-del {
 	border: none; background: none; cursor: pointer; color: var(--zia-fg2);
 	font-size: 15px; line-height: 1; padding: 0 4px;
@@ -1495,11 +1371,7 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 
 .zia-confirm-del { margin: 4px 0 6px; padding: 6px 8px; border: 1px solid var(--zia-orange); border-left-width: 3px; border-radius: 6px; background: rgba(232, 133, 12, 0.08); font-size: 12px; }
 .zia-confirm-text { margin-bottom: 6px; }
-.zia-msg-head .zia-head-save + .zia-msg-del { margin-inline-start: 4px; }
-.zia-msg-head .zia-head-save ~ .zia-msg-del { margin-inline-start: 4px; }
-
 .zia-credits { font-size: 13px; line-height: 1.6; }
-.zia-credits-org { font-weight: 600; }
 .zia-credits-name { margin-top: 6px; font-weight: 600; }
 
 .zia-nopdf { padding: 4px 2px; }
@@ -1513,15 +1385,11 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-credits-meta { margin-top: 2px; font-size: 12px; color: var(--zia-fg2, #3f4555); }
 .zia-credits-label { text-transform: uppercase; font-size: 10.5px; letter-spacing: 0.06em; color: var(--zia-muted, #5d6474); }
 .zia-credits-value { font-weight: 600; color: var(--zia-fg, #111729); }
-.zia-credits-dot { margin: 0 8px; color: var(--zia-muted, #5d6474); }
 .zia-credits-body { padding: 10px 16px 12px; font-size: 13px; background: var(--zia-bg, #fff); }
-.zia-credits-org { font-weight: 600; color: var(--zia-fg, #111729); }
 .zia-credits-name { font-weight: 600; }
 
 /* Painel: sem segunda barra de deslocação dentro das respostas (o painel do Zotero já desliza) */
 .zia-mode-section .zia-messages { max-height: none; overflow: visible; }
-.zia-tab-external { color: var(--zia-fg2) !important; }
-
 /* Separadores das conversas */
 .zia-conv-tabs { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 .zia-conv-tabs[hidden] { display: none; }
@@ -1536,17 +1404,10 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-tip { color: var(--zia-fg2); }
 
 /* Título das respostas: mais claro que se abre e fecha */
-.zia-msg-head.zia-foldable { padding: 4px 6px; border-radius: 6px; background: var(--zia-accent-soft); margin-bottom: 4px; }
-.zia-msg-head.zia-foldable:hover { background: var(--zia-sand); }
 .zia-fold { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--zia-fg2); color: var(--zia-fg); font-size: 9px; margin-right: 4px; }
 .zia-msg-assistant .zia-msg-tools { margin: 2px 0 6px; }
-
-.zia-fold-hint { margin-inline-start: auto; font-size: 11px; color: var(--zia-fg2); text-decoration: underline; text-underline-offset: 2px; }
-.zia-msg-head .zia-fold-hint ~ .zia-msg-del, .zia-msg-head .zia-fold-hint ~ .zia-head-save { margin-inline-start: 6px; }
-.zia-msg-head.zia-foldable { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; }
 .zia-msg-head .zia-action-tag { flex: none; }
-.zia-msg-head .zia-engine-tag { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.zia-msg-head .zia-fold-hint, .zia-msg-head .zia-head-save, .zia-msg-head .zia-msg-del { flex: none; margin-inline-start: 0; }
+.zia-msg-head .zia-msg-del { flex: none; margin-inline-start: 0; }
 .zia-fold { flex: none; margin-right: 0; }
 
 .zia-credits-body { background: var(--zia-panel, #f5f0ed); }
@@ -1562,17 +1423,14 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 
 /* Instruções de cada motor: o que é, quanto custa, passos com ligações e comandos para copiar */
 .zia-guide { margin: 4px 0 8px; font-size: 12.5px; }
-.zia-guide-what, .zia-guide-cost { margin: 2px 0; color: var(--zia-fg, #111729); }
+.zia-guide-cost { margin: 2px 0; color: var(--zia-fg, #111729); }
 .zia-guide-cost { color: var(--zia-fg2, #3f4555); }
 .zia-guide-steps li { margin: 6px 0; }
 .zia-guide-link { overflow-wrap: anywhere; }
 .zia-guide-cmd { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 4px; }
 .zia-guide-cmd > span:first-child { font-size: 11.5px; color: var(--zia-fg2, #3f4555); min-width: 150px; }
 .zia-guide-cmd .zia-command { user-select: all; overflow-wrap: anywhere; }
-.zia-guide-foot { margin-top: 6px; gap: 8px; align-items: center; }
-
 /* Separador das chaves de API em destaque: contorno dourado e etiqueta "Recomendado" */
-.zia-guide-time { margin: 2px 0; color: var(--zia-fg2, #3f4555); }
 
 /* Definições: texto que se pode selecionar e copiar */
 #zoteroia-prefs-root :is(div, p, span, li, h2, code, a) { -moz-user-select: text; user-select: text; }
@@ -1702,11 +1560,9 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-hints[hidden] { display: none; }
 .zia-hints .zia-hints-input { flex: 1; min-height: 30px; }
 .zia-hints .zia-hints-run { flex: none; }
-.zia-hints-toggle { font-size: 12px; align-self: center; }
 .zia-or { display: flex; align-items: center; gap: 8px; color: var(--zia-fg2); font-size: 11.5px; margin: 2px 0 6px; }
 .zia-or::before, .zia-or::after { content: ""; flex: 1; border-top: 1px solid var(--zia-border); }
 .zia-root.zia-mode-section:not(.zia-simple) .zia-messages .zia-empty { background: none; border: none; padding: 0; box-shadow: none; }
-.zia-mode-section:not(.zia-simple) .zia-suggestions { display: flex; flex-wrap: wrap; gap: 4px; }
 .zia-mode-section:not(.zia-simple) .zia-suggestion { margin: 0; padding: 2px 9px; border-radius: 12px; border-style: dashed; font-size: 12px; text-align: left; white-space: normal; }
 .zia-mode-section:not(.zia-simple) .zia-tip { font-size: 11px; color: var(--zia-fg2); margin-top: 6px; }
 
@@ -1790,7 +1646,6 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 /* Ícones em linha fina */
 .zia-icon { display: inline-block; vertical-align: -3px; flex: none; }
 .zia-top-title { display: inline-flex; align-items: center; gap: 6px; }
-.zia-icon-spark { color: var(--zia-gold); }
 .zia-btn-icon .zia-icon { vertical-align: middle; }
 .zia-btn-icon { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; color: var(--zia-fg2); }
 .zia-btn-icon:hover:not(:disabled) { color: var(--zia-accent); }
@@ -1807,7 +1662,6 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 .zia-examples { flex: 1 1 100%; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 .zia-examples-title { flex: 1 1 100%; font-size: 11.5px; color: var(--zia-fg2); }
 .zia-examples .zia-suggestion { margin: 0; padding: 2px 9px; border-radius: 12px; border-style: dashed; font-size: 12px; text-align: left; white-space: normal; }
-.zia-picker-bulk { display: flex; gap: 6px; margin: 4px 0; }
 .zia-picker-many { font-size: 11.5px; color: var(--zia-orange); margin: 4px 0; }
 .zia-picker-many[hidden] { display: none; }
 .zia-large-note { font-size: 11.5px; line-height: 1.4; color: var(--zia-fg2); background: var(--zia-accent-soft); border-radius: 8px; padding: 6px 10px; margin: 6px 0; }
@@ -1817,11 +1671,25 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 
 /* Ícones das ações: quadrado claro com a cor da ação (iguais no Simples, no Avançado e na janela) */
 .zia-ic { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 30px; height: 30px; border-radius: 9px; color: var(--k); background: color-mix(in srgb, var(--k) 13%, var(--zia-bg)); }
-.zia-k-blue { --k: #4a6fa5; } .zia-k-amber { --k: #a8701a; } .zia-k-violet { --k: #6d4bb3; } .zia-k-green { --k: #2f7d4f; }
-.zia-k-orange { --k: #b5461a; } .zia-k-teal { --k: #0e7490; } .zia-k-rose { --k: #b0305f; } .zia-k-slate { --k: #4b5563; } .zia-k-yellow { --k: #8a6d00; }
+.zia-k-blue { --k: #4a6fa5; }
+.zia-k-amber { --k: #a8701a; }
+.zia-k-violet { --k: #6d4bb3; }
+.zia-k-green { --k: #2f7d4f; }
+.zia-k-orange { --k: #b5461a; }
+.zia-k-teal { --k: #0e7490; }
+.zia-k-rose { --k: #b0305f; }
+.zia-k-slate { --k: #4b5563; }
+.zia-k-yellow { --k: #8a6d00; }
 @media (prefers-color-scheme: dark) {
-	.zia-k-blue { --k: #8fb0de; } .zia-k-amber { --k: #e0b05a; } .zia-k-violet { --k: #b49ae8; } .zia-k-green { --k: #6cc28f; }
-	.zia-k-orange { --k: #f0905f; } .zia-k-teal { --k: #5cc3d6; } .zia-k-rose { --k: #ec8ab0; } .zia-k-slate { --k: #b5bdc9; } .zia-k-yellow { --k: #e8cf5a; }
+	.zia-k-blue { --k: #8fb0de; }
+.zia-k-amber { --k: #e0b05a; }
+.zia-k-violet { --k: #b49ae8; }
+.zia-k-green { --k: #6cc28f; }
+	.zia-k-orange { --k: #f0905f; }
+.zia-k-teal { --k: #5cc3d6; }
+.zia-k-rose { --k: #ec8ab0; }
+.zia-k-slate { --k: #b5bdc9; }
+.zia-k-yellow { --k: #e8cf5a; }
 }
 .zia-simple-btn.zia-has-ic { display: grid; grid-template-columns: 30px 1fr; column-gap: 9px; row-gap: 2px; align-items: start; }
 .zia-simple-btn.zia-has-ic .zia-ic { grid-row: 1 / span 2; }

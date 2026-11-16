@@ -1151,33 +1151,6 @@ var ZIAChatView = class {
 		return true;
 	}
 
-	async addSelected() {
-		const items = this.core.selectedItems();
-		if (!items.length) {
-			this._setStatus(this.T("chat.noSelection"), "warn");
-			return;
-		}
-		const cols = this.core.selectedCollectionIDs();
-		if (cols.length) this.collectionIDs = cols;
-		await this._addItems(items, {});
-	}
-
-	async addCollection() {
-		if (this.core.listCollections) return this._openCollectionPicker();
-		const c = this.core.selectedCollectionItems ? this.core.selectedCollectionItems() : { items: [] };
-		if (!c.name) {
-			this._setStatus(this.T("chat.noCollection"), "warn");
-			return;
-		}
-		if (!c.items.length) {
-			this._setStatus(this.T("chat.emptyCollection", { name: c.name }), "warn");
-			return;
-		}
-		if (c.id) this.collectionIDs = [c.id];
-		this.collectionName = c.name;
-		await this._addItems(c.items, {});
-	}
-
 	async _addItems(items, { quiet }) {
 		// A conversa a que os artigos pertencem: se entretanto se mudou de artigo no painel, os
 		// artigos vão para a conversa certa e a interface (já de outro artigo) não muda
@@ -3327,34 +3300,6 @@ var ZIAChatView = class {
 		for (const k in attrs || {}) if (attrs[k] != null) e.setAttribute(k, attrs[k]);
 		if (parent) parent.appendChild(e);
 		return e;
-	}
-
-	/** Parte um texto em linhas de até n caracteres. */
-	_wrap(text, n) {
-		const out = [];
-		let line = "";
-		// palavras maiores do que a linha partem-se (nos hífenes, se houver)
-		const words = [];
-		for (const w of String(text).split(/\s+/).filter(Boolean)) {
-			if (w.length <= n) { words.push(w); continue; }
-			const parts = w.split(/(?<=-)/);
-			let cur = "";
-			for (const p of parts) {
-				if (cur && (cur + p).length > n) { words.push(cur); cur = ""; }
-				cur += p;
-				while (cur.length > n) { words.push(cur.slice(0, n - 1) + "-"); cur = cur.slice(n - 1); }
-			}
-			if (cur) words.push(cur);
-		}
-		for (const w of words) {
-			if (line && (line + " " + w).length > n) {
-				out.push(line);
-				line = w;
-			}
-			else line = line ? line + " " + w : w;
-		}
-		if (line) out.push(line);
-		return out.length ? out : [""];
 	}
 
 	/** Texto de um ramo sem as citações, e as citações à parte (com a página, para abrir o PDF). */

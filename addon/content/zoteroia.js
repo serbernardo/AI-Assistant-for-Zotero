@@ -76,14 +76,6 @@ var ZoteroIA = {
 		return this.lib.I18N.setLang(this.lib.I18N.resolve(pref, Zotero.locale));
 	},
 
-	/** Troca a língua da app entre português e inglês (botão PT/EN no título do painel). */
-	toggleLanguage() {
-		const next = this.lib.I18N.getLang() === "en" ? "pt-PT" : "en";
-		this.setPref("ui.lang", next);
-		this.applyLanguage();
-		return next;
-	},
-
 	t(key, vars) {
 		return this.lib.I18N.t(key, vars);
 	},
@@ -505,20 +497,6 @@ var ZoteroIA = {
 		return { name: col.name, id: col.id, items: items.filter(i => i.isRegularItem() || (i.isAttachment() && i.isPDFAttachment())) };
 	},
 
-	/** Itens (artigos) da coleção selecionada na biblioteca. */
-	selectedCollectionItems() {
-		const zp = Zotero.getActiveZoteroPane && Zotero.getActiveZoteroPane();
-		if (!zp) return { name: null, items: [] };
-		let col = null;
-		try { col = zp.getSelectedCollection && zp.getSelectedCollection(); }
-		catch (e) { /* sem coleção */ }
-		if (!col) return { name: null, items: [] };
-		let items = [];
-		try { items = col.getChildItems(false) || []; }
-		catch (e) { this.log("getChildItems: " + e); }
-		return { name: col.name, id: col.id, items: items.filter(i => i.isRegularItem() || (i.isAttachment() && i.isPDFAttachment())) };
-	},
-
 	// ------------------------------------------------------------------
 	// Atualizações: o Zotero consulta o update_url do manifest.json (releases do GitHub)
 	// ------------------------------------------------------------------
@@ -745,18 +723,9 @@ var ZoteroIA = {
 		return list;
 	},
 
-	claudeCandidates() {
-		return this.toolCandidates("claude");
-	},
-
 	// Comandos oficiais de instalação (code.claude.com/docs/en/setup). Fixos: nunca vêm de fora.
 	CLAUDE_INSTALL_WIN: "irm https://claude.ai/install.ps1 | iex",
 	CLAUDE_INSTALL_UNIX: "curl -fsSL https://claude.ai/install.sh | bash",
-
-	/** Comando para instalar à mão, mostrado como alternativa nas definições. */
-	claudeInstallCommand() {
-		return Zotero.isWin ? this.CLAUDE_INSTALL_WIN : this.CLAUDE_INSTALL_UNIX;
-	},
 
 	/** Conteúdo do script que instala o Claude Code (se faltar) e abre o início de sessão. */
 	claudeSetupScript(platform, existing, home) {

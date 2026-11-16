@@ -123,8 +123,11 @@ assert.ok(Zotero.ZoteroIA && Zotero.ZoteroIA.ChatView, "núcleo exposto");
 {
 	const ZIA = Zotero.ZoteroIA;
 	ZIA.lib.I18N.setLang("pt-PT");
-	assert.equal(ZIA.toggleLanguage(), "en");
-	assert.equal(ZIA.toggleLanguage(), "pt-PT");
+	// Como o botão PT/EN do painel: guarda a língua e aplica-a
+	ZIA.setPref("ui.lang", "en");
+	assert.equal(ZIA.applyLanguage(), "en");
+	ZIA.setPref("ui.lang", "pt-PT");
+	assert.equal(ZIA.applyLanguage(), "pt-PT");
 	assert.ok(!/sectionButtons/.test(fs.readFileSync(path.join(ADDON, "bootstrap.js"), "utf8")), "sem botões no título da secção");
 }
 
