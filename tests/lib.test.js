@@ -1069,3 +1069,47 @@ test("SDT: o pedido manda explicar, não reescrever a tabela", () => {
 	assert.match(p, /\[D1:p9 «/);
 	assert.match(p, /nao precisam de citacao/);
 });
+
+test("SDT: tabela com listas dentro das células (RPA, Table 1)", () => {
+	// Tabela com molduras: "Type" com o nome em duas linhas e "Features" com pontos de lista.
+	// Blocos SDT fictícios, com a mesma geometria da tabela real.
+	const run = (y, x, text) => {
+		const glyphs = [...text].filter(c => !/\s/.test(c));
+		const widths = [];
+		let prev = x;
+		let pos = x;
+		for (const c of text) {
+			if (/\s/.test(c)) { pos += 3; continue; }
+			widths.push(pos === prev ? 5 : [pos - prev, 5]);
+			pos += 5;
+			prev = pos;
+		}
+		return JSON.stringify([[0, 0, x, y, pos, y + 8].concat(widths)]);
+	};
+	const node = (y, cells) => ({
+		text: cells.map(c => c[1]).join(" "),
+		anchor: { textMap: JSON.stringify(cells.map(c => JSON.parse(run(y, c[0], c[1]))[0])) },
+	});
+	const block = {
+		type: "table",
+		anchor: { pageRects: [[0, 10, 100, 500, 300]] },
+		content: [
+			node(280, [[10, "Type"], [120, "Features"]]),
+			node(260, [[10, "Data"], [120, "•"], [140, "It involves transferring data"]]),
+			node(248, [[10, "robots"], [120, "•"], [140, "It can be used for cleaning and"]]),
+			node(236, [[140, "requirements [19]."]]),
+			node(224, [[120, "•"], [140, "These robots may also be used"]]),
+			node(206, [[10, "Scheduled"], [120, "•"], [140, "Simple tasks that must wait"]]),
+			node(194, [[10, "Robots"], [120, "•"], [140, "They used to link pieces"]]),
+		],
+	};
+	const g = L.sdtGrid(L.sdtChars(block));
+	assert.equal(g.cols, 2, "a coluna só com pontos junta-se à das características");
+	assert.equal(g.approx, true, "com células em várias linhas a divisão das filas é uma leitura nossa");
+	assert.equal(g.rows[1][0], "Data robots", "o nome partido em duas linhas junta-se");
+	assert.match(g.rows[1][1], /^\u2022 It involves transferring data \u2022 It can be used for cleaning and requirements \[19\]\. \u2022 These robots/,
+		"os pontos da lista ficam todos na mesma célula");
+	// Limite conhecido: "Scheduled" e "Robots" começam os dois por maiúscula e o PDF não dá as linhas
+	// da moldura que marcam o fim da fila, por isso ficam separados. Daí a marca de leitura aproximada.
+	assert.deepEqual(g.rows.slice(2).map(r => r[0]), ["Scheduled", "Robots"]);
+});

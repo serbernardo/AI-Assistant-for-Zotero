@@ -319,7 +319,10 @@
 	font-size: 0.88em;
 	text-decoration: none;
 	cursor: pointer;
-	white-space: nowrap;
+	/* Nunca mais larga do que o painel: um autor institucional comprido passava por cima do texto */
+	max-width: 100%;
+	overflow-wrap: anywhere;
+	white-space: normal;
 }
 
 .zia-cite:hover {

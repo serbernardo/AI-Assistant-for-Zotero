@@ -814,10 +814,22 @@ var ZIALib = (function () {
 		return list;
 	}
 
+	// Nome institucional comprido ("Amity Institute of Information Technology Lucknow, Amity University…"):
+	// a citação tem de caber no painel, por isso corta-se numa palavra inteira
+	const AUTHOR_MAX = 34;
+	function cutAuthor(name) {
+		const n = String(name || "").trim();
+		if (n.length <= AUTHOR_MAX) return n;
+		const cut = n.slice(0, AUTHOR_MAX);
+		const sp = cut.lastIndexOf(" ");
+		return (sp > AUTHOR_MAX * 0.5 ? cut.slice(0, sp) : cut).replace(/[,;:.\s]+$/, "") + "\u2026";
+	}
+
 	function shortAuthor(creators) {
 		const names = (creators || [])
 			.map(c => (c.lastName || c.name || "").trim())
-			.filter(Boolean);
+			.filter(Boolean)
+			.map(cutAuthor);
 		if (!names.length) return t("ref.noAuthor");
 		if (names.length === 1) return names[0];
 		// Dois autores: "e" em português, "&" em inglês (como nas normas APA de cada língua)
@@ -3567,6 +3579,9 @@ var ZIALib = (function () {
 	// (anchor.textMap): as filas e as colunas sao reconstruidas aqui.
 	// ------------------------------------------------------------------
 
+	// Pontos de lista numa coluna propria (as tabelas com listas dentro das celulas)
+	const BULLET_RE = /^[\u2022\u25cf\u25aa\u25e6\u00b7\u2043\u2010-\u2015o*\-]$/;
+
 	const SDT_CAPTION = /^\s*(fig\.?|figs?\.?|figure|figura|table|tabela|tab\.|quadro)\s*(\d+|[ivxIVX]+)\b\s*([.:|\-]?)\s*(.*)$/i;
 
 	/** Texto de um bloco ou no da SDT. */
@@ -3662,11 +3677,11 @@ var ZIALib = (function () {
 				prev = c;
 			}
 			if (cur.trim()) cells.push({ text: cur.trim(), x: from });
-			if (cells.length) rows.push(cells);
+			if (cells.length) rows.push({ cells, y: l.y, page: l.page });
 		}
 		// 3. Colunas: junta os inicios de celula parecidos
 		const starts = [];
-		for (const r of rows) for (const c of r) {
+		for (const r of rows) for (const c of r.cells) {
 			const s = starts.find(s => Math.abs(s.x - c.x) < h * 1.5);
 			if (s) { s.n++; s.x = (s.x * (s.n - 1) + c.x) / s.n; }
 			else starts.push({ x: c.x, n: 1 });
@@ -3679,21 +3694,53 @@ var ZIALib = (function () {
 		};
 		const table = rows.map(r => {
 			const out = new Array(starts.length).fill("");
-			for (const c of r) { const k = colOf(c); out[k] = out[k] ? out[k] + " " + c.text : c.text; }
-			return out;
+			for (const c of r.cells) { const k = colOf(c); out[k] = out[k] ? out[k] + " " + c.text : c.text; }
+			return { cells: out, y: r.y, page: r.page };
 		});
-		// 4. Linha de continuacao (poucas celulas, sem numeros): junta a de cima
+		// 4. Coluna so de pontos ("•", "-"): junta-se a seguinte, que e a celula a que pertencem
+		let approx = false;
+		for (let k = starts.length - 2; k >= 0; k--) {
+			const vals = table.slice(1).map(r => r.cells[k]).filter(Boolean);
+			if (vals.length < 2 || !vals.every(v => BULLET_RE.test(v))) continue;
+			approx = true;
+			for (const r of table) {
+				if (r.cells[k]) r.cells[k + 1] = (r.cells[k] + " " + r.cells[k + 1]).trim();
+				r.cells.splice(k, 1);
+			}
+			starts.splice(k, 1);
+		}
+		// 5. Celula que ocupa varias linhas: a linha de continuacao enche uma so coluna e vem logo a seguir
+		// (as filas a serio enchem varias colunas, como "Kernel size | 2 | 3")
+		const gaps = [];
+		for (let i = 1; i < table.length; i++) if (table[i].page === table[i - 1].page) gaps.push(table[i - 1].y - table[i].y);
+		gaps.sort((a, b) => a - b);
+		const lead = gaps.length ? gaps[Math.floor(gaps.length / 2)] : h * 1.2;
 		const merged = [];
+		let prevLine = null;
 		for (const r of table) {
-			const filled = r.filter(Boolean).length;
+			const filled = r.cells.filter(Boolean).length;
 			const prev = merged[merged.length - 1];
-			if (prev && filled <= Math.max(1, Math.ceil(r.length / 4)) && !r.some(c => /\d/.test(c))) {
-				r.forEach((c, i) => { if (c) prev[i] = (prev[i] ? prev[i] + " " : "") + c; });
+			const near = prevLine && prevLine.page === r.page && (prevLine.y - r.y) <= Math.max(lead * 1.35, h * 1.5);
+			const k0 = r.cells.findIndex(Boolean);
+			const prevFilled = prev ? prev.filter(Boolean).length : 0;
+			// Uma celula partida em varias linhas continua a fila de cima. Reconhece-se por:
+			// so uma celula preenchida, ou um ponto de lista, ou texto que comeca por minuscula
+			// (uma fila a serio comeca por maiuscula ou por um numero, como "Kernel size | 2 | 3")
+			const sameCols = prev && r.cells.every((c, i) => !c || prev[i]);
+			const text0 = k0 >= 0 ? r.cells[k0] : "";
+			const wraps = filled === 1 ? (k0 > 0 || prevFilled > 1)
+				: sameCols && (BULLET_RE.test(text0.split(" ")[0]) || /^[\p{Ll}]/u.test(text0));
+			if (prev && near && k0 >= 0 && wraps) {
+				r.cells.forEach((c, i) => { if (c) prev[i] = (prev[i] ? prev[i] + " " : "") + c; });
+				prevLine = r;
+				approx = true;
 				continue;
 			}
-			merged.push(r.slice());
+			merged.push(r.cells.slice());
+			prevLine = r;
 		}
-		return { rows: merged, cols: starts.length };
+		// approx: a tabela tinha celulas em varias linhas ou listas, e a divisao das filas e uma leitura nossa
+		return { rows: merged, cols: starts.length, approx };
 	}
 
 	/** Tabela em Markdown (a primeira fila e o cabecalho). */
@@ -3744,6 +3791,7 @@ var ZIALib = (function () {
 				box: block ? sdtRect(block) : rect,
 				rows: g.rows,
 				cols: g.cols,
+				approx: !!g.approx,
 				// Sem texto para ler: tabela desenhada no PDF, ou figura
 				drawn: kind === "table" && g.rows.length < 2,
 			});
@@ -4002,7 +4050,7 @@ var ZIALib = (function () {
 		SYSTEM_PROMPT, LANGUAGES, languageInfo, buildSystemPrompt, answerReminder, ordinal,
 		ACTIONS, ACTION_ORDER, ACTION_GROUPS, FICHA_NOTE_PREFIX, FICHA_NOTE_PREFIXES, fichaPrefix, FICHA_TEMPLATE, I18N: I,
 		parseCustomPrompts, setCustomPrompt, removeCustomPrompt, cleanCustomPrompt, parseTagLine, removeTagLine,
-		escapeHTML, escapeXMLAttr, cleanPageText, splitPages, detectPageOffset, pageLabel, shortAuthor, yearFrom,
+		escapeHTML, escapeXMLAttr, cleanPageText, cutAuthor, splitPages, detectPageOffset, pageLabel, shortAuthor, yearFrom,
 		LARGE_DOCS, BATCH_SIZE, BATCH, splitBatches, largeMode, batchPrompt, synthPrompt, reviewPartPrompt, reviewEndPrompt,
 		rawTables, docIdOf, mergeTables, tableToMarkdown, rowsAsFichas, sortMergedRows, parseThemeList, themesToCSV,
 		stripReferences, choosePages, fitDocuments, omittedRanges, neutralizeTags, buildDocumentBlock,

@@ -272,6 +272,12 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   Figuras ficam para depois (fase 2): o envio de imagens aos motores ja esta feito e testado (`images` em `runEngine`: Gemini
   `inlineData`, Claude API bloco image, ChatGPT API image_url, Codex `--image=`, Claude Code `--input-format stream-json`; IAEdu
   recusa com `err.noImages`), e `detectFigures`/`pageLayout`/`renderRegion`/`figureSandboxSource` continuam em `lib.js` para essa fase.
+  **1.0.29 (depois de usar):** coluna so com pontos de lista junta-se a celula seguinte (`BULLET_RE`); uma celula partida em
+  varias linhas junta-se a fila de cima quando a linha enche uma so coluna, ou quando enche as mesmas colunas e comeca por
+  ponto de lista ou minuscula, e so quando a distancia entre linhas e a normal (`lead`). Nas tabelas com molduras o PDF nao
+  da as linhas da moldura, por isso duas linhas que comecam as duas por maiuscula ("Scheduled" / "Robots") ficam separadas:
+  nesses casos `sdtGrid` devolve `approx` e a marca passa de "✓ valor a valor" para "≈ leitura aproximada, confirma no PDF"
+  (`tab.fromPdf.approx`), tambem na lista. Teste com a geometria de uma tabela com listas dentro das celulas.
   **Historia (1.0.27.1 a .5, retirado):** a primeira versao lia o pdf.js do leitor do Zotero e exigia o PDF aberto. Falhou 5 vezes
   seguidas no Zotero real ("pg.getViewport is not a function", separadores "reader-unloaded" que so carregam quando escolhidos) e o ✓
   das celulas so confirmava que o numero existia algures na pagina, nao naquela linha. Dai a mudanca para o extrator do proprio Zotero.
@@ -342,6 +348,11 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   + 1 pedidos), a confirmacao (acima de 100) e a linha `.zia-large-note` da janela (`_renderLargeNote`,
   `win.largeNote`, `win.largeNote.themes`), que so aparece com mais de 12 artigos e uma acao que faz
   lotes ou revisao por temas. README e GUIA tem a frase "Limites".
+- **Autor institucional comprido:** `cutAuthor` (em `shortAuthor`) corta um nome com mais de 34 caracteres numa palavra
+  inteira ("Amity Institute of Information…"), e `.zia-cite` deixou de ter `white-space: nowrap` (tem `max-width: 100%` e
+  `overflow-wrap: anywhere`). Antes, um artigo com autor institucional dava uma pastilha mais larga do que o painel, que
+  passava por cima das linhas seguintes. Teste "citacao com autor institucional comprido" em `run_ui.js` mede que nenhuma
+  pastilha passa a borda do painel.
 - **Citacoes ao estilo APA de cada lingua:** dois autores com "e" em PT e "&" em ingles
   (`ref.and`); varias fontes no mesmo parentesis separadas por ";" e varias paginas do
   mesmo documento juntas (`joinCites`): (Silva et al., 2021, pp. 1, 5; Costa, 2019, p. 3).
@@ -785,7 +796,7 @@ contra servidores e programas simulados).
 python build.py
 ```
 
-Gera `dist/assistente-ia-1.0.28.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
+Gera `dist/assistente-ia-1.0.29.xpi` e `dist/updates.json`. O `.xpi` fica pronto a instalar em
 **Ferramentas -> Plugins -> Install Plugin From File...**
 
 ## Licenca e documentacao publica

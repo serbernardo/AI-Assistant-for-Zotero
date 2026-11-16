@@ -1577,6 +1577,37 @@ async function main() {
 		console.log("OK janela: artigos escolhidos substituem os anteriores, sem PDF avisa bem, muitos artigos pedem confirmação");
 	}
 
+	// Autor institucional comprido: a citação tem de caber no painel (antes passava por cima do texto)
+	{
+		const page = await open("?mode=section", { width: 420, height: 800 });
+		await page.evaluate(async () => {
+			const V = window.paper("Robotic Process Automation", 2023,
+				["Amity Institute of Information Technology Lucknow, Amity University Uttar Pradesh"], "RPDF",
+				["RPA is a process to replace humans with software bots to perform monotonous tasks. " + "Texto. ".repeat(30)]);
+			await view.showItem(V);
+			window.MOCK.answer = "O excerto define a RPA como substituição de pessoas por bots [D1:p1 «RPA is a process to replace humans»].";
+		});
+		await page.fill(".zia-textarea", "Explica.");
+		await page.click(".zia-send");
+		await page.waitForSelector(".zia-cite");
+		const fits = await page.evaluate(() => {
+			const panel = document.querySelector(".zia-md").getBoundingClientRect();
+			return [...document.querySelectorAll(".zia-cite")].map(c => {
+				const r = c.getBoundingClientRect();
+				return { over: Math.round(r.right - panel.right), wide: Math.round(r.width - panel.width) };
+			});
+		});
+		assert.ok(fits.length, "a resposta tem citação");
+		for (const f of fits) {
+			assert.ok(f.over <= 1, "a citação não passa a borda do painel: " + f.over + "px");
+			assert.ok(f.wide <= 0, "a citação não é mais larga do que o painel");
+		}
+		assert.match(await page.textContent(".zia-cite"), /^Amity Institute of Information…, 2023, p\. 1/, "o nome comprido é cortado numa palavra inteira");
+		await page.screenshot({ path: path.join(OUT, "ui_citacao_longa.png"), fullPage: true });
+		await page.close();
+		console.log("OK painel: citação com autor institucional comprido cabe no painel");
+	}
+
 	// Tabelas (Beta): lista pelas legendas, tabela lida do PDF na resposta, Excel com a tabela do PDF,
 	// tabela desenhada avisa, e sem o Zotero 10 explica porquê
 	{

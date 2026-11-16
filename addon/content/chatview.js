@@ -328,7 +328,8 @@ var ZIAChatView = class {
 			top.appendChild(this._el("span", "zia-fig-page", "p. " + this._tablePage(it)));
 			row.appendChild(top);
 			row.appendChild(this._el("div", "zia-fig-cap", it.caption.replace(/^\s*\S+\s*[\dIVXivx]+\s*[.:|]?\s*/, "")));
-			row.appendChild(this._el("div", "zia-tab-size", it.drawn ? this.T("tab.drawn.short") : this.T("tab.size", { r: it.rows.length - 1, c: it.cols })));
+			row.appendChild(this._el("div", "zia-tab-size", it.drawn ? this.T("tab.drawn.short")
+				: this.T("tab.size", { r: it.rows.length - 1, c: it.cols }) + (it.approx ? " · " + this.T("tab.approx.short") : "")));
 			ul.appendChild(row);
 		}
 		box.appendChild(ul);
@@ -360,7 +361,7 @@ var ZIAChatView = class {
 			this._showSetupInline();
 			return;
 		}
-		const table = { num: it.num, label: it.label, caption: it.caption, page: it.page, pageLabel: p, rows: it.rows, cols: it.cols, docId: d.id };
+		const table = { num: it.num, label: it.label, caption: it.caption, page: it.page, pageLabel: p, rows: it.rows, cols: it.cols, approx: !!it.approx, docId: d.id };
 		await this._ask({
 			promptText: this.L.sdtTablePrompt(Object.assign({}, it, { page: it.page }), d.id),
 			display: this.T("tab.display", { name, p }),
@@ -380,7 +381,8 @@ var ZIAChatView = class {
 		const d = this.state.allDocs[t.docId];
 		if (d) cap.appendChild(this._button(this.T("proof.open"), "zia-link-btn", () => this.core.openAtPage(d, t.page)));
 		box.appendChild(cap);
-		box.appendChild(this._el("div", "zia-fig-badge-box zia-fig-ok", this.T("tab.fromPdf")));
+		box.appendChild(this._el("div", "zia-fig-badge-box " + (t.approx ? "zia-fig-img" : "zia-fig-ok"),
+			this.T(t.approx ? "tab.fromPdf.approx" : "tab.fromPdf")));
 		const wrap = this._el("div", "zia-md zia-tab-pdf");
 		try { this.L.renderMarkdownInto(this.doc, wrap, this.L.gridToMarkdown(t.rows), { docsMap: this._docsMap(m) }); }
 		catch (e) { wrap.textContent = this.L.gridToMarkdown(t.rows); }
