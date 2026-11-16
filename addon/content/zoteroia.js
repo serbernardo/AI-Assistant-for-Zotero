@@ -91,6 +91,7 @@ var ZoteroIA = {
 	// Página de apoio (Ko-fi e MB WAY). Botão escondido até a página estar pronta: mudar para true.
 	SUPPORT_ENABLED: false,
 	SUPPORT_URL: "https://github.com/serbernardo/AI-Assistant-for-Zotero/blob/main/APOIAR.md",
+	ISSUES_URL: "https://github.com/serbernardo/AI-Assistant-for-Zotero/issues/new",
 
 	/**
 	 * Botão "Buy me a coffee": desenhado aqui, sem o script do site (código de fora não corre dentro
@@ -2205,6 +2206,33 @@ var ZoteroIA = {
 	// ------------------------------------------------------------------
 	// Verificar o sentido de uma paráfrase com outro motor (segunda opinião)
 	// ------------------------------------------------------------------
+
+	/**
+	 * Comunicar um problema: abre o formulario do GitHub ja com as versoes. Nada e enviado sozinho, a pessoa ve o texto
+	 * e decide. Sem chaves, sem texto dos PDFs, e com a pasta pessoal trocada por "~".
+	 */
+	reportProblemURL({ error = "", detail = "", engine = "" } = {}) {
+		let os = "";
+		try { os = Zotero.isWin ? "Windows" : Zotero.isMac ? "macOS" : Zotero.isLinux ? "Linux" : ""; } catch (e) { /* desconhecido */ }
+		let home = "";
+		try { home = this.homeDir() || ""; } catch (e) { /* sem pasta */ }
+		const body = this.lib.problemReportBody({
+			addon: this.version || "?",
+			zotero: (typeof Zotero !== "undefined" && Zotero.version) || "?",
+			os,
+			engine: engine ? this.engineLabel(engine) : "",
+			lang: this.lib.I18N.getLang(),
+			error: this.lib.cleanReportText(error, home),
+			detail: this.lib.cleanReportText(detail, home),
+		});
+		const title = error ? this.t("report.titleError") : "";
+		return this.ISSUES_URL + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
+	},
+
+	reportProblem(info) {
+		try { Zotero.launchURL(this.reportProblemURL(info)); }
+		catch (e) { this.log("Comunicar um problema: " + e); }
+	},
 
 	async checkMeaning(engine, claim, passage, win) {
 		const { system, prompt } = this.lib.meaningPrompt(claim, passage);

@@ -160,6 +160,7 @@ window.ZIAPrefs = {
 		on("zia-claude-install", () => this.installClaude());
 		on("zia-clear-all", () => this.clearAll());
 		on("zia-update-check", () => this.checkUpdates());
+		on("zia-report-problem", () => this.core().reportProblem({ engine: this.core().pref("engine") || "" }));
 		on("zia-update-now", () => this.checkUpdates("zia-update-banner-text"));
 		on("zia-reset-privacy", () => this.resetPrivacy());
 		// Ligações: abrem no browser

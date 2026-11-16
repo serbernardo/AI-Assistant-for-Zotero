@@ -3811,6 +3811,30 @@ var ZIALib = (function () {
 		return Object.values(best);
 	}
 
+	/** Texto do formulario "Comunicar um problema" (GitHub), na lingua da app. */
+	function problemReportBody({ addon, zotero, os, engine, lang, error, detail }) {
+		const lines = [
+			"**" + t("report.what") + "**",
+			t("report.whatHint"),
+			"",
+			"**" + t("report.versions") + "**",
+			"- " + t("app.name") + ": " + addon,
+			"- Zotero: " + zotero,
+		];
+		if (os) lines.push("- " + t("report.os") + ": " + os);
+		if (engine) lines.push("- " + t("report.engine") + ": " + engine);
+		if (lang) lines.push("- " + t("report.lang") + ": " + lang);
+		if (error) lines.push("", "**" + t("report.error") + "**", "```", error + (detail ? "\n\n" + detail : ""), "```");
+		return lines.join("\n");
+	}
+
+	/** Mensagem de erro sem a pasta pessoal nem nada que pareca uma chave, e curta (vai num endereco). */
+	function cleanReportText(s, home) {
+		let out = String(s || "");
+		if (home) out = out.split(home).join("~");
+		return out.replace(/\b(sk|key|AIza)[-_A-Za-z0-9]{12,}/g, "[…]").slice(0, 1500);
+	}
+
 	/** Pedido para explicar uma tabela que ja vem do PDF (a IA nao a reescreve). */
 	function sdtTablePrompt(item, docId) {
 		const where = `${docId}:p${item.page}`;
@@ -4065,7 +4089,7 @@ var ZIALib = (function () {
 		setFichaFields, fichaTemplate, localFichaFields, fichaFieldIn, answerToDocx, meaningPrompt, parseMeaning, foldText, meaningClaims, widePassage, meaningBatchPrompt, MEANING_BATCH, MEANING_MAX, parseMeaningBatch, plainClaim,
 		parseInline, parseMarkdown, markdownToHTML, renderMarkdownInto, inlinesToText,
 		extractTables, tablesToCSV, detectFigures, figLines, clusterBlocks, pageLayout, renderRegion, PDF_OPS, figureName, figureNeedsImage, tableForSelection, unwrapPdf, figureSandboxSource,
-		sdtText, sdtRect, sdtChars, sdtGrid, sdtItems, gridToMarkdown, sdtTablePrompt, SDT_CAPTION, figurePrompt, figureVerifyText, cellNumberIn, figureCells, stripTableCites, FIGREAD_RE,
+		problemReportBody, cleanReportText, sdtText, sdtRect, sdtChars, sdtGrid, sdtItems, gridToMarkdown, sdtTablePrompt, SDT_CAPTION, figurePrompt, figureVerifyText, cellNumberIn, figureCells, stripTableCites, FIGREAD_RE,
 		createClaudeStreamParser, createGeminiSSEParser, createAnthropicSSEParser, createOpenAISSEParser, createCodexStreamParser, CODEX_TOOL_ITEMS, parseStances, removeStanceLines, studyToAnki, createIAEduStreamParser, classifyIAEduError, isIAEduEndpoint, IAEDU_DEFAULT_ENDPOINT, IAEDU_DEFAULT_CHANNEL,
 		classifyClaudeError, classifyGeminiError, parseGeminiQuota, geminiFallbacks, geminiModelInfo, isHeavyTask, geminiStrongCandidates, selectHistory, verifyAnswer, normForMatch, wordDiff, citeState, partState, checkCounts, fixCitePages, tidyMarkers, noteCitesToMarkers, disambiguateRefs, setCiteFormatter, replaceDocIds, literalDocIds, findCalculations, geminiProbeState, sortGeminiModels, GEMINI_DEFAULT, classifyAnthropicError, classifyOpenAIError, classifyCodexError, formatRateLimit, formatUsage,
 	};

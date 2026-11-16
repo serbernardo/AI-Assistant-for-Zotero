@@ -1123,3 +1123,15 @@ test("SDT: legendas de anexos e material suplementar (Table A1, Table S2, Tabela
 	assert.equal("Table 3 Kernel sizes".match(re)[2], "3");
 	assert.equal("Table shows the results".match(re), null);
 });
+
+test("Comunicar um problema: versões no texto, sem pasta pessoal nem chaves", () => {
+	const body = L.problemReportBody({ addon: "1.0.31", zotero: "10.0.8", os: "Windows", engine: "Gemini", lang: "pt-PT",
+		error: L.cleanReportText("Falhou em C:\\Users\\ana\\AppData com a chave AIzaSyD1234567890abcdefXYZ", "C:\\Users\\ana"), detail: "" });
+	assert.match(body, /1\.0\.31/);
+	assert.match(body, /Zotero: 10\.0\.8/);
+	assert.match(body, /Gemini/);
+	assert.doesNotMatch(body, /Users\\ana/);
+	assert.doesNotMatch(body, /AIzaSy/);
+	assert.match(body, /~\\AppData/);
+	assert.equal(L.cleanReportText("x".repeat(3000)).length, 1500);
+});

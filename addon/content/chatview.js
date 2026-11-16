@@ -3448,6 +3448,11 @@ var ZIAChatView = class {
 			if (["notfound", "auth", "model", "version", "billing", "notconfigured"].includes(m.errorKind)) {
 				row.appendChild(this._button(this.T("chat.settings"), "zia-btn-small", () => this._openPrefs()));
 			}
+			// Comunicar um problema: abre o formulario do GitHub com as versoes e a mensagem
+			if (m.errorKind !== "aborted" && this.core.reportProblem) {
+				row.appendChild(this._button(this.T("report.button"), "zia-btn-small zia-report-btn",
+					() => this.core.reportProblem({ error: m.error, detail: m.errorDetail, engine: m.engine }), this.T("report.tip")));
+			}
 			el.appendChild(row);
 		}
 		else if (!m.pending && m.text) {

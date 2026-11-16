@@ -2057,3 +2057,6 @@ collapsible-section[data-pane$="zoteroia-section"] > .head .title {
 /* Cartão de prova numa tabela: linha própria por baixo da linha da citação, a toda a largura */
 .zia-proof-row > td { padding: 4px 6px 6px; background: transparent; position: static; white-space: normal; }
 .zia-proof-row .zia-proof { margin: 0; }
+
+/* Comunicar um problema (Creditos) */
+.zia-credits-report { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }

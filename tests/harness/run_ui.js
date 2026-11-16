@@ -1188,6 +1188,12 @@ async function main() {
 		await page.waitForSelector(".zia-msg-del");
 		const before = await page.locator(".zia-msg").count();
 		const errMsg = page.locator(".zia-msg-assistant", { hasText: "sobrecarregados" });
+		// Comunicar um problema: abre o formulário do GitHub com as versões e a mensagem de erro
+		await page.evaluate(() => { window.opened = []; });
+		await errMsg.locator(".zia-report-btn").click();
+		const rep = decodeURIComponent(await page.evaluate(() => window.opened[0]));
+		assert.match(rep, /AI-Assistant-for-Zotero\/issues\/new\?title=Erro/);
+		assert.match(rep, /Versões[\s\S]*Zotero:[\s\S]*sobrecarregados/);
 		await errMsg.locator(".zia-msg-del").click();
 		await page.waitForSelector("text=Eliminar este erro da conversa?");
 		await page.click(".zia-confirm-del button:has-text(\"Eliminar\")");

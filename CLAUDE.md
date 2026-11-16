@@ -717,6 +717,18 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   que dava ao Endpoint do IAEdu mais largura do que aos outros dois campos e fazia dele o primeiro a sair
   do painel. Teste `run_prefs.js`: a 420, 520 e 700 px nenhum campo passa a borda do painel. NOTA: isto
   nao reproduz o relato de nao se conseguir escrever no campo, que continua por confirmar.
+- **Comunicar um problema** (a pedido, revisao do projeto): botao nas mensagens de erro (`.zia-report-btn`) e nos Creditos
+  (`#zia-report-problem`). `core.reportProblem`/`reportProblemURL` abrem `ISSUES_URL` (issues/new do GitHub) com o texto de
+  `lib.problemReportBody`: versao do addon, do Zotero, sistema, motor, lingua e a mensagem de erro. `cleanReportText` troca a
+  pasta pessoal por "~", tira o que pareca uma chave e corta a 1500 caracteres. Nada e enviado sozinho: a pessoa ve o formulario.
+- **Dois canais (estavel e teste): decidido nao fazer** com 16 transferencias. Regra: so publicar depois de a versao de teste
+  estar instalada com o utilizador pelo menos 2 dias. Rever se passar das 50 pessoas.
+- **Testes no Zotero real** (`tests/zotero_real/`): `run.sh` monta um perfil limpo com o addon e um segundo addon de teste
+  (`runner/bootstrap.js`) que, dentro do Zotero, importa um PDF, le o texto, as tabelas (SDT), abre o painel, faz uma pergunta
+  com IA simulada, guarda nota, apaga, abre o leitor e carrega no "Explicar isto" (tambem depois de apagar e duas vezes no mesmo
+  botao), abre a janela e as definicoes, escreve `results.json` e fecha. Uso: `ZOTERO=<pasta> tests/zotero_real/run.sh`. Zotero
+  para Linux em download.zotero.org (hosts permitidos no ambiente). AINDA NAO CORREU: o classificador de permissoes desta sessao
+  recusou arrancar o Zotero (instala o addon sem assinatura); precisa de autorizacao do utilizador.
 - **CSV sem formulas** (`csvCell`): uma celula que comeca por = + - @ ganha um apostrofo antes (o Excel le-a
   como texto). Os numeros negativos ficam. Um PDF podia levar a IA a escrever =HYPERLINK ou =WEBSERVICE.
 - **Atualizacoes:** `update_url` do manifest aponta para
