@@ -2062,12 +2062,6 @@ var ZoteroIA = {
 	// Notas, ligações e exportação
 	// ------------------------------------------------------------------
 
-	// ------------------------------------------------------------------
-	// Tabelas: pela estrutura do documento que o proprio Zotero extrai (Zotero 10 ou mais recente).
-	// Nao precisa do PDF aberto e o Zotero guarda o resultado em cache.
-	// ------------------------------------------------------------------
-
-	/** O Zotero desta versao sabe ler a estrutura dos documentos? */
 	citeHref(doc, page) {
 		if (!doc || !doc.attachmentKey) return null;
 		let prefix = "library";
@@ -2170,7 +2164,8 @@ var ZoteroIA = {
 			engine: engine ? this.engineLabel(engine) : "",
 			lang: this.lib.I18N.getLang(),
 			error: this.lib.cleanReportText(error, home),
-			detail: this.lib.cleanReportText(detail, home),
+			// O endereco tem limite de tamanho (o GitHub recusa mais de ~8 KB): o pormenor fica curto
+			detail: this.lib.cleanReportText(detail, home).slice(0, 600),
 		});
 		const title = error ? this.t("report.titleError") : "";
 		return this.ISSUES_URL + "?title=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(body);
@@ -2203,9 +2198,12 @@ var ZoteroIA = {
 			b.title = this.t("reader.explain.tip");
 			const page = ann.position && ann.position.pageIndex != null ? ann.position.pageIndex + 1 : null;
 			// "pointerup" e "click": o leitor pode fechar a caixa antes de o clique chegar. Um so pedido por clique.
-			let started = false;
+			let started = false, lastUp = 0;
 			const go = async ev => {
 				if (started || (ev && ev.button > 0)) return;
+				// O clique que vem logo a seguir ao pointerup ja foi tratado
+				if (ev && ev.type === "pointerup") lastUp = Date.now();
+				else if (ev && ev.type === "click" && Date.now() - lastUp < 1000) return;
 				started = true;
 				if (ev) { ev.preventDefault(); ev.stopPropagation(); }
 				b.textContent = this.t("reader.explain.opening");
@@ -2239,9 +2237,12 @@ var ZoteroIA = {
 		const att = itemID && Zotero.Items.get(itemID);
 		if (!att) return false;
 		const owner = this.conversationItem ? await this.conversationItem(att) : att;
+		// So um painel que se ve: o da biblioteca continua ligado por tras do separador do leitor, e explicar
+		// la seria invisivel (e trocava o artigo desse painel)
 		const find = () => {
-			const views = [...(this.views || [])].filter(v => v.mode === "section" && v.root && v.root.isConnected);
-			return views.find(v => v.sessionKey === `item:${owner.id}`) || views.find(v => v.root.offsetParent) || views[0];
+			const views = [...(this.views || [])].filter(v => v.mode === "section" && v.root && v.root.isConnected
+				&& v.root.getClientRects().length > 0);
+			return views.find(v => v.sessionKey === `item:${owner.id}`) || views[0] || null;
 		};
 		// Painel fechado: abre o painel da direita do leitor e espera que o assistente apareça (até 5 s)
 		let view = find();
@@ -2252,6 +2253,9 @@ var ZoteroIA = {
 		}
 		// Sem o painel do assistente (painel da direita fechado ou noutro separador): explica na janela do assistente
 		if (!view) {
+			// Janela aberta a meio de um pedido: o pedido nao seria feito, por isso diz porque
+			const w = Services.wm.getMostRecentWindow(this.WINDOW_TYPE);
+			if (w && w.ZIAWindow && w.ZIAWindow.view && w.ZIAWindow.view.busy) throw new Error(this.t("reader.explain.busy"));
 			this.openWindow({ items: [owner], explain: { text, page, pageLabel } });
 			return true;
 		}

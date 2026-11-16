@@ -253,6 +253,12 @@ verbo quando ha um natural (`button`, so Resumir), a resposta e a nota ficam com
   estiver recolhida e desliza ate ela (`sidenav.container.scrollToPane(sectionPaneID)`, o paneID completo vem do
   bootstrap). Espera ate 5 s que a vista apareca. Antes so dizia "Abre o Assistente IA no painel da direita".
   Confirmado contra o codigo fonte do Zotero (reader.js, contextPane.js, itemPaneContainerBase.mjs), nao num Zotero a correr.
+  Auditoria (depois da 1.0.30): `explainSelection` so usa um painel que se ve (`root.getClientRects().length`). Antes podia
+  escolher o painel da biblioteca, que continua ligado por tras do separador do leitor: a explicacao ia para um painel
+  invisivel e trocava o artigo dele (provavel causa de "o Explicar isto nao esta a funcionar"). Sem painel visivel abre a
+  janela do assistente (`openWindow({ explain })`, `ZIAWindow.receive`), menos se a janela estiver a meio de um pedido (o
+  botao diz porque). O botao reage ao pointerup e ao click (o click logo a seguir e ignorado), volta ao texto normal depois
+  de cada uso e mostra o erro se falhar.
 - **Tabelas e figuras: RETIRADAS (a pedido, depois da 1.0.30: "vamos apostar no que somos bons").** Existiram da 1.0.27.1 a
   1.0.30 em Beta (acao `figuras`, lista das tabelas pelo extrator do Zotero 10 `Zotero.SDT`, tabela lida do PDF e explicada pela IA).
   Motivos: 9 de 14 tabelas medidas eram desenhos sem texto, as tabelas com molduras saiam com as filas aproximadas, a primeira

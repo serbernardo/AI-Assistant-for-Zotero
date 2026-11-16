@@ -968,5 +968,7 @@ test("Comunicar um problema: versões no texto, sem pasta pessoal nem chaves", (
 	assert.doesNotMatch(body, /Users\\ana/);
 	assert.doesNotMatch(body, /AIzaSy/);
 	assert.match(body, /~\\AppData/);
-	assert.equal(L.cleanReportText("x".repeat(3000)).length, 1500);
+	assert.equal(L.cleanReportText("x".repeat(3000)).length, 1200);
+	// A pasta pessoal escrita de outra forma (barras e maiúsculas) também sai
+	assert.equal(L.cleanReportText("em C:/Users/Ana/.local e c:\\users\\ana\\x", "C:\\Users\\Ana"), "em ~/.local e ~\\x");
 });

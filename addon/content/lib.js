@@ -3439,8 +3439,12 @@ var ZIALib = (function () {
 	/** Mensagem de erro sem a pasta pessoal nem nada que pareca uma chave, e curta (vai num endereco). */
 	function cleanReportText(s, home) {
 		let out = String(s || "");
-		if (home) out = out.split(home).join("~");
-		return out.replace(/\b(sk|key|AIza)[-_A-Za-z0-9]{12,}/g, "[…]").slice(0, 1500);
+		if (home) {
+			// A mesma pasta escrita com / ou \\ e com outras maiusculas (Windows)
+			const flex = String(home).replace(/[\\/]+$/, "").split(/[\\/]+/).map(p => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[\\\\/]+");
+			if (flex) out = out.replace(new RegExp(flex, "gi"), "~");
+		}
+		return out.replace(/\b(sk|key|AIza)[-_A-Za-z0-9]{12,}/g, "[…]").slice(0, 1200);
 	}
 
 	return {
