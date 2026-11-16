@@ -3773,7 +3773,10 @@ var ZIALib = (function () {
 				const b = list[k];
 				if (!b || (b.type !== "table" && b.type !== "image")) continue;
 				const r = sdtRect(b);
-				if (!r || r.page !== rect.page) continue;
+				// Na mesma pagina, ou na pagina ao lado quando o bloco vem logo antes ou depois da legenda
+				if (!r) continue;
+				const side = Math.abs(k - i) === 1 && Math.abs(r.page - rect.page) === 1;
+				if (r.page !== rect.page && !side) continue;
 				// Nunca o bloco de outra legenda mais perto
 				const other = list.findIndex((c, j) => c && c.type === "caption" && j !== i && Math.abs(j - k) < Math.abs(i - k));
 				if (other >= 0) continue;
@@ -3794,6 +3797,8 @@ var ZIALib = (function () {
 				approx: !!g.approx,
 				// Sem texto para ler: tabela desenhada no PDF, ou figura
 				drawn: kind === "table" && g.rows.length < 2,
+				// Nenhum bloco junto da legenda: nao se sabe se e desenho, so que nao foi localizada
+				lost: kind === "table" && !block,
 			});
 		});
 		// A mesma tabela citada duas vezes: fica a que tem mais filas

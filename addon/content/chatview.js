@@ -328,7 +328,7 @@ var ZIAChatView = class {
 			top.appendChild(this._el("span", "zia-fig-page", "p. " + this._tablePage(it)));
 			row.appendChild(top);
 			row.appendChild(this._el("div", "zia-fig-cap", it.caption.replace(/^\s*\S+\s*[\dIVXivx]+\s*[.:|]?\s*/, "")));
-			row.appendChild(this._el("div", "zia-tab-size", it.drawn ? this.T("tab.drawn.short")
+			row.appendChild(this._el("div", "zia-tab-size", it.lost ? this.T("tab.lost.short") : it.drawn ? this.T("tab.drawn.short")
 				: this.T("tab.size", { r: it.rows.length - 1, c: it.cols }) + (it.approx ? " · " + this.T("tab.approx.short") : "")));
 			ul.appendChild(row);
 		}
@@ -354,7 +354,7 @@ var ZIAChatView = class {
 		const p = this._tablePage(it);
 		if (it.drawn) {
 			// Tabela desenhada no PDF: não há texto nenhum para ler
-			this._setStatus(this.T("tab.drawn.msg", { name }), "warn");
+			this._setStatus(this.T(it.lost ? "tab.lost.msg" : "tab.drawn.msg", { name }), "warn");
 			return;
 		}
 		if (!this._engineReady()) {
@@ -2979,6 +2979,8 @@ var ZIAChatView = class {
 	 */
 	async _autoMeaning(m, engine) {
 		if (this.core.pref("verify.meaning") === false) return;
+		// A conversa onde a resposta nasceu: se a pessoa mudar de artigo a meio, e essa que se guarda
+		const home = { key: this.historyKey, state: this.state };
 		const items = Object.fromEntries((m.check.items || []).map(it => [it.key, it]));
 		// Com o parágrafo à volta da frase do PDF (medido em 2 artigos reais: 106 de 126 certas a verde, 1 de 30 estragadas)
 		const pagesOf = id => { const d = this.state.allDocs && this.state.allDocs[id]; return (d && d.pages) || null; };
@@ -3011,7 +3013,8 @@ var ZIAChatView = class {
 		finally {
 			m.meaningRunning = false;
 			redraw();
-			this._persist();
+			if (home.state === this.state) this._persist();
+			else if (home.key && this.core.saveConversation) this.core.saveConversation(home.key, { convs: home.state.convs, active: home.state.active });
 		}
 	}
 
